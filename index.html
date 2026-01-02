@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B_Lits Hair Salon - Premium Hair Care</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1002;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200') center/cover;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: #667eea;
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Page Content */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #667eea;
+            text-align: center;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+
+        .links {
+            text-decoration: none;
+            color: white;
+        }
+
+        .service-info {
+            padding: 1.5rem;
+        }
+
+        .service-info h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #764ba2;
+            font-size: 1.2rem;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            height: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Contact Form */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item strong {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Chatbot */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 1001;
+            transition: transform 0.3s;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chatbot-window {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1001;
+        }
+
+        .chatbot-window.open {
+            display: flex;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header h3 {
+            margin: 0;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message {
+            padding: 0.8rem 1rem;
+            border-radius: 15px;
+            max-width: 80%;
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bot-message {
+            background: #f0f0f0;
+            align-self: flex-start;
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            align-self: flex-end;
+        }
+
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .quick-reply {
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .quick-reply:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .chatbot-input {
+            padding: 1rem;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+
+        .chatbot-input button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 280px;
+                height: 100vh;
+                background: #000;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding: 5rem 2rem 2rem 2rem;
+                transition: left 0.3s ease-in-out;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+                z-index: 1001;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 0.5rem 0;
+                font-size: 1.2rem;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .chatbot-window {
+                width: calc(100% - 20px);
+                right: 10px;
+                left: 10px;
+            }
+
+            .chatbot-toggle {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">✨ B_Lit Hairs</div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('services')">Services</a></li>
+                <li><a href="#" onclick="showPage('gallery')">Gallery</a></li>
+                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Transform Your Look</h1>
+                <p>Experience luxury hair care like never before</p>
+                <button class="cta-button" onclick="showPage('contact')">Book Appointment</button>
+            </div>
+        </section>
+        
+        <div class="container">
+            <h2>Welcome to B_Lit Hair Salon</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto;">
+                We are a premier hair salon dedicated to bringing out the best in you. Our experienced stylists 
+                use the latest techniques and premium products to create stunning looks tailored to your unique style.
+            </p>
+        </div>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400" alt="Haircut">
+                    <div class="service-info">
+                        <h3>Haircut & Styling</h3>
+                        <p>Professional cuts and styling for all hair types. Our stylists will create a look that complements your features.</p>
+                        <div class="price">From $45</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400" alt="Coloring">
+                    <div class="service-info">
+                        <h3>Hair Coloring</h3>
+                        <p>Full color, highlights, balayage, and ombre. Transform your look with our expert coloring services.</p>
+                        <div class="price">From $80</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400" alt="Treatment">
+                    <div class="service-info">
+                        <h3>Hair Treatment</h3>
+                        <p>Deep conditioning, keratin, and repair treatments. Restore your hair's health and shine.</p>
+                        <div class="price">From $60</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400" alt="Bridal">
+                    <div class="service-info">
+                        <h3>Bridal Styling</h3>
+                        <p>Special occasion styling for your big day. We'll make sure you look absolutely stunning.</p>
+                        <div class="price">From $120</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=400" alt="Extensions">
+                    <div class="service-info">
+                        <h3>Hair Extensions</h3>
+                        <p>Add length and volume with our premium hair extensions. Natural-looking results guaranteed.</p>
+                        <div class="price">From $200</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?w=400" alt="Scalp">
+                    <div class="service-info">
+                        <h3>Scalp Treatment</h3>
+                        <p>Rejuvenating scalp care for healthy hair growth. Relax while we pamper your scalp.</p>
+                        <div class="price">From $50</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Page -->
+    <div id="gallery" class="page">
+        <div class="container">
+            <h2>Our Work</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=400" alt="Gallery 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400" alt="Gallery 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=400" alt="Gallery 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400" alt="Gallery 4">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?w=400" alt="Gallery 5">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400" alt="Gallery 6">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" required placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" name="phone" required placeholder="0554196068">
+                    </div>
+                    <div class="form-group">
+                        <label>Service</label>
+                        <select name="service" required>
+                            <option value="">Select a service</option>
+                            <option>Haircut & Styling</option>
+                            <option>Hair Coloring</option>
+                            <option>Hair Treatment</option>
+                            <option>Bridal Styling</option>
+                            <option>Hair Extensions</option>
+                            <option>Scalp Treatment</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea name="message" rows="4" placeholder="Tell us about your hair goals..."></textarea>
+                    </div>
+                    <input type="hidden" name="_subject" value="New Salon Appointment Request">
+                    <input type="hidden" name="_next" value="https://yourdomain.com/#contact">
+                    <button type="submit" class="cta-button">Book Appointment</button>
+                </form>
+                <div class="contact-info">
+                    <h3>Visit Us</h3>
+                    <div class="info-item">
+                        <strong>📍 Location</strong>
+                        <p><br>Alajo, Accra.</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>📞 Phone</strong>
+                       <a href="tel:+233273521007" class="links">+233 27 352 1007</a> 
+                    </div>
+                    <div class="info-item">
+                        <strong>✉️ WhatsApp me on:</strong>
+                        <a href="https://wa.me/233273521007" class="links" target="_blank">0273521007</a>
+                    </div>
+                    <div class="info-item">
+                        <strong>🕐 Hours</strong>
+                        <p>Monday - Friday: 10:00 AM - 7:00 PM<br>
+                        Saturday: 10:00 AM - 7:00 PM<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 B_Lit Hair Salon. All rights reserved.</p>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot-toggle" onclick="toggleChat()">💬</div>
+    <div class="chatbot-window" id="chatbot">
+        <div class="chatbot-header">
+            <h3>Chat with Us</h3>
+            <button class="close-chat" onclick="toggleChat()">✕</button>
+        </div>
+        <div class="chatbot-messages" id="chatMessages">
+            <div class="message bot-message">
+                Hi! 👋 Welcome to B_Lit Hair Salon! How can I help you today?
+            </div>
+            <div class="quick-replies">
+                <button class="quick-reply" onclick="quickReply('What services do you offer?')">📋 What services do you offer?</button>
+                <button class="quick-reply" onclick="quickReply('What are your prices?')">💰 What are your prices?</button>
+                <button class="quick-reply" onclick="quickReply('How do I book an appointment?')">📅 How do I book an appointment?</button>
+                <button class="quick-reply" onclick="quickReply('What are your business hours?')">🕐 What are your business hours?</button>
+                <button class="quick-reply" onclick="quickReply('Where are you located?')">📍 Where are you located?</button>
+                <button class="quick-reply" onclick="quickReply('Do you do bridal hair?')">👰 Do you do bridal hair?</button>
+                <button class="quick-reply" onclick="quickReply('What hair products do you use?')">✨ What products do you use?</button>
+                <button class="quick-reply" onclick="quickReply('Do you offer consultations?')">💬 Do you offer consultations?</button>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKey(event)">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            
+            // Close mobile menu
+            document.getElementById('navLinks').classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Form submission - No longer needed as Formspree handles it
+        // Keeping function for backward compatibility
+        function handleSubmit(e) {
+            // Formspree will handle the submission
+            return true;
+        }
+
+        // Chatbot
+        const chatResponses = {
+            greetings: ['hello', 'hi', 'hey', 'good morning', 'good afternoon', 'good evening'],
+            services: ['service', 'services', 'what do you offer', 'treatments', 'haircut', 'color', 'style'],
+            pricing: ['price', 'cost', 'how much', 'pricing', 'rate', 'rates'],
+            booking: ['book', 'appointment', 'schedule', 'reserve', 'available'],
+            hours: ['hours', 'open', 'close', 'timing', 'when'],
+            location: ['where', 'location', 'address', 'find you']
+        };
+
+        function toggleChat() {
+            document.getElementById('chatbot').classList.toggle('open');
+        }
+
+        function handleChatKey(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addMessage(message, 'user');
+            input.value = '';
+            
+            // Generate bot response
+            setTimeout(() => {
+                const response = generateResponse(message.toLowerCase());
+                addMessage(response, 'bot');
+            }, 500);
+        }
+
+        function addMessage(text, type) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}-message`;
+            messageDiv.textContent = text;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function generateResponse(message) {
+            if (chatResponses.greetings.some(word => message.includes(word))) {
+                return "Hello! 😊 How can I assist you today? Would you like to know about our services, pricing, or book an appointment?";
+            }
+            
+            if (chatResponses.services.some(word => message.includes(word))) {
+                return "We offer a wide range of services including:\n• Haircut & Styling (from $45)\n• Hair Coloring - highlights, balayage, ombre (from $80)\n• Hair Treatments - deep conditioning, keratin (from $60)\n• Bridal Styling (from $120)\n• Hair Extensions (from $200)\n• Scalp Treatments (from $50)\n\nWould you like more details about any specific service?";
+            }
+            
+            if (chatResponses.pricing.some(word => message.includes(word))) {
+                return "Our prices are competitive and based on the service:\n• Haircut & Styling: from $45\n• Hair Coloring: from $80\n• Hair Treatment: from $60\n• Bridal Styling: from $120\n• Hair Extensions: from $200\n• Scalp Treatment: from $50\n\nPrices may vary depending on hair length and complexity. Contact us for a personalized quote!";
+            }
+            
+            if (chatResponses.booking.some(word => message.includes(word))) {
+                return "Booking is easy! You can:\n1. Call us at (555) 123-4567\n2. Fill out our contact form on the Contact page\n3. Visit us in person at 123 Beauty Lane\n\nWe'll confirm your appointment within 24 hours. What date works best for you?";
+            }
+            
+            if (chatResponses.hours.some(word => message.includes(word))) {
+                return "Our business hours are:\n📅 Monday - Friday: 9:00 AM - 8:00 PM\n📅 Saturday: 9:00 AM - 6:00 PM\n📅 Sunday: 10:00 AM - 5:00 PM\n\nWe're here to serve you 7 days a week!";
+            }
+            
+            if (chatResponses.location.some(word => message.includes(word))) {
+                return "We're located at:\n📍 123 Beauty Lane, Fashion District\nNew York, NY 10001\n\nWe have plenty of parking available and are easily accessible by public transport. See you soon!";
+            }
+
+            if (message.includes('bridal') || message.includes('wedding') || message.includes('bride')) {
+                return "Yes! We specialize in bridal hair styling! 👰✨\n\nOur bridal package includes:\n• Consultation to discuss your vision\n• Trial run before the big day\n• Day-of styling and touch-ups\n• Styling for bridesmaids available\n\nPrices start at $120. We recommend booking 3-6 months in advance. Would you like to schedule a consultation?";
+            }
+
+            if (message.includes('product') || message.includes('products')) {
+                return "We use only premium, professional-grade products! ✨\n\nOur brands include top salon products that are:\n• Sulfate-free options available\n• Color-safe formulas\n• Organic and natural options\n• Keratin and protein treatments\n\nWe also retail these products so you can maintain your look at home. Ask your stylist for recommendations!";
+            }
+
+            if (message.includes('consultation') || message.includes('consult')) {
+                return "Yes, we offer FREE consultations! 💬\n\nDuring your consultation, we'll:\n• Assess your hair type and condition\n• Discuss your hair goals and lifestyle\n• Recommend the best services and products\n• Provide honest advice on what will work best\n\nNo obligation to book - we just want to help you achieve your dream hair! Call us to schedule.";
+            }
+
+            if (message.includes('parking') || message.includes('park')) {
+                return "Yes! We have convenient parking options:\n🚗 Free parking lot behind the building\n🚗 Street parking available\n🚗 Public parking garage 2 blocks away\n\nYou'll have no trouble finding a spot when you visit us!";
+            }
+
+            if (message.includes('cancel') || message.includes('reschedule')) {
+                return "We understand plans change! 📅\n\nFor cancellations or rescheduling:\n• Please give us 24 hours notice\n• Call (555) 123-4567 or email us\n• We'll help you find a new time that works\n\nWe have a flexible rescheduling policy to accommodate your needs.";
+            }
+            
+            return "Thanks for your message! 😊 For detailed information, please:\n• Browse our Services page\n• Visit our Contact page\n• Call us at (555) 123-4567\n• Email hello@luxehair.com\n\nOur team is here to help you look and feel amazing!";
+        }
+
+        // Remove the setTimeout quick replies since they're now in the HTML
+        function quickReply(text) {
+            document.getElementById('chatInput').value = text;
+            sendMessage();
+        }
+    </script>
+</body>
+</html>
