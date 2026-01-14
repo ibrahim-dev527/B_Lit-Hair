@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Product details — b_lit hairs. Premium virgin human hair. Shop now and pay via WhatsApp.">
+  <title>Product — b_lit hairs | Luxury Hair, Ghana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+<div class="page-loader" role="status" aria-label="Loading">
+  <div class="loader-logo">b_lit <span>hairs</span></div>
+  <div class="loader-ring"></div>
+  <div class="loader-bar"><div class="loader-bar__fill"></div></div>
+</div>
+
+<div class="scroll-progress" role="progressbar" aria-hidden="true"></div>
+<div class="page-transition" aria-hidden="true"></div>
+
+<!-- NAV -->
+<header>
+  <nav class="nav nav--dark" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo" aria-label="b_lit hairs home">
+          <img src="assets/images/logo.png" alt="b_lit hairs logo" width="44" height="44" onerror="this.style.display='none'">
+          <span class="nav__logo-text">b_lit <span>hairs</span></span>
+        </a>
+        <ul class="nav__menu" role="list">
+          <li><a href="index.html"    class="nav__link">Home</a></li>
+          <li><a href="shop.html"     class="nav__link active">Shop</a></li>
+          <li><a href="services.html" class="nav__link">Services</a></li>
+          <li><a href="about.html"    class="nav__link">About</a></li>
+          <li><a href="contact.html"  class="nav__link">Contact</a></li>
+          <li class="nav__cta"><a href="shop.html" class="btn btn--primary">Shop Now</a></li>
+        </ul>
+        <button class="nav__hamburger" aria-label="Open mobile menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <div class="nav__drawer" role="dialog" aria-label="Mobile navigation">
+    <a href="index.html"    class="nav__link">Home</a>
+    <a href="shop.html"     class="nav__link">Shop</a>
+    <a href="services.html" class="nav__link">Services</a>
+    <a href="about.html"    class="nav__link">About</a>
+    <a href="contact.html"  class="nav__link">Contact</a>
+    <a href="shop.html" class="btn btn--primary btn--lg">Shop Now</a>
+  </div>
+</header>
+
+<main>
+<section class="section" style="padding-top:8rem;" aria-label="Product detail">
+  <div class="container">
+
+    <!-- Breadcrumb / Back -->
+    <nav aria-label="Breadcrumb">
+      <a href="shop.html" class="product-detail__back" data-reveal="fade">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+        </svg>
+        Back to Shop
+      </a>
+    </nav>
+
+    <article class="product-detail" itemscope itemtype="https://schema.org/Product">
+
+      <!-- Left: Gallery -->
+      <div class="product-detail__gallery" data-reveal="left">
+        <div class="product-detail__main-img">
+          <img id="product-main-img"
+               src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80"
+               alt="Product main image"
+               itemprop="image"
+               width="800" height="480">
+        </div>
+        <div class="product-detail__thumbs" id="product-thumbs">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <!-- Right: Info -->
+      <div class="product-detail__info" data-reveal="right">
+        <span class="section-label" id="product-category">Hair Category</span>
+        <span class="product-card__badge" id="product-badge" style="margin-bottom:0.75rem;display:inline-block;">Best Seller</span>
+
+        <h1 class="product-detail__name" id="product-name" itemprop="name">Loading…</h1>
+
+        <div class="product-detail__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <span id="product-price" itemprop="price">GHS —</span>
+          <meta itemprop="priceCurrency" content="GHS">
+          <meta itemprop="availability" content="https://schema.org/InStock">
+        </div>
+
+        <p id="product-description" style="margin:1.25rem 0;font-size:0.95rem;line-height:1.85;" itemprop="description">Loading product details…</p>
+
+        <!-- Specs -->
+        <div class="product-detail__specs" aria-label="Product specifications">
+          <div class="spec-item">
+            <span class="spec-item__label">Hair Type</span>
+            <span class="spec-item__val" id="spec-type">—</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Texture</span>
+            <span class="spec-item__val" id="spec-texture">—</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Length</span>
+            <span class="spec-item__val" id="spec-length">—</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Weight</span>
+            <span class="spec-item__val" id="spec-weight">—</span>
+          </div>
+          <div class="spec-item" style="grid-column:1/-1;">
+            <span class="spec-item__label">Colour</span>
+            <span class="spec-item__val" id="spec-color">—</span>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div style="margin:1.5rem 0;">
+          <h4 style="margin-bottom:0.75rem;font-size:0.95rem;">What's Included / Features:</h4>
+          <ul id="product-features" style="margin:0;padding:0;">
+            <!-- Rendered by JS -->
+          </ul>
+        </div>
+
+        <!-- Actions -->
+        <div class="product-detail__actions">
+          <a id="whatsapp-buy-btn"
+             href="#"
+             class="btn btn--primary btn--lg"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Buy this product on WhatsApp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Buy Now on WhatsApp
+          </a>
+
+          <a href="shop.html" class="btn btn--outline btn--lg">Browse More</a>
+        </div>
+
+        <!-- Trust signals -->
+        <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(181,67,106,0.12);">
+          <div class="trust-bar__item" style="color:var(--text-mid);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--pink-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            100% Authentic
+          </div>
+          <div class="trust-bar__item" style="color:var(--text-mid);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--pink-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Fast Delivery
+          </div>
+          <div class="trust-bar__item" style="color:var(--text-mid);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--pink-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            5-Star Rated
+          </div>
+        </div>
+      </div>
+
+    </article>
+  </div>
+</section>
+
+<!-- Related / More Products -->
+<section class="section section--pink" aria-labelledby="related-heading">
+  <div class="container">
+    <div class="text-center" data-reveal="up">
+      <span class="section-label">You May Also Like</span>
+      <h2 class="section-title" id="related-heading">More <em>Luxury Picks</em></h2>
+      <div class="divider" aria-hidden="true"></div>
+    </div>
+    <div class="products-grid" id="related-products" style="margin-top:3rem;" role="list" aria-label="Related products">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <span class="nav__logo-text">b_lit <span>hairs</span></span>
+        <p>Ghana's premium luxury hair brand.</p>
+        <div class="footer__socials">
+          <a href="#" class="footer__social" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="https://wa.me/233273521007" class="footer__social" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        </div>
+      </div>
+      <nav aria-label="Shop navigation">
+        <h4 class="footer__heading">Shop</h4>
+        <ul class="footer__links">
+          <li><a href="shop.html">All Products</a></li>
+          <li><a href="shop.html">Wigs</a></li>
+          <li><a href="shop.html">Bundles</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company navigation">
+        <h4 class="footer__heading">Company</h4>
+        <ul class="footer__links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h4 class="footer__heading">Contact</h4>
+        <ul class="footer__links">
+          <li><a href="https://wa.me/233273521007" target="_blank" rel="noopener noreferrer">+233 27 352 1007</a></li>
+          <li style="color:rgba(255,255,255,0.55);font-size:0.9rem;">Accra, Ghana</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2024 b_lit hairs. All rights reserved.</p>
+      <p><a href="#">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+
+<a href="#" class="whatsapp-float" id="wa-product-float" target="_blank" rel="noopener noreferrer" aria-label="Buy on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="js/products.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // Extra: Render related products after main JS loads
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('related-products');
+    if (grid && typeof getAllProducts === 'function') {
+      const related = getAllProducts().slice(0, 4);
+      related.forEach((product, i) => {
+        const card = document.createElement('article');
+        card.className = 'product-card';
+        card.setAttribute('data-reveal', 'up');
+        card.setAttribute('data-delay', String(i * 120));
+        card.innerHTML = `
+          ${product.badge ? `<span class="product-card__badge">${product.badge}</span>` : ''}
+          <div class="product-card__img-wrap">
+            <img src="${product.image}" alt="${product.name}" loading="lazy" width="400" height="300">
+            <div class="product-card__overlay"><span style="color:white;font-family:var(--font-accent);font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">View Details</span></div>
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__type">${product.hairType} · ${product.texture}</div>
+            <h3 class="product-card__name">${product.name}</h3>
+            <div class="product-card__footer">
+              <div class="product-card__price">${formatPrice(product.price, product.currency)}</div>
+              <button class="product-card__btn" aria-label="View ${product.name}">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+            </div>
+          </div>`;
+        card.addEventListener('click', () => {
+          sessionStorage.setItem('selectedProduct', JSON.stringify(product));
+          window.location.href = `product.html?id=${product.id}`;
+        });
+        grid.appendChild(card);
+      });
+
+      // Re-run scroll reveal
+      setTimeout(() => {
+        document.querySelectorAll('[data-reveal]').forEach(el => {
+          if (!el.classList.contains('revealed')) {
+            const observer = new IntersectionObserver(entries => {
+              entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); observer.unobserve(e.target); }});
+            }, { threshold: 0.12 });
+            observer.observe(el);
+          }
+        });
+      }, 100);
+    }
+  });
+</script>
+</body>
+</html>

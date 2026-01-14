@@ -1,839 +1,441 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B_Lits Hair Salon - Premium Hair Care</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        /* Navigation */
-        nav {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            color: white;
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 1002;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200') center/cover;
-            height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .hero-content p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .cta-button {
-            background: #667eea;
-            color: white;
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        /* Page Content */
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #667eea;
-            text-align: center;
-        }
-
-        /* Services */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .service-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-
-        .links {
-            text-decoration: none;
-            color: white;
-        }
-
-        .service-info {
-            padding: 1.5rem;
-        }
-
-        .service-info h3 {
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-
-        .service-info p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .price {
-            font-weight: bold;
-            color: #764ba2;
-            font-size: 1.2rem;
-        }
-
-        /* Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .gallery-item {
-            height: 300px;
-            overflow: hidden;
-            border-radius: 10px;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* Contact Form */
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group label {
-            margin-bottom: 0.5rem;
-            color: #667eea;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            padding: 0.8rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .contact-info {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-        }
-
-        .contact-info h3 {
-            margin-bottom: 1.5rem;
-        }
-
-        .info-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .info-item strong {
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Chatbot */
-        .chatbot-toggle {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.8rem;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            z-index: 1001;
-            transition: transform 0.3s;
-        }
-
-        .chatbot-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        .chatbot-window {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 350px;
-            height: 500px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            display: none;
-            flex-direction: column;
-            z-index: 1001;
-        }
-
-        .chatbot-window.open {
-            display: flex;
-        }
-
-        .chatbot-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 15px 15px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chatbot-header h3 {
-            margin: 0;
-        }
-
-        .close-chat {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .chatbot-messages {
-            flex: 1;
-            padding: 1rem;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .message {
-            padding: 0.8rem 1rem;
-            border-radius: 15px;
-            max-width: 80%;
-            animation: slideIn 0.3s;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .bot-message {
-            background: #f0f0f0;
-            align-self: flex-start;
-        }
-
-        .user-message {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            align-self: flex-end;
-        }
-
-        .quick-replies {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .quick-reply {
-            background: white;
-            border: 2px solid #667eea;
-            color: #667eea;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.3s;
-            text-align: left;
-        }
-
-        .quick-reply:hover {
-            background: #667eea;
-            color: white;
-        }
-
-        .chatbot-input {
-            padding: 1rem;
-            border-top: 1px solid #e0e0e0;
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .chatbot-input input {
-            flex: 1;
-            padding: 0.8rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 25px;
-            font-size: 1rem;
-        }
-
-        .chatbot-input button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /* Footer */
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 0;
-                left: -100%;
-                width: 280px;
-                height: 100vh;
-                background: #000;
-                flex-direction: column;
-                align-items: flex-start;
-                justify-content: flex-start;
-                padding: 5rem 2rem 2rem 2rem;
-                transition: left 0.3s ease-in-out;
-                box-shadow: 2px 0 10px rgba(0,0,0,0.5);
-                z-index: 1001;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .nav-links li {
-                width: 100%;
-                margin-bottom: 1rem;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 0.5rem 0;
-                font-size: 1.2rem;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .hero-content p {
-                font-size: 1.2rem;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-
-            .chatbot-window {
-                width: calc(100% - 20px);
-                right: 10px;
-                left: 10px;
-            }
-
-            .chatbot-toggle {
-                bottom: 20px;
-                right: 20px;
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="b_lit hairs — Ghana's premium luxury hair brand. Shop 100% virgin human hair bundles, wigs, frontals and extensions. Delivered across Ghana with love.">
+  <meta name="keywords" content="hair Ghana, virgin hair Accra, luxury hair Ghana, b_lit hairs, wigs Ghana, bundles Ghana, human hair Ghana">
+  <meta property="og:title" content="b_lit hairs — Luxury Hair Brand, Ghana">
+  <meta property="og:description" content="Premium virgin human hair. Bundles, wigs, frontals & extensions. Shop now and transform your look.">
+  <meta property="og:type" content="website">
+  <title>b_lit hairs | Luxury Hair Brand — Ghana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">✨ B_Lit Hairs</div>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#" onclick="showPage('home')">Home</a></li>
-                <li><a href="#" onclick="showPage('services')">Services</a></li>
-                <li><a href="#" onclick="showPage('gallery')">Gallery</a></li>
-                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- Home Page -->
-    <div id="home" class="page active">
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Transform Your Look</h1>
-                <p>Experience luxury hair care like never before</p>
-                <button class="cta-button" onclick="showPage('contact')">Book Appointment</button>
-            </div>
-        </section>
-        
-        <div class="container">
-            <h2>Welcome to B_Lit Hair Salon</h2>
-            <p style="text-align: center; font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto;">
-                We are a premier hair salon dedicated to bringing out the best in you. Our experienced stylists 
-                use the latest techniques and premium products to create stunning looks tailored to your unique style.
-            </p>
-        </div>
+<!-- Page Loader -->
+<div class="page-loader" role="status" aria-label="Loading b_lit hairs">
+  <div class="loader-logo">b_lit <span>hairs</span></div>
+  <div class="loader-ring"></div>
+  <div class="loader-bar"><div class="loader-bar__fill"></div></div>
+</div>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" role="progressbar" aria-hidden="true"></div>
+
+<!-- Page Transition -->
+<div class="page-transition" aria-hidden="true"></div>
+
+<!-- ═══════════════════════ NAVIGATION ═══════════════════════ -->
+<header>
+  <nav class="nav nav--white" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo" aria-label="b_lit hairs home">
+          <img src="assets/images/logo.png" alt="b_lit hairs logo" width="44" height="44" onerror="this.style.display='none'">
+          <span class="nav__logo-text">b_lit <span>hairs</span></span>
+        </a>
+
+        <ul class="nav__menu" role="list">
+          <li><a href="index.html"    class="nav__link active">Home</a></li>
+          <li><a href="shop.html"     class="nav__link">Shop</a></li>
+          <li><a href="services.html" class="nav__link">Services</a></li>
+          <li><a href="about.html"    class="nav__link">About</a></li>
+          <li><a href="contact.html"  class="nav__link">Contact</a></li>
+          <li class="nav__cta">
+            <a href="shop.html" class="btn btn--primary">Shop Now</a>
+          </li>
+        </ul>
+
+        <button class="nav__hamburger" aria-label="Open mobile menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div class="nav__drawer" role="dialog" aria-label="Mobile navigation">
+    <a href="index.html"    class="nav__link">Home</a>
+    <a href="shop.html"     class="nav__link">Shop</a>
+    <a href="services.html" class="nav__link">Services</a>
+    <a href="about.html"    class="nav__link">About</a>
+    <a href="contact.html"  class="nav__link">Contact</a>
+    <a href="shop.html" class="btn btn--primary btn--lg">Shop Now</a>
+  </div>
+</header>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<main>
+<section class="hero" aria-label="Hero section">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__overlay" aria-hidden="true"></div>
+
+  <!-- Decorative blobs -->
+  <div class="blob blob--pink float-element" style="width:400px;height:400px;top:-100px;right:-80px;" aria-hidden="true"></div>
+  <div class="blob blob--gold float-element" style="width:300px;height:300px;bottom:100px;right:20%" aria-hidden="true"></div>
+
+  <div class="container">
+    <div class="hero__content">
+      <span class="hero__eyebrow">Ghana's Luxury Hair Brand</span>
+
+      <h1 class="hero__title">
+        Wear Hair That<br>
+        <em>Tells Your Story</em>
+      </h1>
+
+      <p class="hero__desc">
+        Premium 100% virgin human hair — sourced for women who refuse to compromise. Wigs, bundles &amp; frontals that move with you, last with you, and define you.
+      </p>
+
+      <div class="hero__actions">
+        <a href="shop.html" class="btn btn--primary btn--lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Shop the Collection
+        </a>
+        <a href="https://wa.me/233273521007?text=Hello%20b_lit%20hairs!%20I%E2%80%99d%20like%20to%20know%20more%20about%20your%20hair%20products%20%F0%9F%92%95" class="btn btn--white btn--lg" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══════════════════════ TRUST BAR ═══════════════════════ -->
+<div class="trust-bar" role="complementary" aria-label="Trust indicators">
+  <div class="container">
+    <div class="trust-bar__inner">
+      <div class="trust-bar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        100% Virgin Hair
+      </div>
+      <div class="trust-bar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Fast Ghana Delivery
+      </div>
+      <div class="trust-bar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        500+ Happy Clients
+      </div>
+      <div class="trust-bar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        5-Star Rated
+      </div>
+      <div class="trust-bar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        Ghana-Based Brand
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ FEATURED PRODUCTS ═══════════════════════ -->
+<section class="section" id="featured" aria-labelledby="featured-heading">
+  <div class="container">
+    <div class="text-center" data-reveal="up">
+      <span class="section-label">Our Collection</span>
+      <h2 class="section-title" id="featured-heading">Shop <em>Fan Favourites</em></h2>
+      <div class="divider" aria-hidden="true"></div>
+      <p class="section-subtitle" style="margin-top:1rem;">Handpicked. Luxurious. Loved by women across Ghana and beyond.</p>
     </div>
 
-    <!-- Services Page -->
-    <div id="services" class="page">
-        <div class="container">
-            <h2>Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400" alt="Haircut">
-                    <div class="service-info">
-                        <h3>Haircut & Styling</h3>
-                        <p>Professional cuts and styling for all hair types. Our stylists will create a look that complements your features.</p>
-                        <div class="price">From $45</div>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400" alt="Coloring">
-                    <div class="service-info">
-                        <h3>Hair Coloring</h3>
-                        <p>Full color, highlights, balayage, and ombre. Transform your look with our expert coloring services.</p>
-                        <div class="price">From $80</div>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400" alt="Treatment">
-                    <div class="service-info">
-                        <h3>Hair Treatment</h3>
-                        <p>Deep conditioning, keratin, and repair treatments. Restore your hair's health and shine.</p>
-                        <div class="price">From $60</div>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400" alt="Bridal">
-                    <div class="service-info">
-                        <h3>Bridal Styling</h3>
-                        <p>Special occasion styling for your big day. We'll make sure you look absolutely stunning.</p>
-                        <div class="price">From $120</div>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=400" alt="Extensions">
-                    <div class="service-info">
-                        <h3>Hair Extensions</h3>
-                        <p>Add length and volume with our premium hair extensions. Natural-looking results guaranteed.</p>
-                        <div class="price">From $200</div>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?w=400" alt="Scalp">
-                    <div class="service-info">
-                        <h3>Scalp Treatment</h3>
-                        <p>Rejuvenating scalp care for healthy hair growth. Relax while we pamper your scalp.</p>
-                        <div class="price">From $50</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="products-grid" id="featured-products" role="list" aria-label="Featured products">
+      <!-- Rendered by JS -->
     </div>
 
-    <!-- Gallery Page -->
-    <div id="gallery" class="page">
-        <div class="container">
-            <h2>Our Work</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=400" alt="Gallery 1">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400" alt="Gallery 2">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=400" alt="Gallery 3">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400" alt="Gallery 4">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?w=400" alt="Gallery 5">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400" alt="Gallery 6">
-                </div>
-            </div>
-        </div>
+    <div class="text-center" style="margin-top:3rem;" data-reveal="up">
+      <a href="shop.html" class="btn btn--outline btn--lg">View All Products</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ ABOUT STRIP ═══════════════════════ -->
+<section class="section section--pink" aria-label="About b_lit hairs">
+  <div class="container">
+    <div class="about-intro">
+      <div class="about-intro__img" data-reveal="left">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=80"
+             alt="b_lit hairs luxury hair products"
+             loading="lazy" width="700" height="560">
+      </div>
+      <div data-reveal="right">
+        <span class="section-label">Our Story</span>
+        <h2 class="section-title">Born in Ghana.<br>Built for <em>Luxury.</em></h2>
+        <div class="divider divider--left" aria-hidden="true"></div>
+        <p style="margin-top:1.5rem;margin-bottom:1.5rem;">
+          b_lit hairs was founded on a single belief: every Ghanaian woman deserves access to world-class luxury hair. We source only the finest 100% virgin human hair — fully cuticle-aligned, tangle-free and breathtakingly beautiful.
+        </p>
+        <p style="margin-bottom:2rem;">
+          From the streets of Accra to everywhere a queen walks — our hair moves with your lifestyle, your confidence, your power.
+        </p>
+        <a href="about.html" class="btn btn--primary">Learn Our Story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SERVICES PREVIEW ═══════════════════════ -->
+<section class="section" id="services" aria-labelledby="services-heading">
+  <div class="container">
+    <div class="text-center" data-reveal="up">
+      <span class="section-label">What We Offer</span>
+      <h2 class="section-title" id="services-heading">Hair Services <em>&amp; More</em></h2>
+      <div class="divider" aria-hidden="true"></div>
     </div>
 
-    <!-- Contact Page -->
-    <div id="contact" class="page">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <div class="contact-content">
-                <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" name="name" required placeholder="Your name">
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email" required placeholder="your@email.com">
-                    </div>
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input type="tel" name="phone" required placeholder="0554196068">
-                    </div>
-                    <div class="form-group">
-                        <label>Service</label>
-                        <select name="service" required>
-                            <option value="">Select a service</option>
-                            <option>Haircut & Styling</option>
-                            <option>Hair Coloring</option>
-                            <option>Hair Treatment</option>
-                            <option>Bridal Styling</option>
-                            <option>Hair Extensions</option>
-                            <option>Scalp Treatment</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea name="message" rows="4" placeholder="Tell us about your hair goals..."></textarea>
-                    </div>
-                    <input type="hidden" name="_subject" value="New Salon Appointment Request">
-                    <input type="hidden" name="_next" value="https://yourdomain.com/#contact">
-                    <button type="submit" class="cta-button">Book Appointment</button>
-                </form>
-                <div class="contact-info">
-                    <h3>Visit Us</h3>
-                    <div class="info-item">
-                        <strong>📍 Location</strong>
-                        <p><br>Alajo, Accra.</p>
-                    </div>
-                    <div class="info-item">
-                        <strong>📞 Phone</strong>
-                       <a href="tel:+233273521007" class="links">+233 27 352 1007</a> 
-                    </div>
-                    <div class="info-item">
-                        <strong>✉️ WhatsApp me on:</strong>
-                        <a href="https://wa.me/233273521007" class="links" target="_blank">0273521007</a>
-                    </div>
-                    <div class="info-item">
-                        <strong>🕐 Hours</strong>
-                        <p>Monday - Friday: 10:00 AM - 7:00 PM<br>
-                        Saturday: 10:00 AM - 7:00 PM<br>
-                        </p>
-                    </div>
-                </div>
-            </div>
+    <div class="services-grid" style="margin-top:3rem;">
+
+      <article class="service-card" data-reveal="up" data-delay="100">
+        <div class="service-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
         </div>
+        <h3>Hair Sales</h3>
+        <p>Premium bundles, wigs, closures and frontals. All 100% virgin human hair, ready to ship across Ghana.</p>
+      </article>
+
+      <article class="service-card" data-reveal="up" data-delay="200">
+        <div class="service-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Hair Braiding</h3>
+        <p>Expert braiding styles using our premium hair extensions. Protective, beautiful and long-lasting.</p>
+      </article>
+
+      <article class="service-card" data-reveal="up" data-delay="300">
+        <div class="service-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <h3>Custom Styling</h3>
+        <p>From sleek and straight to voluminous curls — get a custom look crafted just for your personality.</p>
+      </article>
+
+      <article class="service-card" data-reveal="up" data-delay="400">
+        <div class="service-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3>Bridal &amp; Events</h3>
+        <p>Look flawless on your most important days. Specialised bridal and event hair packages available.</p>
+      </article>
+
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 B_Lit Hair Salon. All rights reserved.</p>
-    </footer>
+    <div class="text-center" style="margin-top:3rem;" data-reveal="up">
+      <a href="services.html" class="btn btn--outline btn--lg">See All Services</a>
+    </div>
+  </div>
+</section>
 
-    <!-- Chatbot -->
-    <div class="chatbot-toggle" onclick="toggleChat()">💬</div>
-    <div class="chatbot-window" id="chatbot">
-        <div class="chatbot-header">
-            <h3>Chat with Us</h3>
-            <button class="close-chat" onclick="toggleChat()">✕</button>
-        </div>
-        <div class="chatbot-messages" id="chatMessages">
-            <div class="message bot-message">
-                Hi! 👋 Welcome to B_Lit Hair Salon! How can I help you today?
-            </div>
-            <div class="quick-replies">
-                <button class="quick-reply" onclick="quickReply('What services do you offer?')">📋 What services do you offer?</button>
-                <button class="quick-reply" onclick="quickReply('What are your prices?')">💰 What are your prices?</button>
-                <button class="quick-reply" onclick="quickReply('How do I book an appointment?')">📅 How do I book an appointment?</button>
-                <button class="quick-reply" onclick="quickReply('What are your business hours?')">🕐 What are your business hours?</button>
-                <button class="quick-reply" onclick="quickReply('Where are you located?')">📍 Where are you located?</button>
-                <button class="quick-reply" onclick="quickReply('Do you do bridal hair?')">👰 Do you do bridal hair?</button>
-                <button class="quick-reply" onclick="quickReply('What hair products do you use?')">✨ What products do you use?</button>
-                <button class="quick-reply" onclick="quickReply('Do you offer consultations?')">💬 Do you offer consultations?</button>
-            </div>
-        </div>
-        <div class="chatbot-input">
-            <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKey(event)">
-            <button onclick="sendMessage()">Send</button>
-        </div>
+<!-- ═══════════════════════ STATS ═══════════════════════ -->
+<section class="stats-banner" aria-label="Brand statistics">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item" data-reveal="up" data-delay="100">
+        <h3><span data-counter="500" data-suffix="+">500+</span></h3>
+        <p>Happy Clients</p>
+      </div>
+      <div class="stat-item" data-reveal="up" data-delay="200">
+        <h3><span data-counter="50" data-suffix="+">50+</span></h3>
+        <p>Products</p>
+      </div>
+      <div class="stat-item" data-reveal="up" data-delay="300">
+        <h3><span data-counter="5" data-suffix="★">5★</span></h3>
+        <p>Average Rating</p>
+      </div>
+      <div class="stat-item" data-reveal="up" data-delay="400">
+        <h3><span data-counter="3" data-suffix=" Yrs">3 Yrs</span></h3>
+        <p>In Business</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ GALLERY ═══════════════════════ -->
+<section class="section section--pink" aria-labelledby="gallery-heading">
+  <div class="container">
+    <div class="text-center" data-reveal="up">
+      <span class="section-label">Gallery</span>
+      <h2 class="section-title" id="gallery-heading">Hair <em>Looks We Love</em></h2>
+      <div class="divider" aria-hidden="true"></div>
     </div>
 
-    <script>
-        // Navigation
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
-            
-            // Close mobile menu
-            document.getElementById('navLinks').classList.remove('active');
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
+    <div class="gallery-grid" style="margin-top:3rem;" role="list" aria-label="Hair gallery">
+      <div class="gallery-item" data-reveal="scale" data-delay="100" role="listitem">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=75" alt="Luxury straight hair look" loading="lazy" width="400" height="500">
+        <div class="gallery-item__overlay"><span style="color:white;font-size:0.78rem;font-family:var(--font-accent);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Brazilian Straight</span></div>
+      </div>
+      <div class="gallery-item" data-reveal="scale" data-delay="200" role="listitem">
+        <img src="https://images.unsplash.com/photo-1559547080-ce1bec3b3785?w=400&q=75" alt="Body wave hair look" loading="lazy" width="400" height="500">
+        <div class="gallery-item__overlay"><span style="color:white;font-size:0.78rem;font-family:var(--font-accent);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Body Wave</span></div>
+      </div>
+      <div class="gallery-item" data-reveal="scale" data-delay="300" role="listitem">
+        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&q=75" alt="Curly hair look" loading="lazy" width="400" height="500">
+        <div class="gallery-item__overlay"><span style="color:white;font-size:0.78rem;font-family:var(--font-accent);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Deep Curly</span></div>
+      </div>
+      <div class="gallery-item" data-reveal="scale" data-delay="400" role="listitem">
+        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&q=75" alt="Kinky straight hair look" loading="lazy" width="400" height="500">
+        <div class="gallery-item__overlay"><span style="color:white;font-size:0.78rem;font-family:var(--font-accent);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Kinky Straight</span></div>
+      </div>
+      <div class="gallery-item" data-reveal="scale" data-delay="500" role="listitem">
+        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&q=75" alt="Loose wave hair look" loading="lazy" width="400" height="500">
+        <div class="gallery-item__overlay"><span style="color:white;font-size:0.78rem;font-family:var(--font-accent);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Loose Wave</span></div>
+      </div>
+      <div class="gallery-item" data-reveal="scale" data-delay="600" role="listitem">
+        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&q=75" alt="Water wave hair look" loading="lazy" width="400" height="500">
+        <div class="gallery-item__overlay"><span style="color:white;font-size:0.78rem;font-family:var(--font-accent);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Water Wave</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
+<!-- ═══════════════════════ REVIEWS ═══════════════════════ -->
+<section class="section" id="reviews" aria-labelledby="reviews-heading">
+  <div class="container">
+    <div class="text-center" data-reveal="up">
+      <span class="section-label">Client Love</span>
+      <h2 class="section-title" id="reviews-heading">What Our Queens <em>Are Saying</em></h2>
+      <div class="divider" aria-hidden="true"></div>
+    </div>
 
-        // Form submission - No longer needed as Formspree handles it
-        // Keeping function for backward compatibility
-        function handleSubmit(e) {
-            // Formspree will handle the submission
-            return true;
-        }
+    <div class="reviews-grid" style="margin-top:3rem;" role="list" aria-label="Client reviews">
 
-        // Chatbot
-        const chatResponses = {
-            greetings: ['hello', 'hi', 'hey', 'good morning', 'good afternoon', 'good evening'],
-            services: ['service', 'services', 'what do you offer', 'treatments', 'haircut', 'color', 'style'],
-            pricing: ['price', 'cost', 'how much', 'pricing', 'rate', 'rates'],
-            booking: ['book', 'appointment', 'schedule', 'reserve', 'available'],
-            hours: ['hours', 'open', 'close', 'timing', 'when'],
-            location: ['where', 'location', 'address', 'find you']
-        };
+      <article class="review-card" data-reveal="up" data-delay="100" role="listitem" itemscope itemtype="https://schema.org/Review">
+        <div class="review-card__quote" aria-hidden="true">&ldquo;</div>
+        <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="review-card__text" itemprop="reviewBody">"I've tried so many hair brands in Accra but b_lit hairs is on another level. The body wave wig I bought is still as lush as day one — 6 months later. Zero shedding, zero regrets!"</p>
+        <div class="review-card__author">
+          <div class="review-card__avatar" aria-hidden="true">A</div>
+          <div>
+            <div class="review-card__name" itemprop="author">Abena K.</div>
+            <div class="review-card__loc">Accra, Ghana</div>
+          </div>
+        </div>
+      </article>
 
-        function toggleChat() {
-            document.getElementById('chatbot').classList.toggle('open');
-        }
+      <article class="review-card" data-reveal="up" data-delay="200" role="listitem" itemscope itemtype="https://schema.org/Review">
+        <div class="review-card__quote" aria-hidden="true">&ldquo;</div>
+        <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="review-card__text" itemprop="reviewBody">"Ordered my bridal wig from b_lit hairs and it was the best decision I made for my wedding. The HD lace was undetectable and everyone thought it was my natural hair. Absolutely stunning!"</p>
+        <div class="review-card__author">
+          <div class="review-card__avatar" aria-hidden="true">S</div>
+          <div>
+            <div class="review-card__name" itemprop="author">Serwa A.</div>
+            <div class="review-card__loc">Kumasi, Ghana</div>
+          </div>
+        </div>
+      </article>
 
-        function handleChatKey(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        }
+      <article class="review-card" data-reveal="up" data-delay="300" role="listitem" itemscope itemtype="https://schema.org/Review">
+        <div class="review-card__quote" aria-hidden="true">&ldquo;</div>
+        <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="review-card__text" itemprop="reviewBody">"Fast delivery, gorgeous packaging, and the hair is EVERYTHING. I bought 3 bundles of the kinky straight and they blended perfectly with my natural hair. b_lit is my forever hair brand!"</p>
+        <div class="review-card__author">
+          <div class="review-card__avatar" aria-hidden="true">E</div>
+          <div>
+            <div class="review-card__name" itemprop="author">Efua M.</div>
+            <div class="review-card__loc">Takoradi, Ghana</div>
+          </div>
+        </div>
+      </article>
 
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const message = input.value.trim();
-            
-            if (!message) return;
-            
-            // Add user message
-            addMessage(message, 'user');
-            input.value = '';
-            
-            // Generate bot response
-            setTimeout(() => {
-                const response = generateResponse(message.toLowerCase());
-                addMessage(response, 'bot');
-            }, 500);
-        }
+    </div>
+  </div>
+</section>
 
-        function addMessage(text, type) {
-            const messagesDiv = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${type}-message`;
-            messageDiv.textContent = text;
-            messagesDiv.appendChild(messageDiv);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        }
+<!-- ═══════════════════════ CTA BANNER ═══════════════════════ -->
+<section class="cta-banner" aria-label="Call to action">
+  <div class="container">
+    <div class="cta-banner__inner" data-reveal="up">
+      <span class="section-label" style="color:var(--gold-light);">Ready to Glow?</span>
+      <h2>Your Best Hair Day<br>Starts <em>Right Now</em></h2>
+      <p>Chat with us on WhatsApp or browse our full collection. Delivery across Ghana — because you deserve to shine, everywhere.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="shop.html" class="btn btn--primary btn--lg">Shop the Collection</a>
+        <a href="https://wa.me/233273521007?text=Hello%20b_lit%20hairs!%20I%20want%20to%20order%20some%20hair%20%F0%9F%92%95%20Please%20help%20me%20get%20started." class="btn btn--gold btn--lg" target="_blank" rel="noopener noreferrer">
+          Order via WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
 
-        function generateResponse(message) {
-            if (chatResponses.greetings.some(word => message.includes(word))) {
-                return "Hello! 😊 How can I assist you today? Would you like to know about our services, pricing, or book an appointment?";
-            }
-            
-            if (chatResponses.services.some(word => message.includes(word))) {
-                return "We offer a wide range of services including:\n• Haircut & Styling (from $45)\n• Hair Coloring - highlights, balayage, ombre (from $80)\n• Hair Treatments - deep conditioning, keratin (from $60)\n• Bridal Styling (from $120)\n• Hair Extensions (from $200)\n• Scalp Treatments (from $50)\n\nWould you like more details about any specific service?";
-            }
-            
-            if (chatResponses.pricing.some(word => message.includes(word))) {
-                return "Our prices are competitive and based on the service:\n• Haircut & Styling: from $45\n• Hair Coloring: from $80\n• Hair Treatment: from $60\n• Bridal Styling: from $120\n• Hair Extensions: from $200\n• Scalp Treatment: from $50\n\nPrices may vary depending on hair length and complexity. Contact us for a personalized quote!";
-            }
-            
-            if (chatResponses.booking.some(word => message.includes(word))) {
-                return "Booking is easy! You can:\n1. Call us at (555) 123-4567\n2. Fill out our contact form on the Contact page\n3. Visit us in person at 123 Beauty Lane\n\nWe'll confirm your appointment within 24 hours. What date works best for you?";
-            }
-            
-            if (chatResponses.hours.some(word => message.includes(word))) {
-                return "Our business hours are:\n📅 Monday - Friday: 9:00 AM - 8:00 PM\n📅 Saturday: 9:00 AM - 6:00 PM\n📅 Sunday: 10:00 AM - 5:00 PM\n\nWe're here to serve you 7 days a week!";
-            }
-            
-            if (chatResponses.location.some(word => message.includes(word))) {
-                return "We're located at:\n📍 123 Beauty Lane, Fashion District\nNew York, NY 10001\n\nWe have plenty of parking available and are easily accessible by public transport. See you soon!";
-            }
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <span class="nav__logo-text">b_lit <span>hairs</span></span>
+        <p>Ghana's premium luxury hair brand. Bringing world-class virgin human hair to women who demand the very best.</p>
+        <div class="footer__socials">
+          <a href="#" class="footer__social" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="footer__social" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>
+          </a>
+          <a href="https://wa.me/233273521007" class="footer__social" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
 
-            if (message.includes('bridal') || message.includes('wedding') || message.includes('bride')) {
-                return "Yes! We specialize in bridal hair styling! 👰✨\n\nOur bridal package includes:\n• Consultation to discuss your vision\n• Trial run before the big day\n• Day-of styling and touch-ups\n• Styling for bridesmaids available\n\nPrices start at $120. We recommend booking 3-6 months in advance. Would you like to schedule a consultation?";
-            }
+      <nav aria-label="Shop navigation">
+        <h4 class="footer__heading">Shop</h4>
+        <ul class="footer__links">
+          <li><a href="shop.html">All Products</a></li>
+          <li><a href="shop.html?filter=wigs">Wigs</a></li>
+          <li><a href="shop.html?filter=bundles">Bundles</a></li>
+          <li><a href="shop.html?filter=frontals">Frontals</a></li>
+          <li><a href="shop.html?filter=extensions">Extensions</a></li>
+        </ul>
+      </nav>
 
-            if (message.includes('product') || message.includes('products')) {
-                return "We use only premium, professional-grade products! ✨\n\nOur brands include top salon products that are:\n• Sulfate-free options available\n• Color-safe formulas\n• Organic and natural options\n• Keratin and protein treatments\n\nWe also retail these products so you can maintain your look at home. Ask your stylist for recommendations!";
-            }
+      <nav aria-label="Company navigation">
+        <h4 class="footer__heading">Company</h4>
+        <ul class="footer__links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+        </ul>
+      </nav>
 
-            if (message.includes('consultation') || message.includes('consult')) {
-                return "Yes, we offer FREE consultations! 💬\n\nDuring your consultation, we'll:\n• Assess your hair type and condition\n• Discuss your hair goals and lifestyle\n• Recommend the best services and products\n• Provide honest advice on what will work best\n\nNo obligation to book - we just want to help you achieve your dream hair! Call us to schedule.";
-            }
+      <div>
+        <h4 class="footer__heading">Contact</h4>
+        <ul class="footer__links">
+          <li><a href="https://wa.me/233273521007" target="_blank" rel="noopener noreferrer">+233 27 352 1007</a></li>
+          <li><a href="mailto:hello@blit-hairs.com">hello@blit-hairs.com</a></li>
+          <li style="color:rgba(255,255,255,0.55);font-size:0.9rem;line-height:1.7;">Accra, Ghana<br>📦 Nationwide Delivery</li>
+        </ul>
+      </div>
+    </div>
 
-            if (message.includes('parking') || message.includes('park')) {
-                return "Yes! We have convenient parking options:\n🚗 Free parking lot behind the building\n🚗 Street parking available\n🚗 Public parking garage 2 blocks away\n\nYou'll have no trouble finding a spot when you visit us!";
-            }
+    <div class="footer__bottom">
+      <p>© 2024 b_lit hairs. All rights reserved. Made with ❤️ in <strong>Ghana</strong>.</p>
+      <p><a href="#">Privacy Policy</a> · <a href="#">Terms</a></p>
+    </div>
+  </div>
+</footer>
 
-            if (message.includes('cancel') || message.includes('reschedule')) {
-                return "We understand plans change! 📅\n\nFor cancellations or rescheduling:\n• Please give us 24 hours notice\n• Call (555) 123-4567 or email us\n• We'll help you find a new time that works\n\nWe have a flexible rescheduling policy to accommodate your needs.";
-            }
-            
-            return "Thanks for your message! 😊 For detailed information, please:\n• Browse our Services page\n• Visit our Contact page\n• Call us at (555) 123-4567\n• Email hello@luxehair.com\n\nOur team is here to help you look and feel amazing!";
-        }
+<!-- WhatsApp Float -->
+<a href="https://wa.me/233273521007?text=Hello%20b_lit%20hairs!%20I%20need%20help%20choosing%20the%20right%20hair%20for%20me%20%F0%9F%92%95"
+   class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with b_lit hairs on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
-        // Remove the setTimeout quick replies since they're now in the HTML
-        function quickReply(text) {
-            document.getElementById('chatInput').value = text;
-            sendMessage();
-        }
-    </script>
+<script src="js/products.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
