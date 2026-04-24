@@ -3,40 +3,208 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="About b_lit hairs — Ghana's luxury hair brand. Our story, values and mission to bring premium virgin hair to every queen.">
-  <title>About Us — b_lit hairs | Luxury Hair, Ghana</title>
+  <meta name="description" content="About b_lit hairs — Ghana's premium luxury hair brand. Learn our story, our values and the woman behind the brand.">
+  <title>About — b_lit hairs | Luxury Hair, Ghana</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/animations.css">
+  <style>
+    :root{--pink-deep:#b5436a;--pink-mid:#d4698b;--pink-light:#f2c4d4;--pink-blush:#fdf0f4;--white:#ffffff;--off-white:#faf8f9;--charcoal:#1a1a1a;--text-dark:#2d2d2d;--text-mid:#555555;--text-light:#888888;--gold:#c9a96e;--gold-light:#e8d5b0;--font-display:'Playfair Display',Georgia,serif;--font-body:'Poppins',sans-serif;--font-accent:'Montserrat',sans-serif;--radius-sm:8px;--radius-md:16px;--radius-lg:32px;--radius-pill:999px;--shadow-soft:0 4px 24px rgba(181,67,106,0.10);--shadow-card:0 8px 40px rgba(181,67,106,0.14);--shadow-hover:0 16px 56px rgba(181,67,106,0.22);--transition:0.35s cubic-bezier(0.4,0,0.2,1);--transition-slow:0.6s cubic-bezier(0.4,0,0.2,1);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--font-body);background:var(--white);color:var(--text-dark);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+    img{max-width:100%;height:auto;display:block;}a{text-decoration:none;color:inherit;}ul{list-style:none;}
+    h1,h2,h3,h4{font-family:var(--font-display);line-height:1.25;color:var(--charcoal);font-weight:700;}
+    h1{font-size:clamp(2.4rem,6vw,4.5rem);}h2{font-size:clamp(1.8rem,4vw,3rem);}h3{font-size:clamp(1.2rem,3vw,1.8rem);}
+    p{color:var(--text-mid);}
+    .section-label{font-family:var(--font-accent);font-size:0.75rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--pink-deep);display:block;margin-bottom:0.75rem;}
+    .container{width:100%;max-width:1240px;margin:0 auto;padding:0 1.5rem;}
+    .section{padding:6rem 0;}.section--pink{background:var(--pink-blush);}.section--dark{background:var(--charcoal);}
+    .text-center{text-align:center;}
+    .divider{width:60px;height:3px;background:linear-gradient(90deg,var(--pink-deep),var(--pink-mid));border-radius:2px;margin:1.25rem auto 0;}
+    .divider--left{margin-left:0;}
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2.2rem;border-radius:var(--radius-pill);font-family:var(--font-accent);font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border:none;position:relative;overflow:hidden;transition:var(--transition);}
+    .btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.15);opacity:0;transition:var(--transition);}
+    .btn:hover::after{opacity:1;}
+    .btn--primary{background:linear-gradient(135deg,var(--pink-deep),var(--pink-mid));color:var(--white);box-shadow:0 4px 20px rgba(181,67,106,0.4);}
+    .btn--primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(181,67,106,0.5);}
+    .btn--primary::before{content:'';position:absolute;inset:-2px;border-radius:inherit;background:inherit;filter:blur(12px);opacity:0;transition:opacity 0.4s;z-index:-1;}
+    .btn--primary:hover::before{opacity:0.55;}
+    .btn--outline{background:transparent;border:2px solid var(--pink-deep);color:var(--pink-deep);}
+    .btn--outline:hover{background:var(--pink-deep);color:var(--white);transform:translateY(-2px);}
+    .btn--white{background:var(--white);color:var(--pink-deep);}
+    .btn--white:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.22);}
+    .btn--lg{padding:1.1rem 2.8rem;font-size:0.95rem;}
+    .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,0.35);transform:scale(0);animation:ripple-anim 0.65s linear;pointer-events:none;}
+    /* Nav */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.25rem 0;transition:var(--transition);}
+    .nav.scrolled{background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:0.85rem 0;box-shadow:0 4px 32px rgba(181,67,106,0.1);}
+    .nav--dark{background:var(--white);box-shadow:0 2px 20px rgba(181,67,106,0.08);}
+    .nav--dark .nav__logo-text,.nav--dark .nav__link{color:var(--charcoal);}
+    .nav--dark .nav__hamburger span{background:var(--charcoal);}
+    .nav__inner{display:flex;align-items:center;justify-content:space-between;}
+    .nav__logo{display:flex;align-items:center;gap:0.75rem;}
+    .nav__logo img{width:44px;height:44px;border-radius:50%;object-fit:cover;}
+    .nav__logo-text{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:var(--charcoal);transition:color var(--transition);}
+    .nav__logo-text span{color:var(--pink-deep);}
+    .nav__menu{display:flex;align-items:center;gap:2.5rem;}
+    .nav__link{font-family:var(--font-accent);font-size:0.8rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--charcoal);position:relative;transition:color var(--transition);}
+    .nav__link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--pink-mid);transition:width var(--transition);}
+    .nav__link:hover::after,.nav__link.active::after{width:100%;}
+    .nav__link.active{color:var(--pink-mid);}
+    .nav__cta{margin-left:0.5rem;}
+    .nav__hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+    .nav__hamburger span{display:block;width:26px;height:2px;background:var(--charcoal);border-radius:2px;transition:var(--transition);}
+    .nav__hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .nav__hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+    .nav__hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .nav__drawer{display:none;position:fixed;inset:0;background:var(--white);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;transform:translateX(100%);transition:transform var(--transition-slow);}
+    .nav__drawer.open{transform:translateX(0);}
+    .nav__drawer .nav__link{color:var(--charcoal);font-size:1.4rem;letter-spacing:0.15em;}
+    /* Page Hero */
+    .page-hero{padding:9rem 0 5rem;position:relative;overflow:hidden;background:var(--charcoal);}
+    .page-hero::before{content:'';position:absolute;inset:0;background:url('assets/images/belinda.jpeg') center 30%/cover no-repeat;opacity:0.28;}
+    .page-hero__overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,10,18,0.75) 0%,rgba(181,67,106,0.15) 100%);}
+    .page-hero__inner{position:relative;z-index:1;}
+    .page-hero h1{color:var(--white);margin-bottom:1rem;}
+    .page-hero h1 em{font-style:italic;color:var(--pink-light);}
+    .page-hero p{color:rgba(255,255,255,0.78);font-size:1.05rem;max-width:520px;}
+    /* About intro */
+    .about-intro{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+    .about-intro__img{border-radius:var(--radius-lg);overflow:hidden;position:relative;box-shadow:var(--shadow-card);}
+    .about-intro__img img{width:100%;height:580px;object-fit:cover;object-position:top;}
+    .about-intro__img::before{content:'';position:absolute;inset:-14px;border:2px solid rgba(181,67,106,0.22);border-radius:calc(var(--radius-lg) + 14px);z-index:-1;}
+    .about-intro__img::after{content:'';position:absolute;bottom:2rem;left:-2rem;width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,var(--pink-deep),var(--pink-mid));opacity:0.18;z-index:-1;}
+    /* Stats inline */
+    .inline-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:2.5rem 0;}
+    .inline-stat{text-align:center;padding:1.5rem 1rem;background:var(--pink-blush);border-radius:var(--radius-md);border:1px solid rgba(181,67,106,0.1);}
+    .inline-stat h3{font-family:var(--font-display);font-size:2rem;color:var(--pink-deep);margin-bottom:0.2rem;}
+    .inline-stat p{font-family:var(--font-accent);font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-light);margin:0;}
+    /* Values */
+    .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+    .value-card{background:var(--white);border-radius:var(--radius-md);padding:2.5rem 2rem;text-align:center;box-shadow:var(--shadow-soft);transition:var(--transition);border:1px solid rgba(181,67,106,0.08);position:relative;overflow:hidden;}
+    .value-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--pink-deep),var(--pink-mid));transform:scaleX(0);transition:var(--transition);}
+    .value-card:hover::before{transform:scaleX(1);}
+    .value-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover);}
+    .value-card__icon{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--pink-blush),#f7d5e2);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;transition:var(--transition);}
+    .value-card:hover .value-card__icon{background:linear-gradient(135deg,var(--pink-deep),var(--pink-mid));}
+    .value-card__icon svg{width:30px;height:30px;stroke:var(--pink-deep);transition:stroke var(--transition);}
+    .value-card:hover .value-card__icon svg{stroke:white;}
+    .value-card h3{font-size:1.15rem;margin-bottom:0.75rem;}
+    .value-card p{font-size:0.9rem;line-height:1.75;}
+    /* Timeline */
+    .timeline{position:relative;padding-left:2rem;}
+    .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--pink-deep),var(--pink-light));}
+    .timeline-item{position:relative;margin-bottom:3rem;padding-left:2rem;}
+    .timeline-item::before{content:'';position:absolute;left:-2.55rem;top:0.35rem;width:16px;height:16px;border-radius:50%;background:var(--pink-deep);border:3px solid var(--white);box-shadow:0 0 0 3px rgba(181,67,106,0.25);}
+    .timeline-item__year{font-family:var(--font-accent);font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--pink-deep);display:block;margin-bottom:0.4rem;}
+    .timeline-item h3{font-size:1.15rem;margin-bottom:0.4rem;}
+    .timeline-item p{font-size:0.92rem;}
+    /* Team */
+    .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2rem;}
+    .team-card{background:var(--white);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-soft);transition:var(--transition);border:1px solid rgba(181,67,106,0.08);}
+    .team-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover);}
+    .team-card__img{height:300px;overflow:hidden;background:linear-gradient(145deg,var(--pink-blush),#ecdde5);}
+    .team-card__img img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform 0.6s ease;}
+    .team-card:hover .team-card__img img{transform:scale(1.05);}
+    .team-card__body{padding:1.5rem;}
+    .team-card__name{font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--charcoal);margin-bottom:0.2rem;}
+    .team-card__role{font-family:var(--font-accent);font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--pink-deep);}
+    /* Reviews */
+    .reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2rem;}
+    .review-card{background:var(--white);border-radius:var(--radius-md);padding:2rem;box-shadow:var(--shadow-soft);border:1px solid rgba(181,67,106,0.08);transition:var(--transition);position:relative;}
+    .review-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-card);}
+    .review-card__quote{position:absolute;top:1.5rem;right:1.5rem;font-family:var(--font-display);font-size:4rem;color:var(--pink-light);line-height:1;user-select:none;}
+    .review-card__stars{display:flex;gap:3px;margin-bottom:1rem;color:var(--gold);font-size:1rem;}
+    .review-card__text{font-size:0.92rem;line-height:1.75;margin-bottom:1.5rem;font-style:italic;color:var(--text-dark);}
+    .review-card__author{display:flex;align-items:center;gap:0.75rem;}
+    .review-card__avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--pink-light),var(--pink-mid));display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;color:var(--white);font-size:1.1rem;flex-shrink:0;}
+    .review-card__name{font-family:var(--font-display);font-weight:700;font-size:0.95rem;color:var(--charcoal);}
+    .review-card__loc{font-size:0.78rem;color:var(--text-light);}
+    /* CTA */
+    .cta-banner{background:var(--charcoal);padding:6rem 0;position:relative;overflow:hidden;}
+    .cta-banner::before{content:'';position:absolute;inset:0;background:url('assets/images/belinda.jpeg') center/cover no-repeat;opacity:0.1;}
+    .cta-banner__inner{position:relative;z-index:1;text-align:center;}
+    .cta-banner h2{color:var(--white);margin-bottom:1rem;}
+    .cta-banner h2 em{color:var(--pink-light);}
+    .cta-banner p{color:rgba(255,255,255,0.7);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto;}
+    /* Stats Banner */
+    .stats-banner{background:linear-gradient(135deg,var(--pink-deep) 0%,#8b2249 100%);padding:4rem 0;}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;}
+    .stat-item h3{font-family:var(--font-display);font-size:2.8rem;color:var(--white);margin-bottom:0.4rem;}
+    .stat-item p{font-family:var(--font-accent);font-size:0.78rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.75);}
+    /* WhatsApp */
+    .whatsapp-float{position:fixed;bottom:2rem;right:2rem;z-index:900;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(37,211,102,0.5);transition:var(--transition);animation:pulse-green 2.5s infinite;}
+    .whatsapp-float:hover{transform:scale(1.12);}
+    .whatsapp-float svg{width:30px;height:30px;fill:white;}
+    /* Footer */
+    .footer{background:var(--charcoal);padding:5rem 0 0;}
+    .footer__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:3rem;margin-bottom:4rem;}
+    .footer__brand .nav__logo-text-f{font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--white);display:block;margin-bottom:1rem;}
+    .footer__brand .nav__logo-text-f span{color:var(--pink-light);}
+    .footer__brand p{font-size:0.9rem;color:rgba(255,255,255,0.55);line-height:1.8;max-width:280px;}
+    .footer__socials{display:flex;gap:0.75rem;margin-top:1.5rem;}
+    .footer__social{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;transition:var(--transition);}
+    .footer__social:hover{background:var(--pink-deep);transform:translateY(-2px);}
+    .footer__social svg{width:16px;height:16px;stroke:white;}
+    .footer__heading{font-family:var(--font-accent);font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--white);margin-bottom:1.5rem;}
+    .footer__links li{margin-bottom:0.75rem;}
+    .footer__links a{font-size:0.9rem;color:rgba(255,255,255,0.55);transition:color var(--transition);}
+    .footer__links a:hover{color:var(--pink-light);}
+    .footer__bottom{border-top:1px solid rgba(255,255,255,0.08);padding:1.5rem 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+    .footer__bottom p{font-size:0.82rem;color:rgba(255,255,255,0.4);}
+    .footer__bottom a{color:var(--pink-light);}
+    /* Misc */
+    .scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--pink-deep),var(--gold));z-index:10000;width:0%;transition:width 0.1s linear;}
+    .page-loader{position:fixed;inset:0;background:var(--charcoal);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transition:opacity 0.6s ease,visibility 0.6s ease;}
+    .page-loader.hidden{opacity:0;visibility:hidden;}
+    .loader-logo{font-family:var(--font-display);font-size:2rem;color:var(--white);font-weight:700;}
+    .loader-logo span{color:var(--pink-mid);}
+    .loader-bar{width:200px;height:2px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;}
+    .loader-bar__fill{height:100%;background:linear-gradient(90deg,var(--pink-deep),var(--gold));animation:loading 1.4s ease forwards;}
+    .loader-ring{width:48px;height:48px;border:3px solid rgba(255,255,255,0.1);border-top-color:var(--pink-mid);border-radius:50%;animation:spin 0.9s linear infinite;}
+    .loading-msg{text-align:center;color:var(--text-light);padding:3rem;font-family:var(--font-accent);}
+    [data-reveal]{opacity:0;transition:opacity 0.75s ease,transform 0.75s ease;}
+    [data-reveal="up"]{transform:translateY(50px);}[data-reveal="left"]{transform:translateX(-50px);}[data-reveal="right"]{transform:translateX(50px);}[data-reveal="scale"]{transform:scale(0.88);}[data-reveal="fade"]{transform:none;}
+    [data-reveal].revealed{opacity:1;transform:translate(0) scale(1);}
+    [data-delay="100"]{transition-delay:0.10s;}[data-delay="150"]{transition-delay:0.15s;}[data-delay="200"]{transition-delay:0.20s;}[data-delay="250"]{transition-delay:0.25s;}[data-delay="300"]{transition-delay:0.30s;}[data-delay="400"]{transition-delay:0.40s;}
+    @keyframes ripple-anim{to{transform:scale(4);opacity:0;}}
+    @keyframes loading{0%{width:0;}100%{width:100%;}}
+    @keyframes pulse-green{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55);}70%{box-shadow:0 0 0 14px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
+    @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+    @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px);}to{opacity:1;transform:translateY(0);}}
+    .nav{animation:fadeInDown 0.7s 0.1s both;}
+    :focus-visible{outline:3px solid var(--pink-mid);outline-offset:3px;border-radius:4px;}
+    @media(max-width:1024px){.footer__grid{grid-template-columns:1fr 1fr;}.about-intro{gap:3rem;}.values-grid{grid-template-columns:1fr 1fr;}.stats-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:768px){.section{padding:4rem 0;}.about-intro{grid-template-columns:1fr;}.values-grid{grid-template-columns:1fr;}.inline-stats{grid-template-columns:repeat(3,1fr);}.footer__grid{grid-template-columns:1fr;}.nav__menu{display:none;}.nav__hamburger{display:flex;}.nav__drawer{display:flex;}.footer__bottom{flex-direction:column;text-align:center;}.stats-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:480px){.inline-stats{grid-template-columns:1fr;}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important;}[data-reveal]{opacity:1;transform:none;}}
+  </style>
 </head>
 <body>
 
-<div class="page-loader" role="status" aria-label="Loading">
+<div class="page-loader" id="page-loader" role="status" aria-label="Loading">
   <div class="loader-logo">b_lit <span>hairs</span></div>
   <div class="loader-ring"></div>
   <div class="loader-bar"><div class="loader-bar__fill"></div></div>
 </div>
-
 <div class="scroll-progress" role="progressbar" aria-hidden="true"></div>
-<div class="page-transition" aria-hidden="true"></div>
 
-<!-- NAV -->
 <header>
   <nav class="nav nav--dark" role="navigation" aria-label="Main navigation">
     <div class="container">
       <div class="nav__inner">
         <a href="index.html" class="nav__logo" aria-label="b_lit hairs home">
-          <img src="assets/images/logo.png" alt="b_lit hairs logo" width="44" height="44" onerror="this.style.display='none'">
+          <img src="assets/images/belinda.jpeg" alt="b_lit hairs" onerror="this.style.display='none'">
           <span class="nav__logo-text">b_lit <span>hairs</span></span>
         </a>
         <ul class="nav__menu" role="list">
-          <li><a href="index.html"    class="nav__link">Home</a></li>
-          <li><a href="shop.html"     class="nav__link">Shop</a></li>
+          <li><a href="index.html" class="nav__link">Home</a></li>
+          <li><a href="shop.html" class="nav__link">Shop</a></li>
           <li><a href="services.html" class="nav__link">Services</a></li>
-          <li><a href="about.html"    class="nav__link active">About</a></li>
-          <li><a href="contact.html"  class="nav__link">Contact</a></li>
+          <li><a href="about.html" class="nav__link active">About</a></li>
+          <li><a href="contact.html" class="nav__link">Contact</a></li>
           <li class="nav__cta"><a href="shop.html" class="btn btn--primary">Shop Now</a></li>
         </ul>
         <button class="nav__hamburger" aria-label="Open mobile menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -44,225 +212,187 @@
     </div>
   </nav>
   <div class="nav__drawer" role="dialog" aria-label="Mobile navigation">
-    <a href="index.html"    class="nav__link">Home</a>
-    <a href="shop.html"     class="nav__link">Shop</a>
+    <a href="index.html" class="nav__link">Home</a>
+    <a href="shop.html" class="nav__link">Shop</a>
     <a href="services.html" class="nav__link">Services</a>
-    <a href="about.html"    class="nav__link">About</a>
-    <a href="contact.html"  class="nav__link">Contact</a>
+    <a href="about.html" class="nav__link">About</a>
+    <a href="contact.html" class="nav__link">Contact</a>
     <a href="shop.html" class="btn btn--primary btn--lg">Shop Now</a>
   </div>
 </header>
 
 <!-- PAGE HERO -->
-<div class="page-hero" role="banner">
-  <div class="page-hero__inner">
-    <span class="section-label">Our Story</span>
-    <h1>About <em>b_lit hairs</em></h1>
-    <p>Born in Ghana. Built for queens. Designed for the woman who knows her worth.</p>
+<section class="page-hero" role="banner">
+  <div class="page-hero__overlay" aria-hidden="true"></div>
+  <div class="container">
+    <div class="page-hero__inner">
+      <span class="section-label">Our Story</span>
+      <h1>Born in Ghana. <em>Built for Luxury.</em></h1>
+      <p>Meet the woman behind the brand and discover why thousands of Ghanaian queens trust b_lit hairs for their most important moments.</p>
+    </div>
   </div>
-</div>
+</section>
 
 <main>
-
-<!-- ORIGIN STORY -->
-<section class="section" aria-labelledby="story-heading">
+<!-- ABOUT INTRO -->
+<section class="section" aria-labelledby="about-intro-heading">
   <div class="container">
     <div class="about-intro">
       <div class="about-intro__img" data-reveal="left">
-        <img src="https://images.unsplash.com/photo-1559547080-ce1bec3b3785?w=700&q=80"
-             alt="b_lit hairs brand story"
-             loading="lazy" width="700" height="560">
+        <img src="assets/images/belinda.jpeg" alt="Belinda — founder of b_lit hairs" loading="eager" width="700" height="580">
       </div>
       <div data-reveal="right">
-        <span class="section-label">The Beginning</span>
-        <h2 class="section-title" id="story-heading">We Started With a <em>Simple Belief</em></h2>
+        <span class="section-label">The Founder</span>
+        <h2 id="about-intro-heading">Meet <em style="font-style:italic;color:var(--pink-deep);">Belinda</em></h2>
         <div class="divider divider--left" aria-hidden="true"></div>
-
-        <p style="margin-top:1.5rem;margin-bottom:1.25rem;">
-          b_lit hairs was born from a simple, powerful truth: <strong>Ghanaian women deserve luxury.</strong> Not imported cheaply. Not delivered with apologies. Real, premium, breathtaking hair — crafted to last, delivered with love, and priced for the woman building her empire right here in Ghana.
+        <p style="margin-top:1.5rem;margin-bottom:1rem;font-size:1rem;line-height:1.85;">
+          b_lit hairs was born from a personal frustration. Belinda, a passionate lover of beautiful hair, struggled for years to find high-quality, authentic virgin human hair in Ghana without overpaying or being deceived by synthetic blends.
         </p>
-
-        <p style="margin-bottom:1.25rem;">
-          Our founder — a hair lover, a businesswoman, and a queen herself — started b_lit hairs after spending years hunting for high-quality hair in Accra and finding that true luxury was either inaccessible or unreliable. So she built what Ghana was missing.
+        <p style="margin-bottom:1rem;font-size:1rem;line-height:1.85;">
+          In 2021, she decided to change that — sourcing directly from trusted suppliers abroad, building relationships based on integrity, and bringing world-class luxury hair directly to Ghanaian women at fair prices.
         </p>
-
-        <p style="margin-bottom:2rem;">
-          Today, b_lit hairs serves queens across all regions of Ghana — from Accra to Kumasi, Takoradi to Tamale — with the same unwavering commitment: <em>only the best, every time.</em>
+        <p style="margin-bottom:2rem;font-size:1rem;line-height:1.85;">
+          Today, b_lit hairs serves hundreds of women across Ghana, from Accra to Kumasi, Tamale to Takoradi — all united by one thing: their love of beautiful, authentic, long-lasting hair.
         </p>
-
-        <div style="display:flex;gap:1.25rem;flex-wrap:wrap;">
-          <a href="shop.html"    class="btn btn--primary">Shop Now</a>
-          <a href="contact.html" class="btn btn--outline">Get in Touch</a>
+        <div class="inline-stats">
+          <div class="inline-stat">
+            <h3>500+</h3><p>Happy Clients</p>
+          </div>
+          <div class="inline-stat">
+            <h3>3+</h3><p>Years in Business</p>
+          </div>
+          <div class="inline-stat">
+            <h3>5★</h3><p>Average Rating</p>
+          </div>
         </div>
+        <a href="shop.html" class="btn btn--primary btn--lg" style="margin-top:1rem;">Shop Our Collection</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<section class="stats-banner" aria-label="Brand achievements">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item" data-reveal="up" data-delay="100">
-        <h3><span data-counter="500" data-suffix="+">500+</span></h3>
-        <p>Happy Clients</p>
-      </div>
-      <div class="stat-item" data-reveal="up" data-delay="200">
-        <h3><span data-counter="50" data-suffix="+">50+</span></h3>
-        <p>Product Varieties</p>
-      </div>
-      <div class="stat-item" data-reveal="up" data-delay="300">
-        <h3><span data-counter="16" data-suffix=" Regions">16</span></h3>
-        <p>Regions Served</p>
-      </div>
-      <div class="stat-item" data-reveal="up" data-delay="400">
-        <h3><span data-counter="3" data-suffix=" Yrs">3</span></h3>
-        <p>Years Serving Ghana</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MISSION / VALUES -->
+<!-- VALUES -->
 <section class="section section--pink" aria-labelledby="values-heading">
   <div class="container">
     <div class="text-center" data-reveal="up">
       <span class="section-label">What We Stand For</span>
-      <h2 class="section-title" id="values-heading">Our Mission &amp; <em>Values</em></h2>
+      <h2 id="values-heading">Our Core <em style="font-style:italic;color:var(--pink-deep);">Values</em></h2>
       <div class="divider" aria-hidden="true"></div>
-      <p class="section-subtitle" style="margin-top:1rem;">Every strand of b_lit hair carries our commitment to quality, authenticity and the empowerment of Ghanaian women.</p>
     </div>
-
-    <div class="about-values">
-
-      <article class="value-item" data-reveal="up" data-delay="100">
-        <div class="value-item__icon" aria-hidden="true">
+    <div class="values-grid" style="margin-top:3.5rem;">
+      <div class="value-card" data-reveal="up" data-delay="100">
+        <div class="value-card__icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <h3 style="margin-bottom:0.5rem;font-size:1.1rem;">Uncompromising Quality</h3>
-        <p style="font-size:0.9rem;">Every product we sell is 100% virgin human hair — fully cuticle-aligned, tested and approved. No shortcuts, no synthetics, no disappointments.</p>
-      </article>
-
-      <article class="value-item" data-reveal="up" data-delay="200">
-        <div class="value-item__icon" aria-hidden="true">
+        <h3>Authenticity</h3>
+        <p>Every strand we sell is 100% virgin human hair. No shortcuts, no synthetics. We stake our reputation on the quality of every single product.</p>
+      </div>
+      <div class="value-card" data-reveal="up" data-delay="200">
+        <div class="value-card__icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
         </div>
-        <h3 style="margin-bottom:0.5rem;font-size:1.1rem;">Made for Ghanaian Queens</h3>
-        <p style="font-size:0.9rem;">We understand the Ghanaian woman — her style, her climate, her hustle. Our hair is chosen and curated specifically to work beautifully in our environment.</p>
-      </article>
-
-      <article class="value-item" data-reveal="up" data-delay="300">
-        <div class="value-item__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <h3>Customer First</h3>
+        <p>Our clients are queens. Every interaction, from DM to delivery, is handled with care, warmth and the personal touch that makes b_lit hairs special.</p>
+      </div>
+      <div class="value-card" data-reveal="up" data-delay="300">
+        <div class="value-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
-        <h3 style="margin-bottom:0.5rem;font-size:1.1rem;">Effortless Experience</h3>
-        <p style="font-size:0.9rem;">From browsing to delivery, we make it seamless. Order directly on WhatsApp and get your luxury hair delivered to your door across Ghana.</p>
-      </article>
-
+        <h3>Excellence</h3>
+        <p>We don't settle for good enough. From sourcing to packaging to delivery, every step of the b_lit experience is crafted to exceed expectations.</p>
+      </div>
+      <div class="value-card" data-reveal="up" data-delay="100">
+        <div class="value-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3>Reliability</h3>
+        <p>Fast delivery. Consistent quality. Honest pricing. We show up for our customers every single time, because trust is earned one order at a time.</p>
+      </div>
+      <div class="value-card" data-reveal="up" data-delay="200">
+        <div class="value-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3>Community</h3>
+        <p>b_lit hairs is more than a brand — it's a sisterhood. We celebrate every woman who wears our hair and the confidence it gives her.</p>
+      </div>
+      <div class="value-card" data-reveal="up" data-delay="300">
+        <div class="value-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <h3>Accessibility</h3>
+        <p>Luxury shouldn't be a privilege. We deliver nationwide across Ghana so every woman — regardless of location — can access world-class hair.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- WHY TRUST US -->
-<section class="section" aria-labelledby="trust-heading">
+<!-- JOURNEY / TIMELINE -->
+<section class="section" aria-labelledby="journey-heading">
   <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;" class="about-intro">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
       <div data-reveal="left">
-        <span class="section-label">Why Choose Us</span>
-        <h2 class="section-title" id="trust-heading">Hair You Can <em>Trust Completely</em></h2>
+        <span class="section-label">Our Journey</span>
+        <h2 id="journey-heading">How We <em style="font-style:italic;color:var(--pink-deep);">Got Here</em></h2>
         <div class="divider divider--left" aria-hidden="true"></div>
-
-        <div style="margin-top:2rem;">
-          <div style="display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.5rem;">
-            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--pink-blush),#f7d5e2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--pink-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <div>
-              <h4 style="font-size:1rem;margin-bottom:0.25rem;">Cuticle-Aligned Virgin Hair</h4>
-              <p style="font-size:0.88rem;">All hair runs in the same direction — eliminating tangling and maximising natural shine.</p>
-            </div>
+        <p style="margin-top:1.5rem;margin-bottom:3rem;">From a small idea to Ghana's most loved luxury hair brand — here's our story in milestones.</p>
+        <div class="timeline" role="list">
+          <div class="timeline-item" role="listitem" data-reveal="fade" data-delay="100">
+            <span class="timeline-item__year">2021</span>
+            <h3>The Beginning</h3>
+            <p>Belinda places her first small bulk order, selling to friends and family out of her home in Accra. Word spreads quickly about the quality.</p>
           </div>
-
-          <div style="display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.5rem;">
-            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--pink-blush),#f7d5e2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--pink-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <div>
-              <h4 style="font-size:1rem;margin-bottom:0.25rem;">Nationwide Ghana Delivery</h4>
-              <p style="font-size:0.88rem;">Fast and secure delivery across all 16 regions. Your order is packaged with care.</p>
-            </div>
+          <div class="timeline-item" role="listitem" data-reveal="fade" data-delay="200">
+            <span class="timeline-item__year">2022</span>
+            <h3>Going Online</h3>
+            <p>b_lit hairs launches on Instagram and WhatsApp. First 100 customers served. Nationwide delivery begins.</p>
           </div>
-
-          <div style="display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.5rem;">
-            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--pink-blush),#f7d5e2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--pink-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <div>
-              <h4 style="font-size:1rem;margin-bottom:0.25rem;">WhatsApp-First Service</h4>
-              <p style="font-size:0.88rem;">Real humans, real responses. Order, ask questions, get advice — all on WhatsApp.</p>
-            </div>
+          <div class="timeline-item" role="listitem" data-reveal="fade" data-delay="300">
+            <span class="timeline-item__year">2023</span>
+            <h3>Expanding the Range</h3>
+            <p>New product lines added — wigs, frontals, and custom colour options. Partnerships with bridal stylists across Accra and Kumasi.</p>
           </div>
-
-          <div style="display:flex;gap:1rem;align-items:flex-start;">
-            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--pink-blush),#f7d5e2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--pink-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <div>
-              <h4 style="font-size:1rem;margin-bottom:0.25rem;">5-Star Reviews</h4>
-              <p style="font-size:0.88rem;">Over 500 satisfied queens across Ghana trust b_lit hairs for their best hair days.</p>
-            </div>
+          <div class="timeline-item" role="listitem" data-reveal="fade" data-delay="400">
+            <span class="timeline-item__year">2024 →</span>
+            <h3>The Future</h3>
+            <p>Website launch, Supabase-powered product catalogue, and plans to serve even more queens across West Africa and beyond.</p>
           </div>
         </div>
       </div>
-
-      <div class="about-intro__img" data-reveal="right">
-        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=700&q=80"
-             alt="b_lit hairs quality products"
-             loading="lazy" width="700" height="560">
+      <div data-reveal="right" style="position:sticky;top:120px;">
+        <div style="border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-card);">
+          <img src="assets/images/belinda.jpeg" alt="b_lit hairs journey" loading="lazy" width="700" height="580" style="width:100%;height:500px;object-fit:cover;object-position:top;">
+        </div>
+        <div style="background:var(--pink-blush);border-radius:var(--radius-md);padding:2rem;margin-top:1.5rem;border:1px solid rgba(181,67,106,0.12);">
+          <p style="font-family:var(--font-display);font-size:1.1rem;font-style:italic;color:var(--charcoal);line-height:1.7;margin-bottom:1rem;">"Every woman deserves to feel like a queen. That's why I started b_lit hairs — to make luxury accessible to every Ghanaian woman."</p>
+          <span style="font-family:var(--font-accent);font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--pink-deep);">— Belinda, Founder</span>
+        </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BANNER -->
+<section class="stats-banner" aria-label="Brand statistics">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item" data-reveal="up" data-delay="100"><h3><span data-counter="500" data-suffix="+">500+</span></h3><p>Happy Clients</p></div>
+      <div class="stat-item" data-reveal="up" data-delay="200"><h3><span data-counter="50" data-suffix="+">50+</span></h3><p>Products Available</p></div>
+      <div class="stat-item" data-reveal="up" data-delay="300"><h3><span data-counter="16" data-suffix="">16</span></h3><p>Regions Delivered To</p></div>
+      <div class="stat-item" data-reveal="up" data-delay="400"><h3><span data-counter="3" data-suffix=" Yrs">3 Yrs</span></h3><p>In Business</p></div>
     </div>
   </div>
 </section>
 
 <!-- REVIEWS -->
-<section class="section section--pink" aria-labelledby="reviews-about-heading">
+<section class="section section--pink" aria-labelledby="reviews-heading">
   <div class="container">
     <div class="text-center" data-reveal="up">
       <span class="section-label">Client Love</span>
-      <h2 class="section-title" id="reviews-about-heading">Real Queens. <em>Real Results.</em></h2>
+      <h2 id="reviews-heading">What Our Queens <em style="font-style:italic;color:var(--pink-deep);">Are Saying</em></h2>
       <div class="divider" aria-hidden="true"></div>
     </div>
-
-    <div class="reviews-grid" style="margin-top:3rem;" role="list" aria-label="Client testimonials">
-      <article class="review-card" data-reveal="up" data-delay="100" role="listitem">
-        <div class="review-card__quote" aria-hidden="true">&ldquo;</div>
-        <div class="review-card__stars" aria-label="5 stars">★★★★★</div>
-        <p class="review-card__text">"My go-to hair brand in Ghana, full stop. The quality is unmatched and they're always so helpful on WhatsApp when I need advice. A++ every time!"</p>
-        <div class="review-card__author">
-          <div class="review-card__avatar" aria-hidden="true">A</div>
-          <div><div class="review-card__name">Adwoa B.</div><div class="review-card__loc">Accra</div></div>
-        </div>
-      </article>
-
-      <article class="review-card" data-reveal="up" data-delay="200" role="listitem">
-        <div class="review-card__quote" aria-hidden="true">&ldquo;</div>
-        <div class="review-card__stars" aria-label="5 stars">★★★★★</div>
-        <p class="review-card__text">"I was sceptical at first buying hair online but b_lit hairs changed everything. The packaging was stunning, delivery was fast and the hair is GORGEOUS!"</p>
-        <div class="review-card__author">
-          <div class="review-card__avatar" aria-hidden="true">A</div>
-          <div><div class="review-card__name">Afia O.</div><div class="review-card__loc">Kumasi</div></div>
-        </div>
-      </article>
-
-      <article class="review-card" data-reveal="up" data-delay="300" role="listitem">
-        <div class="review-card__quote" aria-hidden="true">&ldquo;</div>
-        <div class="review-card__stars" aria-label="5 stars">★★★★★</div>
-        <p class="review-card__text">"As a hairstylist I recommend b_lit hairs to ALL my clients. The HD lace wigs are the most natural looking I've seen in Ghana. My clients keep coming back for more!"</p>
-        <div class="review-card__author">
-          <div class="review-card__avatar" aria-hidden="true">E</div>
-          <div><div class="review-card__name">Esi T.</div><div class="review-card__loc">Takoradi</div></div>
-        </div>
-      </article>
+    <div class="reviews-grid" id="reviews-grid" style="margin-top:3rem;" role="list" aria-label="Client reviews">
+      <p class="loading-msg">Loading reviews…</p>
     </div>
   </div>
 </section>
@@ -271,67 +401,183 @@
 <section class="cta-banner" aria-label="Call to action">
   <div class="container">
     <div class="cta-banner__inner" data-reveal="up">
-      <span class="section-label" style="color:var(--gold-light);">Join the Family</span>
-      <h2>Shop the Collection<br>Made for <em>Queens Like You</em></h2>
-      <p>Experience what hundreds of women across Ghana already know — b_lit hairs is simply the best.</p>
+      <span class="section-label" style="color:var(--gold-light);">Ready to Join Our Queens?</span>
+      <h2>Your Glow-Up Starts <em>Right Here</em></h2>
+      <p>Shop our full collection of premium virgin human hair. Delivered to your door anywhere in Ghana.</p>
       <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-        <a href="shop.html" class="btn btn--primary btn--lg">Shop Now</a>
-        <a href="https://wa.me/233273521007?text=Hello%20b_lit%20hairs!%20I%20love%20your%20brand%20and%20want%20to%20order%20%F0%9F%92%95" class="btn btn--gold btn--lg" target="_blank" rel="noopener noreferrer">Chat With Us</a>
+        <a href="shop.html" class="btn btn--primary btn--lg">Shop the Collection</a>
+        <a href="https://wa.me/233273521007?text=Hello%20b_lit%20hairs!%20I%20want%20to%20shop%20your%20collection%20%F0%9F%92%95" class="btn btn--white btn--lg" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
       </div>
     </div>
   </div>
 </section>
 </main>
 
-<!-- FOOTER -->
 <footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
-        <span class="nav__logo-text">b_lit <span>hairs</span></span>
+        <span class="nav__logo-text-f">b_lit <span>hairs</span></span>
         <p>Ghana's premium luxury hair brand. Bringing world-class virgin human hair to women who demand the very best.</p>
         <div class="footer__socials">
           <a href="#" class="footer__social" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
           <a href="https://wa.me/233273521007" class="footer__social" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
         </div>
       </div>
-      <nav aria-label="Shop navigation">
-        <h4 class="footer__heading">Shop</h4>
-        <ul class="footer__links">
-          <li><a href="shop.html">All Products</a></li>
-          <li><a href="shop.html">Wigs</a></li>
-          <li><a href="shop.html">Bundles</a></li>
-        </ul>
-      </nav>
-      <nav aria-label="Company navigation">
-        <h4 class="footer__heading">Company</h4>
-        <ul class="footer__links">
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <div>
-        <h4 class="footer__heading">Contact</h4>
-        <ul class="footer__links">
-          <li><a href="https://wa.me/233273521007" target="_blank" rel="noopener noreferrer">+233 27 352 1007</a></li>
-          <li style="color:rgba(255,255,255,0.55);font-size:0.9rem;">Accra, Ghana</li>
-        </ul>
-      </div>
+      <nav aria-label="Shop navigation"><h4 class="footer__heading">Shop</h4><ul class="footer__links"><li><a href="shop.html">All Products</a></li><li><a href="shop.html?filter=wigs">Wigs</a></li><li><a href="shop.html?filter=bundles">Bundles</a></li><li><a href="shop.html?filter=frontals">Frontals</a></li></ul></nav>
+      <nav aria-label="Company navigation"><h4 class="footer__heading">Company</h4><ul class="footer__links"><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+      <div><h4 class="footer__heading">Contact</h4><ul class="footer__links"><li><a href="https://wa.me/233273521007" target="_blank" rel="noopener noreferrer">+233 27 352 1007</a></li><li><a href="mailto:hello@blit-hairs.com">hello@blit-hairs.com</a></li><li style="color:rgba(255,255,255,0.55);font-size:0.9rem;">Accra, Ghana</li></ul></div>
     </div>
     <div class="footer__bottom">
-      <p>© 2024 b_lit hairs. All rights reserved.</p>
+      <p>© <span id="year"></span> b_lit hairs. All rights reserved. Made with ❤️ in <strong>Ghana</strong>.</p>
       <p><a href="#">Privacy Policy</a></p>
     </div>
   </div>
 </footer>
 
-<a href="https://wa.me/233273521007" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+<a href="https://wa.me/233273521007?text=Hello%20b_lit%20hairs!%20I%20need%20help%20%F0%9F%92%95" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<script src="js/products.js"></script>
-<script src="js/main.js"></script>
-<script src="js/chatbot.js"></script>
+<script>
+'use strict';
+const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
+const FALLBACK_REVIEWS = [
+  {reviewer_name:'Abena K.',reviewer_location:'Accra, Ghana',stars:5,review_text:'I\'ve tried so many hair brands in Accra but b_lit hairs is on another level. The body wave wig I bought is still as lush as day one — 6 months later. Zero shedding, zero regrets!'},
+  {reviewer_name:'Serwa A.',reviewer_location:'Kumasi, Ghana',stars:5,review_text:'Ordered my bridal wig from b_lit hairs and it was the best decision I made for my wedding. The HD lace was undetectable and everyone thought it was my natural hair.'},
+  {reviewer_name:'Efua M.',reviewer_location:'Takoradi, Ghana',stars:5,review_text:'Fast delivery, gorgeous packaging, and the hair is EVERYTHING. I bought 3 bundles of kinky straight and they blended perfectly with my natural hair. b_lit is my forever hair brand!'},
+  {reviewer_name:'Akosua B.',reviewer_location:'Accra, Ghana',stars:5,review_text:'Belinda is an absolute gem. She helped me choose the right wig for my face shape via WhatsApp and I couldn\'t be happier. The loose wave wig is STUNNING.'},
+  {reviewer_name:'Adjoa T.',reviewer_location:'Cape Coast, Ghana',stars:5,review_text:'Delivery was so fast even to Cape Coast! The hair quality is exceptional. I\'ve reordered twice already and will keep coming back. b_lit hairs never disappoints.'},
+  {reviewer_name:'Yaa F.',reviewer_location:'Kumasi, Ghana',stars:5,review_text:'The blonde body wave wig turned me into a whole different person in the best way possible. Compliments everywhere I go. 10/10 would recommend b_lit hairs.'},
+];
+
+async function sbFetch(table, params='') {
+  try {
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}${params}`,{headers:{'apikey':SUPABASE_ANON_KEY,'Authorization':`Bearer ${SUPABASE_ANON_KEY}`}});
+    if (!r.ok) throw new Error(r.status);
+    return await r.json();
+  } catch(e){return null;}
+}
+
+function renderReviews(reviews) {
+  const grid = document.getElementById('reviews-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  reviews.slice(0,6).forEach((r,i) => {
+    const card = document.createElement('article');
+    card.className = 'review-card';
+    card.setAttribute('data-reveal','up');
+    card.setAttribute('data-delay', String((i%3)*100+100));
+    card.setAttribute('role','listitem');
+    const stars = '★'.repeat(Math.min(5,r.stars||5));
+    const initials = (r.reviewer_name||'A').trim().split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+    card.innerHTML = `
+      <div class="review-card__quote" aria-hidden="true">&ldquo;</div>
+      <div class="review-card__stars" aria-label="${r.stars||5} out of 5 stars">${stars}</div>
+      <p class="review-card__text">"${r.review_text}"</p>
+      <div class="review-card__author">
+        <div class="review-card__avatar" aria-hidden="true">${initials}</div>
+        <div><div class="review-card__name">${r.reviewer_name}</div><div class="review-card__loc">${r.reviewer_location||'Ghana'}</div></div>
+      </div>`;
+    grid.appendChild(card);
+    requestAnimationFrame(()=>setTimeout(()=>card.classList.add('revealed'),i*80));
+  });
+  // re-observe new cards
+  const obs = new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');obs.unobserve(e.target);}}),{threshold:0.12});
+  grid.querySelectorAll('[data-reveal]').forEach(el=>obs.observe(el));
+}
+
+function animateCounter(el, target, duration=2000) {
+  let start;
+  const step = ts => { if(!start)start=ts; const p=Math.min((ts-start)/duration,1),e=1-Math.pow(1-p,3); el.textContent=Math.floor(e*target).toLocaleString()+(el.dataset.suffix||''); if(p<1)requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+
+async function init() {
+  document.getElementById('page-loader').classList.add('hidden');
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const nav = document.querySelector('.nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+  const bar = document.querySelector('.scroll-progress');
+  window.addEventListener('scroll',()=>{bar.style.width=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+
+  const hbtn=document.querySelector('.nav__hamburger'),drawer=document.querySelector('.nav__drawer');
+  hbtn.addEventListener('click',()=>{const o=hbtn.classList.toggle('open');drawer.classList.toggle('open',o);document.body.style.overflow=o?'hidden':'';hbtn.setAttribute('aria-expanded',o);});
+  drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{hbtn.classList.remove('open');drawer.classList.remove('open');document.body.style.overflow='';}));
+
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');obs.unobserve(e.target);}}),{threshold:0.12,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('[data-reveal]').forEach(el=>obs.observe(el));
+
+  const cObs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){animateCounter(e.target,parseInt(e.target.dataset.counter,10));cObs.unobserve(e.target);}}),{threshold:0.5});
+  document.querySelectorAll('[data-counter]').forEach(c=>cObs.observe(c));
+
+  document.querySelectorAll('.btn').forEach(btn=>{
+    btn.addEventListener('click',function(e){const r=this.getBoundingClientRect(),size=Math.max(r.width,r.height);const s=document.createElement('span');s.className='ripple';s.style.cssText=`width:${size}px;height:${size}px;left:${e.clientX-r.left-size/2}px;top:${e.clientY-r.top-size/2}px`;this.appendChild(s);s.addEventListener('animationend',()=>s.remove());});
+  });
+
+  let reviews = await sbFetch('reviews','?select=*&is_approved=eq.true&order=created_at.desc');
+  if (!reviews||!reviews.length) reviews = FALLBACK_REVIEWS;
+  renderReviews(reviews);
+}
+
+document.addEventListener('DOMContentLoaded',init);
+</script>
+
+<!-- CHATBOT -->
+<script>
+'use strict';
+(function(){
+const KB={
+  greet:["Hello, gorgeous! 💕 I'm Belinda, your b_lit hairs assistant. You're on our About page — feel free to ask me anything about our brand, products or how to order!","Hey queen! 👑 I'm Belinda. Want to know more about our story, or would you like to shop our collection?"],
+  about:"About b_lit hairs:\n\n👑 Founded in 2021 by Belinda in Accra, Ghana\n💕 500+ happy clients served\n🌍 Delivering across all 16 regions\n⭐ 5-star rated brand\n✅ 100% virgin human hair — always\n\nOur mission: make luxury hair accessible to every Ghanaian queen.",
+  products:"Our collection includes:\n\n💇 Bundles (Brazilian, Kinky, Water Wave)\n👑 Wigs (Body Wave, Deep Curly, Loose Wave, Blonde)\n✂️ Extensions (Clip-In Sets)\n🎀 Frontals (Water Wave Bundle Sets)\n\nAll from GHS 290. Shop at shop.html 💕",
+  prices:"Our prices:\n\n• Clip-In Extensions — GHS 290\n• Kinky Straight Bundle — GHS 380\n• Brazilian Straight Bundle — GHS 420\n• Water Wave Frontal Bundle — GHS 650\n• Deep Curly Closure Wig — GHS 780\n• Body Wave Wig — GHS 850\n• Loose Wave Full Wig — GHS 920\n• Blonde Body Wave Wig — GHS 1,100",
+  delivery:"We deliver everywhere in Ghana! 🇬🇭\n\n📍 Accra & Tema — same-day or next-day\n📍 All other regions — 1–3 business days\n💚 FREE on orders above GHS 500\n\nWhatsApp +233 27 352 1007",
+  order:"Ordering is easy:\n\n1️⃣ Browse shop.html\n2️⃣ Click any product\n3️⃣ Tap 'Buy Now on WhatsApp'\n4️⃣ Pay via MoMo or bank transfer\n5️⃣ Receive your luxury hair 📦💕",
+  thanks:["You're so welcome! 💕 Anything else?","My pleasure, queen! 👑"],
+  fallback:["I'm not sure! 😅 WhatsApp our team: +233 27 352 1007 💕","WhatsApp us at +233 27 352 1007 for the best answer. 💕"],
+};
+const INTENTS=[
+  {k:['hello','hi','hey','morning'],r:()=>rand(KB.greet)},
+  {k:['thank','thanks','perfect','awesome'],r:()=>rand(KB.thanks)},
+  {k:['about','story','brand','who','founder','belinda'],r:()=>KB.about},
+  {k:['product','catalogue','all hair','show','list','what sell'],r:()=>KB.products},
+  {k:['price','cost','how much','ghs','cedis'],r:()=>KB.prices},
+  {k:['deliver','delivery','ship','nationwide'],r:()=>KB.delivery},
+  {k:['order','buy','purchase','how to'],r:()=>KB.order},
+];
+function rand(a){return a[Math.floor(Math.random()*a.length)];}
+function getResponse(input){const t=input.toLowerCase();for(const i of INTENTS){if(i.k.some(k=>t.includes(k)))return i.r();}return rand(KB.fallback);}
+const style=document.createElement('style');
+style.textContent=`#blc-w{position:fixed;bottom:2rem;left:2rem;z-index:9500;font-family:'Poppins',sans-serif;}#blc-toggle{width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#b5436a,#d4698b);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(181,67,106,.5);transition:transform .3s;position:relative;animation:blc-pulse 3s 2.5s infinite;}#blc-toggle:hover{transform:scale(1.1);}#blc-toggle.open{animation:none;}.blc-ti{position:absolute;transition:opacity .25s,transform .25s;}.blc-ti svg{width:26px;height:26px;fill:white;display:block;}.blc-ti-chat{opacity:1;}.blc-ti-close{opacity:0;transform:scale(0);}#blc-toggle.open .blc-ti-chat{opacity:0;transform:scale(0);}#blc-toggle.open .blc-ti-close{opacity:1;transform:scale(1);}#blc-badge{position:absolute;top:-4px;right:-4px;width:20px;height:20px;border-radius:50%;background:#c9a96e;color:white;font-size:.65rem;font-weight:700;display:none;align-items:center;justify-content:center;border:2px solid white;}#blc-tip{position:absolute;bottom:76px;left:0;background:#1a1a1a;color:white;font-size:.75rem;font-weight:600;padding:.5rem 1rem;border-radius:999px;white-space:nowrap;pointer-events:none;animation:blc-up .4s 2.5s both;transition:opacity .5s;}#blc-tip::after{content:'';position:absolute;top:100%;left:20px;border:5px solid transparent;border-top-color:#1a1a1a;}#blc-panel{position:absolute;bottom:78px;left:0;width:360px;max-height:560px;background:white;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.18);display:flex;flex-direction:column;overflow:hidden;transform:scale(.85) translateY(20px);transform-origin:bottom left;opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.4,0,.2,1),opacity .3s;}#blc-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all;}.blc-hd{background:linear-gradient(135deg,#b5436a,#8b2249);padding:1rem 1.2rem;display:flex;align-items:center;gap:.85rem;flex-shrink:0;}.blc-av{width:46px;height:46px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid rgba(255,255,255,.3);}.blc-av img{width:100%;height:100%;object-fit:cover;}.blc-av-fb{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:white;font-weight:700;flex-shrink:0;position:relative;}.blc-dot{position:absolute;bottom:1px;right:1px;width:11px;height:11px;background:#4ade80;border-radius:50%;border:2px solid #8b2249;}.blc-ht h4{font-size:.95rem;font-weight:700;color:white;margin:0;}.blc-ht p{font-size:.68rem;color:rgba(255,255,255,.75);margin:0;}.blc-ha{margin-left:auto;display:flex;gap:.4rem;}.blc-hbtn{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.14);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;text-decoration:none;color:white;transition:background .2s;}.blc-hbtn:hover{background:rgba(255,255,255,.25);}.blc-hbtn svg{width:15px;height:15px;}.blc-msgs{flex:1;overflow-y:auto;padding:1rem;background:#fdf8fa;display:flex;flex-direction:column;gap:.8rem;scroll-behavior:smooth;}.blc-msgs::-webkit-scrollbar{width:4px;}.blc-msgs::-webkit-scrollbar-thumb{background:#e8c4d4;border-radius:4px;}.blc-msg{display:flex;gap:.5rem;align-items:flex-end;animation:blc-in .3s ease;}.blc-msg.user{flex-direction:row-reverse;}.blc-mav{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:white;background:linear-gradient(135deg,#b5436a,#d4698b);}.blc-msg.user .blc-mav{background:linear-gradient(135deg,#888,#555);}.blc-bub{max-width:78%;padding:.65rem .9rem;border-radius:16px;font-size:.79rem;line-height:1.65;color:#2d2d2d;white-space:pre-line;}.blc-msg.bot .blc-bub{background:white;border-bottom-left-radius:4px;box-shadow:0 1px 8px rgba(0,0,0,.07);}.blc-msg.user .blc-bub{background:linear-gradient(135deg,#b5436a,#d4698b);color:white;border-bottom-right-radius:4px;}.blc-ts{font-size:.6rem;color:#bbb;margin-top:3px;}.blc-msg.user .blc-ts{text-align:right;}.blc-typing{display:flex;gap:.5rem;align-items:flex-end;}.blc-dots{background:white;border-radius:16px;border-bottom-left-radius:4px;padding:.65rem 1rem;box-shadow:0 1px 8px rgba(0,0,0,.07);display:flex;gap:5px;align-items:center;}.blc-dots span{width:6px;height:6px;background:#b5436a;border-radius:50%;opacity:.4;animation:blc-dt 1.2s infinite;}.blc-dots span:nth-child(2){animation-delay:.2s;}.blc-dots span:nth-child(3){animation-delay:.4s;}.blc-qr{display:flex;flex-wrap:wrap;gap:.4rem;padding:0 1rem .8rem;background:#fdf8fa;}.blc-qbtn{padding:.32rem .8rem;border-radius:999px;background:white;border:1.5px solid rgba(181,67,106,.25);color:#b5436a;font-size:.7rem;font-weight:600;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .2s;}.blc-qbtn:hover{background:#b5436a;border-color:#b5436a;color:white;}.blc-iw{border-top:1px solid rgba(181,67,106,.1);padding:.7rem 1rem;display:flex;gap:.5rem;align-items:flex-end;background:white;flex-shrink:0;}#blc-in{flex:1;border:1.5px solid rgba(181,67,106,.2);border-radius:12px;padding:.55rem .85rem;font-family:'Poppins',sans-serif;font-size:.8rem;color:#2d2d2d;background:#fdf8fa;resize:none;outline:none;max-height:100px;line-height:1.5;transition:border-color .2s;}#blc-in:focus{border-color:#b5436a;background:white;}#blc-in::placeholder{color:#ccc;}#blc-snd{width:36px;height:36px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#b5436a,#d4698b);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(181,67,106,.35);transition:transform .2s,opacity .2s;}#blc-snd:hover:not(:disabled){transform:scale(1.1);}#blc-snd:disabled{opacity:.4;cursor:not-allowed;}#blc-snd svg{width:14px;height:14px;fill:white;}.blc-ft{text-align:center;padding:.45rem;background:white;border-top:1px solid #f0e8ec;font-size:.64rem;color:#aaa;flex-shrink:0;}.blc-ft a{color:#25D366;font-weight:700;text-decoration:none;}@keyframes blc-pulse{0%{box-shadow:0 0 0 0 rgba(181,67,106,.5)}70%{box-shadow:0 0 0 14px rgba(181,67,106,0)}100%{box-shadow:0 0 0 0 rgba(181,67,106,0)}}@keyframes blc-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes blc-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes blc-dt{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:1}}@media(max-width:480px){#blc-w{left:1rem;bottom:1rem;}#blc-panel{width:calc(100vw - 2rem);max-height:70vh;}}`;
+document.head.appendChild(style);
+const W=document.createElement('div');W.id='blc-w';
+W.innerHTML=`<div id="blc-tip">💬 Want to know more about us? 💕</div><div id="blc-panel" role="dialog"><div class="blc-hd"><div class="blc-av"><img src="assets/images/belinda.jpeg" alt="Belinda" onerror="this.parentElement.innerHTML='<div class=blc-av-fb>B<div class=blc-dot></div></div>'"></div><div class="blc-ht"><h4>Belinda ✨</h4><p>b_lit hairs Founder &amp; Assistant</p></div><div class="blc-ha"><a class="blc-hbtn" href="https://wa.me/233273521007" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="#25D366" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a><button class="blc-hbtn" id="blc-clear"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></button></div></div><div class="blc-msgs" id="blc-msgs" role="log" aria-live="polite"></div><div class="blc-qr" id="blc-qr"></div><div class="blc-iw"><textarea id="blc-in" placeholder="Ask Belinda anything…" rows="1" maxlength="400"></textarea><button id="blc-snd" disabled><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button></div><div class="blc-ft">Or <a href="https://wa.me/233273521007" target="_blank" rel="noopener noreferrer">💚 WhatsApp us</a></div></div><button id="blc-toggle" aria-label="Open chat" aria-expanded="false"><span class="blc-ti blc-ti-chat"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></span><span class="blc-ti blc-ti-close"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></span><span id="blc-badge" style="display:none;align-items:center;justify-content:center;position:absolute;top:-4px;right:-4px;width:20px;height:20px;border-radius:50%;background:#c9a96e;color:white;font-size:.65rem;font-weight:700;border:2px solid white;">1</span></button>`;
+document.body.appendChild(W);
+const QR=[{l:'🏪 Our Story',t:'Tell me about b_lit hairs'},{l:'💰 Prices',t:'What are your prices?'},{l:'🛍️ Shop Now',t:'What products do you have?'},{l:'🚚 Delivery',t:'How does delivery work?'},{l:'📱 Order',t:'How do I place an order?'}];
+const $t=document.getElementById('blc-toggle'),$p=document.getElementById('blc-panel'),$m=document.getElementById('blc-msgs'),$i=document.getElementById('blc-in'),$s=document.getElementById('blc-snd'),$q=document.getElementById('blc-qr'),$tip=document.getElementById('blc-tip'),$badge=document.getElementById('blc-badge'),$clr=document.getElementById('blc-clear');
+let open=false,started=false;
+function ts(){return new Date().toLocaleTimeString('en-GH',{hour:'2-digit',minute:'2-digit'});}
+function scrollD(){$m.scrollTop=$m.scrollHeight;}
+function addMsg(text,role){const d=document.createElement('div');d.className=`blc-msg ${role}`;d.innerHTML=`<div class="blc-mav">${role==='bot'?'B':'U'}</div><div><div class="blc-bub">${text}</div><div class="blc-ts">${ts()}</div></div>`;$m.appendChild(d);scrollD();}
+function showTyping(){const d=document.createElement('div');d.className='blc-msg bot blc-typing';d.id='blc-ty';d.innerHTML='<div class="blc-mav">B</div><div class="blc-dots"><span></span><span></span><span></span></div>';$m.appendChild(d);scrollD();}
+function hideTyping(){const e=document.getElementById('blc-ty');if(e)e.remove();}
+function showQR(){$q.innerHTML='';QR.forEach(q=>{const b=document.createElement('button');b.className='blc-qbtn';b.textContent=q.l;b.addEventListener('click',()=>{$q.innerHTML='';send(q.t);});$q.appendChild(b);});}
+function send(txt){const msg=(txt||$i.value).trim();if(!msg)return;$i.value='';$i.style.height='auto';$s.disabled=true;$q.innerHTML='';addMsg(msg,'user');showTyping();setTimeout(()=>{hideTyping();addMsg(getResponse(msg),'bot');},700+Math.random()*500);}
+function openP(){open=true;$p.classList.add('open');$t.classList.add('open');$t.setAttribute('aria-expanded','true');$tip.style.opacity='0';$badge.style.display='none';if(!started){started=true;setTimeout(()=>{addMsg(rand(KB.greet),'bot');showQR();},350);}setTimeout(()=>$i.focus(),400);}
+function closeP(){open=false;$p.classList.remove('open');$t.classList.remove('open');$t.setAttribute('aria-expanded','false');}
+$t.addEventListener('click',()=>open?closeP():openP());
+$i.addEventListener('input',function(){$s.disabled=!this.value.trim();this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px';});
+$i.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();if(!$s.disabled)send();}});
+$s.addEventListener('click',()=>send());
+$clr.addEventListener('click',()=>{$m.innerHTML='';$q.innerHTML='';started=false;if(open){started=true;setTimeout(()=>{addMsg("Chat cleared! 😊 How can I help?",'bot');showQR();},200);}});
+setTimeout(()=>{if(!open)$badge.style.display='flex';},5000);
+setTimeout(()=>{$tip.style.opacity='0';},8000);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&open)closeP();});
+})();
+</script>
 </body>
 </html>

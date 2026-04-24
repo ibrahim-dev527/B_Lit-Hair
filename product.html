@@ -8,35 +8,172 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/animations.css">
+  <style>
+    :root{--pink-deep:#b5436a;--pink-mid:#d4698b;--pink-light:#f2c4d4;--pink-blush:#fdf0f4;--white:#ffffff;--off-white:#faf8f9;--charcoal:#1a1a1a;--text-dark:#2d2d2d;--text-mid:#555555;--text-light:#888888;--gold:#c9a96e;--gold-light:#e8d5b0;--font-display:'Playfair Display',Georgia,serif;--font-body:'Poppins',sans-serif;--font-accent:'Montserrat',sans-serif;--radius-sm:8px;--radius-md:16px;--radius-lg:32px;--radius-pill:999px;--shadow-soft:0 4px 24px rgba(181,67,106,0.10);--shadow-card:0 8px 40px rgba(181,67,106,0.14);--shadow-hover:0 16px 56px rgba(181,67,106,0.22);--transition:0.35s cubic-bezier(0.4,0,0.2,1);--transition-slow:0.6s cubic-bezier(0.4,0,0.2,1);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}body{font-family:var(--font-body);background:var(--white);color:var(--text-dark);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+    img{max-width:100%;height:auto;display:block;}a{text-decoration:none;color:inherit;}ul{list-style:none;}
+    h1,h2,h3,h4,h5{font-family:var(--font-display);line-height:1.25;color:var(--charcoal);font-weight:700;}
+    h1{font-size:clamp(2.4rem,6vw,4.5rem);}h2{font-size:clamp(1.8rem,4vw,3rem);}h3{font-size:clamp(1.3rem,3vw,2rem);}
+    p{color:var(--text-mid);}
+    .section-label{font-family:var(--font-accent);font-size:0.75rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--pink-deep);display:block;margin-bottom:0.75rem;}
+    .container{width:100%;max-width:1240px;margin:0 auto;padding:0 1.5rem;}
+    .section{padding:6rem 0;}.section--pink{background:var(--pink-blush);}
+    .text-center{text-align:center;}
+    .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2.2rem;border-radius:var(--radius-pill);font-family:var(--font-accent);font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border:none;position:relative;overflow:hidden;transition:var(--transition);}
+    .btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.15);opacity:0;transition:var(--transition);}
+    .btn:hover::after{opacity:1;}
+    .btn--primary{background:linear-gradient(135deg,var(--pink-deep),var(--pink-mid));color:var(--white);box-shadow:0 4px 20px rgba(181,67,106,0.4);}
+    .btn--primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(181,67,106,0.5);}
+    .btn--outline{background:transparent;border:2px solid var(--pink-deep);color:var(--pink-deep);}
+    .btn--outline:hover{background:var(--pink-deep);color:var(--white);transform:translateY(-2px);}
+    .btn--gold{background:linear-gradient(135deg,var(--gold),#a87c4a);color:var(--white);}
+    .btn--lg{padding:1.1rem 2.8rem;font-size:0.95rem;}
+    .btn--primary::before{content:'';position:absolute;inset:-2px;border-radius:inherit;background:inherit;filter:blur(12px);opacity:0;transition:opacity 0.4s;z-index:-1;}
+    .btn--primary:hover::before{opacity:0.55;}
+    .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,0.35);transform:scale(0);animation:ripple-anim 0.65s linear;pointer-events:none;}
+    /* Nav */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.25rem 0;transition:var(--transition);}
+    .nav.scrolled{background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:0.85rem 0;box-shadow:0 4px 32px rgba(181,67,106,0.1);}
+    .nav--dark .nav__logo-text,.nav--dark .nav__link{color:var(--charcoal);}
+    .nav--dark .nav__hamburger span{background:var(--charcoal);}
+    .nav--dark{background:var(--white);box-shadow:0 2px 20px rgba(181,67,106,0.08);}
+    .nav__inner{display:flex;align-items:center;justify-content:space-between;}
+    .nav__logo{display:flex;align-items:center;gap:0.75rem;}
+    .nav__logo img{width:44px;height:44px;border-radius:50%;object-fit:cover;}
+    .nav__logo-text{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:var(--charcoal);transition:color var(--transition);}
+    .nav__logo-text span{color:var(--pink-deep);}
+    .nav__menu{display:flex;align-items:center;gap:2.5rem;}
+    .nav__link{font-family:var(--font-accent);font-size:0.8rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--charcoal);position:relative;transition:color var(--transition);}
+    .nav__link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--pink-mid);transition:width var(--transition);}
+    .nav__link:hover::after,.nav__link.active::after{width:100%;}
+    .nav__link.active{color:var(--pink-mid);}
+    .nav__cta{margin-left:0.5rem;}
+    .nav__hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+    .nav__hamburger span{display:block;width:26px;height:2px;background:var(--charcoal);border-radius:2px;transition:var(--transition);}
+    .nav__hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .nav__hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+    .nav__hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .nav__drawer{display:none;position:fixed;inset:0;background:var(--white);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;transform:translateX(100%);transition:transform var(--transition-slow);}
+    .nav__drawer.open{transform:translateX(0);}
+    .nav__drawer .nav__link{color:var(--charcoal);font-size:1.4rem;}
+    /* Product Detail */
+    .product-detail{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;padding-top:2rem;}
+    .product-detail__gallery{position:sticky;top:100px;}
+    .product-detail__main-img{border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-card);margin-bottom:1rem;}
+    .product-detail__main-img img{width:100%;height:500px;object-fit:cover;transition:opacity 0.35s ease;}
+    .product-detail__thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem;}
+    .product-detail__thumb{border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color var(--transition);}
+    .product-detail__thumb.active{border-color:var(--pink-deep);}
+    .product-detail__thumb img{width:100%;height:80px;object-fit:cover;}
+    .product-detail__name{font-size:clamp(1.8rem,3vw,2.5rem);margin-bottom:0.5rem;}
+    .product-detail__price{font-family:var(--font-display);font-size:2rem;color:var(--pink-deep);font-weight:700;margin:1rem 0;background:linear-gradient(90deg,var(--pink-deep) 0%,#e07090 40%,var(--pink-deep) 60%,var(--pink-deep) 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s linear infinite;}
+    .product-detail__specs{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.5rem 0;padding:1.5rem;background:var(--pink-blush);border-radius:var(--radius-md);}
+    .spec-item__label{font-family:var(--font-accent);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);display:block;margin-bottom:0.2rem;}
+    .spec-item__val{font-family:var(--font-display);font-weight:700;font-size:0.95rem;color:var(--charcoal);}
+    .product-detail__actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;}
+    .product-detail__back{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-accent);font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-mid);margin-bottom:2rem;transition:color var(--transition);}
+    .product-detail__back:hover{color:var(--pink-deep);}
+    .product-detail__back svg{width:16px;height:16px;stroke:currentColor;transition:transform var(--transition);}
+    .product-detail__back:hover svg{transform:translateX(-4px);}
+    .product-card__badge{display:inline-block;background:var(--pink-deep);color:var(--white);font-family:var(--font-accent);font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:var(--radius-pill);margin-bottom:0.75rem;}
+    /* Trust bar */
+    .trust-bar__item{display:flex;align-items:center;gap:0.6rem;font-family:var(--font-accent);font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mid);}
+    .trust-bar__item svg{width:18px;height:18px;flex-shrink:0;}
+    /* Related products */
+    .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2rem;}
+    .product-card{background:var(--white);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-soft);cursor:pointer;transition:var(--transition);position:relative;border:1px solid rgba(181,67,106,0.08);}
+    .product-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-hover);}
+    .product-card__badge-sm{position:absolute;top:1rem;left:1rem;background:var(--pink-deep);color:var(--white);font-family:var(--font-accent);font-size:0.68rem;font-weight:700;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:var(--radius-pill);z-index:2;}
+    .product-card__img-wrap{position:relative;overflow:hidden;height:260px;background:linear-gradient(145deg,var(--pink-blush),#ecdde5);}
+    .product-card__img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;}
+    .product-card:hover .product-card__img-wrap img{transform:scale(1.06);}
+    .product-card__overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(181,67,106,0.5),transparent 60%);opacity:0;transition:var(--transition);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1rem;}
+    .product-card:hover .product-card__overlay{opacity:1;}
+    .product-card__body{padding:1.2rem;}
+    .product-card__name{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--charcoal);margin-bottom:0.25rem;}
+    .product-card__type{font-size:0.75rem;color:var(--text-light);font-family:var(--font-accent);margin-bottom:0.6rem;}
+    .product-card__footer{display:flex;align-items:center;justify-content:space-between;}
+    .product-card__price{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--pink-deep);}
+    .product-card__btn{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pink-deep),var(--pink-mid));display:flex;align-items:center;justify-content:center;transition:var(--transition);border:none;cursor:pointer;}
+    .product-card__btn svg{width:14px;height:14px;stroke:white;}
+    /* WhatsApp */
+    .whatsapp-float{position:fixed;bottom:2rem;right:2rem;z-index:900;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(37,211,102,0.5);transition:var(--transition);animation:pulse-green 2.5s infinite;}
+    .whatsapp-float:hover{transform:scale(1.12);}
+    .whatsapp-float svg{width:30px;height:30px;fill:white;}
+    /* Footer */
+    .footer{background:var(--charcoal);padding:5rem 0 0;color:rgba(255,255,255,0.7);}
+    .footer__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:3rem;margin-bottom:4rem;}
+    .footer__brand p{font-size:0.9rem;color:rgba(255,255,255,0.55);line-height:1.8;max-width:280px;}
+    .footer__socials{display:flex;gap:0.75rem;margin-top:1.5rem;}
+    .footer__social{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;transition:var(--transition);}
+    .footer__social:hover{background:var(--pink-deep);}
+    .footer__social svg{width:16px;height:16px;stroke:white;}
+    .footer__heading{font-family:var(--font-accent);font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--white);margin-bottom:1.5rem;}
+    .footer__links li{margin-bottom:0.75rem;}
+    .footer__links a{font-size:0.9rem;color:rgba(255,255,255,0.55);transition:color var(--transition);}
+    .footer__links a:hover{color:var(--pink-light);}
+    .footer__bottom{border-top:1px solid rgba(255,255,255,0.08);padding:1.5rem 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+    .footer__bottom p{font-size:0.82rem;color:rgba(255,255,255,0.4);}
+    .footer__bottom a{color:var(--pink-light);}
+    .nav__logo-text{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:var(--white);}
+    .nav__logo-text span{color:var(--pink-light);}
+    .divider{width:60px;height:3px;background:linear-gradient(90deg,var(--pink-deep),var(--pink-mid));border-radius:2px;margin:1.25rem auto 0;}
+    /* scroll progress */
+    .scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--pink-deep),var(--gold));z-index:10000;width:0%;transition:width 0.1s linear;}
+    /* loader */
+    .page-loader{position:fixed;inset:0;background:var(--charcoal);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transition:opacity 0.6s ease,visibility 0.6s ease;}
+    .page-loader.hidden{opacity:0;visibility:hidden;}
+    .loader-logo{font-family:var(--font-display);font-size:2rem;color:var(--white);font-weight:700;}
+    .loader-logo span{color:var(--pink-mid);}
+    .loader-bar{width:200px;height:2px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;}
+    .loader-bar__fill{height:100%;background:linear-gradient(90deg,var(--pink-deep),var(--gold));animation:loading 1.4s ease forwards;}
+    .loader-ring{width:48px;height:48px;border:3px solid rgba(255,255,255,0.1);border-top-color:var(--pink-mid);border-radius:50%;animation:spin 0.9s linear infinite;}
+    [data-reveal]{opacity:0;transition:opacity 0.75s ease,transform 0.75s ease;}
+    [data-reveal="up"]{transform:translateY(50px);}
+    [data-reveal="left"]{transform:translateX(-50px);}
+    [data-reveal="right"]{transform:translateX(50px);}
+    [data-reveal="fade"]{transform:none;}
+    [data-reveal].revealed{opacity:1;transform:translate(0);}
+    @keyframes ripple-anim{to{transform:scale(4);opacity:0;}}
+    @keyframes loading{0%{width:0;}100%{width:100%;}}
+    @keyframes pulse-green{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55);}70%{box-shadow:0 0 0 14px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
+    @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+    @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes shimmer{0%{background-position:-200% center;}100%{background-position:200% center;}}
+    .nav{animation:fadeInDown 0.7s 0.1s both;}
+    :focus-visible{outline:3px solid var(--pink-mid);outline-offset:3px;border-radius:4px;}
+    .loading-msg{grid-column:1/-1;text-align:center;color:var(--text-light);padding:3rem;font-family:var(--font-accent);}
+    @media(max-width:1024px){.footer__grid{grid-template-columns:1fr 1fr;}.product-detail{gap:3rem;}}
+    @media(max-width:768px){.section{padding:4rem 0;}.product-detail{grid-template-columns:1fr;gap:2rem;}.product-detail__gallery{position:static;}.product-detail__specs{grid-template-columns:1fr;}.footer__grid{grid-template-columns:1fr;}.nav__menu{display:none;}.nav__hamburger{display:flex;}.nav__drawer{display:flex;}.footer__bottom{flex-direction:column;text-align:center;}}
+    @media(max-width:480px){.product-detail__thumbs{grid-template-columns:repeat(3,1fr);}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important;}[data-reveal]{opacity:1;transform:none;}}
+  </style>
 </head>
 <body>
 
-<div class="page-loader" role="status" aria-label="Loading">
+<div class="page-loader" id="page-loader" role="status" aria-label="Loading">
   <div class="loader-logo">b_lit <span>hairs</span></div>
   <div class="loader-ring"></div>
   <div class="loader-bar"><div class="loader-bar__fill"></div></div>
 </div>
 
 <div class="scroll-progress" role="progressbar" aria-hidden="true"></div>
-<div class="page-transition" aria-hidden="true"></div>
 
-<!-- NAV -->
 <header>
   <nav class="nav nav--dark" role="navigation" aria-label="Main navigation">
     <div class="container">
       <div class="nav__inner">
         <a href="index.html" class="nav__logo" aria-label="b_lit hairs home">
-          <img src="assets/images/logo.png" alt="b_lit hairs logo" width="44" height="44" onerror="this.style.display='none'">
+          <img src="assets/images/belinda.jpeg" alt="b_lit hairs" onerror="this.style.display='none'">
           <span class="nav__logo-text">b_lit <span>hairs</span></span>
         </a>
         <ul class="nav__menu" role="list">
-          <li><a href="index.html"    class="nav__link">Home</a></li>
-          <li><a href="shop.html"     class="nav__link active">Shop</a></li>
+          <li><a href="index.html" class="nav__link">Home</a></li>
+          <li><a href="shop.html" class="nav__link active">Shop</a></li>
           <li><a href="services.html" class="nav__link">Services</a></li>
-          <li><a href="about.html"    class="nav__link">About</a></li>
-          <li><a href="contact.html"  class="nav__link">Contact</a></li>
+          <li><a href="about.html" class="nav__link">About</a></li>
+          <li><a href="contact.html" class="nav__link">Contact</a></li>
           <li class="nav__cta"><a href="shop.html" class="btn btn--primary">Shop Now</a></li>
         </ul>
         <button class="nav__hamburger" aria-label="Open mobile menu" aria-expanded="false">
@@ -46,11 +183,11 @@
     </div>
   </nav>
   <div class="nav__drawer" role="dialog" aria-label="Mobile navigation">
-    <a href="index.html"    class="nav__link">Home</a>
-    <a href="shop.html"     class="nav__link">Shop</a>
+    <a href="index.html" class="nav__link">Home</a>
+    <a href="shop.html" class="nav__link">Shop</a>
     <a href="services.html" class="nav__link">Services</a>
-    <a href="about.html"    class="nav__link">About</a>
-    <a href="contact.html"  class="nav__link">Contact</a>
+    <a href="about.html" class="nav__link">About</a>
+    <a href="contact.html" class="nav__link">Contact</a>
     <a href="shop.html" class="btn btn--primary btn--lg">Shop Now</a>
   </div>
 </header>
@@ -58,40 +195,27 @@
 <main>
 <section class="section" style="padding-top:8rem;" aria-label="Product detail">
   <div class="container">
-
-    <!-- Breadcrumb / Back -->
     <nav aria-label="Breadcrumb">
       <a href="shop.html" class="product-detail__back" data-reveal="fade">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
         Back to Shop
       </a>
     </nav>
 
     <article class="product-detail" itemscope itemtype="https://schema.org/Product">
-
-      <!-- Left: Gallery -->
+      <!-- Gallery -->
       <div class="product-detail__gallery" data-reveal="left">
         <div class="product-detail__main-img">
-          <img id="product-main-img"
-               src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80"
-               alt="Product main image"
-               itemprop="image"
-               width="800" height="480">
+          <img id="product-main-img" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80" alt="Product" itemprop="image" width="800" height="500">
         </div>
-        <div class="product-detail__thumbs" id="product-thumbs">
-          <!-- Rendered by JS -->
-        </div>
+        <div class="product-detail__thumbs" id="product-thumbs"></div>
       </div>
 
-      <!-- Right: Info -->
+      <!-- Info -->
       <div class="product-detail__info" data-reveal="right">
-        <span class="section-label" id="product-category">Hair Category</span>
-        <span class="product-card__badge" id="product-badge" style="margin-bottom:0.75rem;display:inline-block;">Best Seller</span>
-
-        <h1 class="product-detail__name" id="product-name" itemprop="name">Loading…</h1>
-
+        <span class="section-label" id="product-category">Loading…</span>
+        <span class="product-card__badge" id="product-badge" style="display:none;"></span>
+        <h1 class="product-detail__name" id="product-name" itemprop="name">Loading product…</h1>
         <div class="product-detail__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
           <span id="product-price" itemprop="price">GHS —</span>
           <meta itemprop="priceCurrency" content="GHS">
@@ -100,97 +224,58 @@
 
         <p id="product-description" style="margin:1.25rem 0;font-size:0.95rem;line-height:1.85;" itemprop="description">Loading product details…</p>
 
-        <!-- Specs -->
         <div class="product-detail__specs" aria-label="Product specifications">
-          <div class="spec-item">
-            <span class="spec-item__label">Hair Type</span>
-            <span class="spec-item__val" id="spec-type">—</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-item__label">Texture</span>
-            <span class="spec-item__val" id="spec-texture">—</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-item__label">Length</span>
-            <span class="spec-item__val" id="spec-length">—</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-item__label">Weight</span>
-            <span class="spec-item__val" id="spec-weight">—</span>
-          </div>
-          <div class="spec-item" style="grid-column:1/-1;">
-            <span class="spec-item__label">Colour</span>
-            <span class="spec-item__val" id="spec-color">—</span>
-          </div>
+          <div class="spec-item"><span class="spec-item__label">Hair Type</span><span class="spec-item__val" id="spec-type">—</span></div>
+          <div class="spec-item"><span class="spec-item__label">Texture</span><span class="spec-item__val" id="spec-texture">—</span></div>
+          <div class="spec-item"><span class="spec-item__label">Default Length</span><span class="spec-item__val" id="spec-length">—</span></div>
+          <div class="spec-item"><span class="spec-item__label">Weight</span><span class="spec-item__val" id="spec-weight">—</span></div>
+          <div class="spec-item" style="grid-column:1/-1;"><span class="spec-item__label">Colour</span><span class="spec-item__val" id="spec-color">—</span></div>
         </div>
 
-        <!-- Features -->
         <div style="margin:1.5rem 0;">
-          <h4 style="margin-bottom:0.75rem;font-size:0.95rem;">What's Included / Features:</h4>
-          <ul id="product-features" style="margin:0;padding:0;">
-            <!-- Rendered by JS -->
-          </ul>
+          <h4 style="margin-bottom:0.75rem;font-size:0.95rem;">Features &amp; Inclusions:</h4>
+          <ul id="product-features" style="margin:0;padding:0;"></ul>
         </div>
 
-        <!-- Actions -->
         <div class="product-detail__actions">
-          <a id="whatsapp-buy-btn"
-             href="#"
-             class="btn btn--primary btn--lg"
-             target="_blank"
-             rel="noopener noreferrer"
-             aria-label="Buy this product on WhatsApp">
+          <a id="whatsapp-buy-btn" href="#" class="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer" aria-label="Buy on WhatsApp">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Buy Now on WhatsApp
           </a>
-
           <a href="shop.html" class="btn btn--outline btn--lg">Browse More</a>
         </div>
 
-        <!-- Trust signals -->
         <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(181,67,106,0.12);">
-          <div class="trust-bar__item" style="color:var(--text-mid);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--pink-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            100% Authentic
-          </div>
-          <div class="trust-bar__item" style="color:var(--text-mid);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--pink-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Fast Delivery
-          </div>
-          <div class="trust-bar__item" style="color:var(--text-mid);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--pink-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            5-Star Rated
-          </div>
+          <div class="trust-bar__item"><svg viewBox="0 0 24 24" fill="none" stroke="var(--pink-deep)" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>100% Authentic</div>
+          <div class="trust-bar__item"><svg viewBox="0 0 24 24" fill="none" stroke="var(--pink-deep)" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Fast Delivery</div>
+          <div class="trust-bar__item"><svg viewBox="0 0 24 24" fill="none" stroke="var(--pink-deep)" stroke-width="2" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>5-Star Rated</div>
         </div>
       </div>
-
     </article>
   </div>
 </section>
 
-<!-- Related / More Products -->
+<!-- Related Products -->
 <section class="section section--pink" aria-labelledby="related-heading">
   <div class="container">
     <div class="text-center" data-reveal="up">
       <span class="section-label">You May Also Like</span>
-      <h2 class="section-title" id="related-heading">More <em>Luxury Picks</em></h2>
+      <h2 style="font-family:var(--font-display);" id="related-heading">More <em style="font-style:italic;color:var(--pink-deep);">Luxury Picks</em></h2>
       <div class="divider" aria-hidden="true"></div>
     </div>
     <div class="products-grid" id="related-products" style="margin-top:3rem;" role="list" aria-label="Related products">
-      <!-- Rendered by JS -->
+      <p class="loading-msg">Loading…</p>
     </div>
   </div>
 </section>
-
 </main>
 
-<!-- FOOTER -->
 <footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
         <span class="nav__logo-text">b_lit <span>hairs</span></span>
-        <p>Ghana's premium luxury hair brand.</p>
+        <p>Ghana's premium luxury hair brand. Bringing world-class virgin human hair to women who demand the very best.</p>
         <div class="footer__socials">
           <a href="#" class="footer__social" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
           <a href="https://wa.me/233273521007" class="footer__social" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
@@ -200,8 +285,8 @@
         <h4 class="footer__heading">Shop</h4>
         <ul class="footer__links">
           <li><a href="shop.html">All Products</a></li>
-          <li><a href="shop.html">Wigs</a></li>
-          <li><a href="shop.html">Bundles</a></li>
+          <li><a href="shop.html?filter=wigs">Wigs</a></li>
+          <li><a href="shop.html?filter=bundles">Bundles</a></li>
         </ul>
       </nav>
       <nav aria-label="Company navigation">
@@ -221,65 +306,253 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <p>© 2024 b_lit hairs. All rights reserved.</p>
+      <p>© <span id="year"></span> b_lit hairs. All rights reserved.</p>
       <p><a href="#">Privacy Policy</a></p>
     </div>
   </div>
 </footer>
 
-<a href="#" class="whatsapp-float" id="wa-product-float" target="_blank" rel="noopener noreferrer" aria-label="Buy on WhatsApp">
+<a href="https://wa.me/233273521007" class="whatsapp-float" id="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Buy on WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<script src="js/products.js"></script>
-<script src="js/main.js"></script>
 <script>
-  // Extra: Render related products after main JS loads
-  document.addEventListener('DOMContentLoaded', () => {
-    const grid = document.getElementById('related-products');
-    if (grid && typeof getAllProducts === 'function') {
-      const related = getAllProducts().slice(0, 4);
-      related.forEach((product, i) => {
-        const card = document.createElement('article');
-        card.className = 'product-card';
-        card.setAttribute('data-reveal', 'up');
-        card.setAttribute('data-delay', String(i * 120));
-        card.innerHTML = `
-          ${product.badge ? `<span class="product-card__badge">${product.badge}</span>` : ''}
-          <div class="product-card__img-wrap">
-            <img src="${product.image}" alt="${product.name}" loading="lazy" width="400" height="300">
-            <div class="product-card__overlay"><span style="color:white;font-family:var(--font-accent);font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">View Details</span></div>
-          </div>
-          <div class="product-card__body">
-            <div class="product-card__type">${product.hairType} · ${product.texture}</div>
-            <h3 class="product-card__name">${product.name}</h3>
-            <div class="product-card__footer">
-              <div class="product-card__price">${formatPrice(product.price, product.currency)}</div>
-              <button class="product-card__btn" aria-label="View ${product.name}">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </button>
-            </div>
-          </div>`;
-        card.addEventListener('click', () => {
-          sessionStorage.setItem('selectedProduct', JSON.stringify(product));
-          window.location.href = `product.html?id=${product.id}`;
-        });
-        grid.appendChild(card);
-      });
+'use strict';
+const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const WA = '233273521007';
 
-      // Re-run scroll reveal
-      setTimeout(() => {
-        document.querySelectorAll('[data-reveal]').forEach(el => {
-          if (!el.classList.contains('revealed')) {
-            const observer = new IntersectionObserver(entries => {
-              entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); observer.unobserve(e.target); }});
-            }, { threshold: 0.12 });
-            observer.observe(el);
-          }
-        });
-      }, 100);
-    }
+const FALLBACK_PRODUCTS = [
+  {id:'BLH001',name:'Brazilian Straight Bundle',category:'bundles',price:420,currency:'GHS',badge:'Best Seller',hair_type:'Brazilian Virgin',texture:'Straight',default_length:'18"',weight:'100g per bundle',color:'Natural Black (#1B)',description:'Our signature Brazilian Straight bundles are sourced from 100% virgin human hair. Full, lustrous and tangle-free. These silky bundles lay flat, look natural and can be coloured, heat-styled and washed just like your natural hair.',features:['100% Virgin Human Hair','No Shedding / No Tangling','Can be Coloured & Heat Styled','Full Cuticle Aligned','Long-Lasting 1–2 Years'],image:'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80',images:['https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80','https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&q=80','https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=800&q=80','https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80'],whatsapp_msg:"Hello b_lit hairs! 💕 I'm interested in the *Brazilian Straight Bundle*. Please let me know the price, available lengths and how to order."},
+  {id:'BLH002',name:'Body Wave Wig',category:'wigs',price:850,currency:'GHS',badge:'New Arrival',hair_type:'Peruvian Virgin',texture:'Body Wave',default_length:'18"',weight:'150–180g',color:'Natural Black (#1B)',description:'Elevate your style with our luxurious Body Wave Wig. Crafted from 100% unprocessed Peruvian virgin hair, this wig delivers stunning, natural-looking waves. The 13x4 HD lace front creates an invisible hairline for an undetectable finish.',features:['13x4 HD Lace Frontal','Pre-Plucked Hairline','Baby Hair Included','Adjustable Straps','Bleached Knots Available'],image:'https://images.unsplash.com/photo-1559547080-ce1bec3b3785?w=800&q=80',images:['https://images.unsplash.com/photo-1559547080-ce1bec3b3785?w=800&q=80','https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80','https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&q=80','https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80'],whatsapp_msg:"Hello b_lit hairs! 💕 I'm interested in the *Body Wave Wig* (13x4 HD Lace). Please let me know the price, available lengths and how to order."},
+  {id:'BLH003',name:'Deep Curly Closure Wig',category:'wigs',price:780,currency:'GHS',badge:'Hot Pick',hair_type:'Malaysian Virgin',texture:'Deep Curly',default_length:'16"',weight:'150–170g',color:'Natural Black (#1B)',description:'Bouncy, voluminous curls that turn heads everywhere you go. Our Deep Curly Closure Wig is made from premium Malaysian virgin hair with a 4x4 HD silk base closure. The deep curl pattern stays defined even after washing.',features:['4x4 HD Silk Closure','Bouncy Deep Curl Pattern','Minimal Shedding','Tangle Resistant','True to Length'],image:'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&q=80',images:['https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&q=80','https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80','https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&q=80','https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=800&q=80'],whatsapp_msg:"Hello b_lit hairs! 💕 I'm interested in the *Deep Curly Closure Wig*. Please let me know the available lengths, price and how to order."},
+  {id:'BLH004',name:'Kinky Straight Bundle',category:'bundles',price:380,currency:'GHS',badge:null,hair_type:'Indian Virgin',texture:'Kinky Straight',default_length:'16"',weight:'100g per bundle',color:'Natural Black (#1B)',description:'The perfect blend of natural texture and sleek beauty. Our Kinky Straight bundles mimic the look and feel of relaxed natural hair.',features:['100% Virgin Indian Hair','Natural Kink Texture','Blends Perfectly with Natural Hair','No Tangling','Colour-Friendly'],image:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80',images:['https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80','https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80','https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&q=80','https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=800&q=80'],whatsapp_msg:"Hello b_lit hairs! 💕 I'm interested in the *Kinky Straight Bundle*."},
+  {id:'BLH005',name:'Loose Wave Full Wig',category:'wigs',price:920,currency:'GHS',badge:'Luxury Pick',hair_type:'Brazilian Virgin',texture:'Loose Wave',default_length:'20"',weight:'160–200g',color:'Natural Black (#1B)',description:'Our most luxurious wig yet. The Loose Wave Full Wig features a full 180% density construction that delivers maximum volume and an effortlessly glamorous wave.',features:['13x6 HD Lace Frontal','180% Density','6-Inch Parting Space','Pre-Plucked + Baby Hairs','Bleached Knots'],image:'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=800&q=80',images:['https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=800&q=80','https://images.unsplash.com/photo-1559547080-ce1bec3b3785?w=800&q=80','https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80','https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80'],whatsapp_msg:"Hello b_lit hairs! 💕 I'm interested in the *Loose Wave Full Wig* (180% density)."},
+  {id:'BLH006',name:'Water Wave Frontal Bundle',category:'frontals',price:650,currency:'GHS',badge:null,hair_type:'Malaysian Virgin',texture:'Water Wave',default_length:'18"',weight:'100g bundle + 70g frontal',color:'Natural Black (#1B)',description:'Complete your protective style with our Water Wave Frontal Bundle set. Includes 13x4 HD lace frontal + two bundles of matching water wave hair.',features:['13x4 HD Lace Frontal Included','3-Piece Bundle Set','Pre-Plucked Hairline','Wet & Wavy Look','Full Cuticle Aligned'],image:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&q=80',images:['https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&q=80','https://images.unsplash.com/photo-1559547080-ce1bec3b3785?w=800&q=80','https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&q=80','https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80'],whatsapp_msg:"Hello b_lit hairs! 💕 I'm interested in the *Water Wave Frontal Bundle Set*."},
+  {id:'BLH007',name:'Blonde Body Wave Wig',category:'wigs',price:1100,currency:'GHS',badge:'Premium',hair_type:'Brazilian Virgin',texture:'Body Wave',default_length:'20"',weight:'160g',color:'#613 Blonde',description:'Turn up the glam with our Blonde Body Wave Wig. Expertly coloured on virgin Brazilian hair for a rich, vibrant blonde.',features:['#613 Blonde Colour','13x4 HD Lace','100% Virgin Coloured Hair','Vibrant Colour Retention','Pre-Plucked + Baby Hairs'],image:'https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=800&q=80',images:['https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=800&q=80','https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=800&q=80','https://images.unsplash.com/photo-1559547080-ce1bec3b3785?w=800&q=80','https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80'],whatsapp_msg:"Hello b_lit hairs! 💕 I'm interested in the *Blonde Body Wave Wig* (#613)."},
+  {id:'BLH008',name:'Clip-In Extensions Set',category:'extensions',price:290,currency:'GHS',badge:null,hair_type:'Remy Human Hair',texture:'Straight',default_length:'18"',weight:'120g full set (7 wefts)',color:'Natural Black (#1B)',description:'Add instant length and volume with our Remy Clip-In Extensions. The full 7-weft set covers your entire head for seamless, natural-looking results.',features:['7-Weft Full Set','Remy Human Hair','Secure Clip Attachments','Heat Styleable','Blends with Natural Hair'],image:'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80',images:['https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80','https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80','https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&q=80','https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&q=80'],whatsapp_msg:"Hello b_lit hairs! 💕 I'm interested in the *Clip-In Extensions Set*."},
+];
+
+async function sbFetch(table, params='') {
+  try {
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}${params}`, {headers:{'apikey':SUPABASE_ANON_KEY,'Authorization':`Bearer ${SUPABASE_ANON_KEY}`}});
+    if (!r.ok) throw new Error(r.status);
+    return await r.json();
+  } catch(e) { return null; }
+}
+
+function formatPrice(p,c='GHS'){return `${c} ${Number(p).toLocaleString()}`;}
+
+function setEl(sel, val, prop='textContent') {
+  const el = document.querySelector(sel);
+  if (el) el[prop] = val;
+}
+
+function loadProduct(product) {
+  if (!product) return;
+
+  setEl('#product-category', product.hair_type || product.category);
+  setEl('#product-name', product.name);
+  setEl('#product-price', formatPrice(product.price, product.currency));
+  setEl('#product-description', product.description || '');
+  setEl('#spec-type', product.hair_type || '—');
+  setEl('#spec-texture', product.texture || '—');
+  setEl('#spec-length', product.default_length || product.defaultLength || '—');
+  setEl('#spec-weight', product.weight || '—');
+  setEl('#spec-color', product.color || '—');
+
+  const badgeEl = document.getElementById('product-badge');
+  if (badgeEl) {
+    if (product.badge) { badgeEl.textContent = product.badge; badgeEl.style.display = 'inline-block'; }
+    else { badgeEl.style.display = 'none'; }
+  }
+
+  const features = product.features || [];
+  const fl = document.getElementById('product-features');
+  if (fl && features.length) {
+    fl.innerHTML = features.map(f => `<li style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;font-size:0.9rem;color:var(--text-mid)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--pink-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>${f}</li>`).join('');
+  }
+
+  const mainImg = document.getElementById('product-main-img');
+  const images = product.images || [product.image];
+  if (mainImg && images[0]) mainImg.src = images[0];
+
+  const thumbsWrap = document.getElementById('product-thumbs');
+  if (thumbsWrap && images.length) {
+    thumbsWrap.innerHTML = images.map((img, i) => `
+      <div class="product-detail__thumb ${i===0?'active':''}">
+        <img src="${img}" alt="${product.name} view ${i+1}" loading="lazy" width="120" height="80">
+      </div>`).join('');
+
+    thumbsWrap.querySelectorAll('.product-detail__thumb').forEach(thumb => {
+      thumb.addEventListener('click', function() {
+        thumbsWrap.querySelectorAll('.product-detail__thumb').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        if (mainImg) {
+          mainImg.style.opacity = '0';
+          mainImg.src = this.querySelector('img').src;
+          setTimeout(() => { mainImg.style.opacity = '1'; }, 50);
+        }
+      });
+    });
+  }
+
+  const waMsg = product.whatsapp_msg || product.whatsappMsg || `Hello b_lit hairs! 💕 I'm interested in the *${product.name}*. Please let me know the price and how to order.`;
+  const waUrl = `https://wa.me/${WA}?text=${encodeURIComponent(waMsg)}`;
+  const waBtn = document.getElementById('whatsapp-buy-btn');
+  if (waBtn) waBtn.href = waUrl;
+  const waFloat = document.getElementById('wa-float');
+  if (waFloat) waFloat.href = waUrl;
+
+  document.title = `${product.name} — b_lit hairs`;
+}
+
+function renderRelated(products, currentId) {
+  const grid = document.getElementById('related-products');
+  if (!grid) return;
+  const related = products.filter(p => p.id !== currentId).slice(0, 4);
+  grid.innerHTML = '';
+  related.forEach((p, i) => {
+    const card = document.createElement('article');
+    card.className = 'product-card';
+    card.setAttribute('role','listitem');
+    card.innerHTML = `
+      ${p.badge ? `<span class="product-card__badge-sm">${p.badge}</span>` : ''}
+      <div class="product-card__img-wrap">
+        <img src="${p.image}" alt="${p.name}" loading="lazy" width="400" height="260" onerror="this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400'">
+        <div class="product-card__overlay"><span style="color:white;font-family:var(--font-accent);font-size:0.75rem;font-weight:700;text-transform:uppercase;">View Details</span></div>
+      </div>
+      <div class="product-card__body">
+        <div class="product-card__type">${p.hair_type||''} · ${p.texture||''}</div>
+        <h3 class="product-card__name">${p.name}</h3>
+        <div class="product-card__footer">
+          <div class="product-card__price">${formatPrice(p.price,p.currency)}</div>
+          <button class="product-card__btn" aria-label="View ${p.name}"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+      </div>`;
+    card.addEventListener('click', () => {
+      sessionStorage.setItem('selectedProduct', JSON.stringify(p));
+      window.location.href = `product.html?id=${p.id}`;
+    });
+    grid.appendChild(card);
+    requestAnimationFrame(() => setTimeout(() => card.classList.add('revealed'), i*70));
   });
+}
+
+async function init() {
+  document.getElementById('page-loader').classList.add('hidden');
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Get product ID from URL or sessionStorage
+  const params = new URLSearchParams(window.location.search);
+  const urlId = params.get('id');
+
+  let product = null;
+  let allProducts = null;
+
+  // Try Supabase first
+  const sbProducts = await sbFetch('products','?select=*&is_visible=eq.true&order=sort_order.asc');
+  allProducts = (sbProducts && sbProducts.length) ? sbProducts : FALLBACK_PRODUCTS;
+
+  if (urlId) {
+    product = allProducts.find(p => p.id === urlId);
+  }
+  if (!product) {
+    try { product = JSON.parse(sessionStorage.getItem('selectedProduct')); } catch(e){}
+  }
+  if (!product) product = allProducts[0];
+
+  loadProduct(product);
+  renderRelated(allProducts, product?.id);
+
+  // Nav
+  const nav = document.querySelector('.nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), {passive:true});
+  const bar = document.querySelector('.scroll-progress');
+  window.addEventListener('scroll', () => { bar.style.width = (window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100)+'%'; }, {passive:true});
+
+  // Hamburger
+  const hbtn = document.querySelector('.nav__hamburger'), drawer = document.querySelector('.nav__drawer');
+  hbtn.addEventListener('click', () => {
+    const open = hbtn.classList.toggle('open');
+    drawer.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    hbtn.setAttribute('aria-expanded', open);
+  });
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    hbtn.classList.remove('open'); drawer.classList.remove('open'); document.body.style.overflow = '';
+  }));
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('revealed');obs.unobserve(e.target);} }), {threshold:0.12,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+
+  // Ripple
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const r = this.getBoundingClientRect(), size = Math.max(r.width,r.height);
+      const s = document.createElement('span'); s.className='ripple';
+      s.style.cssText=`width:${size}px;height:${size}px;left:${e.clientX-r.left-size/2}px;top:${e.clientY-r.top-size/2}px`;
+      this.appendChild(s); s.addEventListener('animationend',()=>s.remove());
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+
+<!-- CHATBOT (same as other pages) -->
+<script>
+'use strict';
+(function(){
+const KB={
+  greet:["Hello, gorgeous! 💕 I'm Belinda. I see you're checking out a product — ask me anything about it, or how to order!","Hey queen! 👑 I'm Belinda. Can I help you with this product or anything else?"],
+  prices:"Our hair range:\n\n• Clip-In Extensions — GHS 290\n• Kinky Straight Bundle — GHS 380\n• Brazilian Straight Bundle — GHS 420\n• Water Wave Frontal Bundle — GHS 650\n• Deep Curly Closure Wig — GHS 780\n• Body Wave Wig — GHS 850\n• Loose Wave Full Wig — GHS 920\n• Blonde Body Wave Wig — GHS 1,100",
+  order:"To order this product:\n\n1️⃣ Tap 'Buy Now on WhatsApp' above\n2️⃣ Confirm your length & colour\n3️⃣ Pay via MoMo or bank transfer\n4️⃣ We dispatch your hair 📦\n\nAccra/Tema: same-day! Others: 1–3 days 💕",
+  delivery:"We deliver everywhere in Ghana! 🇬🇭\n\n📍 Accra & Tema — same-day or next-day\n📍 Other regions — 1–3 business days\n💚 FREE on orders above GHS 500\n\nWhatsApp +233 27 352 1007",
+  payment:"We accept:\n\n📱 MTN Mobile Money\n📱 Vodafone Cash\n📱 AirtelTigo Money\n🏦 Bank Transfer\n💵 Cash on Delivery (Accra)\n\nDetails shared on WhatsApp! 💕",
+  haircare:"Care tips for long-lasting hair:\n\n🌿 Sulphate-free shampoo\n💧 Deep condition every wash\n🪮 Detangle ends to roots\n🔥 Heat protectant always\n🛏️ Silk pillowcase at night\n\nWith care, hair lasts 1–2 years! 💕",
+  thanks:["You're so welcome! 💕 Anything else?","My pleasure, queen! 👑"],
+  fallback:["I'm not sure! 😅 WhatsApp our team: +233 27 352 1007 💕","WhatsApp us at +233 27 352 1007 for the best answer. 💕"],
+};
+const INTENTS=[
+  {k:['hello','hi','hey','morning'],r:()=>rand(KB.greet)},
+  {k:['thank','thanks','perfect','awesome'],r:()=>rand(KB.thanks)},
+  {k:['price','cost','how much','ghs','cedis'],r:()=>KB.prices},
+  {k:['deliver','delivery','ship','nationwide'],r:()=>KB.delivery},
+  {k:['pay','payment','momo','mobile money'],r:()=>KB.payment},
+  {k:['order','buy','purchase','how to'],r:()=>KB.order},
+  {k:['care','maintain','wash','condition','heat'],r:()=>KB.haircare},
+];
+function rand(a){return a[Math.floor(Math.random()*a.length)];}
+function getResponse(input){const t=input.toLowerCase();for(const i of INTENTS){if(i.k.some(k=>t.includes(k)))return i.r();}return rand(KB.fallback);}
+const style=document.createElement('style');
+style.textContent=`#blc-w{position:fixed;bottom:2rem;left:2rem;z-index:9500;font-family:'Poppins',sans-serif;}#blc-toggle{width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#b5436a,#d4698b);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(181,67,106,.5);transition:transform .3s;position:relative;animation:blc-pulse 3s 2.5s infinite;}#blc-toggle:hover{transform:scale(1.1);}#blc-toggle.open{animation:none;}.blc-ti{position:absolute;transition:opacity .25s,transform .25s;}.blc-ti svg{width:26px;height:26px;fill:white;display:block;}.blc-ti-chat{opacity:1;}.blc-ti-close{opacity:0;transform:scale(0);}#blc-toggle.open .blc-ti-chat{opacity:0;transform:scale(0);}#blc-toggle.open .blc-ti-close{opacity:1;transform:scale(1);}#blc-badge{position:absolute;top:-4px;right:-4px;width:20px;height:20px;border-radius:50%;background:#c9a96e;color:white;font-size:.65rem;font-weight:700;display:none;align-items:center;justify-content:center;border:2px solid white;}#blc-tip{position:absolute;bottom:76px;left:0;background:#1a1a1a;color:white;font-size:.75rem;font-weight:600;padding:.5rem 1rem;border-radius:999px;white-space:nowrap;pointer-events:none;animation:blc-up .4s 2.5s both;transition:opacity .5s;}#blc-tip::after{content:'';position:absolute;top:100%;left:20px;border:5px solid transparent;border-top-color:#1a1a1a;}#blc-panel{position:absolute;bottom:78px;left:0;width:360px;max-height:560px;background:white;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.18);display:flex;flex-direction:column;overflow:hidden;transform:scale(.85) translateY(20px);transform-origin:bottom left;opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.4,0,.2,1),opacity .3s;}#blc-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all;}.blc-hd{background:linear-gradient(135deg,#b5436a,#8b2249);padding:1rem 1.2rem;display:flex;align-items:center;gap:.85rem;flex-shrink:0;}.blc-av{width:46px;height:46px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid rgba(255,255,255,.3);}.blc-av img{width:100%;height:100%;object-fit:cover;}.blc-av-fb{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:white;font-weight:700;flex-shrink:0;position:relative;}.blc-dot{position:absolute;bottom:1px;right:1px;width:11px;height:11px;background:#4ade80;border-radius:50%;border:2px solid #8b2249;}.blc-ht h4{font-size:.95rem;font-weight:700;color:white;margin:0;}.blc-ht p{font-size:.68rem;color:rgba(255,255,255,.75);margin:0;}.blc-ha{margin-left:auto;display:flex;gap:.4rem;}.blc-hbtn{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.14);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;text-decoration:none;color:white;}.blc-hbtn:hover{background:rgba(255,255,255,.25);}.blc-hbtn svg{width:15px;height:15px;}.blc-msgs{flex:1;overflow-y:auto;padding:1rem;background:#fdf8fa;display:flex;flex-direction:column;gap:.8rem;scroll-behavior:smooth;}.blc-msgs::-webkit-scrollbar{width:4px;}.blc-msgs::-webkit-scrollbar-thumb{background:#e8c4d4;border-radius:4px;}.blc-msg{display:flex;gap:.5rem;align-items:flex-end;animation:blc-in .3s ease;}.blc-msg.user{flex-direction:row-reverse;}.blc-mav{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:white;background:linear-gradient(135deg,#b5436a,#d4698b);}.blc-msg.user .blc-mav{background:linear-gradient(135deg,#888,#555);}.blc-bub{max-width:78%;padding:.65rem .9rem;border-radius:16px;font-size:.79rem;line-height:1.65;color:#2d2d2d;white-space:pre-line;}.blc-msg.bot .blc-bub{background:white;border-bottom-left-radius:4px;box-shadow:0 1px 8px rgba(0,0,0,.07);}.blc-msg.user .blc-bub{background:linear-gradient(135deg,#b5436a,#d4698b);color:white;border-bottom-right-radius:4px;}.blc-ts{font-size:.6rem;color:#bbb;margin-top:3px;}.blc-msg.user .blc-ts{text-align:right;}.blc-typing{display:flex;gap:.5rem;align-items:flex-end;}.blc-dots{background:white;border-radius:16px;border-bottom-left-radius:4px;padding:.65rem 1rem;box-shadow:0 1px 8px rgba(0,0,0,.07);display:flex;gap:5px;align-items:center;}.blc-dots span{width:6px;height:6px;background:#b5436a;border-radius:50%;opacity:.4;animation:blc-dt 1.2s infinite;}.blc-dots span:nth-child(2){animation-delay:.2s;}.blc-dots span:nth-child(3){animation-delay:.4s;}.blc-qr{display:flex;flex-wrap:wrap;gap:.4rem;padding:0 1rem .8rem;background:#fdf8fa;}.blc-qbtn{padding:.32rem .8rem;border-radius:999px;background:white;border:1.5px solid rgba(181,67,106,.25);color:#b5436a;font-size:.7rem;font-weight:600;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .2s;}.blc-qbtn:hover{background:#b5436a;border-color:#b5436a;color:white;}.blc-iw{border-top:1px solid rgba(181,67,106,.1);padding:.7rem 1rem;display:flex;gap:.5rem;align-items:flex-end;background:white;flex-shrink:0;}#blc-in{flex:1;border:1.5px solid rgba(181,67,106,.2);border-radius:12px;padding:.55rem .85rem;font-family:'Poppins',sans-serif;font-size:.8rem;color:#2d2d2d;background:#fdf8fa;resize:none;outline:none;max-height:100px;line-height:1.5;transition:border-color .2s;}#blc-in:focus{border-color:#b5436a;background:white;}#blc-in::placeholder{color:#ccc;}#blc-snd{width:36px;height:36px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#b5436a,#d4698b);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(181,67,106,.35);transition:transform .2s,opacity .2s;}#blc-snd:hover:not(:disabled){transform:scale(1.1);}#blc-snd:disabled{opacity:.4;cursor:not-allowed;}#blc-snd svg{width:14px;height:14px;fill:white;}.blc-ft{text-align:center;padding:.45rem;background:white;border-top:1px solid #f0e8ec;font-size:.64rem;color:#aaa;flex-shrink:0;}.blc-ft a{color:#25D366;font-weight:700;text-decoration:none;}@keyframes blc-pulse{0%{box-shadow:0 0 0 0 rgba(181,67,106,.5)}70%{box-shadow:0 0 0 14px rgba(181,67,106,0)}100%{box-shadow:0 0 0 0 rgba(181,67,106,0)}}@keyframes blc-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes blc-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes blc-dt{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:1}}@media(max-width:480px){#blc-w{left:1rem;bottom:1rem;}#blc-panel{width:calc(100vw - 2rem);max-height:70vh;}}`;
+document.head.appendChild(style);
+const W=document.createElement('div');W.id='blc-w';
+W.innerHTML=`<div id="blc-tip">💬 Questions about this product? 💕</div><div id="blc-panel" role="dialog"><div class="blc-hd"><div class="blc-av"><img src="assets/images/belinda.jpeg" alt="Belinda" onerror="this.parentElement.innerHTML='<div class=blc-av-fb>B<div class=blc-dot></div></div>'"></div><div class="blc-ht"><h4>Belinda ✨</h4><p>b_lit hairs Assistant</p></div><div class="blc-ha"><a class="blc-hbtn" href="https://wa.me/233273521007" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="#25D366" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a><button class="blc-hbtn" id="blc-clear"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></button></div></div><div class="blc-msgs" id="blc-msgs" role="log" aria-live="polite"></div><div class="blc-qr" id="blc-qr"></div><div class="blc-iw"><textarea id="blc-in" placeholder="Ask about this product…" rows="1" maxlength="400"></textarea><button id="blc-snd" disabled><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button></div><div class="blc-ft">Or <a href="https://wa.me/233273521007" target="_blank" rel="noopener noreferrer">💚 WhatsApp us</a></div></div><button id="blc-toggle" aria-label="Open chat" aria-expanded="false"><span class="blc-ti blc-ti-chat"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></span><span class="blc-ti blc-ti-close"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></span><span id="blc-badge" style="display:none;align-items:center;justify-content:center;position:absolute;top:-4px;right:-4px;width:20px;height:20px;border-radius:50%;background:#c9a96e;color:white;font-size:.65rem;font-weight:700;border:2px solid white;">1</span></button>`;
+document.body.appendChild(W);
+const QR=[{l:'💰 Our Prices',t:'What are your prices?'},{l:'📦 How to Order',t:'How do I order?'},{l:'🚚 Delivery',t:'How does delivery work?'},{l:'💳 Payment',t:'What payment methods?'},{l:'✂️ Hair Care',t:'Hair care tips?'}];
+const $t=document.getElementById('blc-toggle'),$p=document.getElementById('blc-panel'),$m=document.getElementById('blc-msgs'),$i=document.getElementById('blc-in'),$s=document.getElementById('blc-snd'),$q=document.getElementById('blc-qr'),$tip=document.getElementById('blc-tip'),$badge=document.getElementById('blc-badge'),$clr=document.getElementById('blc-clear');
+let open=false,started=false;
+function ts(){return new Date().toLocaleTimeString('en-GH',{hour:'2-digit',minute:'2-digit'});}
+function scrollD(){$m.scrollTop=$m.scrollHeight;}
+function addMsg(text,role){const d=document.createElement('div');d.className=`blc-msg ${role}`;d.innerHTML=`<div class="blc-mav">${role==='bot'?'B':'U'}</div><div><div class="blc-bub">${text}</div><div class="blc-ts">${ts()}</div></div>`;$m.appendChild(d);scrollD();}
+function showTyping(){const d=document.createElement('div');d.className='blc-msg bot blc-typing';d.id='blc-ty';d.innerHTML='<div class="blc-mav">B</div><div class="blc-dots"><span></span><span></span><span></span></div>';$m.appendChild(d);scrollD();}
+function hideTyping(){const e=document.getElementById('blc-ty');if(e)e.remove();}
+function showQR(){$q.innerHTML='';QR.forEach(q=>{const b=document.createElement('button');b.className='blc-qbtn';b.textContent=q.l;b.addEventListener('click',()=>{$q.innerHTML='';send(q.t);});$q.appendChild(b);});}
+function send(txt){const msg=(txt||$i.value).trim();if(!msg)return;$i.value='';$i.style.height='auto';$s.disabled=true;$q.innerHTML='';addMsg(msg,'user');showTyping();setTimeout(()=>{hideTyping();addMsg(getResponse(msg),'bot');},700+Math.random()*500);}
+function openP(){open=true;$p.classList.add('open');$t.classList.add('open');$t.setAttribute('aria-expanded','true');$tip.style.opacity='0';$badge.style.display='none';if(!started){started=true;setTimeout(()=>{addMsg(rand(KB.greet),'bot');showQR();},350);}setTimeout(()=>$i.focus(),400);}
+function closeP(){open=false;$p.classList.remove('open');$t.classList.remove('open');$t.setAttribute('aria-expanded','false');}
+$t.addEventListener('click',()=>open?closeP():openP());
+$i.addEventListener('input',function(){$s.disabled=!this.value.trim();this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px';});
+$i.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();if(!$s.disabled)send();}});
+$s.addEventListener('click',()=>send());
+$clr.addEventListener('click',()=>{$m.innerHTML='';$q.innerHTML='';started=false;if(open){started=true;setTimeout(()=>{addMsg("Chat cleared! 😊 How can I help?",'bot');showQR();},200);}});
+setTimeout(()=>{if(!open)$badge.style.display='flex';},5000);
+setTimeout(()=>{$tip.style.opacity='0';},8000);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&open)closeP();});
+})();
 </script>
 </body>
 </html>
