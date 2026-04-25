@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup Guide — b_lit hairs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --pink:#b5436a;--pink-mid:#d4698b;--pink-light:#fdf0f4;--pink-border:rgba(181,67,106,0.18);
+      --gold:#c9a96e;--charcoal:#1a1a1a;--white:#fff;--off:#f8f9fc;
+      --text:#2d2d2d;--text-mid:#555;--text-light:#888;
+      --green:#16a34a;--green-bg:#dcfce7;--green-border:#86efac;
+      --blue:#2563eb;--blue-bg:#dbeafe;
+      --orange:#d97706;--orange-bg:#fef3c7;
+      --red:#dc2626;--red-bg:#fee2e2;
+      --radius:10px;--radius-lg:18px;--radius-xl:28px;
+      --shadow:0 4px 24px rgba(0,0,0,0.08);--shadow-lg:0 12px 48px rgba(0,0,0,0.13);
+      --font:'Poppins',sans-serif;--font-accent:'Montserrat',sans-serif;--font-display:'Playfair Display',serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;font-size:15px;}
+    body{font-family:var(--font);background:var(--off);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;}
+    a{text-decoration:none;color:inherit;}
+    img{max-width:100%;display:block;}
+    code{font-family:'Courier New',Courier,monospace;background:rgba(181,67,106,0.08);color:var(--pink);padding:0.15rem 0.45rem;border-radius:5px;font-size:0.88em;}
+    pre{background:var(--charcoal);color:#e2e8f0;border-radius:var(--radius-lg);padding:1.5rem;overflow-x:auto;font-family:'Courier New',Courier,monospace;font-size:0.82rem;line-height:1.75;margin:1rem 0;}
+    pre .comment{color:#94a3b8;}
+    pre .keyword{color:#f472b6;}
+    pre .string{color:#86efac;}
+    pre .value{color:#fbbf24;}
+
+    /* ── HEADER ── */
+    .site-header{background:linear-gradient(135deg,var(--charcoal) 0%,#2d1520 100%);padding:4rem 0 3rem;text-align:center;position:relative;overflow:hidden;}
+    .site-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(181,67,106,0.18),transparent 70%);}
+    .site-header__inner{position:relative;z-index:1;}
+    .site-header__logo{font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:rgba(255,255,255,0.5);margin-bottom:0.5rem;letter-spacing:0.05em;}
+    .site-header__logo span{color:var(--pink-mid);}
+    .site-header h1{font-family:var(--font-display);font-size:clamp(2rem,5vw,3rem);color:white;margin-bottom:1rem;}
+    .site-header h1 em{font-style:italic;color:var(--pink-mid);}
+    .site-header p{color:rgba(255,255,255,0.65);max-width:520px;margin:0 auto;font-size:1rem;}
+    .header-badges{display:flex;gap:0.75rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap;}
+    .header-badge{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);font-family:var(--font-accent);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.35rem 1rem;border-radius:999px;border:1px solid rgba(255,255,255,0.15);}
+
+    /* ── PROGRESS NAV ── */
+    .progress-nav{background:white;border-bottom:1px solid rgba(0,0,0,0.06);padding:1rem 0;position:sticky;top:0;z-index:100;box-shadow:var(--shadow);}
+    .progress-nav__inner{max-width:900px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;}
+    .progress-nav__inner::-webkit-scrollbar{display:none;}
+    .prog-step{display:flex;align-items:center;gap:0.35rem;padding:0.4rem 0.75rem;border-radius:999px;font-family:var(--font-accent);font-size:0.7rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-light);white-space:nowrap;cursor:pointer;transition:all 0.2s;flex-shrink:0;}
+    .prog-step:hover{background:var(--pink-light);color:var(--pink);}
+    .prog-step.done{color:var(--green);}
+    .prog-step.done .prog-num{background:var(--green);border-color:var(--green);}
+    .prog-step.active{color:var(--pink);}
+    .prog-step.active .prog-num{background:var(--pink);border-color:var(--pink);color:white;}
+    .prog-num{width:22px;height:22px;border-radius:50%;border:2px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:0.65rem;flex-shrink:0;}
+    .prog-sep{color:rgba(0,0,0,0.15);font-size:0.7rem;margin:0 0.1rem;flex-shrink:0;}
+
+    /* ── CONTAINER ── */
+    .container{max-width:900px;margin:0 auto;padding:0 1.5rem;}
+
+    /* ── OVERVIEW ── */
+    .overview{padding:3rem 0 2rem;}
+    .files-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:1.5rem;}
+    .file-card{background:white;border-radius:var(--radius-lg);padding:1.25rem;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.05);display:flex;align-items:flex-start;gap:0.85rem;transition:transform 0.2s,box-shadow 0.2s;}
+    .file-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);}
+    .file-icon{font-size:1.4rem;flex-shrink:0;line-height:1;}
+    .file-name{font-family:'Courier New',monospace;font-size:0.8rem;font-weight:700;color:var(--pink);margin-bottom:0.2rem;}
+    .file-desc{font-size:0.75rem;color:var(--text-light);}
+
+    /* ── STEPS ── */
+    .step{padding:3rem 0;border-bottom:1px solid rgba(0,0,0,0.06);}
+    .step:last-child{border-bottom:none;}
+    .step-header{display:flex;align-items:flex-start;gap:1.25rem;margin-bottom:2rem;}
+    .step-num{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--pink-mid));color:white;font-family:var(--font-display);font-size:1.4rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 16px rgba(181,67,106,0.35);}
+    .step-header-text h2{font-family:var(--font-display);font-size:1.5rem;color:var(--charcoal);margin-bottom:0.25rem;}
+    .step-header-text p{font-size:0.88rem;color:var(--text-mid);}
+    .step-body{padding-left:4.25rem;}
+
+    /* ── CALLOUT BOXES ── */
+    .callout{border-radius:var(--radius-lg);padding:1.25rem 1.5rem;margin:1.25rem 0;display:flex;gap:1rem;align-items:flex-start;}
+    .callout--tip{background:var(--blue-bg);border-left:4px solid var(--blue);}
+    .callout--warning{background:var(--orange-bg);border-left:4px solid var(--orange);}
+    .callout--success{background:var(--green-bg);border-left:4px solid var(--green);}
+    .callout--danger{background:var(--red-bg);border-left:4px solid var(--red);}
+    .callout__icon{font-size:1.2rem;flex-shrink:0;line-height:1.4;}
+    .callout__body strong{display:block;font-size:0.82rem;font-family:var(--font-accent);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.25rem;}
+    .callout__body p,.callout__body ul{font-size:0.88rem;color:var(--text);}
+    .callout__body ul{padding-left:1.25rem;list-style:disc;}
+    .callout__body ul li{margin-bottom:0.2rem;}
+
+    /* ── INSTRUCTION CARDS ── */
+    .instruction-steps{display:flex;flex-direction:column;gap:1rem;}
+    .inst{background:white;border-radius:var(--radius-lg);padding:1.25rem 1.5rem;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.05);display:flex;gap:1rem;align-items:flex-start;}
+    .inst__num{width:28px;height:28px;border-radius:50%;background:var(--pink-light);color:var(--pink);font-family:var(--font-accent);font-size:0.78rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .inst__body{font-size:0.88rem;color:var(--text-mid);line-height:1.65;}
+    .inst__body strong{color:var(--text);display:block;margin-bottom:0.15rem;font-size:0.9rem;}
+
+    /* ── CODE BLOCK ── */
+    .code-block{position:relative;margin:1.25rem 0;}
+    .code-label{font-family:var(--font-accent);font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:0.4rem;}
+    .copy-btn{position:absolute;top:0.75rem;right:0.75rem;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.15);border-radius:6px;padding:0.3rem 0.75rem;font-family:var(--font-accent);font-size:0.68rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+    .copy-btn:hover{background:rgba(255,255,255,0.2);color:white;}
+    .copy-btn.copied{background:var(--green);color:white;border-color:var(--green);}
+
+    /* ── TABLE ── */
+    .styled-table{width:100%;border-collapse:collapse;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);margin:1.25rem 0;}
+    .styled-table thead tr{background:linear-gradient(135deg,var(--pink),var(--pink-mid));}
+    .styled-table th{padding:0.85rem 1.25rem;text-align:left;font-family:var(--font-accent);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:white;}
+    .styled-table td{padding:0.85rem 1.25rem;border-bottom:1px solid rgba(0,0,0,0.05);font-size:0.85rem;background:white;}
+    .styled-table tr:last-child td{border-bottom:none;}
+    .styled-table tr:nth-child(even) td{background:var(--pink-light);}
+    .styled-table td code{font-size:0.8rem;}
+
+    /* ── CHECKLIST ── */
+    .checklist{background:white;border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.05);}
+    .check-item{display:flex;align-items:center;gap:0.85rem;padding:0.7rem 0;border-bottom:1px solid rgba(0,0,0,0.05);cursor:pointer;user-select:none;}
+    .check-item:last-child{border-bottom:none;}
+    .check-item input[type=checkbox]{width:20px;height:20px;accent-color:var(--pink);cursor:pointer;flex-shrink:0;}
+    .check-item span{font-size:0.88rem;color:var(--text-mid);transition:color 0.2s;}
+    .check-item:has(input:checked) span{color:var(--green);text-decoration:line-through;opacity:0.7;}
+    .check-progress{height:8px;background:rgba(181,67,106,0.15);border-radius:999px;margin-bottom:1.5rem;overflow:hidden;}
+    .check-progress__fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--pink-mid));border-radius:999px;transition:width 0.4s ease;width:0%;}
+    .check-count{font-family:var(--font-accent);font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);margin-bottom:0.75rem;}
+
+    /* ── HOW IT FLOWS ── */
+    .flow-chart{display:flex;align-items:center;gap:0;flex-wrap:wrap;justify-content:center;margin:2rem 0;}
+    .flow-box{background:white;border-radius:var(--radius-lg);padding:1.25rem 1.5rem;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.05);text-align:center;min-width:140px;}
+    .flow-box__icon{font-size:1.6rem;margin-bottom:0.5rem;}
+    .flow-box__label{font-family:var(--font-accent);font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-mid);}
+    .flow-arrow{font-size:1.4rem;color:var(--pink-mid);padding:0 0.5rem;flex-shrink:0;}
+
+    /* ── ADMIN GUIDE ── */
+    .admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:1.25rem;}
+    .admin-card{background:white;border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.05);}
+    .admin-card h4{font-family:var(--font-display);font-size:1rem;margin-bottom:0.85rem;display:flex;align-items:center;gap:0.5rem;}
+    .admin-card ul{padding-left:1.1rem;list-style:disc;}
+    .admin-card ul li{font-size:0.85rem;color:var(--text-mid);margin-bottom:0.35rem;}
+
+    /* ── FOOTER ── */
+    .setup-footer{background:var(--charcoal);padding:3rem 0;text-align:center;margin-top:4rem;}
+    .setup-footer p{color:rgba(255,255,255,0.45);font-size:0.82rem;}
+    .setup-footer a{color:var(--pink-mid);}
+    .footer-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;}
+    .footer-link{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);padding:0.5rem 1.2rem;border-radius:999px;font-family:var(--font-accent);font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;transition:background 0.2s;}
+    .footer-link:hover{background:var(--pink);color:white;}
+
+    @media(max-width:768px){
+      .step-body{padding-left:0;margin-top:1rem;}
+      .admin-grid{grid-template-columns:1fr;}
+      .files-grid{grid-template-columns:1fr 1fr;}
+      .flow-chart{flex-direction:column;}
+      .flow-arrow{transform:rotate(90deg);}
+    }
+    @media(max-width:480px){
+      .files-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="site-header">
+  <div class="container">
+    <div class="site-header__inner">
+      <div class="site-header__logo">b_lit <span>hairs</span></div>
+      <h1>Website <em>Setup Guide</em></h1>
+      <p>Follow these steps carefully to get your website live and your admin dashboard working.</p>
+      <div class="header-badges">
+        <span class="header-badge">⏱ Takes about 30 minutes</span>
+        <span class="header-badge">🆓 100% Free tools</span>
+        <span class="header-badge">📱 No coding needed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS NAV -->
+<div class="progress-nav">
+  <div class="progress-nav__inner">
+    <div class="prog-step active" onclick="scrollToStep(1)"><div class="prog-num">1</div>Your Files</div>
+    <span class="prog-sep">›</span>
+    <div class="prog-step" onclick="scrollToStep(2)"><div class="prog-num">2</div>Your Photo</div>
+    <span class="prog-sep">›</span>
+    <div class="prog-step" onclick="scrollToStep(3)"><div class="prog-num">3</div>Supabase</div>
+    <span class="prog-sep">›</span>
+    <div class="prog-step" onclick="scrollToStep(4)"><div class="prog-num">4</div>API Keys</div>
+    <span class="prog-sep">›</span>
+    <div class="prog-step" onclick="scrollToStep(5)"><div class="prog-num">5</div>Database Tables</div>
+    <span class="prog-sep">›</span>
+    <div class="prog-step" onclick="scrollToStep(6)"><div class="prog-num">6</div>Permissions</div>
+    <span class="prog-sep">›</span>
+    <div class="prog-step" onclick="scrollToStep(7)"><div class="prog-num">7</div>Admin Login</div>
+    <span class="prog-sep">›</span>
+    <div class="prog-step" onclick="scrollToStep(8)"><div class="prog-num">8</div>Deploy</div>
+    <span class="prog-sep">›</span>
+    <div class="prog-step" onclick="scrollToStep(9)"><div class="prog-num">9</div>Admin Guide</div>
+    <span class="prog-sep">›</span>
+    <div class="prog-step" onclick="scrollToStep(10)"><div class="prog-num">✓</div>Checklist</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- OVERVIEW -->
+  <div class="overview">
+    <h2 style="font-family:var(--font-display);font-size:1.4rem;margin-bottom:0.5rem;">Your Website Files</h2>
+    <p style="font-size:0.88rem;color:var(--text-mid);">Here is every file you received and what it does.</p>
+    <div class="files-grid">
+      <div class="file-card"><div class="file-icon">🏠</div><div><div class="file-name">index.html</div><div class="file-desc">Homepage with hero, products, reviews</div></div></div>
+      <div class="file-card"><div class="file-icon">🛍️</div><div><div class="file-name">shop.html</div><div class="file-desc">Full product listing with filters</div></div></div>
+      <div class="file-card"><div class="file-icon">📦</div><div><div class="file-name">product.html</div><div class="file-desc">Individual product detail page</div></div></div>
+      <div class="file-card"><div class="file-icon">👤</div><div><div class="file-name">about.html</div><div class="file-desc">Brand story and team page</div></div></div>
+      <div class="file-card"><div class="file-icon">✂️</div><div><div class="file-name">services.html</div><div class="file-desc">Hair services and pricing</div></div></div>
+      <div class="file-card"><div class="file-icon">📧</div><div><div class="file-name">contact.html</div><div class="file-desc">Contact form and info</div></div></div>
+      <div class="file-card" style="border-color:var(--pink-border);background:var(--pink-light);"><div class="file-icon">🔐</div><div><div class="file-name">admin.html</div><div class="file-desc">Your private control panel</div></div></div>
+      <div class="file-card"><div class="file-icon">📖</div><div><div class="file-name">README.md</div><div class="file-desc">Text version of this guide</div></div></div>
+    </div>
+  </div>
+
+  <!-- STEP 1: FILES -->
+  <div class="step" id="step-1">
+    <div class="step-header">
+      <div class="step-num">1</div>
+      <div class="step-header-text">
+        <h2>Organise Your Files</h2>
+        <p>Make sure all your files are in the right folder structure</p>
+      </div>
+    </div>
+    <div class="step-body">
+      <p style="font-size:0.9rem;margin-bottom:1rem;">All files must stay in the same folder together. Here is the exact structure:</p>
+      <div class="code-block">
+        <div class="code-label">Folder Structure</div>
+        <pre>blit-hairs/
+├── index.html
+├── shop.html
+├── product.html
+├── about.html
+├── services.html
+├── contact.html
+├── admin.html
+├── setup.html        <span class="comment">← this file</span>
+├── README.md
+└── assets/
+    └── images/
+        └── belinda.jpeg   <span class="comment">← YOU ADD THIS</span></pre>
+      </div>
+      <div class="callout callout--warning">
+        <div class="callout__icon">⚠️</div>
+        <div class="callout__body">
+          <strong>Do Not Move Files Apart</strong>
+          <p>All HTML files must stay in the same folder. If you move them into separate folders, the links between pages will break.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: PHOTO -->
+  <div class="step" id="step-2">
+    <div class="step-header">
+      <div class="step-num">2</div>
+      <div class="step-header-text">
+        <h2>Add Your Photo</h2>
+        <p>Place your personal photo in the correct folder</p>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="instruction-steps">
+        <div class="inst"><div class="inst__num">1</div><div class="inst__body"><strong>Create the folder</strong>Inside your <code>blit-hairs</code> folder, create a folder called <code>assets</code>. Inside that, create another folder called <code>images</code>.</div></div>
+        <div class="inst"><div class="inst__num">2</div><div class="inst__body"><strong>Rename your photo</strong>Rename your photo file to exactly <code>belinda.jpeg</code> — all lowercase, no spaces. It must be a JPEG image.</div></div>
+        <div class="inst"><div class="inst__num">3</div><div class="inst__body"><strong>Place it in the folder</strong>Put the renamed photo inside <code>assets/images/</code> so the full path is <code>blit-hairs/assets/images/belinda.jpeg</code></div></div>
+      </div>
+      <div class="callout callout--tip">
+        <div class="callout__icon">💡</div>
+        <div class="callout__body">
+          <strong>Where it appears</strong>
+          <p>This photo is used as the hero background on the homepage, the about page portrait, the chatbot avatar, and the nav logo. A high-quality portrait photo works best.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: SUPABASE -->
+  <div class="step" id="step-3">
+    <div class="step-header">
+      <div class="step-num">3</div>
+      <div class="step-header-text">
+        <h2>Create Your Supabase Account</h2>
+        <p>Supabase is the free database that powers everything on your website</p>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="callout callout--success">
+        <div class="callout__icon">✅</div>
+        <div class="callout__body">
+          <strong>Completely Free</strong>
+          <p>Supabase's free tier is more than enough for b_lit hairs. You won't need to pay anything.</p>
+        </div>
+      </div>
+      <div class="instruction-steps" style="margin-top:1rem;">
+        <div class="inst"><div class="inst__num">1</div><div class="inst__body"><strong>Go to Supabase</strong>Open your browser and go to <a href="https://supabase.com" target="_blank" style="color:var(--pink);font-weight:600;">https://supabase.com</a></div></div>
+        <div class="inst"><div class="inst__num">2</div><div class="inst__body"><strong>Sign up</strong>Click <strong>"Start your project"</strong> and create a free account with your email.</div></div>
+        <div class="inst"><div class="inst__num">3</div><div class="inst__body"><strong>Create a new project</strong>Click <strong>"New Project"</strong>. Set the name to <code>blit-hairs</code>. Choose a strong database password and save it somewhere. Choose region <strong>West EU</strong> or <strong>US East</strong>.</div></div>
+        <div class="inst"><div class="inst__num">4</div><div class="inst__body"><strong>Wait for setup</strong>Click <strong>"Create new project"</strong> and wait about 2 minutes. A loading bar will show the progress.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4: API KEYS -->
+  <div class="step" id="step-4">
+    <div class="step-header">
+      <div class="step-num">4</div>
+      <div class="step-header-text">
+        <h2>Get Your API Keys &amp; Add Them to Your Files</h2>
+        <p>These two keys connect your website to your Supabase database</p>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="instruction-steps">
+        <div class="inst"><div class="inst__num">1</div><div class="inst__body"><strong>Open your project settings</strong>In Supabase, click the <strong>Settings</strong> icon (gear ⚙️) at the bottom left sidebar.</div></div>
+        <div class="inst"><div class="inst__num">2</div><div class="inst__body"><strong>Click API</strong>In the settings menu, click <strong>API</strong>. You will see your keys on this page.</div></div>
+        <div class="inst"><div class="inst__num">3</div><div class="inst__body"><strong>Copy your Project URL</strong>It looks like <code>https://abcdefghijkl.supabase.co</code>. Copy it.</div></div>
+        <div class="inst"><div class="inst__num">4</div><div class="inst__body"><strong>Copy your anon public key</strong>It is a long code starting with <code>eyJ...</code>. Copy it.</div></div>
+      </div>
+      <div style="margin-top:1.5rem;">
+        <p style="font-size:0.9rem;margin-bottom:1rem;font-weight:600;">Now open each HTML file and replace the two placeholder lines:</p>
+        <div class="code-block">
+          <div class="code-label">Find this in every HTML file (appears near the bottom in the &lt;script&gt; block)</div>
+          <button class="copy-btn" onclick="copyCode(this, 'code-find')">Copy</button>
+          <pre id="code-find"><span class="keyword">const</span> SUPABASE_URL = <span class="string">'YOUR_SUPABASE_URL'</span>;
+<span class="keyword">const</span> SUPABASE_ANON_KEY = <span class="string">'YOUR_SUPABASE_ANON_KEY'</span>;</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">Replace with your actual values (example)</div>
+          <pre><span class="keyword">const</span> SUPABASE_URL = <span class="string">'https://abcdefghijkl.supabase.co'</span>;
+<span class="keyword">const</span> SUPABASE_ANON_KEY = <span class="string">'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'</span>;</pre>
+        </div>
+        <div class="callout callout--warning">
+          <div class="callout__icon">⚠️</div>
+          <div class="callout__body">
+            <strong>Do This in All 7 Files</strong>
+            <ul>
+              <li>index.html</li>
+              <li>shop.html</li>
+              <li>product.html</li>
+              <li>about.html</li>
+              <li>services.html</li>
+              <li>contact.html</li>
+              <li>admin.html</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5: TABLES -->
+  <div class="step" id="step-5">
+    <div class="step-header">
+      <div class="step-num">5</div>
+      <div class="step-header-text">
+        <h2>Create the Database Tables</h2>
+        <p>These tables store your products, services, reviews and messages</p>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="instruction-steps">
+        <div class="inst"><div class="inst__num">1</div><div class="inst__body"><strong>Open SQL Editor</strong>In Supabase, click <strong>SQL Editor</strong> on the left sidebar.</div></div>
+        <div class="inst"><div class="inst__num">2</div><div class="inst__body"><strong>Click "New query"</strong>This opens a blank text area where you paste the code.</div></div>
+        <div class="inst"><div class="inst__num">3</div><div class="inst__body"><strong>Copy, paste and run each block below</strong>Copy one block at a time, paste it into the query editor, then click the green <strong>Run</strong> button. Repeat for each table.</div></div>
+      </div>
+
+      <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:1.25rem;">
+        <div class="code-block">
+          <div class="code-label">Table 1 of 4 — Products</div>
+          <button class="copy-btn" onclick="copyCode(this,'sql-products')">Copy</button>
+          <pre id="sql-products">create table products (
+  id text primary key,
+  name text not null,
+  category text not null check (category in (<span class="string">'wigs'</span>,<span class="string">'bundles'</span>,<span class="string">'frontals'</span>,<span class="string">'extensions'</span>)),
+  price numeric not null,
+  currency text default <span class="string">'GHS'</span>,
+  badge text,
+  hair_type text,
+  texture text,
+  default_length text,
+  weight text,
+  color text,
+  description text,
+  features jsonb default <span class="string">'[]'</span>,
+  image text,
+  images jsonb default <span class="string">'[]'</span>,
+  whatsapp_msg text,
+  is_visible boolean default true,
+  sort_order integer default <span class="value">0</span>,
+  created_at timestamptz default now()
+);</pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-label">Table 2 of 4 — Services</div>
+          <button class="copy-btn" onclick="copyCode(this,'sql-services')">Copy</button>
+          <pre id="sql-services">create table services (
+  id text primary key,
+  name text not null,
+  description text,
+  starting_price numeric,
+  currency text default <span class="string">'GHS'</span>,
+  duration text,
+  icon text,
+  tags jsonb default <span class="string">'[]'</span>,
+  is_visible boolean default true,
+  sort_order integer default <span class="value">0</span>,
+  created_at timestamptz default now()
+);</pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-label">Table 3 of 4 — Reviews</div>
+          <button class="copy-btn" onclick="copyCode(this,'sql-reviews')">Copy</button>
+          <pre id="sql-reviews">create table reviews (
+  id bigint generated always as identity primary key,
+  reviewer_name text not null,
+  reviewer_location text,
+  stars integer default <span class="value">5</span> check (stars between <span class="value">1</span> and <span class="value">5</span>),
+  review_text text not null,
+  is_approved boolean default false,
+  created_at timestamptz default now()
+);</pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-label">Table 4 of 4 — Contact Submissions</div>
+          <button class="copy-btn" onclick="copyCode(this,'sql-contacts')">Copy</button>
+          <pre id="sql-contacts">create table contact_submissions (
+  id bigint generated always as identity primary key,
+  name text not null,
+  email text not null,
+  phone text,
+  subject text,
+  message text not null,
+  is_read boolean default false,
+  created_at timestamptz default now()
+);</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 6: PERMISSIONS -->
+  <div class="step" id="step-6">
+    <div class="step-header">
+      <div class="step-num">6</div>
+      <div class="step-header-text">
+        <h2>Set Access Permissions</h2>
+        <p>This controls who can read and write to your database</p>
+      </div>
+    </div>
+    <div class="step-body">
+      <p style="font-size:0.9rem;margin-bottom:1rem;">Still in SQL Editor — click <strong>New query</strong> again, then copy the entire block below, paste it and click <strong>Run</strong>. Run this <em>one block all at once.</em></p>
+      <div class="code-block">
+        <div class="code-label">Permissions — Run this entire block at once</div>
+        <button class="copy-btn" onclick="copyCode(this,'sql-rls')">Copy All</button>
+        <pre id="sql-rls"><span class="comment">-- Products</span>
+alter table products enable row level security;
+create policy <span class="string">"Public read products"</span>
+  on products for select using (is_visible = true);
+create policy <span class="string">"Admin full access products"</span>
+  on products for all using (true) with check (true);
+
+<span class="comment">-- Services</span>
+alter table services enable row level security;
+create policy <span class="string">"Public read services"</span>
+  on services for select using (is_visible = true);
+create policy <span class="string">"Admin full access services"</span>
+  on services for all using (true) with check (true);
+
+<span class="comment">-- Reviews</span>
+alter table reviews enable row level security;
+create policy <span class="string">"Public read approved reviews"</span>
+  on reviews for select using (is_approved = true);
+create policy <span class="string">"Admin full access reviews"</span>
+  on reviews for all using (true) with check (true);
+
+<span class="comment">-- Contact Submissions</span>
+alter table contact_submissions enable row level security;
+create policy <span class="string">"Anyone can submit contact"</span>
+  on contact_submissions for insert with check (true);
+create policy <span class="string">"Admin full access contacts"</span>
+  on contact_submissions for all using (true) with check (true);</pre>
+      </div>
+      <div class="callout callout--success">
+        <div class="callout__icon">✅</div>
+        <div class="callout__body">
+          <strong>What this does</strong>
+          <p>Visitors can only read your products (if visible) and approved reviews. Only your admin panel can add, edit or delete anything. Contact form submissions save securely to your database.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 7: ADMIN LOGIN -->
+  <div class="step" id="step-7">
+    <div class="step-header">
+      <div class="step-num">7</div>
+      <div class="step-header-text">
+        <h2>Set Your Admin Login</h2>
+        <p>Change the default email and password to your own</p>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="instruction-steps">
+        <div class="inst"><div class="inst__num">1</div><div class="inst__body"><strong>Open admin.html</strong>Open the file in a text editor (Notepad, VS Code, etc.)</div></div>
+        <div class="inst"><div class="inst__num">2</div><div class="inst__body"><strong>Find the admin credentials</strong>Search for <code>ADMIN_EMAIL</code> in the file. You will find these two lines:</div></div>
+      </div>
+      <div class="code-block" style="margin-top:1rem;">
+        <div class="code-label">Find and replace in admin.html</div>
+        <pre><span class="keyword">const</span> ADMIN_EMAIL = <span class="string">'admin@blit-hairs.com'</span>;
+<span class="keyword">const</span> ADMIN_PASSWORD = <span class="string">'blit2024admin'</span>;</pre>
+      </div>
+      <p style="font-size:0.88rem;margin:0.75rem 0;">Change to your own email and a strong password:</p>
+      <div class="code-block">
+        <pre><span class="keyword">const</span> ADMIN_EMAIL = <span class="string">'your-email@gmail.com'</span>;
+<span class="keyword">const</span> ADMIN_PASSWORD = <span class="string">'YourStrongPassword123!'</span>;</pre>
+      </div>
+      <div class="callout callout--danger">
+        <div class="callout__icon">🔒</div>
+        <div class="callout__body">
+          <strong>Keep admin.html Private</strong>
+          <p>Do not share the admin.html file or tell anyone your admin password. Anyone with access to admin.html and your password can control your entire website.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 8: DEPLOY -->
+  <div class="step" id="step-8">
+    <div class="step-header">
+      <div class="step-num">8</div>
+      <div class="step-header-text">
+        <h2>Deploy Your Website</h2>
+        <p>Put your website online so people can visit it</p>
+      </div>
+    </div>
+    <div class="step-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem;">
+        <div class="admin-card" style="border-top:4px solid var(--pink);">
+          <h4>⚡ Option A — Netlify <span style="background:var(--green-bg);color:var(--green);font-size:0.65rem;font-family:var(--font-accent);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:0.15rem 0.5rem;border-radius:999px;margin-left:0.3rem;">Recommended</span></h4>
+          <ul>
+            <li>Go to <a href="https://netlify.com" target="_blank" style="color:var(--pink);font-weight:600;">netlify.com</a> and sign up free</li>
+            <li>Drag and drop your entire <code>blit-hairs</code> folder onto the Netlify page</li>
+            <li>Your site goes live in seconds</li>
+            <li>Free link like <code>blit-hairs.netlify.app</code></li>
+            <li>To connect your own domain, go to Domain Settings</li>
+          </ul>
+        </div>
+        <div class="admin-card" style="border-top:4px solid var(--blue);">
+          <h4>🖥 Option B — cPanel Hosting</h4>
+          <ul>
+            <li>Log into your hosting cPanel</li>
+            <li>Open <strong>File Manager</strong></li>
+            <li>Go to <code>public_html/</code></li>
+            <li>Upload all your files and folders there</li>
+            <li>Site goes live at your domain</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout callout--tip">
+        <div class="callout__icon">💡</div>
+        <div class="callout__body">
+          <strong>After Deploying</strong>
+          <p>Go to your live site and open <code>yoursite.com/admin.html</code>. Log in, go to Settings and click <strong>Test Connection</strong>. If it says "Connected" you are ready to go!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 9: ADMIN GUIDE -->
+  <div class="step" id="step-9">
+    <div class="step-header">
+      <div class="step-num">9</div>
+      <div class="step-header-text">
+        <h2>How to Use Your Admin Dashboard</h2>
+        <p>A complete guide to everything you can do from admin.html</p>
+      </div>
+    </div>
+    <div class="step-body">
+
+      <!-- flow chart -->
+      <div class="flow-chart">
+        <div class="flow-box"><div class="flow-box__icon">🔐</div><div class="flow-box__label">You (Admin)</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box"><div class="flow-box__icon">🖥</div><div class="flow-box__label">admin.html</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box"><div class="flow-box__icon">🗄</div><div class="flow-box__label">Supabase Database</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box"><div class="flow-box__icon">🌍</div><div class="flow-box__label">Live Website</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box"><div class="flow-box__icon">👩🏾</div><div class="flow-box__label">Your Customers</div></div>
+      </div>
+
+      <table class="styled-table">
+        <thead><tr><th>What you want to do</th><th>How to do it</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>Add a new product</td><td>Products → Add Product → fill form → Save</td><td>Appears on shop page instantly</td></tr>
+          <tr><td>Edit a product</td><td>Products → click ✏️ pencil icon → update → Save</td><td>Updated on website immediately</td></tr>
+          <tr><td>Hide a product temporarily</td><td>Products → click 👁 eye icon</td><td>Product disappears from site</td></tr>
+          <tr><td>Make a product visible again</td><td>Products → click 👁 eye icon again</td><td>Product reappears on site</td></tr>
+          <tr><td>Delete a product permanently</td><td>Products → click 🗑 trash icon → Confirm</td><td>Gone forever from site and database</td></tr>
+          <tr><td>Add a service</td><td>Services → Add Service → fill form → Save</td><td>Appears on services page</td></tr>
+          <tr><td>Edit or delete a service</td><td>Services → pencil or trash icon</td><td>Updated or removed from site</td></tr>
+          <tr><td>Add a review manually</td><td>Reviews → Add Review → fill form → Save</td><td>Saved (approve to show it)</td></tr>
+          <tr><td>Show a review on the website</td><td>Reviews → click Approve button</td><td>Appears on homepage &amp; about page</td></tr>
+          <tr><td>Hide a review</td><td>Reviews → click Unapprove button</td><td>Removed from website</td></tr>
+          <tr><td>Read a customer message</td><td>Messages → click View</td><td>Full message shown, auto-marked read</td></tr>
+          <tr><td>Reply to a message on WhatsApp</td><td>Messages → View → click Reply on WhatsApp</td><td>Opens WhatsApp with their number</td></tr>
+          <tr><td>Test your database connection</td><td>Settings → Test Connection</td><td>Shows "Connected" or error message</td></tr>
+          <tr><td>Visit your live website</td><td>Top right → View Website button</td><td>Opens your website in a new tab</td></tr>
+        </tbody>
+      </table>
+
+      <div class="admin-grid" style="margin-top:1.5rem;">
+        <div class="admin-card">
+          <h4>📦 Products Tips</h4>
+          <ul>
+            <li>Use a real image URL from Cloudinary or ImgBB</li>
+            <li>Products with a Badge (e.g. "Best Seller") show on the homepage featured section</li>
+            <li>Sort Order controls the display order — lower number = shows first</li>
+            <li>You can have as many products as you want</li>
+          </ul>
+        </div>
+        <div class="admin-card">
+          <h4>⭐ Reviews Tips</h4>
+          <ul>
+            <li>New reviews are <strong>hidden by default</strong> — you must approve them</li>
+            <li>Only approved reviews appear on the website</li>
+            <li>You can add reviews directly from WhatsApp customer feedback</li>
+            <li>Aim for at least 6 reviews to look credible</li>
+          </ul>
+        </div>
+        <div class="admin-card">
+          <h4>📧 Messages Tips</h4>
+          <ul>
+            <li>Unread messages show a count badge in the sidebar</li>
+            <li>Messages are marked as read automatically when you view them</li>
+            <li>If the customer gave a phone number, you can reply directly on WhatsApp</li>
+            <li>Refresh the messages page to see new ones</li>
+          </ul>
+        </div>
+        <div class="admin-card">
+          <h4>🖼 Image URLs</h4>
+          <ul>
+            <li><strong>Cloudinary</strong> — best quality, free: <a href="https://cloudinary.com" target="_blank" style="color:var(--pink);">cloudinary.com</a></li>
+            <li><strong>ImgBB</strong> — simple upload: <a href="https://imgbb.com" target="_blank" style="color:var(--pink);">imgbb.com</a></li>
+            <li>Or put photos in <code>assets/images/</code> and use <code>assets/images/photo.jpg</code></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 10: CHECKLIST -->
+  <div class="step" id="step-10">
+    <div class="step-header">
+      <div class="step-num">✓</div>
+      <div class="step-header-text">
+        <h2>Go-Live Checklist</h2>
+        <p>Tick each item as you complete it. You're ready to go live when everything is checked.</p>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="check-count" id="check-count">0 of 12 completed</div>
+      <div class="check-progress"><div class="check-progress__fill" id="check-fill"></div></div>
+      <div class="checklist">
+        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Placed <code>belinda.jpeg</code> in <code>assets/images/</code></span></label>
+        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Created Supabase account and project</span></label>
+        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Copied Supabase URL and anon key</span></label>
+        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Added Supabase keys to all 7 HTML files</span></label>
+        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Created the Products table in SQL Editor</span></label>
+        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Created the Services, Reviews and Contact tables</span></label>
+        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Ran the access permissions SQL block</span></label>
+        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Changed admin email and password in admin.html</span></label>
+        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Deployed to Netlify or cPanel</span></label>
+        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Logged into admin.html and tested Supabase connection</span></label>
+        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Added at least 4 products and 3 approved reviews via admin</span></label>
+        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Tested the website on a mobile phone</span></label>
+      </div>
+      <div id="all-done" style="display:none;background:var(--green-bg);border:1px solid var(--green-border);border-radius:var(--radius-lg);padding:2rem;text-align:center;margin-top:1.5rem;">
+        <div style="font-size:2.5rem;margin-bottom:0.5rem;">🎉</div>
+        <h3 style="font-family:var(--font-display);color:var(--green);margin-bottom:0.5rem;">You're All Set!</h3>
+        <p style="font-size:0.9rem;color:#166534;">Your b_lit hairs website is fully set up and ready for customers. Good luck with your business!</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<div class="setup-footer">
+  <div class="container">
+    <p>Built by <strong style="color:rgba(255,255,255,0.7);">Ibratech</strong> for <strong style="color:var(--pink-mid);">b_lit hairs</strong> — Ghana's luxury hair brand.</p>
+    <div class="footer-links">
+      <a href="index.html" class="footer-link">🏠 Homepage</a>
+      <a href="admin.html" class="footer-link">🔐 Admin Dashboard</a>
+      <a href="shop.html" class="footer-link">🛍️ Shop</a>
+      <a href="https://supabase.com" target="_blank" class="footer-link">🗄 Supabase</a>
+      <a href="https://netlify.com" target="_blank" class="footer-link">⚡ Netlify</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Copy button ──
+function copyCode(btn, id) {
+  const el = document.getElementById(id);
+  const text = el.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// ── Scroll to step ──
+function scrollToStep(n) {
+  const el = document.getElementById('step-' + n);
+  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+// ── Checklist progress ──
+function updateChecklist() {
+  const all = document.querySelectorAll('.check-item input[type=checkbox]');
+  const done = [...all].filter(c => c.checked).length;
+  const pct = (done / all.length) * 100;
+  document.getElementById('check-count').textContent = `${done} of ${all.length} completed`;
+  document.getElementById('check-fill').style.width = pct + '%';
+  document.getElementById('all-done').style.display = done === all.length ? 'block' : 'none';
+  localStorage.setItem('blit_setup_checks', JSON.stringify([...all].map(c => c.checked)));
+}
+
+// ── Restore checklist ──
+const saved = JSON.parse(localStorage.getItem('blit_setup_checks') || '[]');
+if (saved.length) {
+  const all = document.querySelectorAll('.check-item input[type=checkbox]');
+  all.forEach((c, i) => { if (saved[i]) c.checked = true; });
+  updateChecklist();
+}
+
+// ── Active step highlight on scroll ──
+const steps = document.querySelectorAll('.step[id]');
+const progSteps = document.querySelectorAll('.prog-step');
+window.addEventListener('scroll', () => {
+  let current = 0;
+  steps.forEach((s, i) => {
+    if (window.scrollY >= s.offsetTop - 120) current = i;
+  });
+  progSteps.forEach((p, i) => p.classList.toggle('active', i === current));
+}, {passive: true});
+</script>
+</body>
+</html>
