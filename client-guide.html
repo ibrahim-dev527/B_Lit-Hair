@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Website Guide — b_lit hairs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --rose:#c2476e;--rose-mid:#d9728f;--rose-pale:#fdf0f4;--rose-soft:#f8dde6;
+      --gold:#c9a96e;--gold-light:#f0e0c0;--gold-pale:#fdf8f0;
+      --charcoal:#1c1218;--ink:#2e2030;--smoke:#6b5f70;--mist:#a89eb0;--fog:#ece6ee;
+      --white:#fff;--cream:#fdfaf8;
+      --green:#2d8c5e;--green-bg:#e8f7f0;
+      --blue:#2563eb;--blue-bg:#eff6ff;
+      --orange:#c2721a;--orange-bg:#fff3e0;
+      --font-display:'DM Serif Display',Georgia,serif;
+      --font-body:'DM Sans',system-ui,sans-serif;
+      --font-serif:'Cormorant Garamond',Georgia,serif;
+      --r:14px;--r-lg:22px;--r-xl:32px;
+      --shadow:0 2px 20px rgba(28,18,24,0.08);
+      --shadow-lg:0 8px 48px rgba(28,18,24,0.13);
+      --transition:0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;font-size:15px;}
+    body{font-family:var(--font-body);background:var(--cream);color:var(--ink);line-height:1.7;overflow-x:hidden;}
+    ::selection{background:var(--rose-pale);color:var(--rose);}
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar{width:6px;}
+    ::-webkit-scrollbar-track{background:var(--fog);}
+    ::-webkit-scrollbar-thumb{background:var(--rose-mid);border-radius:3px;}
+
+    /* ─── PROGRESS BAR ─── */
+    #reading-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--rose),var(--gold));z-index:9999;width:0%;transition:width 0.1s linear;pointer-events:none;}
+
+    /* ─── HERO ─── */
+    .hero{min-height:100vh;background:var(--charcoal);display:flex;align-items:center;position:relative;overflow:hidden;}
+    .hero__bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 40%,rgba(194,71,110,0.25) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(201,169,110,0.15) 0%,transparent 50%);pointer-events:none;}
+    .hero__grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+    .hero__content{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:6rem 2rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+    .hero__eyebrow{display:inline-flex;align-items:center;gap:0.6rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:999px;padding:0.35rem 1rem;font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;}
+    .hero__eyebrow span{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;animation:pulse 2s infinite;}
+    .hero h1{font-family:var(--font-serif);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:700;color:white;line-height:1.15;margin-bottom:1.25rem;}
+    .hero h1 em{font-style:italic;color:var(--rose-mid);}
+    .hero__desc{font-size:1rem;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:2rem;max-width:420px;}
+    .hero__ctas{display:flex;gap:1rem;flex-wrap:wrap;}
+    .btn-hero{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;border-radius:999px;font-size:0.82rem;font-weight:600;letter-spacing:0.06em;cursor:pointer;transition:var(--transition);text-decoration:none;}
+    .btn-hero--primary{background:linear-gradient(135deg,var(--rose),var(--rose-mid));color:white;box-shadow:0 4px 20px rgba(194,71,110,0.4);}
+    .btn-hero--primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(194,71,110,0.5);}
+    .btn-hero--ghost{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.8);}
+    .btn-hero--ghost:hover{background:rgba(255,255,255,0.14);}
+    .hero__visual{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .hero-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:var(--r-lg);padding:1.5rem;backdrop-filter:blur(10px);transition:var(--transition);cursor:pointer;}
+    .hero-card:hover{background:rgba(255,255,255,0.09);transform:translateY(-3px);border-color:rgba(194,71,110,0.3);}
+    .hero-card--span{grid-column:1/-1;}
+    .hero-card__icon{font-size:1.6rem;margin-bottom:0.75rem;}
+    .hero-card__title{font-size:0.82rem;font-weight:600;color:white;margin-bottom:0.3rem;}
+    .hero-card__desc{font-size:0.75rem;color:rgba(255,255,255,0.45);}
+    .hero__scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.35);font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;animation:bounce 2s infinite;}
+
+    /* ─── NAV ─── */
+    .sticky-nav{position:sticky;top:0;z-index:100;background:rgba(253,250,248,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--fog);padding:0.75rem 0;}
+    .sticky-nav__inner{max-width:1100px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;gap:0.25rem;overflow-x:auto;scrollbar-width:none;}
+    .sticky-nav__inner::-webkit-scrollbar{display:none;}
+    .nav-pill{flex-shrink:0;padding:0.4rem 1rem;border-radius:999px;font-size:0.75rem;font-weight:600;color:var(--smoke);cursor:pointer;transition:var(--transition);white-space:nowrap;border:none;background:none;}
+    .nav-pill:hover{background:var(--rose-pale);color:var(--rose);}
+    .nav-pill.active{background:var(--rose);color:white;}
+    .nav-sep{color:var(--fog);font-size:0.8rem;flex-shrink:0;}
+
+    /* ─── CONTAINER ─── */
+    .wrap{max-width:1100px;margin:0 auto;padding:0 2rem;}
+
+    /* ─── CHAPTER INTRO ─── */
+    .chapter{padding:5rem 0 1rem;}
+    .chapter__label{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--rose);margin-bottom:0.75rem;}
+    .chapter__label::before,.chapter__label::after{content:'';display:block;width:24px;height:1px;background:var(--rose);}
+    .chapter h2{font-family:var(--font-serif);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:var(--charcoal);margin-bottom:0.75rem;}
+    .chapter h2 em{font-style:italic;color:var(--rose);}
+    .chapter__sub{font-size:0.95rem;color:var(--smoke);max-width:560px;}
+
+    /* ─── SECTIONS ─── */
+    .section{padding:2.5rem 0 4rem;}
+
+    /* ─── STEP CARDS ─── */
+    .steps{display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem;}
+    .step-card{background:white;border-radius:var(--r-lg);box-shadow:var(--shadow);border:1px solid var(--fog);overflow:hidden;transition:var(--transition);}
+    .step-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);}
+    .step-card__header{display:flex;align-items:center;gap:1.25rem;padding:1.5rem 2rem;cursor:pointer;user-select:none;}
+    .step-num{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--rose-mid));color:white;font-family:var(--font-serif);font-size:1.2rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(194,71,110,0.3);}
+    .step-card__title{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--charcoal);flex:1;}
+    .step-card__arrow{width:28px;height:28px;border-radius:50%;background:var(--fog);display:flex;align-items:center;justify-content:center;transition:transform var(--transition);}
+    .step-card__arrow svg{width:14px;height:14px;stroke:var(--smoke);}
+    .step-card.open .step-card__arrow{transform:rotate(180deg);}
+    .step-card__body{padding:0 2rem 1.5rem;display:none;}
+    .step-card.open .step-card__body{display:block;}
+    .step-card__body p{font-size:0.88rem;color:var(--smoke);line-height:1.75;margin-bottom:0.75rem;}
+
+    /* ─── INSTRUCTION LIST ─── */
+    .inst-list{display:flex;flex-direction:column;gap:0.85rem;margin:1rem 0;}
+    .inst-item{display:flex;gap:1rem;align-items:flex-start;background:var(--cream);border-radius:var(--r);padding:1rem 1.25rem;border-left:3px solid var(--rose-soft);}
+    .inst-item__num{width:26px;height:26px;border-radius:50%;background:var(--rose);color:white;font-size:0.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+    .inst-item__text{font-size:0.87rem;color:var(--ink);line-height:1.65;}
+    .inst-item__text strong{color:var(--charcoal);display:block;margin-bottom:0.15rem;}
+
+    /* ─── CALLOUT ─── */
+    .callout{border-radius:var(--r-lg);padding:1.25rem 1.5rem;margin:1.25rem 0;display:flex;gap:1rem;align-items:flex-start;}
+    .callout--tip{background:var(--blue-bg);border-left:4px solid var(--blue);}
+    .callout--warn{background:var(--orange-bg);border-left:4px solid var(--orange);}
+    .callout--success{background:var(--green-bg);border-left:4px solid var(--green);}
+    .callout--rose{background:var(--rose-pale);border-left:4px solid var(--rose);}
+    .callout__icon{font-size:1.2rem;flex-shrink:0;margin-top:1px;}
+    .callout__body strong{display:block;font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.3rem;}
+    .callout--tip .callout__body strong{color:var(--blue);}
+    .callout--warn .callout__body strong{color:var(--orange);}
+    .callout--success .callout__body strong{color:var(--green);}
+    .callout--rose .callout__body strong{color:var(--rose);}
+    .callout__body p{font-size:0.85rem;color:var(--ink);}
+
+    /* ─── CODE INLINE ─── */
+    code{font-family:'Courier New',monospace;background:rgba(194,71,110,0.08);color:var(--rose);padding:0.15rem 0.45rem;border-radius:5px;font-size:0.82em;}
+
+    /* ─── INTERACTIVE DEMO ─── */
+    .demo-frame{background:white;border-radius:var(--r-xl);box-shadow:var(--shadow-lg);border:1px solid var(--fog);overflow:hidden;margin:2rem 0;}
+    .demo-frame__bar{background:var(--charcoal);padding:0.7rem 1.25rem;display:flex;align-items:center;gap:0.6rem;}
+    .demo-dot{width:12px;height:12px;border-radius:50%;}
+    .demo-dot--red{background:#ff5f57;}
+    .demo-dot--yellow{background:#ffbd2e;}
+    .demo-dot--green{background:#28ca41;}
+    .demo-frame__url{flex:1;background:rgba(255,255,255,0.08);border-radius:6px;padding:0.3rem 0.85rem;font-size:0.72rem;color:rgba(255,255,255,0.5);font-family:'Courier New',monospace;margin:0 0.75rem;}
+    .demo-frame__body{padding:2rem;}
+
+    /* ─── ADMIN MOCKUP ─── */
+    .admin-mockup{display:grid;grid-template-columns:220px 1fr;min-height:380px;background:var(--charcoal);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-lg);}
+    .mock-sidebar{background:#111318;padding:1.25rem 0;}
+    .mock-sidebar__logo{padding:0 1.25rem 1rem;font-family:var(--font-serif);font-size:1rem;color:white;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:0.75rem;padding-bottom:1rem;}
+    .mock-sidebar__logo span{color:var(--rose-mid);}
+    .mock-nav-item{display:flex;align-items:center;gap:0.65rem;padding:0.65rem 1.25rem;font-size:0.78rem;color:rgba(255,255,255,0.5);cursor:pointer;border-left:3px solid transparent;transition:var(--transition);}
+    .mock-nav-item:hover{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.8);}
+    .mock-nav-item.active{color:white;background:rgba(194,71,110,0.15);border-left-color:var(--rose);}
+    .mock-nav-item .dot{width:8px;height:8px;border-radius:50%;background:var(--rose);flex-shrink:0;}
+    .mock-main{background:#1e1822;padding:1.75rem;}
+    .mock-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;}
+    .mock-title{font-family:var(--font-serif);font-size:1.2rem;color:white;}
+    .mock-btn{background:linear-gradient(135deg,var(--rose),var(--rose-mid));color:white;border:none;border-radius:999px;padding:0.45rem 1.1rem;font-size:0.72rem;font-weight:600;cursor:pointer;}
+    .mock-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:var(--r);padding:1rem;margin-bottom:0.75rem;display:flex;align-items:center;gap:1rem;}
+    .mock-img{width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--rose-soft),var(--rose-pale));flex-shrink:0;}
+    .mock-name{font-size:0.82rem;color:white;font-weight:600;}
+    .mock-sub{font-size:0.7rem;color:rgba(255,255,255,0.35);}
+    .mock-badge{background:rgba(194,71,110,0.2);color:var(--rose-mid);font-size:0.65rem;font-weight:700;padding:0.15rem 0.55rem;border-radius:999px;margin-left:auto;}
+
+    /* ─── HIGHLIGHT PULSE ─── */
+    .hl{position:relative;display:inline-block;}
+    .hl::after{content:'';position:absolute;inset:-3px;border-radius:var(--r);border:2px solid var(--rose);animation:hl-pulse 1.5s ease-in-out infinite;pointer-events:none;}
+    @keyframes hl-pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(1.04);}}
+
+    /* ─── GRID CARDS ─── */
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin:1.5rem 0;}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin:1.5rem 0;}
+    .info-card{background:white;border-radius:var(--r-lg);padding:1.5rem;box-shadow:var(--shadow);border:1px solid var(--fog);}
+    .info-card__icon{font-size:1.8rem;margin-bottom:0.85rem;}
+    .info-card h4{font-family:var(--font-display);font-size:0.95rem;font-weight:700;color:var(--charcoal);margin-bottom:0.5rem;}
+    .info-card p{font-size:0.82rem;color:var(--smoke);line-height:1.65;}
+    .info-card--rose{background:linear-gradient(135deg,var(--rose),#9a2047);color:white;}
+    .info-card--rose h4,.info-card--rose p{color:rgba(255,255,255,0.9);}
+
+    /* ─── IMAGE UPLOAD DEMO ─── */
+    .upload-demo{background:white;border-radius:var(--r-xl);padding:2rem;box-shadow:var(--shadow);border:1px solid var(--fog);margin:1.5rem 0;}
+    .upload-area{border:2.5px dashed var(--rose-mid);border-radius:var(--r-lg);padding:2.5rem;text-align:center;background:var(--rose-pale);cursor:pointer;transition:var(--transition);position:relative;overflow:hidden;}
+    .upload-area:hover{background:var(--rose-soft);border-color:var(--rose);}
+    .upload-area__icon{font-size:2.8rem;margin-bottom:0.75rem;}
+    .upload-area h4{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--rose);margin-bottom:0.3rem;}
+    .upload-area p{font-size:0.8rem;color:var(--smoke);}
+    .upload-area input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+    .upload-preview{display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem;margin-top:1.5rem;}
+    .preview-thumb{aspect-ratio:1;border-radius:var(--r);overflow:hidden;position:relative;background:var(--fog);}
+    .preview-thumb img{width:100%;height:100%;object-fit:cover;}
+    .preview-thumb__del{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:rgba(220,38,38,0.85);color:white;border:none;cursor:pointer;font-size:0.7rem;display:flex;align-items:center;justify-content:center;}
+    .preview-empty{aspect-ratio:1;border-radius:var(--r);border:2px dashed var(--fog);display:flex;align-items:center;justify-content:center;color:var(--mist);font-size:0.7rem;}
+
+    /* ─── TABLE ─── */
+    .ref-table{width:100%;border-collapse:collapse;margin:1.5rem 0;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow);}
+    .ref-table thead tr{background:linear-gradient(135deg,var(--rose),var(--rose-mid));}
+    .ref-table th{padding:0.85rem 1.25rem;text-align:left;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:white;}
+    .ref-table td{padding:0.85rem 1.25rem;font-size:0.85rem;border-bottom:1px solid var(--fog);background:white;vertical-align:top;}
+    .ref-table tr:last-child td{border-bottom:none;}
+    .ref-table tr:nth-child(even) td{background:var(--rose-pale);}
+    .ref-table td:first-child{font-weight:600;color:var(--charcoal);}
+    .ref-table td em{font-style:italic;color:var(--smoke);font-size:0.78rem;}
+
+    /* ─── FAQ ─── */
+    .faq-item{background:white;border-radius:var(--r-lg);margin-bottom:0.75rem;box-shadow:var(--shadow);border:1px solid var(--fog);overflow:hidden;}
+    .faq-q{display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;cursor:pointer;user-select:none;transition:background var(--transition);}
+    .faq-q:hover{background:var(--rose-pale);}
+    .faq-q span{flex:1;font-weight:600;font-size:0.88rem;color:var(--charcoal);}
+    .faq-q svg{width:18px;height:18px;stroke:var(--rose);flex-shrink:0;transition:transform var(--transition);}
+    .faq-item.open .faq-q svg{transform:rotate(45deg);}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease;font-size:0.85rem;color:var(--smoke);line-height:1.75;}
+    .faq-item.open .faq-a{max-height:400px;}
+    .faq-a__inner{padding:0 1.5rem 1.5rem;}
+
+    /* ─── CHECKLIST ─── */
+    .checklist-wrap{background:white;border-radius:var(--r-xl);padding:2rem;box-shadow:var(--shadow);border:1px solid var(--fog);}
+    .progress-bar-wrap{background:var(--fog);height:10px;border-radius:999px;overflow:hidden;margin:0.5rem 0 1.5rem;}
+    .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--rose-mid));border-radius:999px;transition:width 0.4s ease;width:0%;}
+    .cl-item{display:flex;align-items:center;gap:0.85rem;padding:0.75rem 0;border-bottom:1px solid var(--fog);cursor:pointer;}
+    .cl-item:last-child{border-bottom:none;}
+    .cl-item input[type=checkbox]{width:20px;height:20px;accent-color:var(--rose);cursor:pointer;flex-shrink:0;}
+    .cl-item__text{font-size:0.88rem;color:var(--smoke);transition:all 0.2s;}
+    .cl-item:has(input:checked) .cl-item__text{color:var(--green);text-decoration:line-through;opacity:0.7;}
+    .cl-item__tag{margin-left:auto;font-size:0.68rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:0.15rem 0.6rem;border-radius:999px;flex-shrink:0;}
+    .cl-item__tag--must{background:var(--rose-pale);color:var(--rose);}
+    .cl-item__tag--once{background:var(--blue-bg);color:var(--blue);}
+
+    /* ─── BADGE ─── */
+    .badge{display:inline-block;padding:0.2rem 0.7rem;border-radius:999px;font-size:0.68rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
+    .badge--rose{background:var(--rose-pale);color:var(--rose);}
+    .badge--green{background:var(--green-bg);color:var(--green);}
+    .badge--gold{background:var(--gold-pale);color:var(--gold);}
+
+    /* ─── CONGRATS ─── */
+    .congrats{display:none;background:linear-gradient(135deg,var(--rose),#8b1c3d);border-radius:var(--r-xl);padding:3rem;text-align:center;margin-top:1.5rem;}
+    .congrats.show{display:block;}
+    .congrats h3{font-family:var(--font-serif);font-size:1.8rem;font-weight:700;color:white;margin-bottom:0.5rem;}
+    .congrats p{color:rgba(255,255,255,0.75);font-size:0.9rem;}
+
+    /* ─── QUICK REF ─── */
+    .quick-ref{background:var(--charcoal);border-radius:var(--r-xl);padding:3rem;margin:2rem 0;}
+    .quick-ref h3{font-family:var(--font-serif);font-size:1.4rem;color:white;margin-bottom:2rem;text-align:center;}
+    .qr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+    .qr-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:var(--r-lg);padding:1.5rem;text-align:center;transition:var(--transition);}
+    .qr-card:hover{background:rgba(255,255,255,0.1);transform:translateY(-2px);}
+    .qr-card__icon{font-size:1.8rem;margin-bottom:0.75rem;}
+    .qr-card__label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.5rem;}
+    .qr-card__value{font-size:0.85rem;font-weight:600;color:white;}
+    .qr-card__note{font-size:0.72rem;color:rgba(255,255,255,0.35);margin-top:0.25rem;}
+
+    /* ─── FOOTER ─── */
+    footer{background:var(--charcoal);padding:3rem 0;text-align:center;}
+    footer p{color:rgba(255,255,255,0.35);font-size:0.8rem;}
+    footer a{color:var(--rose-mid);}
+    .footer-links{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;}
+    .footer-link{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.65);padding:0.45rem 1.1rem;border-radius:999px;font-size:0.72rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;transition:var(--transition);text-decoration:none;}
+    .footer-link:hover{background:var(--rose);color:white;}
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.4);opacity:0.6;}}
+    @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(8px);}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+    .fade-up{animation:fadeUp 0.7s ease both;}
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:900px){
+      .hero__content{grid-template-columns:1fr;gap:2rem;}
+      .hero__visual{display:none;}
+      .admin-mockup{grid-template-columns:1fr;}
+      .mock-sidebar{display:none;}
+      .grid-2,.grid-3,.qr-grid{grid-template-columns:1fr;}
+    }
+    @media(max-width:600px){
+      .wrap{padding:0 1rem;}
+      .hero__content{padding:5rem 1rem 3rem;}
+      .step-card__header{padding:1.25rem;}
+      .step-card__body{padding:0 1.25rem 1.25rem;}
+      .upload-preview{grid-template-columns:repeat(3,1fr);}
+    }
+  </style>
+</head>
+<body>
+
+<div id="reading-bar"></div>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero" id="top">
+  <div class="hero__bg"></div>
+  <div class="hero__grid"></div>
+  <div class="hero__content">
+    <div class="fade-up">
+      <div class="hero__eyebrow"><span></span>b_lit hairs · Your Complete Guide</div>
+      <h1>Welcome to Your<br><em>New Website</em> 💕</h1>
+      <p class="hero__desc">This guide will walk you through everything — from adding your first product to reading customer messages — all explained simply, just for you.</p>
+      <div class="hero__ctas">
+        <a href="#overview" class="btn-hero btn-hero--primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          Start the Guide
+        </a>
+        <a href="admin.html" target="_blank" class="btn-hero btn-hero--ghost">
+          Open Admin Panel
+        </a>
+      </div>
+    </div>
+    <div class="hero__visual fade-up" style="animation-delay:0.2s;">
+      <div class="hero-card" onclick="scrollTo('overview')">
+        <div class="hero-card__icon">🌐</div>
+        <div class="hero-card__title">Your Website</div>
+        <div class="hero-card__desc">5 pages, all connected to your database</div>
+      </div>
+      <div class="hero-card" onclick="scrollTo('admin-guide')">
+        <div class="hero-card__icon">🔐</div>
+        <div class="hero-card__title">Admin Dashboard</div>
+        <div class="hero-card__desc">Add, edit &amp; delete everything</div>
+      </div>
+      <div class="hero-card hero-card--span" onclick="scrollTo('products-guide')">
+        <div class="hero-card__icon">📦</div>
+        <div class="hero-card__title">Add Products &amp; Upload Images</div>
+        <div class="hero-card__desc">Upload photos straight from your phone gallery — no links needed</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero__scroll">
+    <span>scroll to begin</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav class="sticky-nav" id="sticky-nav">
+  <div class="sticky-nav__inner">
+    <button class="nav-pill active" data-section="overview">🌐 Overview</button>
+    <span class="nav-sep">·</span>
+    <button class="nav-pill" data-section="admin-guide">🔐 Admin Login</button>
+    <span class="nav-sep">·</span>
+    <button class="nav-pill" data-section="products-guide">📦 Products</button>
+    <span class="nav-sep">·</span>
+    <button class="nav-pill" data-section="images-guide">🖼 Uploading Images</button>
+    <span class="nav-sep">·</span>
+    <button class="nav-pill" data-section="services-guide">✂️ Services</button>
+    <span class="nav-sep">·</span>
+    <button class="nav-pill" data-section="reviews-guide">⭐ Reviews</button>
+    <span class="nav-sep">·</span>
+    <button class="nav-pill" data-section="messages-guide">📧 Messages</button>
+    <span class="nav-sep">·</span>
+    <button class="nav-pill" data-section="faq-section">❓ FAQs</button>
+    <span class="nav-sep">·</span>
+    <button class="nav-pill" data-section="checklist-section">✅ Checklist</button>
+  </div>
+</nav>
+
+<main>
+<!-- ═══════════════ OVERVIEW ═══════════════ -->
+<div id="overview" class="section">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter__label">Start Here</div>
+      <h2>How Your Website <em>Works</em></h2>
+      <p class="chapter__sub">Before we get into the details, here's a simple picture of how everything connects.</p>
+    </div>
+
+    <div class="grid-3" style="margin-top:2rem;">
+      <div class="info-card">
+        <div class="info-card__icon">🌍</div>
+        <h4>Your Website (5 pages)</h4>
+        <p>Homepage, Shop, Services, About and Contact. Your customers see these. They automatically show whatever you add in the admin.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card__icon">🔐</div>
+        <h4>Admin Dashboard</h4>
+        <p>This is your private control room at <code>admin.html</code>. Only you can log in. Everything you do here instantly updates your live website.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card__icon">🗄</div>
+        <h4>Database (Supabase)</h4>
+        <p>This is where all your data is stored safely in the cloud — your products, reviews, services, messages. Think of it as your digital filing cabinet.</p>
+      </div>
+    </div>
+
+    <div class="callout callout--rose" style="margin-top:1rem;">
+      <div class="callout__icon">💡</div>
+      <div class="callout__body">
+        <strong>The Simple Rule</strong>
+        <p>You only ever use <strong>admin.html</strong> to manage your website. You never need to touch any other file. Add a product in admin → it appears in your shop. Approve a review → it shows on your homepage. Simple!</p>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:1.5rem;">
+      <div class="info-card">
+        <div class="info-card__icon">📱</div>
+        <h4>What Your Customers See</h4>
+        <p>They visit your website, browse products, read reviews, and either message you via the contact form or order directly through WhatsApp. You receive all of it.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card__icon">💕</div>
+        <h4>What You Control</h4>
+        <p>Every single thing on the website — products, prices, photos, descriptions, services, reviews, and even hiding things temporarily. You are in full control.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ ADMIN LOGIN ═══════════════ -->
+<div id="admin-guide" class="section" style="background:var(--cream);">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter__label">Chapter 1</div>
+      <h2>Logging into Your <em>Admin Dashboard</em></h2>
+      <p class="chapter__sub">Your admin dashboard is your private control room. Here is how to get in.</p>
+    </div>
+
+    <div class="demo-frame">
+      <div class="demo-frame__bar">
+        <div class="demo-dot demo-dot--red"></div>
+        <div class="demo-dot demo-dot--yellow"></div>
+        <div class="demo-dot demo-dot--green"></div>
+        <div class="demo-frame__url">yourwebsite.com/admin.html</div>
+      </div>
+      <div class="demo-frame__body" style="max-width:380px;margin:0 auto;text-align:center;">
+        <div style="font-size:2.5rem;margin-bottom:0.5rem;">🔐</div>
+        <div style="font-family:var(--font-serif);font-size:1.4rem;font-weight:700;color:var(--charcoal);margin-bottom:0.25rem;">b_lit <span style="color:var(--rose);">hairs</span></div>
+        <div style="font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--mist);margin-bottom:1.5rem;">Admin Dashboard</div>
+        <div style="text-align:left;margin-bottom:1rem;">
+          <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--smoke);margin-bottom:0.35rem;">Email</div>
+          <div style="background:var(--cream);border:2px solid var(--rose-soft);border-radius:var(--r);padding:0.7rem 1rem;font-size:0.88rem;color:var(--charcoal);">your-email@gmail.com</div>
+        </div>
+        <div style="text-align:left;margin-bottom:1.25rem;">
+          <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--smoke);margin-bottom:0.35rem;">Password</div>
+          <div style="background:var(--cream);border:2px solid var(--rose-soft);border-radius:var(--r);padding:0.7rem 1rem;font-size:0.88rem;color:var(--charcoal);">••••••••••</div>
+        </div>
+        <div style="background:linear-gradient(135deg,var(--rose),var(--rose-mid));color:white;border-radius:999px;padding:0.85rem;font-size:0.82rem;font-weight:600;cursor:pointer;">Sign In to Dashboard</div>
+      </div>
+    </div>
+
+    <div class="inst-list">
+      <div class="inst-item"><div class="inst-item__num">1</div><div class="inst-item__text"><strong>Open your browser</strong>Go to your website address and add <code>/admin.html</code> at the end. For example: <code>blit-hairs.netlify.app/admin.html</code></div></div>
+      <div class="inst-item"><div class="inst-item__num">2</div><div class="inst-item__text"><strong>Enter your email and password</strong>Type the email and password you set up during the setup process. If you used the default ones, they are in the admin.html file.</div></div>
+      <div class="inst-item"><div class="inst-item__num">3</div><div class="inst-item__text"><strong>Click "Sign In to Dashboard"</strong>You will be taken straight to your dashboard showing all your stats and quick actions.</div></div>
+    </div>
+
+    <div class="callout callout--warn">
+      <div class="callout__icon">🔒</div>
+      <div class="callout__body">
+        <strong>Keep this private</strong>
+        <p>Never share your admin link or password with anyone. Your admin page controls everything on your website including prices, products and customer messages.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;">
+      <h3 style="font-family:var(--font-display);font-size:1.1rem;margin-bottom:1rem;">What you see after logging in</h3>
+      <div class="admin-mockup">
+        <div class="mock-sidebar">
+          <div class="mock-sidebar__logo">b_lit <span>hairs</span> <span style="font-size:0.55rem;background:var(--rose);color:white;padding:0.1rem 0.4rem;border-radius:999px;vertical-align:middle;">Admin</span></div>
+          <div class="mock-nav-item"><div class="dot"></div>Dashboard</div>
+          <div class="mock-nav-item active"><div class="dot"></div>Products</div>
+          <div class="mock-nav-item"><div class="dot"></div>Services</div>
+          <div class="mock-nav-item"><div class="dot"></div>Reviews</div>
+          <div class="mock-nav-item"><div class="dot"></div>Messages</div>
+          <div class="mock-nav-item"><div class="dot"></div>Settings</div>
+        </div>
+        <div class="mock-main">
+          <div class="mock-topbar">
+            <div class="mock-title">Dashboard</div>
+            <div style="display:flex;gap:0.5rem;">
+              <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:999px;padding:0.35rem 0.85rem;font-size:0.72rem;color:rgba(255,255,255,0.6);">View Website ↗</div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem;margin-bottom:1.5rem;">
+            <div style="background:rgba(255,255,255,0.06);border-radius:var(--r);padding:0.85rem;border:1px solid rgba(255,255,255,0.07);"><div style="font-size:1.4rem;font-weight:700;color:white;font-family:var(--font-serif);">8</div><div style="font-size:0.65rem;color:rgba(255,255,255,0.35);margin-top:2px;">Products</div></div>
+            <div style="background:rgba(255,255,255,0.06);border-radius:var(--r);padding:0.85rem;border:1px solid rgba(255,255,255,0.07);"><div style="font-size:1.4rem;font-weight:700;color:white;font-family:var(--font-serif);">6</div><div style="font-size:0.65rem;color:rgba(255,255,255,0.35);margin-top:2px;">Reviews</div></div>
+            <div style="background:rgba(255,255,255,0.06);border-radius:var(--r);padding:0.85rem;border:1px solid rgba(255,255,255,0.07);"><div style="font-size:1.4rem;font-weight:700;color:white;font-family:var(--font-serif);">4</div><div style="font-size:0.65rem;color:rgba(255,255,255,0.35);margin-top:2px;">Services</div></div>
+            <div style="background:rgba(194,71,110,0.2);border-radius:var(--r);padding:0.85rem;border:1px solid rgba(194,71,110,0.3);"><div style="font-size:1.4rem;font-weight:700;color:var(--rose-mid);font-family:var(--font-serif);">3</div><div style="font-size:0.65rem;color:rgba(255,255,255,0.35);margin-top:2px;">New Messages</div></div>
+          </div>
+          <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.75rem;">Quick Actions</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;">
+            <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:var(--r);padding:0.85rem;text-align:center;cursor:pointer;"><div style="font-size:0.75rem;color:rgba(255,255,255,0.5);">➕ Add Product</div></div>
+            <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:var(--r);padding:0.85rem;text-align:center;cursor:pointer;"><div style="font-size:0.75rem;color:rgba(255,255,255,0.5);">⭐ Add Review</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout--tip" style="margin-top:1rem;">
+        <div class="callout__icon">💡</div>
+        <div class="callout__body">
+          <strong>The sidebar on the left</strong>
+          <p>Click any section in the left sidebar to go there — Dashboard, Products, Services, Reviews, Messages, Settings. The top right "View Website" button opens your live website in a new tab so you can check how things look.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ PRODUCTS ═══════════════ -->
+<div id="products-guide" class="section">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter__label">Chapter 2</div>
+      <h2>Managing Your <em>Products</em></h2>
+      <p class="chapter__sub">Everything you need to add, edit, hide and delete products on your shop.</p>
+    </div>
+
+    <div class="steps">
+      <!-- Add product -->
+      <div class="step-card open">
+        <div class="step-card__header" onclick="toggleStep(this)">
+          <div class="step-num">1</div>
+          <div class="step-card__title">How to Add a New Product</div>
+          <div class="step-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="step-card__body">
+          <div class="inst-list">
+            <div class="inst-item"><div class="inst-item__num">1</div><div class="inst-item__text"><strong>Click "Products" in the left sidebar</strong>You will see a table of all your existing products (or an empty page if you haven't added any yet).</div></div>
+            <div class="inst-item"><div class="inst-item__num">2</div><div class="inst-item__text"><strong>Click the pink "Add Product" button</strong>A form will pop up in the centre of the screen.</div></div>
+            <div class="inst-item"><div class="inst-item__num">3</div><div class="inst-item__text"><strong>Fill in the product details</strong>See the table below for what each field means and what to write.</div></div>
+            <div class="inst-item"><div class="inst-item__num">4</div><div class="inst-item__text"><strong>Upload your product photos</strong>Click the pink upload area and choose photos from your phone or computer gallery. No links needed — just tap and pick!</div></div>
+            <div class="inst-item"><div class="inst-item__num">5</div><div class="inst-item__text"><strong>Click "Save Product"</strong>The product immediately appears on your shop page for customers to see.</div></div>
+          </div>
+          <table class="ref-table">
+            <thead><tr><th>Field Name</th><th>What to Write</th><th>Example</th></tr></thead>
+            <tbody>
+              <tr><td>Product ID</td><td>A short unique code for the product. Use BLH + a number. Once saved, you cannot change this.</td><td><code>BLH009</code></td></tr>
+              <tr><td>Product Name</td><td>The full name of the hair product as it will appear on the website.</td><td>Brazilian Straight Bundle</td></tr>
+              <tr><td>Category</td><td>Pick from the dropdown — Wigs, Bundles, Frontals or Extensions.</td><td>Bundles</td></tr>
+              <tr><td>Price (GHS)</td><td>Just the number, no "GHS" needed. The system adds the currency automatically.</td><td>420</td></tr>
+              <tr><td>Badge</td><td>A small highlighted label on the product card. Leave empty if you don't want one. Products with a badge also show on the homepage.</td><td>Best Seller <em>(or leave empty)</em></td></tr>
+              <tr><td>Hair Type</td><td>The origin of the hair.</td><td>Brazilian Virgin</td></tr>
+              <tr><td>Texture</td><td>The wave or curl pattern of the hair.</td><td>Straight / Body Wave / Deep Curly</td></tr>
+              <tr><td>Default Length</td><td>The most popular length for this product.</td><td>18"</td></tr>
+              <tr><td>Weight</td><td>How much hair is in the pack.</td><td>100g per bundle</td></tr>
+              <tr><td>Colour</td><td>The colour of the hair.</td><td>Natural Black (#1B)</td></tr>
+              <tr><td>Description</td><td>A paragraph about the product. Describe the quality, what makes it special, and what kind of woman it's for. The more detail, the better!</td><td><em>2–4 sentences about the hair</em></td></tr>
+              <tr><td>Product Photos</td><td>Upload photos directly from your gallery. You can add up to 4 photos. The first one is the main display photo.</td><td><em>Click upload area → choose photos</em></td></tr>
+              <tr><td>Features</td><td>Individual bullet points about the product. Type one feature and click Add. Repeat for each feature.</td><td>100% Virgin Human Hair → Add</td></tr>
+              <tr><td>WhatsApp Message</td><td>The message that gets sent when a customer clicks "Buy on WhatsApp". A template is auto-filled — you can customise it.</td><td><em>Pre-filled automatically</em></td></tr>
+              <tr><td>Sort Order</td><td>Controls the order products appear. 1 shows first, 2 shows second, etc.</td><td>1</td></tr>
+              <tr><td>Visible on website</td><td>When ticked, the product shows on the website. Untick to hide it temporarily without deleting.</td><td><em>Leave ticked</em></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Edit product -->
+      <div class="step-card">
+        <div class="step-card__header" onclick="toggleStep(this)">
+          <div class="step-num">2</div>
+          <div class="step-card__title">How to Edit a Product</div>
+          <div class="step-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="step-card__body">
+          <div class="inst-list">
+            <div class="inst-item"><div class="inst-item__num">1</div><div class="inst-item__text"><strong>Go to Products in the sidebar</strong>Find the product you want to change in the list.</div></div>
+            <div class="inst-item"><div class="inst-item__num">2</div><div class="inst-item__text"><strong>Click the pencil ✏️ icon</strong>This opens the same form with all the current details already filled in.</div></div>
+            <div class="inst-item"><div class="inst-item__num">3</div><div class="inst-item__text"><strong>Make your changes</strong>Change the price, description, photos — anything you like. You cannot change the Product ID.</div></div>
+            <div class="inst-item"><div class="inst-item__num">4</div><div class="inst-item__text"><strong>Click "Save Product"</strong>Your changes go live on the website immediately.</div></div>
+          </div>
+          <div class="callout callout--success">
+            <div class="callout__icon">✅</div>
+            <div class="callout__body"><strong>Good to know</strong><p>Editing a product does not delete it. All your changes are saved and the product stays visible on the site unless you untick "Visible on website".</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hide product -->
+      <div class="step-card">
+        <div class="step-card__header" onclick="toggleStep(this)">
+          <div class="step-num">3</div>
+          <div class="step-card__title">How to Hide a Product (Without Deleting It)</div>
+          <div class="step-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="step-card__body">
+          <p>Sometimes you might run out of stock and want to temporarily remove a product from the shop without permanently deleting it.</p>
+          <div class="inst-list">
+            <div class="inst-item"><div class="inst-item__num">1</div><div class="inst-item__text"><strong>Find the product in your list</strong>Look for the eye 👁 icon in the Actions column.</div></div>
+            <div class="inst-item"><div class="inst-item__num">2</div><div class="inst-item__text"><strong>Click the eye 👁 icon</strong>The product disappears from your website immediately. The status badge changes to "Hidden" in red.</div></div>
+            <div class="inst-item"><div class="inst-item__num">3</div><div class="inst-item__text"><strong>To bring it back</strong>Click the eye icon again. The product reappears on the website instantly. The status changes back to "Visible" in green.</div></div>
+          </div>
+          <div class="callout callout--tip">
+            <div class="callout__icon">💡</div>
+            <div class="callout__body"><strong>Use this for out-of-stock items</strong><p>Instead of deleting a product when you run out of stock, just hide it. When your new stock arrives, click the eye icon again and it's back!</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Delete product -->
+      <div class="step-card">
+        <div class="step-card__header" onclick="toggleStep(this)">
+          <div class="step-num">4</div>
+          <div class="step-card__title">How to Delete a Product Permanently</div>
+          <div class="step-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="step-card__body">
+          <div class="inst-list">
+            <div class="inst-item"><div class="inst-item__num">1</div><div class="inst-item__text"><strong>Find the product in your list</strong>Look for the red trash 🗑 icon.</div></div>
+            <div class="inst-item"><div class="inst-item__num">2</div><div class="inst-item__text"><strong>Click the trash icon</strong>A confirmation box appears asking "Are you sure?"</div></div>
+            <div class="inst-item"><div class="inst-item__num">3</div><div class="inst-item__text"><strong>Click "Delete" to confirm</strong>The product is permanently removed from the website and the database.</div></div>
+          </div>
+          <div class="callout callout--warn">
+            <div class="callout__icon">⚠️</div>
+            <div class="callout__body"><strong>This cannot be undone</strong><p>Once you delete a product, it is gone forever. If you are unsure, use the Hide option instead — it removes it from the website but keeps it in your admin.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ IMAGES ═══════════════ -->
+<div id="images-guide" class="section" style="background:var(--cream);">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter__label">Chapter 3</div>
+      <h2>Uploading Product <em>Photos</em></h2>
+      <p class="chapter__sub">You can upload photos directly from your phone gallery or computer. No links, no complicated steps — just tap, pick, done.</p>
+    </div>
+
+    <div class="callout callout--success" style="margin-top:1.5rem;">
+      <div class="callout__icon">📸</div>
+      <div class="callout__body">
+        <strong>Great news!</strong>
+        <p>The admin has been built specifically so you can upload photos directly from your gallery. When adding or editing a product, you will see a photo upload area — just click it and your phone's gallery or computer's file picker opens automatically.</p>
+      </div>
+    </div>
+
+    <div class="upload-demo">
+      <h4 style="font-family:var(--font-display);font-size:1rem;margin-bottom:1.25rem;color:var(--charcoal);">This is what the upload area looks like 👇</h4>
+      <div class="upload-area" onclick="document.getElementById('demo-upload').click()">
+        <input type="file" id="demo-upload" multiple accept="image/*" onchange="previewDemoImages(this)">
+        <div class="upload-area__icon">📷</div>
+        <h4>Click here to upload photos</h4>
+        <p>Or drag and drop photos from your computer here<br><span style="font-size:0.72rem;color:var(--mist);margin-top:0.25rem;display:block;">Supports JPG, PNG, WebP · Up to 4 photos</span></p>
+      </div>
+      <div class="upload-preview" id="demo-preview">
+        <div class="preview-empty">Photo 1</div>
+        <div class="preview-empty">Photo 2</div>
+        <div class="preview-empty">Photo 3</div>
+        <div class="preview-empty">Photo 4</div>
+      </div>
+      <p style="font-size:0.78rem;color:var(--mist);text-align:center;margin-top:0.75rem;">👆 This is a live demo — try clicking it and selecting photos from your device!</p>
+    </div>
+
+    <div class="steps" style="margin-top:1.5rem;">
+      <div class="step-card open">
+        <div class="step-card__header" onclick="toggleStep(this)">
+          <div class="step-num">📱</div>
+          <div class="step-card__title">Uploading from your Phone (Android or iPhone)</div>
+          <div class="step-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="step-card__body">
+          <div class="inst-list">
+            <div class="inst-item"><div class="inst-item__num">1</div><div class="inst-item__text"><strong>Open admin.html on your phone browser</strong>Go to your website address, add <code>/admin.html</code>, and log in.</div></div>
+            <div class="inst-item"><div class="inst-item__num">2</div><div class="inst-item__text"><strong>Go to Products → Add Product or Edit a product</strong>Scroll down to the photo upload section.</div></div>
+            <div class="inst-item"><div class="inst-item__num">3</div><div class="inst-item__text"><strong>Tap the pink upload area</strong>Your phone will ask: "Camera", "Photo Library" or "Files". Choose <strong>Photo Library</strong> to pick from your gallery.</div></div>
+            <div class="inst-item"><div class="inst-item__num">4</div><div class="inst-item__text"><strong>Select your photos</strong>You can select up to 4 photos. The first one you select becomes the main product photo shown in the shop.</div></div>
+            <div class="inst-item"><div class="inst-item__num">5</div><div class="inst-item__text"><strong>You will see previews appear</strong>Small thumbnail versions of your photos appear immediately so you can confirm you picked the right ones.</div></div>
+            <div class="inst-item"><div class="inst-item__num">6</div><div class="inst-item__text"><strong>Click Save Product</strong>The photos are uploaded and attached to the product. Done!</div></div>
+          </div>
+          <div class="grid-2" style="margin-top:1rem;">
+            <div class="callout callout--tip">
+              <div class="callout__icon">📷</div>
+              <div class="callout__body"><strong>Best photo tips</strong><p>Take photos in good natural light. Plain white or light backgrounds work best. The photo should show the full hair product clearly.</p></div>
+            </div>
+            <div class="callout callout--rose">
+              <div class="callout__icon">🖼</div>
+              <div class="callout__body"><strong>Photo order matters</strong><p>The first photo you upload becomes the main shop photo. Choose your best, clearest photo first.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card__header" onclick="toggleStep(this)">
+          <div class="step-num">💻</div>
+          <div class="step-card__title">Uploading from your Computer</div>
+          <div class="step-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="step-card__body">
+          <div class="inst-list">
+            <div class="inst-item"><div class="inst-item__num">1</div><div class="inst-item__text"><strong>Open admin.html in your browser</strong>Log in as usual.</div></div>
+            <div class="inst-item"><div class="inst-item__num">2</div><div class="inst-item__text"><strong>When adding/editing a product, click the upload area</strong>Your computer's file explorer opens.</div></div>
+            <div class="inst-item"><div class="inst-item__num">3</div><div class="inst-item__text"><strong>Navigate to your photos</strong>Find them in your Pictures folder, Downloads folder, or wherever you saved them.</div></div>
+            <div class="inst-item"><div class="inst-item__num">4</div><div class="inst-item__text"><strong>Hold Ctrl (Windows) or Cmd (Mac) to select multiple photos</strong>You can select up to 4 at once, or select one at a time.</div></div>
+            <div class="inst-item"><div class="inst-item__num">5</div><div class="inst-item__text"><strong>Click Open / Select</strong>The photos appear as thumbnails. Click the ✕ on any thumb to remove it if you picked the wrong one.</div></div>
+          </div>
+          <div class="callout callout--tip">
+            <div class="callout__icon">🖱</div>
+            <div class="callout__body"><strong>Drag and Drop also works</strong><p>On a computer, you can also drag a photo file from your desktop or folder directly onto the pink upload area. This is even faster!</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SERVICES ═══════════════ -->
+<div id="services-guide" class="section">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter__label">Chapter 4</div>
+      <h2>Managing Your <em>Services</em></h2>
+      <p class="chapter__sub">Services are the treatments and offerings you provide — braiding, styling, custom wigs and more.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step-card open">
+        <div class="step-card__header" onclick="toggleStep(this)">
+          <div class="step-num">1</div>
+          <div class="step-card__title">How to Add a Service</div>
+          <div class="step-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="step-card__body">
+          <div class="inst-list">
+            <div class="inst-item"><div class="inst-item__num">1</div><div class="inst-item__text"><strong>Click "Services" in the sidebar, then "Add Service"</strong></div></div>
+            <div class="inst-item"><div class="inst-item__num">2</div><div class="inst-item__text"><strong>Fill in the service details</strong>See the table below for guidance.</div></div>
+            <div class="inst-item"><div class="inst-item__num">3</div><div class="inst-item__text"><strong>Click "Save Service"</strong>It appears on your Services page immediately.</div></div>
+          </div>
+          <table class="ref-table" style="margin-top:1rem;">
+            <thead><tr><th>Field</th><th>What to Write</th><th>Example</th></tr></thead>
+            <tbody>
+              <tr><td>Service ID</td><td>A unique code. Use SRV + number.</td><td><code>SRV007</code></td></tr>
+              <tr><td>Service Name</td><td>What you call the service.</td><td>Hair Braiding</td></tr>
+              <tr><td>Description</td><td>Describe what the service includes and what the customer will get.</td><td>Expert braiding styles…</td></tr>
+              <tr><td>Starting Price</td><td>Just the number. The cheapest price for this service.</td><td>200</td></tr>
+              <tr><td>Duration</td><td>How long it typically takes.</td><td>2–4 hours</td></tr>
+              <tr><td>Icon</td><td>A small icon shown on the service card. Pick from the dropdown.</td><td>Braid / Style / Star</td></tr>
+              <tr><td>Tags</td><td>Short labels describing what's included. Type one and click Add.</td><td>Box Braids → Add</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ REVIEWS ═══════════════ -->
+<div id="reviews-guide" class="section" style="background:var(--cream);">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter__label">Chapter 5</div>
+      <h2>Managing Customer <em>Reviews</em></h2>
+      <p class="chapter__sub">Reviews build trust and convince new customers to buy. Here is how to add and manage them.</p>
+    </div>
+
+    <div class="callout callout--rose">
+      <div class="callout__icon">⭐</div>
+      <div class="callout__body">
+        <strong>Important: Reviews are hidden by default</strong>
+        <p>Every review you add starts as "Pending" — it is NOT visible on the website until you approve it. This gives you full control over what customers see. Always remember to approve a review after adding it!</p>
+      </div>
+    </div>
+
+    <div class="steps" style="margin-top:1.5rem;">
+      <div class="step-card open">
+        <div class="step-card__header" onclick="toggleStep(this)">
+          <div class="step-num">1</div>
+          <div class="step-card__title">How to Add a Review from a Happy Customer</div>
+          <div class="step-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="step-card__body">
+          <p>When a customer sends you a nice message on WhatsApp, you can add it to your website as a review.</p>
+          <div class="inst-list">
+            <div class="inst-item"><div class="inst-item__num">1</div><div class="inst-item__text"><strong>Click "Reviews" in the sidebar, then "Add Review"</strong></div></div>
+            <div class="inst-item"><div class="inst-item__num">2</div><div class="inst-item__text"><strong>Fill in the reviewer's name</strong>Use their first name and first letter of their last name for privacy — e.g. "Abena K."</div></div>
+            <div class="inst-item"><div class="inst-item__num">3</div><div class="inst-item__text"><strong>Add their location</strong>e.g. "Accra, Ghana" or "Kumasi, Ghana"</div></div>
+            <div class="inst-item"><div class="inst-item__num">4</div><div class="inst-item__text"><strong>Select the star rating</strong>Choose 1–5 stars. Most happy customers deserve 5 stars! ⭐⭐⭐⭐⭐</div></div>
+            <div class="inst-item"><div class="inst-item__num">5</div><div class="inst-item__text"><strong>Type or paste the review text</strong>Copy exactly what they said on WhatsApp, or write a paraphrased version.</div></div>
+            <div class="inst-item"><div class="inst-item__num">6</div><div class="inst-item__text"><strong>Tick the "Approved" checkbox</strong>This makes it visible on the website immediately after saving. If you forget to tick this, the review will be saved but hidden.</div></div>
+            <div class="inst-item"><div class="inst-item__num">7</div><div class="inst-item__text"><strong>Click "Save Review"</strong>It appears on the homepage and about page right away.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card__header" onclick="toggleStep(this)">
+          <div class="step-num">2</div>
+          <div class="step-card__title">How to Approve or Hide a Review</div>
+          <div class="step-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="step-card__body">
+          <div class="inst-list">
+            <div class="inst-item"><div class="inst-item__num">1</div><div class="inst-item__text"><strong>Find the review in your list</strong>Pending reviews show an orange "Pending" badge. Approved ones show a green "Approved" badge.</div></div>
+            <div class="inst-item"><div class="inst-item__num">2</div><div class="inst-item__text"><strong>Click the green "Approve" button</strong>The review immediately appears on your website for all customers to see.</div></div>
+            <div class="inst-item"><div class="inst-item__num">3</div><div class="inst-item__text"><strong>To hide it again</strong>Click "Unapprove" — it goes back to hidden without being deleted.</div></div>
+          </div>
+          <div class="callout callout--tip">
+            <div class="callout__icon">💡</div>
+            <div class="callout__body"><strong>Aim for at least 6 reviews</strong><p>Having 6+ reviews makes your website look established and trustworthy to new customers. Collect reviews from your WhatsApp customers and add them here.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ MESSAGES ═══════════════ -->
+<div id="messages-guide" class="section">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter__label">Chapter 6</div>
+      <h2>Reading Customer <em>Messages</em></h2>
+      <p class="chapter__sub">When customers fill out your contact form, the messages land here. Never miss an enquiry.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step-card open">
+        <div class="step-card__header" onclick="toggleStep(this)">
+          <div class="step-num">1</div>
+          <div class="step-card__title">How to Read and Reply to a Message</div>
+          <div class="step-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="step-card__body">
+          <div class="inst-list">
+            <div class="inst-item"><div class="inst-item__num">1</div><div class="inst-item__text"><strong>Click "Messages" in the sidebar</strong>You will see a list of all messages. Unread ones have an orange "Unread" badge. The red number in the sidebar badge tells you how many unread messages you have.</div></div>
+            <div class="inst-item"><div class="inst-item__num">2</div><div class="inst-item__text"><strong>Click the "View" button on any message</strong>A pop-up opens showing the full message — their name, email, phone number (if they gave it), subject and what they wrote.</div></div>
+            <div class="inst-item"><div class="inst-item__num">3</div><div class="inst-item__text"><strong>The message is automatically marked as "Read"</strong>The badge changes from orange to blue, and the unread count goes down.</div></div>
+            <div class="inst-item"><div class="inst-item__num">4</div><div class="inst-item__text"><strong>Click "Reply on WhatsApp"</strong>If the customer gave their phone number, this button opens WhatsApp with a pre-written reply message ready to send. Just tap send!</div></div>
+          </div>
+          <div class="callout callout--success">
+            <div class="callout__icon">💚</div>
+            <div class="callout__body"><strong>Reply quickly</strong><p>Try to reply to messages within 24 hours. Customers who get fast replies are much more likely to place an order. The WhatsApp reply button makes this very easy!</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ QUICK REFERENCE ═══════════════ -->
+<div style="padding:3rem 0;background:var(--cream);">
+  <div class="wrap">
+    <div class="quick-ref">
+      <h3>⚡ Quick Reference</h3>
+      <div class="qr-grid">
+        <div class="qr-card"><div class="qr-card__icon">🌐</div><div class="qr-card__label">Admin URL</div><div class="qr-card__value">yoursite.com/admin.html</div><div class="qr-card__note">Bookmark this!</div></div>
+        <div class="qr-card"><div class="qr-card__icon">📦</div><div class="qr-card__label">Add Product</div><div class="qr-card__value">Products → Add Product</div><div class="qr-card__note">Fills shop instantly</div></div>
+        <div class="qr-card"><div class="qr-card__icon">👁</div><div class="qr-card__label">Hide Product</div><div class="qr-card__value">Click the eye icon</div><div class="qr-card__note">Reversible, not deleted</div></div>
+        <div class="qr-card"><div class="qr-card__icon">⭐</div><div class="qr-card__label">Show a Review</div><div class="qr-card__value">Reviews → Approve</div><div class="qr-card__note">Must approve to show</div></div>
+        <div class="qr-card"><div class="qr-card__icon">📧</div><div class="qr-card__label">New Messages</div><div class="qr-card__value">Messages tab</div><div class="qr-card__note">Badge shows unread count</div></div>
+        <div class="qr-card"><div class="qr-card__icon">📷</div><div class="qr-card__label">Upload Photos</div><div class="qr-card__value">Click pink upload area</div><div class="qr-card__note">Choose from gallery</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ FAQ ═══════════════ -->
+<div id="faq-section" class="section">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter__label">Frequently Asked Questions</div>
+      <h2>Things You Might <em>Wonder About</em></h2>
+    </div>
+    <div style="margin-top:2rem;">
+      <div class="faq-item open">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>I added a product but it's not showing on the shop. Why?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a__inner">Check two things: First, make sure the "Visible on website" checkbox was ticked when you saved the product. Second, go to the product in admin, click the eye icon to check its status shows as "Visible" (green badge). If it shows "Hidden" (red badge), click the eye icon to make it visible again.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>I approved a review but it's not on the homepage. Why?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a__inner">Try refreshing the homepage (press Ctrl+F5 or Cmd+Shift+R to force refresh). Also confirm the review shows a green "Approved" badge in the Reviews section of admin. If it shows orange "Pending", click the Approve button again.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>How do I change the price of a product?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a__inner">Go to Products, find the product, click the pencil ✏️ edit icon, change the price number, and click Save Product. The new price appears on the website within seconds.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Can I manage the website from my phone?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a__inner">Yes! The admin dashboard works on phones too. Open your browser (Chrome, Safari), go to your admin link, and log in. Everything works on mobile — you can add products, upload photos from your gallery, approve reviews and read messages all from your phone.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>A customer ordered via WhatsApp. Do I need to do anything in the admin?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a__inner">No — WhatsApp orders are handled directly on WhatsApp, not through the admin. The "Buy on WhatsApp" button on the website sends the customer directly to your WhatsApp number with a pre-written message. You reply on WhatsApp and process the order there as usual.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>What if I forget my admin password?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a__inner">Open the <code>admin.html</code> file in a text editor (Notepad or Notes app). Search for <code>ADMIN_PASSWORD</code> and you will see the password there. You can change it to something new and re-upload the file to your hosting.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>How many products can I have?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a__inner">As many as you like! Supabase's free plan supports thousands of rows of data. You will never hit a limit for a hair business.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Do customers have to create an account to buy?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a__inner">No — there are no customer accounts. Customers simply browse the shop, click "Buy on WhatsApp" on any product, and it opens WhatsApp with a ready-made message. The sale is completed on WhatsApp where you confirm details, receive payment (MoMo) and arrange delivery. Simple and fast!</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>How do I make a product appear on the homepage?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a__inner">Add a Badge to the product — such as "Best Seller", "New Arrival", or "Hot Pick". Products with any badge text automatically appear in the "Fan Favourites" section on the homepage. Products without a badge only appear on the Shop page.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ CHECKLIST ═══════════════ -->
+<div id="checklist-section" class="section" style="background:var(--cream);">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter__label">You're Almost There!</div>
+      <h2>Getting Started <em>Checklist</em></h2>
+      <p class="chapter__sub">Tick these off as you complete them. Once everything is checked, your website is fully ready!</p>
+    </div>
+
+    <div class="checklist-wrap" style="margin-top:2rem;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
+        <span style="font-size:0.78rem;font-weight:600;color:var(--smoke);" id="cl-count">0 of 10 done</span>
+        <span style="font-size:0.78rem;color:var(--mist);">Click each item to check it off</span>
+      </div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="cl-fill"></div></div>
+
+      <label class="cl-item"><input type="checkbox" onchange="updateCl()"><span class="cl-item__text">Log into admin.html for the first time</span><span class="cl-item__tag cl-item__tag--must">First step</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateCl()"><span class="cl-item__text">Go to Settings and click "Test Connection" — confirm it says "Connected"</span><span class="cl-item__tag cl-item__tag--once">Once only</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateCl()"><span class="cl-item__text">Add your first product with a real photo from your gallery</span><span class="cl-item__tag cl-item__tag--must">Important</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateCl()"><span class="cl-item__text">Add at least 4 more products (aim for 8 total to fill the shop nicely)</span><span class="cl-item__tag cl-item__tag--must">Important</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateCl()"><span class="cl-item__text">Add 3 reviews from happy WhatsApp customers and approve them</span><span class="cl-item__tag cl-item__tag--must">Important</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateCl()"><span class="cl-item__text">Check your homepage — confirm products and reviews are showing</span><span class="cl-item__tag cl-item__tag--once">Check</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateCl()"><span class="cl-item__text">Add your 6 services (Hair Sales, Braiding, Styling, Bridal, Custom Wig, Maintenance)</span><span class="cl-item__tag cl-item__tag--must">Important</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateCl()"><span class="cl-item__text">Test the contact form on contact.html — then check Messages in admin</span><span class="cl-item__tag cl-item__tag--once">Test</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateCl()"><span class="cl-item__text">Open the website on your phone and make sure everything looks good</span><span class="cl-item__tag cl-item__tag--once">Check</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateCl()"><span class="cl-item__text">Bookmark the admin page on your phone for easy access anytime</span><span class="cl-item__tag cl-item__tag--once">Handy</span></label>
+
+      <div class="congrats" id="congrats">
+        <div style="font-size:3rem;margin-bottom:0.75rem;">🎉</div>
+        <h3>You're All Set, Queen! 💕</h3>
+        <p style="margin-top:0.5rem;">Your b_lit hairs website is fully set up and ready for customers. Go and slay! 👑</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <p>Built with 💕 by <strong style="color:rgba(255,255,255,0.6);">Ibratech</strong> for <strong style="color:var(--rose-mid);">b_lit hairs</strong> — Ghana's luxury hair brand</p>
+    <div class="footer-links">
+      <a href="index.html" class="footer-link">🏠 Homepage</a>
+      <a href="admin.html" class="footer-link">🔐 Admin</a>
+      <a href="shop.html" class="footer-link">🛍️ Shop</a>
+      <a href="setup.html" class="footer-link">⚙️ Setup Guide</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Reading bar ── */
+window.addEventListener('scroll', () => {
+  const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('reading-bar').style.width = Math.min(pct, 100) + '%';
+}, {passive: true});
+
+/* ── Sticky nav active state ── */
+const sections = ['overview','admin-guide','products-guide','images-guide','services-guide','reviews-guide','messages-guide','faq-section','checklist-section'];
+const pills = document.querySelectorAll('.nav-pill[data-section]');
+window.addEventListener('scroll', () => {
+  let current = sections[0];
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 120) current = id;
+  });
+  pills.forEach(p => p.classList.toggle('active', p.dataset.section === current));
+}, {passive: true});
+
+pills.forEach(p => {
+  p.addEventListener('click', () => {
+    const el = document.getElementById(p.dataset.section);
+    if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+
+/* ── Step card toggle ── */
+function toggleStep(header) {
+  const card = header.closest('.step-card');
+  card.classList.toggle('open');
+}
+
+/* ── FAQ toggle ── */
+function toggleFaq(qEl) {
+  const item = qEl.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+/* ── Checklist ── */
+function updateCl() {
+  const all = document.querySelectorAll('.cl-item input[type=checkbox]');
+  const done = [...all].filter(c => c.checked).length;
+  document.getElementById('cl-count').textContent = `${done} of ${all.length} done`;
+  document.getElementById('cl-fill').style.width = (done / all.length * 100) + '%';
+  const congrats = document.getElementById('congrats');
+  congrats.classList.toggle('show', done === all.length);
+  localStorage.setItem('blit_guide_checks', JSON.stringify([...all].map(c => c.checked)));
+}
+
+const saved = JSON.parse(localStorage.getItem('blit_guide_checks') || '[]');
+if (saved.length) {
+  const all = document.querySelectorAll('.cl-item input[type=checkbox]');
+  all.forEach((c, i) => { if (saved[i]) c.checked = true; });
+  updateCl();
+}
+
+/* ── Demo image upload ── */
+function previewDemoImages(input) {
+  const preview = document.getElementById('demo-preview');
+  const files = [...input.files].slice(0, 4);
+  preview.innerHTML = '';
+  files.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const div = document.createElement('div');
+      div.className = 'preview-thumb';
+      div.innerHTML = `<img src="${e.target.result}" alt="preview"><button class="preview-thumb__del" onclick="this.parentElement.remove()">✕</button>`;
+      preview.appendChild(div);
+    };
+    reader.readAsDataURL(file);
+  });
+  for (let i = files.length; i < 4; i++) {
+    const div = document.createElement('div');
+    div.className = 'preview-empty';
+    div.textContent = `Photo ${i + 1}`;
+    preview.appendChild(div);
+  }
+}
+
+/* ── Fade up on scroll ── */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.animation = 'fadeUp 0.6s ease both';
+      revealObs.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.1, rootMargin: '0px 0px -40px 0px'});
+document.querySelectorAll('.info-card, .step-card, .faq-item, .inst-item').forEach(el => revealObs.observe(el));
+</script>
+</body>
+</html>
