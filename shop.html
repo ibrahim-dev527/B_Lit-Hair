@@ -1,258 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Shop b_lit hairs — Premium virgin human hair wigs, bundles, frontals and extensions. Delivered across Ghana.">
-  <title>Shop — b_lit hairs | Luxury Hair, Ghana</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --pink-deep:#b5436a;--pink-mid:#d4698b;--pink-light:#f2c4d4;--pink-blush:#fdf0f4;
-      --white:#fff;--charcoal:#1a1a1a;--text-dark:#2d2d2d;--text-mid:#555;--text-light:#888;
-      --gold:#c9a96e;--gold-light:#e8d5b0;
-      --font-display:'Playfair Display',Georgia,serif;
-      --font-body:'Poppins',sans-serif;
-      --font-accent:'Montserrat',sans-serif;
-      --radius-md:16px;--radius-lg:32px;--radius-pill:999px;
-      --shadow-soft:0 4px 24px rgba(181,67,106,0.10);
-      --shadow-hover:0 16px 56px rgba(181,67,106,0.22);
-      --transition:0.35s cubic-bezier(0.4,0,0.2,1);
-      --transition-slow:0.6s cubic-bezier(0.4,0,0.2,1);
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;}
-    body{font-family:var(--font-body);background:var(--white);color:var(--text-dark);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-    img{max-width:100%;height:auto;display:block;}
-    a{text-decoration:none;color:inherit;}
-    ul{list-style:none;}
-    h1,h2,h3,h4{font-family:var(--font-display);line-height:1.25;color:var(--charcoal);font-weight:700;}
-    h1{font-size:clamp(2.4rem,6vw,4.5rem);}
-    h2{font-size:clamp(1.8rem,4vw,3rem);}
-    h3{font-size:clamp(1.1rem,2.5vw,1.6rem);}
-    p{color:var(--text-mid);}
-    .section-label{font-family:var(--font-accent);font-size:0.75rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--pink-deep);display:block;margin-bottom:0.75rem;}
-    .container{width:100%;max-width:1240px;margin:0 auto;padding:0 1.5rem;}
-    .section{padding:6rem 0;}
-    .section--pink{background:var(--pink-blush);}
-    .text-center{text-align:center;}
-    .divider{width:60px;height:3px;background:linear-gradient(90deg,var(--pink-deep),var(--pink-mid));border-radius:2px;margin:1.25rem auto 0;}
-    .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2.2rem;border-radius:var(--radius-pill);font-family:var(--font-accent);font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border:none;position:relative;overflow:hidden;transition:var(--transition);}
-    .btn--primary{background:linear-gradient(135deg,var(--pink-deep),var(--pink-mid));color:var(--white);box-shadow:0 4px 20px rgba(181,67,106,0.4);}
-    .btn--primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(181,67,106,0.5);}
-    .btn--lg{padding:1.1rem 2.8rem;font-size:0.95rem;}
-    /* NAV */
-    .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.25rem 0;transition:var(--transition);animation:fadeDown 0.7s 0.1s both;}
-    .nav.scrolled{background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);padding:0.85rem 0;box-shadow:0 4px 32px rgba(181,67,106,0.1);}
-    .nav--dark{background:var(--white);box-shadow:0 2px 20px rgba(181,67,106,0.08);}
-    .nav__inner{display:flex;align-items:center;justify-content:space-between;}
-    .nav__logo{display:flex;align-items:center;gap:0.75rem;}
-    .nav__logo img{width:44px;height:44px;border-radius:50%;object-fit:cover;}
-    .nav__logo-text{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:var(--charcoal);}
-    .nav__logo-text span{color:var(--pink-deep);}
-    .nav__menu{display:flex;align-items:center;gap:2.5rem;}
-    .nav__link{font-family:var(--font-accent);font-size:0.8rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--charcoal);position:relative;transition:color var(--transition);}
-    .nav__link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--pink-mid);transition:width var(--transition);}
-    .nav__link:hover::after,.nav__link.active::after{width:100%;}
-    .nav__link.active{color:var(--pink-mid);}
-    .nav__cta{margin-left:0.5rem;}
-    .nav__hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
-    .nav__hamburger span{display:block;width:26px;height:2px;background:var(--charcoal);border-radius:2px;transition:var(--transition);}
-    .nav__hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-    .nav__hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
-    .nav__hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-    .nav__drawer{display:none;position:fixed;inset:0;background:var(--white);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;transform:translateX(100%);transition:transform var(--transition-slow);}
-    .nav__drawer.open{transform:translateX(0);}
-    .nav__drawer .nav__link{font-size:1.4rem;letter-spacing:0.15em;}
-    /* HERO */
-    .page-hero{padding:9rem 0 4rem;position:relative;overflow:hidden;text-align:center;background:var(--charcoal);}
-    .page-hero::before{content:'';position:absolute;inset:0;background:url('assets/images/belinda.jpeg') center/cover no-repeat;opacity:0.18;}
-    .page-hero__inner{position:relative;z-index:1;}
-    .page-hero h1{color:var(--white);margin-bottom:1rem;}
-    .page-hero h1 em{font-style:italic;color:var(--pink-light);}
-    .page-hero p{color:rgba(255,255,255,0.75);font-size:1.05rem;max-width:500px;margin:0 auto;}
-    /* FILTERS */
-    .shop-filters{display:flex;flex-wrap:wrap;gap:0.75rem;margin-bottom:3rem;justify-content:center;}
-    .filter-btn{padding:0.55rem 1.5rem;border-radius:var(--radius-pill);font-family:var(--font-accent);font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:var(--white);border:2px solid rgba(181,67,106,0.2);color:var(--text-mid);transition:var(--transition);}
-    .filter-btn:hover,.filter-btn.active{background:var(--pink-deep);border-color:var(--pink-deep);color:var(--white);}
-    /* PRODUCTS GRID */
-    .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2rem;min-height:300px;}
-    .product-card{background:var(--white);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-soft);cursor:pointer;transition:var(--transition);position:relative;border:1px solid rgba(181,67,106,0.08);opacity:0;animation:fadeUp 0.5s ease forwards;}
-    .product-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-hover);}
-    .product-card__badge{position:absolute;top:1rem;left:1rem;background:var(--pink-deep);color:var(--white);font-family:var(--font-accent);font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:var(--radius-pill);z-index:2;}
-    .product-card__img-wrap{position:relative;overflow:hidden;height:300px;background:linear-gradient(145deg,var(--pink-blush),#ecdde5);}
-    .product-card__img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;}
-    .product-card:hover .product-card__img-wrap img{transform:scale(1.06);}
-    .product-card__img-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;}
-    .product-card__img-placeholder span{font-size:3.5rem;}
-    .product-card__img-placeholder p{font-family:var(--font-accent);font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--pink-mid);opacity:0.7;}
-    .product-card__overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(181,67,106,0.5) 0%,transparent 60%);opacity:0;transition:var(--transition);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1.5rem;}
-    .product-card:hover .product-card__overlay{opacity:1;}
-    .product-card__overlay span{color:white;font-family:var(--font-accent);font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
-    .product-card__body{padding:1.4rem;}
-    .product-card__name{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--charcoal);margin-bottom:0.35rem;}
-    .product-card__type{font-size:0.78rem;color:var(--text-light);font-family:var(--font-accent);letter-spacing:0.05em;margin-bottom:0.75rem;}
-    .product-card__footer{display:flex;align-items:center;justify-content:space-between;}
-    .product-card__price{font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--pink-deep);}
-    .product-card__btn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--pink-deep),var(--pink-mid));display:flex;align-items:center;justify-content:center;transition:var(--transition);border:none;cursor:pointer;flex-shrink:0;}
-    .product-card__btn:hover{transform:rotate(15deg) scale(1.1);}
-    .product-card__btn svg{width:16px;height:16px;stroke:white;}
-    /* STATES */
-    .state-full{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5rem 2rem;text-align:center;gap:1rem;}
-    .state-full .icon{font-size:4rem;display:block;}
-    .state-full h3{font-family:var(--font-display);font-size:1.5rem;color:var(--charcoal);}
-    .state-full p{color:var(--text-light);max-width:400px;font-size:0.95rem;}
-    .spinner{width:48px;height:48px;border:3px solid rgba(181,67,106,0.15);border-top-color:var(--pink-deep);border-radius:50%;animation:spin 0.85s linear infinite;}
-    .state-full .spinner-label{font-family:var(--font-accent);font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-light);}
-    /* FAQ */
-    .faq-item{border-bottom:1px solid rgba(181,67,106,0.12);padding:1.5rem 0;}
-    .faq-question{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--charcoal);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;user-select:none;transition:color var(--transition);}
-    .faq-question:hover{color:var(--pink-deep);}
-    .faq-question svg{width:20px;height:20px;stroke:var(--pink-deep);flex-shrink:0;transition:transform var(--transition);}
-    .faq-item.open .faq-question svg{transform:rotate(45deg);}
-    .faq-answer{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s ease;font-size:0.95rem;color:var(--text-mid);line-height:1.8;}
-    .faq-item.open .faq-answer{max-height:300px;padding-top:1rem;}
-    /* CTA */
-    .cta-banner{background:var(--charcoal);padding:6rem 0;position:relative;overflow:hidden;}
-    .cta-banner::before{content:'';position:absolute;inset:0;background:url('assets/images/belinda.jpeg') center/cover no-repeat;opacity:0.1;}
-    .cta-banner__inner{position:relative;z-index:1;text-align:center;}
-    .cta-banner h2{color:var(--white);margin-bottom:1rem;}
-    .cta-banner h2 em{color:var(--pink-light);}
-    .cta-banner p{color:rgba(255,255,255,0.7);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto;}
-    /* WHATSAPP */
-    .whatsapp-float{position:fixed;bottom:2rem;right:2rem;z-index:900;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(37,211,102,0.5);transition:var(--transition);animation:pulseGreen 2.5s infinite;}
-    .whatsapp-float:hover{transform:scale(1.12);}
-    .whatsapp-float svg{width:30px;height:30px;fill:white;}
-    /* FOOTER */
-    .footer{background:var(--charcoal);padding:5rem 0 0;}
-    .footer__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:3rem;margin-bottom:4rem;}
-    .footer__brand-name{font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--white);display:block;margin-bottom:1rem;}
-    .footer__brand-name span{color:var(--pink-light);}
-    .footer__brand p{font-size:0.9rem;color:rgba(255,255,255,0.55);line-height:1.8;max-width:280px;}
-    .footer__socials{display:flex;gap:0.75rem;margin-top:1.5rem;}
-    .footer__social{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;transition:var(--transition);}
-    .footer__social:hover{background:var(--pink-deep);transform:translateY(-2px);}
-    .footer__social svg{width:16px;height:16px;stroke:white;}
-    .footer__heading{font-family:var(--font-accent);font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--white);margin-bottom:1.5rem;}
-    .footer__links li{margin-bottom:0.75rem;}
-    .footer__links a{font-size:0.9rem;color:rgba(255,255,255,0.55);transition:color var(--transition);}
-    .footer__links a:hover{color:var(--pink-light);}
-    .footer__bottom{border-top:1px solid rgba(255,255,255,0.08);padding:1.5rem 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
-    .footer__bottom p{font-size:0.82rem;color:rgba(255,255,255,0.4);}
-    .footer__bottom a{color:var(--pink-light);}
-    /* MISC */
-    .scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--pink-deep),var(--gold));z-index:10000;width:0%;}
-    [data-reveal]{opacity:0;transform:translateY(40px);transition:opacity 0.75s ease,transform 0.75s ease;}
-    [data-reveal].revealed{opacity:1;transform:translateY(0);}
-    [data-delay="100"]{transition-delay:0.1s;}
-    [data-delay="200"]{transition-delay:0.2s;}
-    @keyframes fadeDown{from{opacity:0;transform:translateY(-30px);}to{opacity:1;transform:translateY(0);}}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-    @keyframes spin{to{transform:rotate(360deg);}}
-    @keyframes pulseGreen{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}50%{box-shadow:0 0 0 14px rgba(37,211,102,0.2);}}
-    @media(max-width:1024px){.footer__grid{grid-template-columns:1fr 1fr;}}
-    @media(max-width:768px){.section{padding:4rem 0;}.footer__grid{grid-template-columns:1fr;}.nav__menu{display:none;}.nav__hamburger{display:flex;}.nav__drawer{display:flex;}.footer__bottom{flex-direction:column;text-align:center;}}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important;}[data-reveal]{opacity:1;transform:none;}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Shop b_lit hairs — Premium virgin human hair wigs, bundles, frontals and extensions. Delivered across Ghana.">
+<title>Shop — b_lit hairs | Luxury Hair, Ghana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pk:#b5436a;--pk2:#d4698b;--pkl:#fdf0f4;--pkb:rgba(181,67,106,0.15);
+  --gold:#c9a96e;--dark:#1a1a1a;--white:#fff;--cream:#fdfaf8;--smoke:#6b5f70;--mist:#a89eb0;--fog:#ece6ee;
+  --txt:#2d2d2d;--txt2:#555;--txt3:#888;
+  --gr:#16a34a;--grb:#dcfce7;
+  --r:10px;--rl:16px;--rxl:28px;
+  --sh:0 4px 24px rgba(181,67,106,0.10);--shd:0 16px 56px rgba(181,67,106,0.22);
+  --f:'Poppins',sans-serif;--fa:'Montserrat',sans-serif;--fd:'Playfair Display',serif;
+  --tr:.35s cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:var(--f);background:var(--white);color:var(--txt);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;height:auto;display:block;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+h1,h2,h3,h4{font-family:var(--fd);line-height:1.25;color:var(--dark);}
+h1{font-size:clamp(2.2rem,5vw,4rem);}
+h2{font-size:clamp(1.6rem,4vw,2.8rem);}
+h3{font-size:clamp(1.1rem,2.5vw,1.6rem);}
+p{color:var(--txt2);}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.1rem 0;transition:var(--tr);}
+.nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:.8rem 0;box-shadow:0 4px 32px rgba(181,67,106,.1);}
+.nav--dark{background:var(--white);box-shadow:0 2px 20px rgba(181,67,106,.08);}
+.nav--dark .nav-logo-text,.nav--dark .nav-link{color:var(--dark);}
+.nav--dark .hamburger span{background:var(--dark);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:.75rem;}
+.nav-logo img{width:42px;height:42px;border-radius:50%;object-fit:cover;}
+.nav-logo-text{font-family:var(--fd);font-size:1.3rem;font-weight:700;color:var(--dark);}
+.nav-logo-text span{color:var(--pk);}
+.nav-menu{display:flex;align-items:center;gap:2.5rem;}
+.nav-link{font-family:var(--fa);font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dark);position:relative;transition:color var(--tr);}
+.nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--pk2);transition:width var(--tr);}
+.nav-link:hover::after,.nav-link.active::after{width:100%;}
+.nav-link.active{color:var(--pk2);}
+.nav-cta{margin-left:.5rem;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--dark);border-radius:2px;transition:var(--tr);}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.drawer{display:none;position:fixed;inset:0;background:var(--white);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;transform:translateX(100%);transition:transform .6s cubic-bezier(.4,0,.2,1);}
+.drawer.open{transform:translateX(0);}
+.drawer .nav-link{color:var(--dark);font-size:1.3rem;letter-spacing:.15em;}
+
+/* CONTAINER */
+.container{width:100%;max-width:1240px;margin:0 auto;padding:0 1.5rem;}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.82rem 2rem;border-radius:999px;font-family:var(--fa);font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:none;position:relative;overflow:hidden;transition:var(--tr);}
+.btn-primary{background:linear-gradient(135deg,var(--pk),var(--pk2));color:var(--white);box-shadow:0 4px 20px rgba(181,67,106,.4);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(181,67,106,.5);}
+.btn-outline{background:transparent;border:2px solid var(--pk);color:var(--pk);}
+.btn-outline:hover{background:var(--pk);color:var(--white);transform:translateY(-2px);}
+.btn-lg{padding:1rem 2.6rem;font-size:.9rem;}
+
+/* PAGE HERO */
+.page-hero{padding:8rem 0 4rem;position:relative;overflow:hidden;background:var(--dark);text-align:center;}
+.page-hero::before{content:'';position:absolute;inset:0;background:url('assets/images/belinda.jpeg') center 30%/cover no-repeat;opacity:.18;}
+.page-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,10,18,.8),rgba(181,67,106,.15));}
+.page-hero-inner{position:relative;z-index:1;}
+.page-hero h1{color:var(--white);margin-bottom:1rem;}
+.page-hero h1 em{font-style:italic;color:rgba(242,196,212,1);}
+.page-hero p{color:rgba(255,255,255,.72);font-size:1.05rem;max-width:500px;margin:0 auto;}
+.section-label{font-family:var(--fa);font-size:.72rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--pk);display:block;margin-bottom:.75rem;}
+
+/* SCROLL PROGRESS */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--pk),var(--gold));z-index:10000;width:0%;transition:width .1s linear;}
+
+/* FILTER BAR */
+.filter-bar{padding:2.5rem 0 .5rem;}
+.filter-bar-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.filter-pills{display:flex;flex-wrap:wrap;gap:.65rem;}
+.filter-pill{padding:.48rem 1.35rem;border-radius:999px;font-family:var(--fa);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;background:var(--white);border:2px solid rgba(181,67,106,.2);color:var(--txt2);transition:var(--tr);}
+.filter-pill:hover,.filter-pill.active{background:var(--pk);border-color:var(--pk);color:var(--white);}
+.product-count{font-family:var(--fa);font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);}
+
+/* PRODUCTS GRID */
+.products-section{padding:1.5rem 0 5rem;}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:2rem;}
+.product-card{background:var(--white);border-radius:var(--rl);overflow:hidden;box-shadow:var(--sh);cursor:pointer;transition:var(--tr);position:relative;border:1px solid rgba(181,67,106,.08);}
+.product-card:hover{transform:translateY(-8px);box-shadow:var(--shd);}
+.product-card-badge{position:absolute;top:1rem;left:1rem;background:var(--pk);color:var(--white);font-family:var(--fa);font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .78rem;border-radius:999px;z-index:2;}
+.product-card-img{position:relative;overflow:hidden;height:300px;background:linear-gradient(145deg,var(--pkl),#ecdde5);}
+.product-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.product-card:hover .product-card-img img{transform:scale(1.06);}
+.product-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(181,67,106,.55) 0%,transparent 60%);opacity:0;transition:var(--tr);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1.5rem;}
+.product-card:hover .product-card-overlay{opacity:1;}
+.product-card-overlay span{color:var(--white);font-family:var(--fa);font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+.product-card-body{padding:1.35rem;}
+.product-card-type{font-size:.76rem;color:var(--txt3);font-family:var(--fa);letter-spacing:.05em;margin-bottom:.35rem;}
+.product-card-name{font-family:var(--fd);font-size:1.1rem;font-weight:700;color:var(--dark);margin-bottom:.75rem;}
+.product-card-footer{display:flex;align-items:center;justify-content:space-between;}
+.product-card-price{font-family:var(--fd);font-size:1.2rem;font-weight:700;color:var(--pk);}
+.product-card-btn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--pk),var(--pk2));display:flex;align-items:center;justify-content:center;transition:var(--tr);border:none;cursor:pointer;box-shadow:0 2px 10px rgba(181,67,106,.3);}
+.product-card-btn:hover{transform:rotate(15deg) scale(1.1);}
+.product-card-btn svg{width:16px;height:16px;stroke:white;}
+
+/* STATES */
+.loading-state{grid-column:1/-1;text-align:center;padding:4rem 0;}
+.loading-spinner{width:40px;height:40px;border:3px solid var(--pkl);border-top-color:var(--pk);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 1rem;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.empty-state{grid-column:1/-1;text-align:center;padding:4rem 0;color:var(--txt3);}
+.empty-state svg{width:48px;height:48px;stroke:var(--txt3);opacity:.35;margin:0 auto 1rem;}
+
+/* FAQ */
+.faq-section{background:var(--pkl);padding:5rem 0;}
+.faq-inner{max-width:720px;margin:0 auto;}
+.section-header{text-align:center;margin-bottom:3rem;}
+.section-header h2{margin-bottom:.5rem;}
+.divider{width:55px;height:3px;background:linear-gradient(90deg,var(--pk),var(--pk2));border-radius:2px;margin:1rem auto 0;}
+.faq-item{background:var(--white);border-radius:var(--rl);margin-bottom:.75rem;box-shadow:0 2px 12px rgba(181,67,106,.08);overflow:hidden;}
+.faq-q{display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;cursor:pointer;user-select:none;transition:background var(--tr);}
+.faq-q:hover{background:var(--pkl);}
+.faq-q span{flex:1;font-family:var(--fd);font-weight:700;font-size:1rem;color:var(--dark);}
+.faq-q svg{width:18px;height:18px;stroke:var(--pk);flex-shrink:0;transition:transform var(--tr);}
+.faq-item.open .faq-q svg{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-a-inner{padding:.25rem 1.5rem 1.5rem;font-size:.92rem;color:var(--txt2);line-height:1.8;}
+
+/* CTA BANNER */
+.cta-banner{background:var(--dark);padding:5rem 0;position:relative;overflow:hidden;text-align:center;}
+.cta-banner::before{content:'';position:absolute;inset:0;background:url('assets/images/belinda.jpeg') center/cover no-repeat;opacity:.1;}
+.cta-banner-inner{position:relative;z-index:1;}
+.cta-banner h2{color:var(--white);margin-bottom:1rem;}
+.cta-banner h2 em{font-style:italic;color:rgba(242,196,212,1);}
+.cta-banner p{color:rgba(255,255,255,.68);margin-bottom:2rem;max-width:480px;margin-left:auto;margin-right:auto;}
+
+/* FOOTER */
+.footer{background:var(--dark);padding:4.5rem 0 0;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:3rem;margin-bottom:4rem;}
+.footer-brand-name{font-family:var(--fd);font-size:1.4rem;font-weight:700;color:var(--white);display:block;margin-bottom:.9rem;}
+.footer-brand-name span{color:rgba(242,196,212,1);}
+.footer-brand p{font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.8;max-width:270px;}
+.footer-socials{display:flex;gap:.65rem;margin-top:1.25rem;}
+.footer-social{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;transition:var(--tr);}
+.footer-social:hover{background:var(--pk);transform:translateY(-2px);}
+.footer-social svg{width:15px;height:15px;stroke:white;}
+.footer-heading{font-family:var(--fa);font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--white);margin-bottom:1.35rem;}
+.footer-links li{margin-bottom:.7rem;}
+.footer-links a{font-size:.88rem;color:rgba(255,255,255,.5);transition:color var(--tr);}
+.footer-links a:hover{color:rgba(242,196,212,1);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:1.35rem 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-bottom p{font-size:.8rem;color:rgba(255,255,255,.38);}
+.footer-bottom a{color:rgba(242,196,212,1);}
+
+/* WHATSAPP FLOAT */
+.wa-float{position:fixed;bottom:2rem;right:2rem;z-index:900;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(37,211,102,.5);transition:var(--tr);animation:wa-pulse 2.5s infinite;}
+.wa-float:hover{transform:scale(1.12);}
+.wa-float svg{width:28px;height:28px;fill:white;}
+@keyframes wa-pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55);}70%{box-shadow:0 0 0 14px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
+
+/* REVEAL */
+[data-reveal]{opacity:0;transition:opacity .75s ease,transform .75s ease;}
+[data-reveal="up"]{transform:translateY(40px);}
+[data-reveal].revealed{opacity:1;transform:translate(0);}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-menu{display:none;}
+  .hamburger{display:flex;}
+  .drawer{display:flex;}
+  .footer-grid{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+  .filter-bar-inner{flex-direction:column;align-items:flex-start;}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}[data-reveal]{opacity:1;transform:none;}}
+</style>
 </head>
 <body>
 
-<div class="scroll-progress" id="scroll-bar"></div>
+<div class="scroll-progress" id="scroll-progress"></div>
 
 <header>
   <nav class="nav nav--dark" id="main-nav">
     <div class="container">
-      <div class="nav__inner">
-        <a href="index.html" class="nav__logo">
-          <img src="assets/images/belinda.jpeg" alt="b_lit hairs logo" onerror="this.style.display='none'">
-          <span class="nav__logo-text">b_lit <span>hairs</span></span>
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="assets/images/belinda.jpeg" alt="b_lit hairs" onerror="this.style.display='none'">
+          <span class="nav-logo-text">b_lit <span>hairs</span></span>
         </a>
-        <ul class="nav__menu">
-          <li><a href="index.html" class="nav__link">Home</a></li>
-          <li><a href="shop.html" class="nav__link active">Shop</a></li>
-          <li><a href="services.html" class="nav__link">Services</a></li>
-          <li><a href="about.html" class="nav__link">About</a></li>
-          <li><a href="contact.html" class="nav__link">Contact</a></li>
-          <li class="nav__cta"><a href="shop.html" class="btn btn--primary">Shop Now</a></li>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="shop.html" class="nav-link active">Shop</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li class="nav-cta"><a href="shop.html" class="btn btn-primary" style="padding:.6rem 1.4rem;font-size:.75rem;">Shop Now</a></li>
         </ul>
-        <button class="nav__hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </nav>
-  <div class="nav__drawer" id="nav-drawer">
-    <a href="index.html" class="nav__link">Home</a>
-    <a href="shop.html" class="nav__link">Shop</a>
-    <a href="services.html" class="nav__link">Services</a>
-    <a href="about.html" class="nav__link">About</a>
-    <a href="contact.html" class="nav__link">Contact</a>
-    <a href="shop.html" class="btn btn--primary btn--lg">Shop Now</a>
+  <div class="drawer" id="drawer">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="shop.html" class="nav-link">Shop</a>
+    <a href="services.html" class="nav-link">Services</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+    <a href="shop.html" class="btn btn-primary btn-lg">Shop Now</a>
   </div>
 </header>
 
 <div class="page-hero">
-  <div class="page-hero__inner">
-    <span class="section-label">Our Collection</span>
-    <h1>Shop <em>Luxury Hair</em></h1>
-    <p>100% virgin human hair — bundles, wigs, frontals &amp; extensions. Pick your perfect match.</p>
+  <div class="page-hero-inner">
+    <div class="container">
+      <span class="section-label" style="color:rgba(242,196,212,.8);">Our Collection</span>
+      <h1>Shop <em>Luxury Hair</em></h1>
+      <p>100% virgin human hair — bundles, wigs, frontals &amp; extensions. Pick your perfect match.</p>
+    </div>
   </div>
 </div>
 
 <main>
-  <!-- SHOP SECTION -->
-  <section class="section">
+  <div class="container">
+    <div class="filter-bar">
+      <div class="filter-bar-inner">
+        <div class="filter-pills" id="filter-pills">
+          <button class="filter-pill active" data-filter="all">All Products</button>
+          <button class="filter-pill" data-filter="wigs">Wigs</button>
+          <button class="filter-pill" data-filter="bundles">Bundles</button>
+          <button class="filter-pill" data-filter="frontals">Frontals</button>
+          <button class="filter-pill" data-filter="extensions">Extensions</button>
+        </div>
+        <div class="product-count" id="product-count"></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="products-section">
     <div class="container">
-      <div class="text-center" data-reveal="up">
-        <span class="section-label">Filter by Category</span>
-      </div>
-      <div class="shop-filters" data-reveal="up" data-delay="100">
-        <button class="filter-btn active" data-filter="all">All Products</button>
-        <button class="filter-btn" data-filter="wigs">Wigs</button>
-        <button class="filter-btn" data-filter="bundles">Bundles</button>
-        <button class="filter-btn" data-filter="frontals">Frontals</button>
-        <button class="filter-btn" data-filter="extensions">Extensions</button>
-      </div>
       <div class="products-grid" id="products-grid">
-        <div class="state-full">
-          <div class="spinner"></div>
-          <span class="spinner-label">Loading products…</span>
+        <div class="loading-state">
+          <div class="loading-spinner"></div>
+          <p style="color:var(--txt3);font-size:.9rem;">Loading products…</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section class="section section--pink">
+  <section class="faq-section">
     <div class="container">
-      <div style="max-width:720px;margin:0 auto;">
-        <div class="text-center" data-reveal="up">
+      <div class="faq-inner">
+        <div class="section-header" data-reveal="up">
           <span class="section-label">Got Questions?</span>
-          <h2 style="margin-bottom:0.5rem;">Frequently Asked <em style="color:var(--pink-deep);">Questions</em></h2>
+          <h2>Frequently Asked Questions</h2>
           <div class="divider"></div>
         </div>
-        <div style="margin-top:3rem;">
+        <div id="faq-list">
           <div class="faq-item">
-            <div class="faq-question">Is your hair 100% human hair?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-            <div class="faq-answer">Yes! All b_lit hairs products are made from 100% virgin human hair — no synthetic blends, no shortcuts. Fully cuticle-aligned for maximum longevity and natural look.</div>
+            <div class="faq-q"><span>Is your hair 100% human hair?</span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            <div class="faq-a"><div class="faq-a-inner">Yes! All b_lit hairs products are made from 100% virgin human hair — no synthetic blends, no shortcuts. Fully cuticle-aligned for maximum longevity and natural look.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-question">Do you deliver across Ghana?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-            <div class="faq-answer">Absolutely. We deliver to all regions across Ghana including Accra, Kumasi, Takoradi, Tamale, Cape Coast and beyond. Chat with us on WhatsApp for delivery timelines and fees.</div>
+            <div class="faq-q"><span>Do you deliver across Ghana?</span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            <div class="faq-a"><div class="faq-a-inner">Absolutely. We deliver to all regions across Ghana — Accra, Kumasi, Takoradi, Tamale, Cape Coast and beyond. Chat with us on WhatsApp for delivery timelines and fees.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-question">Can I colour or heat-style the hair?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-            <div class="faq-answer">Yes — because it's 100% virgin human hair, you can colour, bleach, flat iron, curl and style it just like your natural hair. We recommend professional colouring for best results.</div>
+            <div class="faq-q"><span>Can I colour or heat-style the hair?</span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            <div class="faq-a"><div class="faq-a-inner">Yes — because it's 100% virgin human hair, you can colour, bleach, flat iron, curl and style it just like your natural hair. We recommend professional colouring for best results.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-question">How long does the hair last?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-            <div class="faq-answer">With proper care and maintenance, our hair can last 1–2 years (bundles) and 6–12 months for wigs used daily. We'll share our care guide with every order.</div>
+            <div class="faq-q"><span>How do I place an order?</span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            <div class="faq-a"><div class="faq-a-inner">Click any product card, then tap "Buy on WhatsApp". A pre-filled message opens in WhatsApp — just send it and our team will confirm your order, size and delivery details immediately.</div></div>
           </div>
           <div class="faq-item">
-            <div class="faq-question">How do I place an order?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-            <div class="faq-answer">Simply click any product card to open a pre-filled WhatsApp message to our team. We'll confirm your order, size and payment instantly.</div>
+            <div class="faq-q"><span>How long does the hair last?</span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            <div class="faq-a"><div class="faq-a-inner">With proper care, our bundles last 1–2 years and wigs last 6–12 months with daily use. We include a free care guide with every order.</div></div>
           </div>
         </div>
       </div>
@@ -261,13 +292,12 @@
 
   <!-- CTA -->
   <section class="cta-banner">
-    <div class="container">
-      <div class="cta-banner__inner" data-reveal="up">
-        <span class="section-label" style="color:var(--gold-light);">Not Sure What to Pick?</span>
+    <div class="cta-banner-inner">
+      <div class="container">
+        <span class="section-label" style="color:rgba(201,169,110,.8);">Not Sure What to Pick?</span>
         <h2>Let Us Help You Find <em>Your Perfect Hair</em></h2>
         <p>Our experts are on WhatsApp ready to guide you to the perfect match for your face shape, skin tone and lifestyle.</p>
-        <a href="https://wa.me/233558590198?text=Hello%20b_lit%20hairs!%20I%20need%20help%20choosing%20the%20right%20hair%20for%20me%20%F0%9F%92%95"
-           class="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer">Get Hair Advice</a>
+        <a href="https://wa.me/233558590198?text=Hello%20b_lit%20hairs!%20%F0%9F%92%95%20I%20need%20help%20choosing%20the%20right%20hair%20product%20for%20me.%20Can%20you%20guide%20me%3F" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Get Hair Advice on WhatsApp</a>
       </div>
     </div>
   </section>
@@ -275,22 +305,18 @@
 
 <footer class="footer">
   <div class="container">
-    <div class="footer__grid">
-      <div class="footer__brand">
-        <span class="footer__brand-name">b_lit <span>hairs</span></span>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="footer-brand-name">b_lit <span>hairs</span></span>
         <p>Ghana's premium luxury hair brand. Bringing world-class virgin human hair to women who demand the very best.</p>
-        <div class="footer__socials">
-          <a href="#" class="footer__social" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </a>
-          <a href="https://wa.me/233558590198" class="footer__social" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="white" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          </a>
+        <div class="footer-socials">
+          <a href="#" class="footer-social" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="https://wa.me/233558590198" class="footer-social" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" style="stroke:none;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
         </div>
       </div>
-      <nav>
-        <h4 class="footer__heading">Shop</h4>
-        <ul class="footer__links">
+      <nav aria-label="Shop links">
+        <h4 class="footer-heading">Shop</h4>
+        <ul class="footer-links">
           <li><a href="shop.html">All Products</a></li>
           <li><a href="shop.html?filter=wigs">Wigs</a></li>
           <li><a href="shop.html?filter=bundles">Bundles</a></li>
@@ -298,32 +324,31 @@
           <li><a href="shop.html?filter=extensions">Extensions</a></li>
         </ul>
       </nav>
-      <nav>
-        <h4 class="footer__heading">Company</h4>
-        <ul class="footer__links">
+      <nav aria-label="Company links">
+        <h4 class="footer-heading">Company</h4>
+        <ul class="footer-links">
           <li><a href="about.html">About Us</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
       <div>
-        <h4 class="footer__heading">Contact</h4>
-        <ul class="footer__links">
-          <li><a href="https://wa.me/233558590198" target="_blank" rel="noopener noreferrer">+233 53 960 6171</a></li>
+        <h4 class="footer-heading">Contact</h4>
+        <ul class="footer-links">
+          <li><a href="https://wa.me/233558590198" target="_blank" rel="noopener noreferrer">+233 27 352 1007</a></li>
           <li><a href="mailto:bindalotsu644@gmail.com">bindalotsu644@gmail.com</a></li>
-          <li style="color:rgba(255,255,255,0.55);font-size:0.9rem;">Accra, Ghana</li>
+          <li style="color:rgba(255,255,255,.4);font-size:.85rem;">Accra, Ghana 🇬🇭</li>
         </ul>
       </div>
     </div>
-    <div class="footer__bottom">
-      <p>© <span id="year"></span> b_lit hairs. All rights reserved. Made with ❤️ in <strong>Ghana</strong>.</p>
+    <div class="footer-bottom">
+      <p>© <span id="footer-year"></span> b_lit hairs. All rights reserved. Made with ❤️ in <strong>Ghana</strong>.</p>
       <p><a href="#">Privacy Policy</a></p>
     </div>
   </div>
 </footer>
 
-<a href="https://wa.me/233558590198?text=Hello%20b_lit%20hairs!%20%F0%9F%92%95"
-   class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+<a href="https://wa.me/233558590198?text=Hello%20b_lit%20hairs!%20I%20need%20help%20choosing%20hair%20%F0%9F%92%95" class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
@@ -331,169 +356,308 @@
 'use strict';
 
 /* ── CONFIG ── */
-const SUPABASE_URL      = 'https://rtoobqqhwdyuzrjktxoc.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0b29icXFod2R5dXpyamt0eG9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNTU5NjUsImV4cCI6MjA5MjczMTk2NX0.7xWA1wIfP51PEhgR1d_6v0YCqiQJzxpMekPp3Zj_gXM';
-const WA_NUMBER         = '233558590198';
+const SUPABASE_URL = 'https://rtoobqqhwdyuzrjktxoc.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0b29icXFod2R5dXpyamt0eG9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNTU5NjUsImV4cCI6MjA5MjczMTk2NX0.7xWA1wIfP51PEhgR1d_6v0YCqiQJzxpMekPp3Zj_gXM';
+const WA = '233558590198';
 
-/* Only request the columns the product card needs — avoids pulling large image arrays */
-const PRODUCT_COLS = 'id,name,category,price,currency,badge,hair_type,texture,image,whatsapp_msg,sort_order';
+/* ── FALLBACK PRODUCTS (shown when Supabase not connected) ── */
+const FALLBACK = [
+  {id:'BLH001',name:'Brazilian Straight Bundle',category:'bundles',price:420,currency:'GHS',badge:'Best Seller',hair_type:'Brazilian Virgin',texture:'Straight',image:'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80',images:[],whatsapp_msg:"Hello b_lit hairs! \uD83D\uDC95 I'm interested in the *Brazilian Straight Bundle*. Please let me know the price and how to order."},
+  {id:'BLH002',name:'Body Wave Wig',category:'wigs',price:850,currency:'GHS',badge:'New Arrival',hair_type:'Peruvian Virgin',texture:'Body Wave',image:'https://images.unsplash.com/photo-1559547080-ce1bec3b3785?w=800&q=80',images:[],whatsapp_msg:"Hello b_lit hairs! \uD83D\uDC95 I'm interested in the *Body Wave Wig*. Please let me know the price and how to order."},
+  {id:'BLH003',name:'Deep Curly Closure Wig',category:'wigs',price:780,currency:'GHS',badge:'Hot Pick',hair_type:'Malaysian Virgin',texture:'Deep Curly',image:'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&q=80',images:[],whatsapp_msg:"Hello b_lit hairs! \uD83D\uDC95 I'm interested in the *Deep Curly Closure Wig*. Please let me know the price and how to order."},
+  {id:'BLH004',name:'Kinky Straight Bundle',category:'bundles',price:380,currency:'GHS',badge:null,hair_type:'Indian Virgin',texture:'Kinky Straight',image:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80',images:[],whatsapp_msg:"Hello b_lit hairs! \uD83D\uDC95 I'm interested in the *Kinky Straight Bundle*. Please let me know the price and how to order."},
+  {id:'BLH005',name:'Loose Wave Full Wig',category:'wigs',price:920,currency:'GHS',badge:'Luxury Pick',hair_type:'Brazilian Virgin',texture:'Loose Wave',image:'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=800&q=80',images:[],whatsapp_msg:"Hello b_lit hairs! \uD83D\uDC95 I'm interested in the *Loose Wave Full Wig*. Please let me know the price and how to order."},
+  {id:'BLH006',name:'Water Wave Frontal Bundle',category:'frontals',price:650,currency:'GHS',badge:null,hair_type:'Malaysian Virgin',texture:'Water Wave',image:'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&q=80',images:[],whatsapp_msg:"Hello b_lit hairs! \uD83D\uDC95 I'm interested in the *Water Wave Frontal Bundle*. Please let me know the price and how to order."},
+  {id:'BLH007',name:'Blonde Body Wave Wig',category:'wigs',price:1100,currency:'GHS',badge:'Premium',hair_type:'Brazilian Virgin',texture:'Body Wave',image:'https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=800&q=80',images:[],whatsapp_msg:"Hello b_lit hairs! \uD83D\uDC95 I'm interested in the *Blonde Body Wave Wig* (#613). Please let me know the price and how to order."},
+  {id:'BLH008',name:'Clip-In Extensions Set',category:'extensions',price:290,currency:'GHS',badge:null,hair_type:'Remy Human Hair',texture:'Straight',image:'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80',images:[],whatsapp_msg:"Hello b_lit hairs! \uD83D\uDC95 I'm interested in the *Clip-In Extensions Set*. Please let me know the price and how to order."},
+];
 
-let ALL_PRODUCTS = [];
+/* ── STATE ── */
+var allProducts = [];
+var currentFilter = 'all';
 
-/* ── FETCH ── */
+/* ── SUPABASE FETCH ── */
 async function fetchProducts() {
-  const res = await fetch(
-    `${SUPABASE_URL}/rest/v1/products?select=${PRODUCT_COLS}&is_visible=eq.true&order=sort_order.asc,created_at.desc`,
-    { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
-  );
-  if (!res.ok) throw new Error(`${res.status}`);
-  return res.json();
+  try {
+    var res = await fetch(SUPABASE_URL + '/rest/v1/products?select=*&is_visible=eq.true&order=sort_order.asc,created_at.desc', {
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json'
+      }
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    var data = await res.json();
+    return Array.isArray(data) && data.length > 0 ? data : null;
+  } catch(e) {
+    console.warn('Supabase not connected, using fallback products:', e.message);
+    return null;
+  }
+}
+
+/* ── HELPERS ── */
+function formatPrice(price, currency) {
+  return (currency || 'GHS') + ' ' + Number(price || 0).toLocaleString();
+}
+
+function getImageSrc(product) {
+  /* Works for both Supabase Storage URLs and base64 images */
+  if (product.image && product.image.length > 3) return product.image;
+  if (product.images && Array.isArray(product.images) && product.images.length > 0 && product.images[0]) return product.images[0];
+  return 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=75';
+}
+
+function buildWAUrl(product) {
+  var msg = product.whatsapp_msg || ("Hello b_lit hairs! \uD83D\uDC95 I'm interested in the *" + product.name + "*. Please let me know the price and how to order.");
+  return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
 }
 
 /* ── RENDER ── */
 function renderProducts(list) {
-  const grid = document.getElementById('products-grid');
-  grid.innerHTML = '';
+  var grid = document.getElementById('products-grid');
+  var countEl = document.getElementById('product-count');
 
-  /* No products yet — clean empty state, no fake data */
   if (!list || !list.length) {
-    grid.innerHTML = `
-      <div class="state-full">
-        <span class="icon">🛍️</span>
-        <h3>No Products Yet</h3>
-        <p>Our collection is being curated. Check back soon or WhatsApp us directly to ask about availability.</p>
-        <a href="https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hello b_lit hairs! 💕 I\'d like to know about available products.')}"
-           class="btn btn--primary" target="_blank" rel="noopener noreferrer">Ask on WhatsApp</a>
-      </div>`;
+    grid.innerHTML = '<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg><p>No products found in this category.</p></div>';
+    if (countEl) countEl.textContent = '';
     return;
   }
 
-  list.forEach((p, i) => {
-    /* Guard: never try to render base64 as an img src */
-    const hasImg = p.image && p.image.startsWith('http');
-    const placeholder = `<div class="product-card__img-placeholder"><span>💇</span><p>${p.category || 'hair'}</p></div>`;
+  if (countEl) countEl.textContent = list.length + ' product' + (list.length !== 1 ? 's' : '');
 
-    const card = document.createElement('article');
-    card.className = 'product-card';
-    card.style.animationDelay = `${i * 0.07}s`;
-    card.innerHTML = `
-      ${p.badge ? `<span class="product-card__badge">${p.badge}</span>` : ''}
-      <div class="product-card__img-wrap">
-        ${hasImg
-          ? `<img src="${p.image}" alt="${p.name}" loading="lazy"
-                  onerror="this.parentElement.innerHTML='${placeholder.replace(/'/g, '&#39;')}';">`
-          : placeholder}
-        <div class="product-card__overlay"><span>Order on WhatsApp</span></div>
-      </div>
-      <div class="product-card__body">
-        <div class="product-card__type">${[p.hair_type, p.texture].filter(Boolean).join(' · ')}</div>
-        <h3 class="product-card__name">${p.name}</h3>
-        <div class="product-card__footer">
-          <div class="product-card__price">${p.currency || 'GHS'} ${Number(p.price || 0).toLocaleString()}</div>
-          <button class="product-card__btn" aria-label="Order ${p.name}">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-            </svg>
-          </button>
-        </div>
-      </div>`;
+  var fallbackSrc = 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=75';
+  grid.innerHTML = list.map(function(p, i) {
+    var imgSrc = getImageSrc(p);
+    var waUrl = buildWAUrl(p);
+    return '<article class="product-card" onclick="goToProduct(\'' + p.id + '\')" role="listitem" style="animation:fadeUp .5s ' + (i * 0.07) + 's both;">' +
+      (p.badge ? '<span class="product-card-badge">' + p.badge + '</span>' : '') +
+      '<div class="product-card-img">' +
+        '<img src="' + imgSrc + '" alt="' + p.name + '" loading="lazy" onerror="this.src=\'' + fallbackSrc + '\'">' +
+        '<div class="product-card-overlay"><span>View Details</span></div>' +
+      '</div>' +
+      '<div class="product-card-body">' +
+        '<div class="product-card-type">' + (p.hair_type || '') + (p.hair_type && p.texture ? ' · ' : '') + (p.texture || '') + '</div>' +
+        '<h3 class="product-card-name">' + p.name + '</h3>' +
+        '<div class="product-card-footer">' +
+          '<div class="product-card-price">' + formatPrice(p.price, p.currency) + '</div>' +
+          '<button class="product-card-btn" onclick="event.stopPropagation();window.open(\'' + waUrl + '\',\'_blank\')" aria-label="Buy ' + p.name + ' on WhatsApp">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>' +
+          '</button>' +
+        '</div>' +
+      '</div>' +
+    '</article>';
+  }).join('');
+}
 
-    /* Clicking anywhere on the card opens WhatsApp */
-    card.addEventListener('click', () => {
-      const msg = p.whatsapp_msg ||
-        `Hello b_lit hairs! 💕 I'm interested in the *${p.name}* (GHS ${Number(p.price || 0).toLocaleString()}). Please share details and how to order.`;
-      window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
-    });
+function goToProduct(id) {
+  var product = allProducts.find(function(p) { return p.id === id; });
+  if (product) sessionStorage.setItem('selectedProduct', JSON.stringify(product));
+  window.location.href = 'product.html?id=' + id;
+}
 
-    grid.appendChild(card);
+/* ── FILTER ── */
+function applyFilter(filter) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-pill').forEach(function(btn) {
+    btn.classList.toggle('active', btn.dataset.filter === filter);
   });
+  var filtered = filter === 'all' ? allProducts : allProducts.filter(function(p) { return p.category === filter; });
+  renderProducts(filtered);
 }
 
 /* ── INIT ── */
 async function init() {
-  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-  /* Nav scroll effect */
-  const nav = document.getElementById('main-nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), {passive: true});
+  /* Nav scroll */
+  var nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
 
-  /* Scroll progress bar */
-  window.addEventListener('scroll', () => {
-    const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
-    document.getElementById('scroll-bar').style.width = pct + '%';
-  }, {passive: true});
+  /* Scroll progress */
+  var bar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', function() {
+    var pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    bar.style.width = Math.min(pct, 100) + '%';
+  }, { passive: true });
 
-  /* Mobile hamburger */
-  const hbtn   = document.getElementById('hamburger');
-  const drawer = document.getElementById('nav-drawer');
-  hbtn.addEventListener('click', () => {
-    const open = hbtn.classList.toggle('open');
+  /* Hamburger */
+  var hamburger = document.getElementById('hamburger');
+  var drawer = document.getElementById('drawer');
+  hamburger.addEventListener('click', function() {
+    var open = hamburger.classList.toggle('open');
     drawer.classList.toggle('open', open);
     document.body.style.overflow = open ? 'hidden' : '';
-    hbtn.setAttribute('aria-expanded', open);
+    hamburger.setAttribute('aria-expanded', open);
   });
-  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    hbtn.classList.remove('open');
-    drawer.classList.remove('open');
-    document.body.style.overflow = '';
-  }));
-
-  /* Handle URL filter param e.g. shop.html?filter=wigs */
-  const urlFilter = new URLSearchParams(window.location.search).get('filter');
-  if (urlFilter) {
-    document.querySelectorAll('.filter-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.filter === urlFilter || (urlFilter && b.dataset.filter === urlFilter));
-      if (b.dataset.filter === urlFilter) b.classList.add('active');
-      else b.classList.remove('active');
+  drawer.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      drawer.classList.remove('open');
+      document.body.style.overflow = '';
     });
+  });
+
+  /* Filter pills */
+  document.getElementById('filter-pills').addEventListener('click', function(e) {
+    var pill = e.target.closest('.filter-pill');
+    if (pill) applyFilter(pill.dataset.filter);
+  });
+
+  /* Check URL for filter param */
+  var urlFilter = new URLSearchParams(window.location.search).get('filter');
+
+  /* Load products from Supabase */
+  var supabaseData = await fetchProducts();
+  allProducts = supabaseData || FALLBACK;
+
+  /* Apply URL filter or show all */
+  if (urlFilter && ['wigs','bundles','frontals','extensions'].includes(urlFilter)) {
+    applyFilter(urlFilter);
+  } else {
+    applyFilter('all');
   }
-
-  /* Filter buttons */
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', function () {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      const cat = this.dataset.filter;
-      renderProducts(cat === 'all' ? ALL_PRODUCTS : ALL_PRODUCTS.filter(p => p.category === cat));
-    });
-  });
-
-  /* Load from Supabase — no fallback data */
-  try {
-    ALL_PRODUCTS = await fetchProducts();
-    const cat = urlFilter || 'all';
-    renderProducts(cat === 'all' ? ALL_PRODUCTS : ALL_PRODUCTS.filter(p => p.category === cat));
-  } catch (e) {
-    console.error('Product fetch error:', e);
-    document.getElementById('products-grid').innerHTML = `
-      <div class="state-full">
-        <span class="icon">⚠️</span>
-        <h3>Could Not Load Products</h3>
-        <p>There was a problem connecting to the database. Please try refreshing the page or contact us directly.</p>
-        <a href="https://wa.me/${WA_NUMBER}" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
-          Contact Us on WhatsApp
-        </a>
-      </div>`;
-  }
-
-  /* FAQ accordion */
-  document.querySelectorAll('.faq-question').forEach(q => {
-    q.addEventListener('click', function () {
-      const item   = this.closest('.faq-item');
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
-    });
-  });
 
   /* Scroll reveal */
-  const obs = new IntersectionObserver(entries => entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); }
-  }), {threshold: 0.1, rootMargin: '0px 0px -50px 0px'});
-  document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(function(el) { obs.observe(el); });
+
+  /* FAQ */
+  document.querySelectorAll('.faq-q').forEach(function(q) {
+    q.addEventListener('click', function() {
+      var item = q.closest('.faq-item');
+      var wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(i) { i.classList.remove('open'); });
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
 }
 
+/* fadeUp animation for product cards */
+var style = document.createElement('style');
+style.textContent = '@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}';
+document.head.appendChild(style);
+
 document.addEventListener('DOMContentLoaded', init);
+</script>
+
+<!-- CHATBOT -->
+<script>
+'use strict';
+(function() {
+  var KB = {
+    greet: ["Hello, gorgeous! \uD83D\uDC95 I'm Belinda. I see you're browsing our shop — ask me about any product, price, or how to order!", "Hey queen! \uD83D\uDC51 I'm Belinda. Need help choosing the right hair? Ask me anything!"],
+    prices: "Our price range:\n\n\u2022 Clip-In Extensions \u2014 GHS 290\n\u2022 Kinky Straight Bundle \u2014 GHS 380\n\u2022 Brazilian Straight Bundle \u2014 GHS 420\n\u2022 Water Wave Frontal Bundle \u2014 GHS 650\n\u2022 Deep Curly Wig \u2014 GHS 780\n\u2022 Body Wave Wig \u2014 GHS 850\n\u2022 Loose Wave Full Wig \u2014 GHS 920\n\u2022 Blonde Body Wave Wig \u2014 GHS 1,100",
+    order: "To order:\n\n1\uFE0F\u20E3 Click any product card above\n2\uFE0F\u20E3 Tap the arrow button or click the card\n3\uFE0F\u20E3 On the product page, tap 'Buy on WhatsApp'\n4\uFE0F\u20E3 Confirm details with our team\n5\uFE0F\u20E3 Pay via MoMo or bank transfer \uD83D\uDCE6",
+    delivery: "We deliver everywhere in Ghana! \uD83C\uDDEC\uD83C\uDDED\n\n\uD83D\uDCCD Accra & Tema \u2014 same-day or next-day\n\uD83D\uDCCD All other regions \u2014 1\u20133 business days\n\uD83D\uDC9A FREE delivery on orders above GHS 500\n\nWhatsApp +233 27 352 1007",
+    payment: "We accept:\n\n\uD83D\uDCF1 MTN Mobile Money\n\uD83D\uDCF1 Vodafone Cash\n\uD83D\uDCF1 AirtelTigo Money\n\uD83C\uDFE6 Bank Transfer\n\uD83D\uDCB5 Cash on Delivery (Accra)",
+    thanks: ["You're welcome! \uD83D\uDC95 Anything else?", "My pleasure, queen! \uD83D\uDC51"],
+    fallback: ["I'm not sure! \uD83D\uDE05 WhatsApp our team: +233 27 352 1007 \uD83D\uDC95", "WhatsApp us at +233 27 352 1007 for the best answer! \uD83D\uDC95"]
+  };
+  var INTENTS = [
+    {k:['hello','hi','hey','morning','afternoon','evening'],r:function(){return KB.greet[Math.floor(Math.random()*KB.greet.length)];}},
+    {k:['thank','thanks','perfect','awesome','great'],r:function(){return KB.thanks[Math.floor(Math.random()*KB.thanks.length)];}},
+    {k:['price','cost','how much','ghs','cedis','pricing'],r:function(){return KB.prices;}},
+    {k:['order','buy','purchase','how to'],r:function(){return KB.order;}},
+    {k:['deliver','delivery','ship','nationwide','arrive'],r:function(){return KB.delivery;}},
+    {k:['pay','payment','momo','mobile money'],r:function(){return KB.payment;}},
+  ];
+  function getReply(input) {
+    var t = input.toLowerCase();
+    for (var i = 0; i < INTENTS.length; i++) {
+      if (INTENTS[i].k.some(function(k){return t.includes(k);})) return INTENTS[i].r();
+    }
+    return KB.fallback[Math.floor(Math.random()*KB.fallback.length)];
+  }
+  var css = document.createElement('style');
+  css.textContent = '#blc-w{position:fixed;bottom:2rem;left:2rem;z-index:9500;font-family:\'Poppins\',sans-serif;}#blc-toggle{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#b5436a,#d4698b);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(181,67,106,.5);transition:transform .3s;position:relative;animation:blc-pulse 3s 3s infinite;}#blc-toggle:hover{transform:scale(1.1);}#blc-toggle.open{animation:none;}.blc-ti{position:absolute;transition:opacity .25s,transform .25s;}.blc-ti svg{width:26px;height:26px;fill:white;}.blc-ti-chat{opacity:1;}.blc-ti-x{opacity:0;transform:scale(0);}#blc-toggle.open .blc-ti-chat{opacity:0;transform:scale(0);}#blc-toggle.open .blc-ti-x{opacity:1;transform:scale(1);}#blc-panel{position:absolute;bottom:78px;left:0;width:340px;max-height:540px;background:#fff;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.18);display:flex;flex-direction:column;overflow:hidden;transform:scale(.85) translateY(16px);transform-origin:bottom left;opacity:0;pointer-events:none;transition:transform .3s cubic-bezier(.4,0,.2,1),opacity .25s;}#blc-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all;}.blc-head{background:linear-gradient(135deg,#b5436a,#8b2249);padding:.9rem 1.1rem;display:flex;align-items:center;gap:.75rem;flex-shrink:0;}.blc-av{width:42px;height:42px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid rgba(255,255,255,.25);}.blc-av img{width:100%;height:100%;object-fit:cover;}.blc-av-fb{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#fff;font-weight:700;flex-shrink:0;}.blc-ht h4{font-size:.9rem;font-weight:700;color:#fff;margin:0;}.blc-ht p{font-size:.65rem;color:rgba(255,255,255,.7);margin:0;}.blc-wa{margin-left:auto;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:background .2s;}.blc-wa:hover{background:rgba(255,255,255,.25);}.blc-wa svg{width:15px;height:15px;}.blc-msgs{flex:1;overflow-y:auto;padding:.9rem;background:#fdf8fa;display:flex;flex-direction:column;gap:.7rem;}.blc-msgs::-webkit-scrollbar{width:4px;}.blc-msgs::-webkit-scrollbar-thumb{background:#e8c4d4;border-radius:4px;}.blc-msg{display:flex;gap:.45rem;align-items:flex-end;animation:blc-in .3s ease;}.blc-msg.user{flex-direction:row-reverse;}.blc-mav{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;color:#fff;background:linear-gradient(135deg,#b5436a,#d4698b);}.blc-msg.user .blc-mav{background:linear-gradient(135deg,#777,#555);}.blc-bub{max-width:80%;padding:.6rem .85rem;border-radius:14px;font-size:.78rem;line-height:1.65;color:#2d2d2d;white-space:pre-line;}.blc-msg.bot .blc-bub{background:#fff;border-bottom-left-radius:3px;box-shadow:0 1px 6px rgba(0,0,0,.07);}.blc-msg.user .blc-bub{background:linear-gradient(135deg,#b5436a,#d4698b);color:#fff;border-bottom-right-radius:3px;}.blc-dots-wrap{background:#fff;border-radius:14px;border-bottom-left-radius:3px;padding:.6rem .85rem;box-shadow:0 1px 6px rgba(0,0,0,.07);display:flex;gap:4px;align-items:center;}.blc-dots-wrap span{width:6px;height:6px;background:#b5436a;border-radius:50%;opacity:.4;animation:blc-dt 1.2s infinite;}.blc-dots-wrap span:nth-child(2){animation-delay:.2s;}.blc-dots-wrap span:nth-child(3){animation-delay:.4s;}.blc-qr{display:flex;flex-wrap:wrap;gap:.35rem;padding:0 .9rem .7rem;background:#fdf8fa;}.blc-qbtn{padding:.28rem .75rem;border-radius:999px;background:#fff;border:1.5px solid rgba(181,67,106,.22);color:#b5436a;font-size:.68rem;font-weight:600;cursor:pointer;transition:all .2s;}.blc-qbtn:hover{background:#b5436a;border-color:#b5436a;color:#fff;}.blc-input-row{border-top:1px solid rgba(181,67,106,.1);padding:.65rem .9rem;display:flex;gap:.45rem;align-items:flex-end;background:#fff;flex-shrink:0;}.blc-in{flex:1;border:1.5px solid rgba(181,67,106,.18);border-radius:10px;padding:.5rem .8rem;font-family:\'Poppins\',sans-serif;font-size:.78rem;color:#2d2d2d;background:#fdf8fa;resize:none;outline:none;max-height:90px;line-height:1.5;transition:border-color .2s;}.blc-in:focus{border-color:#b5436a;background:#fff;}.blc-in::placeholder{color:#ccc;}.blc-send{width:34px;height:34px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#b5436a,#d4698b);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s,opacity .2s;}.blc-send:hover:not(:disabled){transform:scale(1.1);}.blc-send:disabled{opacity:.4;cursor:not-allowed;}.blc-send svg{width:13px;height:13px;fill:#fff;}.blc-ft{text-align:center;padding:.4rem;background:#fff;border-top:1px solid #f0e8ec;font-size:.62rem;color:#aaa;flex-shrink:0;}.blc-ft a{color:#25D366;font-weight:700;text-decoration:none;}@keyframes blc-pulse{0%{box-shadow:0 0 0 0 rgba(181,67,106,.5)}70%{box-shadow:0 0 0 14px rgba(181,67,106,0)}100%{box-shadow:0 0 0 0 rgba(181,67,106,0)}}@keyframes blc-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}@keyframes blc-dt{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:1}}@media(max-width:480px){#blc-w{left:1rem;bottom:1rem;}#blc-panel{width:calc(100vw - 2rem);max-height:72vh;}}';
+  document.head.appendChild(css);
+
+  var W = document.createElement('div'); W.id = 'blc-w';
+  W.innerHTML = '<div id="blc-panel" role="dialog" aria-label="b_lit hairs chat"><div class="blc-head"><div class="blc-av"><img src="assets/images/belinda.jpeg" alt="Belinda" onerror="this.parentElement.innerHTML=\'<div class=blc-av-fb>B</div>\'"></div><div class="blc-ht"><h4>Belinda \u2728</h4><p>b_lit hairs Assistant</p></div><a class="blc-wa" href="https://wa.me/233558590198" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a></div><div class="blc-msgs" id="blc-msgs" role="log" aria-live="polite"></div><div class="blc-qr" id="blc-qr"></div><div class="blc-input-row"><textarea class="blc-in" id="blc-in" placeholder="Ask Belinda anything\u2026" rows="1" maxlength="400"></textarea><button class="blc-send" id="blc-send" disabled><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button></div><div class="blc-ft">Or <a href="https://wa.me/233558590198" target="_blank" rel="noopener noreferrer">\uD83D\uDC9A WhatsApp us</a></div></div><button id="blc-toggle" aria-label="Open chat" aria-expanded="false"><span class="blc-ti blc-ti-chat"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></span><span class="blc-ti blc-ti-x"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></span></button>';
+  document.body.appendChild(W);
+
+  var QR = [
+    {l:'\uD83D\uDCB0 Prices', t:'What are your prices?'},
+    {l:'\uD83D\uDC51 Wigs', t:'Tell me about your wigs'},
+    {l:'\uD83D\uDCE6 Bundles', t:'Tell me about your bundles'},
+    {l:'\uD83D\uDE9A Delivery', t:'How does delivery work?'},
+    {l:'\uD83D\uDCF1 How to Order', t:'How do I place an order?'}
+  ];
+
+  var toggle = document.getElementById('blc-toggle');
+  var panel  = document.getElementById('blc-panel');
+  var msgs   = document.getElementById('blc-msgs');
+  var qr     = document.getElementById('blc-qr');
+  var input  = document.getElementById('blc-in');
+  var sendBtn = document.getElementById('blc-send');
+  var isOpen = false, started = false;
+
+  function ts() { return new Date().toLocaleTimeString('en-GH', {hour:'2-digit',minute:'2-digit'}); }
+  function scrollDown() { msgs.scrollTop = msgs.scrollHeight; }
+
+  function addMsg(text, role) {
+    var d = document.createElement('div'); d.className = 'blc-msg ' + role;
+    d.innerHTML = '<div class="blc-mav">' + (role==='bot'?'B':'U') + '</div><div><div class="blc-bub">' + text + '</div></div>';
+    msgs.appendChild(d); scrollDown();
+  }
+
+  function showTyping() {
+    var d = document.createElement('div'); d.className = 'blc-msg bot'; d.id = 'blc-ty';
+    d.innerHTML = '<div class="blc-mav">B</div><div class="blc-dots-wrap"><span></span><span></span><span></span></div>';
+    msgs.appendChild(d); scrollDown();
+  }
+  function hideTyping() { var e = document.getElementById('blc-ty'); if(e) e.remove(); }
+
+  function showQR() {
+    qr.innerHTML = '';
+    QR.forEach(function(q) {
+      var b = document.createElement('button'); b.className = 'blc-qbtn'; b.textContent = q.l;
+      b.addEventListener('click', function() { qr.innerHTML=''; send(q.t); });
+      qr.appendChild(b);
+    });
+  }
+
+  function send(text) {
+    var msg = (text || input.value).trim();
+    if (!msg) return;
+    input.value = ''; input.style.height = 'auto'; sendBtn.disabled = true; qr.innerHTML = '';
+    addMsg(msg, 'user');
+    showTyping();
+    setTimeout(function() {
+      hideTyping();
+      addMsg(getReply(msg), 'bot');
+    }, 600 + Math.random() * 500);
+  }
+
+  function openChat() {
+    isOpen = true; panel.classList.add('open'); toggle.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    if (!started) {
+      started = true;
+      setTimeout(function() {
+        addMsg(KB.greet[Math.floor(Math.random() * KB.greet.length)], 'bot');
+        showQR();
+      }, 300);
+    }
+    setTimeout(function() { input.focus(); }, 350);
+  }
+  function closeChat() {
+    isOpen = false; panel.classList.remove('open'); toggle.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+
+  toggle.addEventListener('click', function() { isOpen ? closeChat() : openChat(); });
+  input.addEventListener('input', function() {
+    sendBtn.disabled = !input.value.trim();
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 90) + 'px';
+  });
+  input.addEventListener('keydown', function(e) { if (e.key==='Enter' && !e.shiftKey) { e.preventDefault(); if(!sendBtn.disabled) send(); } });
+  sendBtn.addEventListener('click', function() { send(); });
+  document.addEventListener('keydown', function(e) { if (e.key==='Escape' && isOpen) closeChat(); });
+})();
 </script>
 </body>
 </html>

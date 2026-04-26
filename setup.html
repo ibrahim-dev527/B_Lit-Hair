@@ -1,380 +1,462 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Setup Guide — b_lit hairs</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --pink:#b5436a;--pink-mid:#d4698b;--pink-light:#fdf0f4;--pink-border:rgba(181,67,106,0.18);
-      --gold:#c9a96e;--charcoal:#1a1a1a;--white:#fff;--off:#f8f9fc;
-      --text:#2d2d2d;--text-mid:#555;--text-light:#888;
-      --green:#16a34a;--green-bg:#dcfce7;--green-border:#86efac;
-      --blue:#2563eb;--blue-bg:#dbeafe;
-      --orange:#d97706;--orange-bg:#fef3c7;
-      --red:#dc2626;--red-bg:#fee2e2;
-      --radius:10px;--radius-lg:18px;
-      --shadow:0 4px 24px rgba(0,0,0,0.08);--shadow-lg:0 12px 48px rgba(0,0,0,0.13);
-      --font:'Poppins',sans-serif;
-      --font-accent:'Montserrat',sans-serif;
-      --font-display:'Playfair Display',serif;
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;font-size:15px;}
-    body{font-family:var(--font);background:var(--off);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;}
-    a{text-decoration:none;color:inherit;}
-    img{max-width:100%;display:block;}
-    code{font-family:'Courier New',monospace;background:rgba(181,67,106,0.1);color:var(--pink);padding:0.15rem 0.45rem;border-radius:5px;font-size:0.88em;}
-    pre{background:var(--charcoal);color:#e2e8f0;border-radius:var(--radius-lg);padding:1.5rem 1.5rem 1.5rem 1.5rem;overflow-x:auto;font-family:'Courier New',monospace;font-size:0.82rem;line-height:1.85;margin:1rem 0;position:relative;}
-    .c-comment{color:#64748b;}
-    .c-key{color:#f472b6;}
-    .c-str{color:#86efac;}
-    .c-val{color:#fbbf24;}
-    .c-kw{color:#38bdf8;}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Setup Guide — b_lit hairs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@400;500;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pk:#b5436a;--pk2:#d4698b;--pkl:#fdf0f4;--pkb:rgba(181,67,106,0.15);
+  --gold:#c9a96e;--dark:#1a1a1a;--white:#fff;--bg:#f4f6fa;
+  --txt:#2d2d2d;--txt2:#555;--txt3:#888;
+  --gr:#16a34a;--grb:#dcfce7;--grbr:#86efac;
+  --rd:#dc2626;--rdb:#fee2e2;
+  --bl:#2563eb;--blb:#dbeafe;
+  --or:#d97706;--orb:#fef3c7;
+  --r:10px;--rl:18px;--rxl:28px;
+  --sh:0 2px 20px rgba(0,0,0,.08);--shd:0 8px 40px rgba(0,0,0,.14);
+  --f:'Poppins',sans-serif;--fa:'Montserrat',sans-serif;--fd:'Playfair Display',serif;
+  --tr:.3s cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:15px;scroll-behavior:smooth;}
+body{font-family:var(--f);background:var(--bg);color:var(--txt);-webkit-font-smoothing:antialiased;line-height:1.7;}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
 
-    /* ── HEADER ── */
-    .site-header{background:linear-gradient(135deg,var(--charcoal) 0%,#2d1520 100%);padding:4rem 0 3rem;text-align:center;position:relative;overflow:hidden;}
-    .site-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 65% 50%,rgba(181,67,106,0.2),transparent 70%);}
-    .site-header__inner{position:relative;z-index:1;}
-    .site-header__logo{font-family:var(--font-display);font-size:1.4rem;font-weight:700;color:rgba(255,255,255,0.45);margin-bottom:0.5rem;letter-spacing:0.05em;}
-    .site-header__logo span{color:var(--pink-mid);}
-    .site-header h1{font-family:var(--font-display);font-size:clamp(2rem,5vw,3rem);color:white;margin-bottom:1rem;}
-    .site-header h1 em{font-style:italic;color:var(--pink-mid);}
-    .site-header p{color:rgba(255,255,255,0.65);max-width:520px;margin:0 auto;font-size:1rem;}
-    .header-badges{display:flex;gap:0.75rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap;}
-    .header-badge{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);font-family:var(--font-accent);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.35rem 1rem;border-radius:999px;border:1px solid rgba(255,255,255,0.15);}
+/* ── READING BAR ── */
+#reading-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--pk),var(--gold));z-index:9999;width:0%;pointer-events:none;}
 
-    /* ── PROGRESS NAV ── */
-    .progress-nav{background:white;border-bottom:1px solid rgba(0,0,0,0.06);padding:1rem 0;position:sticky;top:0;z-index:100;box-shadow:var(--shadow);}
-    .progress-nav__inner{max-width:960px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;}
-    .progress-nav__inner::-webkit-scrollbar{display:none;}
-    .prog-step{display:flex;align-items:center;gap:0.35rem;padding:0.4rem 0.65rem;border-radius:999px;font-family:var(--font-accent);font-size:0.68rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-light);white-space:nowrap;cursor:pointer;transition:all 0.2s;flex-shrink:0;}
-    .prog-step:hover{background:var(--pink-light);color:var(--pink);}
-    .prog-step.active{color:var(--pink);}
-    .prog-step.active .prog-num{background:var(--pink);border-color:var(--pink);color:white;}
-    .prog-step.done{color:var(--green);}
-    .prog-step.done .prog-num{background:var(--green);border-color:var(--green);color:white;}
-    .prog-num{width:22px;height:22px;border-radius:50%;border:2px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:0.62rem;flex-shrink:0;}
-    .prog-sep{color:rgba(0,0,0,0.15);font-size:0.7rem;margin:0 0.05rem;flex-shrink:0;}
+/* ── HERO ── */
+.hero{background:var(--dark);padding:5rem 0 4rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(181,67,106,.25),transparent 65%);}
+.hero-inner{position:relative;z-index:1;}
+.hero-logo{font-family:var(--fd);font-size:1.5rem;color:rgba(255,255,255,.45);margin-bottom:.5rem;}
+.hero-logo span{color:var(--pk2);}
+.hero h1{font-family:var(--fd);font-size:clamp(2rem,5vw,3rem);color:#fff;margin-bottom:1rem;}
+.hero h1 em{font-style:italic;color:var(--pk2);}
+.hero-sub{color:rgba(255,255,255,.62);font-size:.97rem;max-width:520px;margin:0 auto 2rem;}
+.hero-badges{display:flex;gap:.65rem;justify-content:center;flex-wrap:wrap;}
+.hero-badge{background:rgba(255,255,255,.09);color:rgba(255,255,255,.75);font-family:var(--fa);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.32rem .9rem;border-radius:999px;border:1px solid rgba(255,255,255,.13);}
 
-    /* ── CONTAINER ── */
-    .container{max-width:960px;margin:0 auto;padding:0 1.5rem;}
+/* ── STICKY NAV ── */
+.sticky-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,0,0,.07);padding:.65rem 0;box-shadow:0 1px 12px rgba(0,0,0,.06);}
+.sticky-nav-inner{max-width:960px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:.2rem;overflow-x:auto;scrollbar-width:none;}
+.sticky-nav-inner::-webkit-scrollbar{display:none;}
+.nav-pill{flex-shrink:0;padding:.35rem .85rem;border-radius:999px;font-family:var(--fa);font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--txt3);cursor:pointer;transition:var(--tr);border:none;background:none;}
+.nav-pill:hover{background:var(--pkl);color:var(--pk);}
+.nav-pill.on{background:var(--pk);color:#fff;}
+.nav-sep{color:rgba(0,0,0,.15);font-size:.75rem;flex-shrink:0;}
 
-    /* ── FILE OVERVIEW ── */
-    .overview{padding:3rem 0 2rem;}
-    .files-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:1rem;margin-top:1.5rem;}
-    .file-card{background:white;border-radius:var(--radius-lg);padding:1.25rem;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.05);display:flex;align-items:flex-start;gap:0.85rem;transition:transform 0.2s,box-shadow 0.2s;}
-    .file-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);}
-    .file-icon{font-size:1.35rem;flex-shrink:0;line-height:1;}
-    .file-name{font-family:'Courier New',monospace;font-size:0.8rem;font-weight:700;color:var(--pink);margin-bottom:0.2rem;}
-    .file-desc{font-size:0.74rem;color:var(--text-light);}
-    .file-card--highlight{border-color:var(--pink-border);background:var(--pink-light);}
+/* ── WRAP ── */
+.wrap{max-width:960px;margin:0 auto;padding:0 1.5rem;}
 
-    /* ── STEPS ── */
-    .step{padding:3rem 0;border-bottom:1px solid rgba(0,0,0,0.06);}
-    .step:last-child{border-bottom:none;}
-    .step-header{display:flex;align-items:flex-start;gap:1.25rem;margin-bottom:2rem;}
-    .step-num{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--pink-mid));color:white;font-family:var(--font-display);font-size:1.4rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 16px rgba(181,67,106,0.35);}
-    .step-header-text h2{font-family:var(--font-display);font-size:1.5rem;color:var(--charcoal);margin-bottom:0.25rem;}
-    .step-header-text p{font-size:0.88rem;color:var(--text-mid);}
-    .step-body{padding-left:4.25rem;}
+/* ── STEP SECTIONS ── */
+.step-section{padding:3.5rem 0 1rem;border-bottom:1px solid rgba(0,0,0,.06);}
+.step-section:last-of-type{border-bottom:none;}
+.step-header{display:flex;align-items:flex-start;gap:1.25rem;margin-bottom:2rem;}
+.step-circle{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--pk),var(--pk2));color:#fff;font-family:var(--fd);font-size:1.35rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 14px rgba(181,67,106,.35);}
+.step-circle.done{background:linear-gradient(135deg,var(--gr),#15803d);}
+.step-title h2{font-family:var(--fd);font-size:1.5rem;color:var(--dark);margin-bottom:.2rem;}
+.step-title p{font-size:.87rem;color:var(--txt3);}
 
-    /* ── CALLOUTS ── */
-    .callout{border-radius:var(--radius-lg);padding:1.25rem 1.5rem;margin:1.25rem 0;display:flex;gap:1rem;align-items:flex-start;}
-    .callout--tip{background:var(--blue-bg);border-left:4px solid var(--blue);}
-    .callout--warning{background:var(--orange-bg);border-left:4px solid var(--orange);}
-    .callout--success{background:var(--green-bg);border-left:4px solid var(--green);}
-    .callout--danger{background:var(--red-bg);border-left:4px solid var(--red);}
-    .callout__icon{font-size:1.2rem;flex-shrink:0;line-height:1.4;}
-    .callout__body strong{display:block;font-size:0.8rem;font-family:var(--font-accent);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.25rem;}
-    .callout__body p,.callout__body ul{font-size:0.88rem;color:var(--text);}
-    .callout__body ul{padding-left:1.25rem;list-style:disc;}
-    .callout__body ul li{margin-bottom:0.2rem;}
+/* ── INSTRUCTION ROWS ── */
+.inst-list{display:flex;flex-direction:column;gap:.85rem;margin:1.25rem 0;}
+.inst{display:flex;gap:.9rem;align-items:flex-start;background:#fff;border-radius:var(--rl);padding:1rem 1.25rem;box-shadow:var(--sh);border-left:3px solid var(--pkl);}
+.inst-n{width:26px;height:26px;border-radius:50%;background:var(--pk);color:#fff;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.inst-body{font-size:.87rem;color:var(--txt2);line-height:1.65;}
+.inst-body strong{color:var(--dark);display:block;margin-bottom:.15rem;font-size:.9rem;}
 
-    /* ── INSTRUCTION CARDS ── */
-    .instruction-steps{display:flex;flex-direction:column;gap:1rem;}
-    .inst{background:white;border-radius:var(--radius-lg);padding:1.25rem 1.5rem;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.05);display:flex;gap:1rem;align-items:flex-start;}
-    .inst__num{width:28px;height:28px;border-radius:50%;background:var(--pink-light);color:var(--pink);font-family:var(--font-accent);font-size:0.78rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
-    .inst__body{font-size:0.88rem;color:var(--text-mid);line-height:1.65;}
-    .inst__body strong{color:var(--text);display:block;margin-bottom:0.15rem;font-size:0.9rem;}
+/* ── CALLOUTS ── */
+.callout{border-radius:var(--rl);padding:1.1rem 1.4rem;margin:1.1rem 0;display:flex;gap:.9rem;align-items:flex-start;}
+.callout-tip{background:var(--blb);border-left:4px solid var(--bl);}
+.callout-warn{background:var(--orb);border-left:4px solid var(--or);}
+.callout-success{background:var(--grb);border-left:4px solid var(--gr);}
+.callout-danger{background:var(--rdb);border-left:4px solid var(--rd);}
+.callout-pink{background:var(--pkl);border-left:4px solid var(--pk);}
+.callout-icon{font-size:1.15rem;flex-shrink:0;margin-top:1px;}
+.callout-text strong{display:block;font-family:var(--fa);font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.25rem;}
+.callout-tip .callout-text strong{color:var(--bl);}
+.callout-warn .callout-text strong{color:var(--or);}
+.callout-success .callout-text strong{color:var(--gr);}
+.callout-danger .callout-text strong{color:var(--rd);}
+.callout-pink .callout-text strong{color:var(--pk);}
+.callout-text p{font-size:.85rem;color:var(--txt);}
 
-    /* ── CODE BLOCKS ── */
-    .code-block{position:relative;margin:1.25rem 0;}
-    .code-label{font-family:var(--font-accent);font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:0.4rem;}
-    .copy-btn{position:absolute;top:0.75rem;right:0.75rem;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.15);border-radius:6px;padding:0.3rem 0.75rem;font-family:var(--font-accent);font-size:0.68rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
-    .copy-btn:hover{background:rgba(255,255,255,0.2);color:white;}
-    .copy-btn.copied{background:var(--green);color:white;border-color:var(--green);}
+/* ── CODE BLOCKS ── */
+.code-label{font-family:var(--fa);font-size:.67rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:.35rem;}
+.code-block{position:relative;margin:1rem 0;}
+.code-pre{background:var(--dark);color:#86efac;border-radius:var(--rl);padding:1.25rem 1.5rem;font-family:'Courier New',Courier,monospace;font-size:.78rem;line-height:1.8;white-space:pre-wrap;overflow-x:auto;}
+.code-pre .cm{color:#64748b;}
+.code-pre .ck{color:#f472b6;}
+.code-pre .cs{color:#86efac;}
+.copy-btn{position:absolute;top:.65rem;right:.65rem;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:.22rem .6rem;font-size:.65rem;font-weight:700;cursor:pointer;font-family:var(--fa);letter-spacing:.05em;text-transform:uppercase;transition:var(--tr);}
+.copy-btn:hover{background:rgba(255,255,255,.2);}
+.copy-btn.copied{background:rgba(22,163,74,.4);color:#fff;border-color:transparent;}
 
-    /* ── TABLES ── */
-    .styled-table{width:100%;border-collapse:collapse;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);margin:1.25rem 0;}
-    .styled-table thead tr{background:linear-gradient(135deg,var(--pink),var(--pink-mid));}
-    .styled-table th{padding:0.85rem 1.25rem;text-align:left;font-family:var(--font-accent);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:white;}
-    .styled-table td{padding:0.85rem 1.25rem;border-bottom:1px solid rgba(0,0,0,0.05);font-size:0.85rem;background:white;}
-    .styled-table tr:last-child td{border-bottom:none;}
-    .styled-table tr:nth-child(even) td{background:var(--pink-light);}
+/* ── FILE TREE ── */
+.file-tree{background:#fff;border-radius:var(--rl);padding:1.5rem;box-shadow:var(--sh);font-family:'Courier New',Courier,monospace;font-size:.83rem;line-height:2;}
+.file-tree .dir{color:var(--bl);font-weight:700;}
+.file-tree .file{color:var(--txt2);}
+.file-tree .file.important{color:var(--pk);font-weight:700;}
+.file-tree .note{color:var(--txt3);font-size:.75rem;font-family:var(--f);}
 
-    /* ── CHECKLIST ── */
-    .checklist{background:white;border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.05);}
-    .check-item{display:flex;align-items:center;gap:0.85rem;padding:0.7rem 0;border-bottom:1px solid rgba(0,0,0,0.05);cursor:pointer;user-select:none;}
-    .check-item:last-child{border-bottom:none;}
-    .check-item input[type=checkbox]{width:20px;height:20px;accent-color:var(--pink);cursor:pointer;flex-shrink:0;}
-    .check-item span{font-size:0.88rem;color:var(--text-mid);transition:all 0.2s;}
-    .check-item:has(input:checked) span{color:var(--green);text-decoration:line-through;opacity:0.65;}
-    .check-progress{height:8px;background:rgba(181,67,106,0.15);border-radius:999px;margin-bottom:1.5rem;overflow:hidden;}
-    .check-progress__fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--pink-mid));border-radius:999px;transition:width 0.4s ease;width:0%;}
-    .check-count{font-family:var(--font-accent);font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);margin-bottom:0.75rem;}
+/* ── GRID CARDS ── */
+.card-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin:1.25rem 0;}
+.card-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin:1.25rem 0;}
+.info-card{background:#fff;border-radius:var(--rl);padding:1.35rem;box-shadow:var(--sh);}
+.info-card h4{font-family:var(--fd);font-size:.95rem;margin-bottom:.5rem;color:var(--dark);}
+.info-card p{font-size:.83rem;color:var(--txt2);}
+.info-card.highlighted{border-top:4px solid var(--pk);}
+.info-card.highlighted h4{color:var(--pk);}
 
-    /* ── ADMIN TABLE ── */
-    .admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:1.25rem;}
-    .admin-card{background:white;border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.05);}
-    .admin-card h4{font-family:var(--font-display);font-size:1rem;margin-bottom:0.85rem;display:flex;align-items:center;gap:0.5rem;}
-    .admin-card ul{padding-left:1.1rem;list-style:disc;}
-    .admin-card ul li{font-size:0.85rem;color:var(--text-mid);margin-bottom:0.35rem;}
+/* ── CHECKLIST ── */
+.checklist-wrap{background:#fff;border-radius:var(--rxl);padding:2rem;box-shadow:var(--sh);}
+.cl-progress-label{font-family:var(--fa);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:.4rem;display:flex;justify-content:space-between;}
+.cl-bar-track{background:var(--bg);height:8px;border-radius:999px;overflow:hidden;margin-bottom:1.5rem;}
+.cl-bar-fill{height:100%;background:linear-gradient(90deg,var(--pk),var(--pk2));border-radius:999px;transition:width .4s ease;width:0%;}
+.cl-item{display:flex;align-items:center;gap:.85rem;padding:.72rem 0;border-bottom:1px solid rgba(0,0,0,.05);cursor:pointer;}
+.cl-item:last-child{border-bottom:none;}
+.cl-item input[type=checkbox]{width:19px;height:19px;accent-color:var(--pk);cursor:pointer;flex-shrink:0;}
+.cl-item-text{font-size:.87rem;color:var(--txt2);flex:1;transition:all .2s;}
+.cl-item:has(input:checked) .cl-item-text{color:var(--gr);text-decoration:line-through;opacity:.65;}
+.cl-tag{margin-left:auto;font-family:var(--fa);font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.15rem .55rem;border-radius:999px;flex-shrink:0;}
+.cl-tag-must{background:var(--pkl);color:var(--pk);}
+.cl-tag-once{background:var(--blb);color:var(--bl);}
+.cl-done{display:none;background:linear-gradient(135deg,var(--pk),#8b2249);border-radius:var(--rxl);padding:2.5rem;text-align:center;margin-top:1.5rem;}
+.cl-done.show{display:block;}
+.cl-done h3{font-family:var(--fd);font-size:1.6rem;color:#fff;margin-bottom:.4rem;}
+.cl-done p{color:rgba(255,255,255,.72);font-size:.9rem;}
 
-    /* ── FLOW CHART ── */
-    .flow-chart{display:flex;align-items:center;gap:0;flex-wrap:wrap;justify-content:center;margin:2rem 0;}
-    .flow-box{background:white;border-radius:var(--radius-lg);padding:1.25rem 1.5rem;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.05);text-align:center;min-width:130px;}
-    .flow-box__icon{font-size:1.5rem;margin-bottom:0.5rem;}
-    .flow-box__label{font-family:var(--font-accent);font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-mid);}
-    .flow-arrow{font-size:1.4rem;color:var(--pink-mid);padding:0 0.5rem;flex-shrink:0;}
+/* ── HOW IT FLOWS ── */
+.flow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:.5rem;margin:2rem 0;}
+.flow-box{background:#fff;border-radius:var(--rl);padding:1.1rem 1.35rem;box-shadow:var(--sh);text-align:center;min-width:120px;}
+.flow-box-icon{font-size:1.5rem;margin-bottom:.35rem;}
+.flow-box-label{font-family:var(--fa);font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--txt2);}
+.flow-arrow{color:var(--pk2);font-size:1.3rem;flex-shrink:0;}
 
-    /* ── FOOTER ── */
-    .setup-footer{background:var(--charcoal);padding:3rem 0;text-align:center;margin-top:4rem;}
-    .setup-footer p{color:rgba(255,255,255,0.45);font-size:0.82rem;}
-    .footer-links{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;}
-    .footer-link{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);padding:0.5rem 1.2rem;border-radius:999px;font-family:var(--font-accent);font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;transition:background 0.2s;}
-    .footer-link:hover{background:var(--pink);color:white;}
+/* ── QUICK REF TABLE ── */
+.qr-table{width:100%;border-collapse:collapse;border-radius:var(--rl);overflow:hidden;box-shadow:var(--sh);}
+.qr-table thead tr{background:linear-gradient(135deg,var(--pk),var(--pk2));}
+.qr-table th{padding:.8rem 1.1rem;text-align:left;font-family:var(--fa);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;}
+.qr-table td{padding:.82rem 1.1rem;font-size:.84rem;border-bottom:1px solid rgba(0,0,0,.05);background:#fff;vertical-align:top;}
+.qr-table tr:last-child td{border-bottom:none;}
+.qr-table tr:nth-child(even) td{background:var(--pkl);}
+.qr-table td:first-child{font-weight:600;color:var(--dark);}
+code{font-family:'Courier New',monospace;background:rgba(181,67,106,.08);color:var(--pk);padding:.12rem .4rem;border-radius:5px;font-size:.82em;}
 
-    @media(max-width:768px){
-      .step-body{padding-left:0;margin-top:1rem;}
-      .admin-grid{grid-template-columns:1fr;}
-      .files-grid{grid-template-columns:1fr 1fr;}
-      .flow-chart{flex-direction:column;}
-      .flow-arrow{transform:rotate(90deg);}
-    }
-    @media(max-width:480px){.files-grid{grid-template-columns:1fr;}}
-  </style>
+/* ── FOOTER ── */
+.page-footer{background:var(--dark);padding:2.5rem 0;text-align:center;margin-top:4rem;}
+.page-footer p{color:rgba(255,255,255,.35);font-size:.8rem;}
+.page-footer a{color:var(--pk2);}
+.footer-links{display:flex;gap:.65rem;justify-content:center;flex-wrap:wrap;margin-top:.85rem;}
+.footer-link{background:rgba(255,255,255,.07);color:rgba(255,255,255,.62);padding:.4rem 1rem;border-radius:999px;font-family:var(--fa);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:var(--tr);}
+.footer-link:hover{background:var(--pk);color:#fff;}
+
+@media(max-width:768px){
+  .card-grid-2,.card-grid-3{grid-template-columns:1fr;}
+  .flow{flex-direction:column;}
+  .flow-arrow{transform:rotate(90deg);}
+  .wrap{padding:0 1rem;}
+}
+</style>
 </head>
 <body>
 
-<!-- HEADER -->
-<div class="site-header">
-  <div class="container">
-    <div class="site-header__inner">
-      <div class="site-header__logo">b_lit <span>hairs</span></div>
-      <h1>Website <em>Setup Guide</em></h1>
-      <p>Follow these steps once to get your website live and your admin dashboard connected.</p>
-      <div class="header-badges">
-        <span class="header-badge">⏱ Takes about 30 minutes</span>
-        <span class="header-badge">🆓 100% Free tools</span>
-        <span class="header-badge">📱 No coding needed</span>
+<div id="reading-bar"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="hero-logo">b_lit <span>hairs</span></div>
+      <h1>Complete <em>Setup Guide</em></h1>
+      <p class="hero-sub">Follow these steps carefully from top to bottom and your website will be fully live and working. Each step is explained clearly — no coding knowledge needed.</p>
+      <div class="hero-badges">
+        <span class="hero-badge">⏱ Takes about 30 minutes</span>
+        <span class="hero-badge">🆓 All tools are free</span>
+        <span class="hero-badge">📱 Works on phone & computer</span>
+        <span class="hero-badge">✅ No coding needed</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- PROGRESS NAV -->
-<div class="progress-nav">
-  <div class="progress-nav__inner">
-    <div class="prog-step active" onclick="scrollToStep(1)"><div class="prog-num">1</div>Files</div>
-    <span class="prog-sep">›</span>
-    <div class="prog-step" onclick="scrollToStep(2)"><div class="prog-num">2</div>Photo</div>
-    <span class="prog-sep">›</span>
-    <div class="prog-step" onclick="scrollToStep(3)"><div class="prog-num">3</div>Supabase</div>
-    <span class="prog-sep">›</span>
-    <div class="prog-step" onclick="scrollToStep(4)"><div class="prog-num">4</div>API Keys</div>
-    <span class="prog-sep">›</span>
-    <div class="prog-step" onclick="scrollToStep(5)"><div class="prog-num">5</div>Tables</div>
-    <span class="prog-sep">›</span>
-    <div class="prog-step" onclick="scrollToStep(6)"><div class="prog-num">6</div>Permissions</div>
-    <span class="prog-sep">›</span>
-    <div class="prog-step" onclick="scrollToStep(7)"><div class="prog-num">7</div>Grant Access</div>
-    <span class="prog-sep">›</span>
-    <div class="prog-step" onclick="scrollToStep(8)"><div class="prog-num">8</div>Admin Login</div>
-    <span class="prog-sep">›</span>
-    <div class="prog-step" onclick="scrollToStep(9)"><div class="prog-num">9</div>Deploy</div>
-    <span class="prog-sep">›</span>
-    <div class="prog-step" onclick="scrollToStep(10)"><div class="prog-num">10</div>Admin Guide</div>
-    <span class="prog-sep">›</span>
-    <div class="prog-step" onclick="scrollToStep(11)"><div class="prog-num">✓</div>Checklist</div>
+<!-- STICKY NAV -->
+<nav class="sticky-nav" id="sticky-nav">
+  <div class="sticky-nav-inner">
+    <button class="nav-pill on" data-target="step-files">📁 Files</button>
+    <span class="nav-sep">›</span>
+    <button class="nav-pill" data-target="step-photo">📸 Photo</button>
+    <span class="nav-sep">›</span>
+    <button class="nav-pill" data-target="step-supabase">🗄 Supabase</button>
+    <span class="nav-sep">›</span>
+    <button class="nav-pill" data-target="step-keys">🔑 API Keys</button>
+    <span class="nav-sep">›</span>
+    <button class="nav-pill" data-target="step-tables">📊 Tables</button>
+    <span class="nav-sep">›</span>
+    <button class="nav-pill" data-target="step-permissions">🔐 Permissions</button>
+    <span class="nav-sep">›</span>
+    <button class="nav-pill" data-target="step-storage">📦 Storage</button>
+    <span class="nav-sep">›</span>
+    <button class="nav-pill" data-target="step-admin">👑 Admin Login</button>
+    <span class="nav-sep">›</span>
+    <button class="nav-pill" data-target="step-deploy">🚀 Go Live</button>
+    <span class="nav-sep">›</span>
+    <button class="nav-pill" data-target="step-checklist">✅ Checklist</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ═══ STEP 1 — FILES ═══ -->
+<div class="step-section" id="step-files">
+  <div class="step-header">
+    <div class="step-circle">1</div>
+    <div class="step-title">
+      <h2>Understand Your Files</h2>
+      <p>Before anything else, know what each file does</p>
+    </div>
+  </div>
+
+  <p style="font-size:.9rem;margin-bottom:1.25rem;">You received a folder called <code>blit-hairs</code> containing these files. They must all stay together in the same folder — never separate them.</p>
+
+  <div class="file-tree">
+    <div><span class="dir">blit-hairs/</span></div>
+    <div>&nbsp;&nbsp;├── <span class="file important">index.html</span> &nbsp;<span class="note">← Homepage</span></div>
+    <div>&nbsp;&nbsp;├── <span class="file important">shop.html</span> &nbsp;<span class="note">← Your product shop</span></div>
+    <div>&nbsp;&nbsp;├── <span class="file important">product.html</span> &nbsp;<span class="note">← Single product page</span></div>
+    <div>&nbsp;&nbsp;├── <span class="file important">services.html</span> &nbsp;<span class="note">← Services page</span></div>
+    <div>&nbsp;&nbsp;├── <span class="file important">about.html</span> &nbsp;<span class="note">← About page</span></div>
+    <div>&nbsp;&nbsp;├── <span class="file important">contact.html</span> &nbsp;<span class="note">← Contact form</span></div>
+    <div>&nbsp;&nbsp;├── <span class="file important">admin.html</span> &nbsp;<span class="note">← 🔐 Your private control panel</span></div>
+    <div>&nbsp;&nbsp;├── <span class="file">client-guide.html</span> &nbsp;<span class="note">← How-to guide for you</span></div>
+    <div>&nbsp;&nbsp;├── <span class="file">setup.html</span> &nbsp;<span class="note">← This page you're reading now</span></div>
+    <div>&nbsp;&nbsp;└── <span class="dir">assets/</span></div>
+    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="dir">images/</span></div>
+    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="file important">belinda.jpeg</span> &nbsp;<span class="note">← ⚠️ You must add this</span></div>
+  </div>
+
+  <div class="callout callout-warn" style="margin-top:1rem;">
+    <div class="callout-icon">⚠️</div>
+    <div class="callout-text">
+      <strong>Keep all files together</strong>
+      <p>All HTML files must stay in the same folder. If you move any file into a different folder, the links between pages will break and the website won't work properly.</p>
+    </div>
   </div>
 </div>
 
-<div class="container">
-
-  <!-- FILES OVERVIEW -->
-  <div class="overview">
-    <h2 style="font-family:var(--font-display);font-size:1.4rem;margin-bottom:0.5rem;">Your Website Files</h2>
-    <p style="font-size:0.88rem;color:var(--text-mid);">Here is every file you received and what it does.</p>
-    <div class="files-grid">
-      <div class="file-card"><div class="file-icon">🏠</div><div><div class="file-name">index.html</div><div class="file-desc">Homepage with hero and reviews</div></div></div>
-      <div class="file-card"><div class="file-icon">🛍️</div><div><div class="file-name">shop.html</div><div class="file-desc">Product listing — loads from admin</div></div></div>
-      <div class="file-card"><div class="file-icon">✂️</div><div><div class="file-name">services.html</div><div class="file-desc">Services — loads from admin</div></div></div>
-      <div class="file-card"><div class="file-icon">👤</div><div><div class="file-name">about.html</div><div class="file-desc">Brand story page</div></div></div>
-      <div class="file-card"><div class="file-icon">📧</div><div><div class="file-name">contact.html</div><div class="file-desc">Contact form</div></div></div>
-      <div class="file-card file-card--highlight"><div class="file-icon">🔐</div><div><div class="file-name">admin.html</div><div class="file-desc">Your private control panel</div></div></div>
-      <div class="file-card"><div class="file-icon">📖</div><div><div class="file-name">setup.html</div><div class="file-desc">This guide (the file you're reading)</div></div></div>
+<!-- ═══ STEP 2 — PHOTO ═══ -->
+<div class="step-section" id="step-photo">
+  <div class="step-header">
+    <div class="step-circle">2</div>
+    <div class="step-title">
+      <h2>Add Your Photo</h2>
+      <p>Your personal photo must be placed in the correct folder</p>
     </div>
   </div>
 
-  <!-- ── STEP 1 ── -->
-  <div class="step" id="step-1">
-    <div class="step-header">
-      <div class="step-num">1</div>
-      <div class="step-header-text">
-        <h2>Organise Your Files</h2>
-        <p>Make sure every file is in the same folder</p>
+  <div class="inst-list">
+    <div class="inst">
+      <div class="inst-n">1</div>
+      <div class="inst-body">
+        <strong>Create the folder structure</strong>
+        Inside your <code>blit-hairs</code> folder, create a folder called <code>assets</code>. Inside that, create another folder called <code>images</code>.
       </div>
     </div>
-    <div class="step-body">
-      <p style="font-size:0.9rem;margin-bottom:1rem;">All files must stay together in one folder. Here is the exact structure:</p>
-      <div class="code-block">
-        <div class="code-label">Folder Structure</div>
-        <pre>blit-hairs/
-├── index.html
-├── shop.html
-├── services.html
-├── about.html
-├── contact.html
-├── admin.html
-├── setup.html          <span class="c-comment">← this file</span>
-└── assets/
-    └── images/
-        └── belinda.jpeg  <span class="c-comment">← YOU ADD THIS (Step 2)</span></pre>
+    <div class="inst">
+      <div class="inst-n">2</div>
+      <div class="inst-body">
+        <strong>Rename your photo</strong>
+        Take your personal/brand photo and rename it to exactly <code>belinda.jpeg</code> — all lowercase, no spaces. It must be a JPEG image (.jpg or .jpeg).
       </div>
-      <div class="callout callout--warning">
-        <div class="callout__icon">⚠️</div>
-        <div class="callout__body">
-          <strong>Keep All Files Together</strong>
-          <p>All HTML files must stay in the same folder. Moving them into separate folders will break the links between pages.</p>
-        </div>
+    </div>
+    <div class="inst">
+      <div class="inst-n">3</div>
+      <div class="inst-body">
+        <strong>Place it in the correct folder</strong>
+        Put the photo inside the <code>images</code> folder you just created. The full path should be: <code>blit-hairs/assets/images/belinda.jpeg</code>
       </div>
     </div>
   </div>
 
-  <!-- ── STEP 2 ── -->
-  <div class="step" id="step-2">
-    <div class="step-header">
-      <div class="step-num">2</div>
-      <div class="step-header-text">
-        <h2>Add Your Photo</h2>
-        <p>Place your personal photo in the correct folder</p>
+  <div class="callout callout-pink">
+    <div class="callout-icon">💡</div>
+    <div class="callout-text">
+      <strong>Where this photo appears</strong>
+      <p>This one photo is used in many places across the site: the homepage hero background, the about page portrait, the chatbot avatar, the nav logo, and the CTA section backgrounds. A high-quality portrait photo or brand photo works best.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ STEP 3 — SUPABASE ═══ -->
+<div class="step-section" id="step-supabase">
+  <div class="step-header">
+    <div class="step-circle">3</div>
+    <div class="step-title">
+      <h2>Create Your Supabase Account</h2>
+      <p>Supabase is the free database that stores all your products, reviews, services and messages</p>
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div class="callout-text">
+      <strong>Completely free</strong>
+      <p>Supabase's free plan gives you more than enough storage and requests for the b_lit hairs website. You will not need to pay anything to get started.</p>
+    </div>
+  </div>
+
+  <div class="inst-list">
+    <div class="inst">
+      <div class="inst-n">1</div>
+      <div class="inst-body">
+        <strong>Go to Supabase</strong>
+        Open your browser and go to <a href="https://supabase.com" target="_blank" style="color:var(--pk);font-weight:600;">https://supabase.com</a>
       </div>
     </div>
-    <div class="step-body">
-      <div class="instruction-steps">
-        <div class="inst"><div class="inst__num">1</div><div class="inst__body"><strong>Create the folder</strong>Inside your <code>blit-hairs</code> folder, create a folder called <code>assets</code>. Inside that, create another folder called <code>images</code>.</div></div>
-        <div class="inst"><div class="inst__num">2</div><div class="inst__body"><strong>Rename your photo</strong>Rename your photo file to exactly <code>belinda.jpeg</code> — all lowercase, no spaces. It must be a JPEG file.</div></div>
-        <div class="inst"><div class="inst__num">3</div><div class="inst__body"><strong>Place it in the folder</strong>Put the renamed photo inside <code>assets/images/</code> so the full path is <code>blit-hairs/assets/images/belinda.jpeg</code></div></div>
+    <div class="inst">
+      <div class="inst-n">2</div>
+      <div class="inst-body">
+        <strong>Click "Start your project"</strong>
+        Create a free account using your email address or sign in with Google.
       </div>
-      <div class="callout callout--tip">
-        <div class="callout__icon">💡</div>
-        <div class="callout__body">
-          <strong>Where it appears</strong>
-          <p>This photo is used as the hero background on the homepage, the about page portrait, the chatbot avatar, and the navigation logo. A high-quality portrait photo works best.</p>
-        </div>
+    </div>
+    <div class="inst">
+      <div class="inst-n">3</div>
+      <div class="inst-body">
+        <strong>Create a new project</strong>
+        Once logged in, click the green <strong>"New Project"</strong> button. Fill in:
+        <br>• <strong>Project name:</strong> <code>blit-hairs</code>
+        <br>• <strong>Database password:</strong> Choose a strong password and save it somewhere safe
+        <br>• <strong>Region:</strong> Choose <strong>West EU</strong> (closest to Ghana)
+      </div>
+    </div>
+    <div class="inst">
+      <div class="inst-n">4</div>
+      <div class="inst-body">
+        <strong>Wait for setup</strong>
+        Click <strong>"Create new project"</strong> and wait about 2 minutes. You'll see a progress bar — wait until it's fully done before continuing.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ STEP 4 — API KEYS ═══ -->
+<div class="step-section" id="step-keys">
+  <div class="step-header">
+    <div class="step-circle">4</div>
+    <div class="step-title">
+      <h2>Get Your API Keys &amp; Add Them to Your Files</h2>
+      <p>These two keys connect your website to your Supabase database</p>
+    </div>
+  </div>
+
+  <div class="inst-list">
+    <div class="inst">
+      <div class="inst-n">1</div>
+      <div class="inst-body">
+        <strong>Open Settings in Supabase</strong>
+        In your Supabase project, click the <strong>⚙️ Settings</strong> icon in the left sidebar (near the bottom).
+      </div>
+    </div>
+    <div class="inst">
+      <div class="inst-n">2</div>
+      <div class="inst-body">
+        <strong>Click "API" in the settings menu</strong>
+        You will see your project's API details on this page.
+      </div>
+    </div>
+    <div class="inst">
+      <div class="inst-n">3</div>
+      <div class="inst-body">
+        <strong>Copy your Project URL</strong>
+        It looks like: <code>https://abcdefghijkl.supabase.co</code> — copy this exactly.
+      </div>
+    </div>
+    <div class="inst">
+      <div class="inst-n">4</div>
+      <div class="inst-body">
+        <strong>Copy your anon public key</strong>
+        It is a very long code starting with <code>eyJ...</code> — copy the full thing.
+      </div>
+    </div>
+    <div class="inst">
+      <div class="inst-n">5</div>
+      <div class="inst-body">
+        <strong>Open each HTML file in a text editor and replace the placeholders</strong>
+        Open <strong>Notepad</strong> (Windows), <strong>TextEdit</strong> (Mac), or any text editor. Open each file and use Find &amp; Replace (<code>Ctrl+H</code> or <code>Cmd+H</code>) to find the placeholder and replace it with your real value.
       </div>
     </div>
   </div>
 
-  <!-- ── STEP 3 ── -->
-  <div class="step" id="step-3">
-    <div class="step-header">
-      <div class="step-num">3</div>
-      <div class="step-header-text">
-        <h2>Create Your Supabase Account</h2>
-        <p>Supabase is the free database that powers your whole website</p>
+  <div class="code-label">Find this text in EVERY HTML file (there are 7 files total)</div>
+  <div class="code-block">
+    <pre class="code-pre"><span class="ck">const</span> SUPABASE_URL  = <span class="cs">'YOUR_SUPABASE_URL'</span>;
+<span class="ck">const</span> SUPABASE_KEY  = <span class="cs">'YOUR_SUPABASE_ANON_KEY'</span>;</pre>
+  </div>
+
+  <div class="code-label">Replace with your actual values (example)</div>
+  <div class="code-block">
+    <button class="copy-btn" id="btn-keys" onclick="copyCode('btn-keys', 'code-keys')">Copy</button>
+    <pre class="code-pre" id="code-keys"><span class="ck">const</span> SUPABASE_URL  = <span class="cs">'https://abcdefghijkl.supabase.co'</span>;
+<span class="ck">const</span> SUPABASE_KEY  = <span class="cs">'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'</span>;</pre>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div class="callout-text">
+      <strong>Do this in ALL 7 files</strong>
+      <p>You must update the keys in every file: <code>index.html</code>, <code>shop.html</code>, <code>product.html</code>, <code>services.html</code>, <code>about.html</code>, <code>contact.html</code>, and <code>admin.html</code>. If you miss even one file, that page will not connect to your database.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ STEP 5 — TABLES ═══ -->
+<div class="step-section" id="step-tables">
+  <div class="step-header">
+    <div class="step-circle">5</div>
+    <div class="step-title">
+      <h2>Create the Database Tables</h2>
+      <p>These tables are where your products, services, reviews and messages are stored</p>
+    </div>
+  </div>
+
+  <div class="inst-list">
+    <div class="inst">
+      <div class="inst-n">1</div>
+      <div class="inst-body">
+        <strong>Open the SQL Editor in Supabase</strong>
+        In your Supabase project, click <strong>SQL Editor</strong> in the left sidebar. It has a code icon that looks like <code>&lt;/&gt;</code>.
       </div>
     </div>
-    <div class="step-body">
-      <div class="callout callout--success">
-        <div class="callout__icon">✅</div>
-        <div class="callout__body">
-          <strong>Completely Free</strong>
-          <p>Supabase's free tier is more than enough for b_lit hairs. You will never need to pay anything.</p>
-        </div>
+    <div class="inst">
+      <div class="inst-n">2</div>
+      <div class="inst-body">
+        <strong>Click "New query"</strong>
+        This opens a blank text area where you will paste the code below.
       </div>
-      <div class="instruction-steps" style="margin-top:1rem;">
-        <div class="inst"><div class="inst__num">1</div><div class="inst__body"><strong>Go to Supabase</strong>Open your browser and go to <a href="https://supabase.com" target="_blank" style="color:var(--pink);font-weight:600;">supabase.com</a></div></div>
-        <div class="inst"><div class="inst__num">2</div><div class="inst__body"><strong>Sign up</strong>Click <strong>"Start your project"</strong> and create a free account with your email.</div></div>
-        <div class="inst"><div class="inst__num">3</div><div class="inst__body"><strong>Create a new project</strong>Click <strong>"New Project"</strong>. Name it <code>blit-hairs</code>. Set a strong database password and save it somewhere safe. Choose region <strong>West EU</strong> or <strong>US East</strong>.</div></div>
-        <div class="inst"><div class="inst__num">4</div><div class="inst__body"><strong>Wait for setup</strong>Click <strong>"Create new project"</strong> and wait about 2 minutes for the green loading bar to finish.</div></div>
+    </div>
+    <div class="inst">
+      <div class="inst-n">3</div>
+      <div class="inst-body">
+        <strong>Copy each block below, paste it, and click the green RUN button</strong>
+        Do this separately for each of the 4 tables. Copy one block → paste → click Run → check it says "Success" → then do the next one.
       </div>
     </div>
   </div>
 
-  <!-- ── STEP 4 ── -->
-  <div class="step" id="step-4">
-    <div class="step-header">
-      <div class="step-num">4</div>
-      <div class="step-header-text">
-        <h2>Get Your API Keys &amp; Add Them to Your Files</h2>
-        <p>These two keys connect your website to your database</p>
-      </div>
-    </div>
-    <div class="step-body">
-      <div class="instruction-steps">
-        <div class="inst"><div class="inst__num">1</div><div class="inst__body"><strong>Open Settings</strong>In Supabase, click the <strong>Settings</strong> gear icon ⚙️ at the bottom left sidebar.</div></div>
-        <div class="inst"><div class="inst__num">2</div><div class="inst__body"><strong>Click API</strong>In the settings menu click <strong>API</strong>. Your keys are on this page.</div></div>
-        <div class="inst"><div class="inst__num">3</div><div class="inst__body"><strong>Copy your Project URL</strong>It looks like <code>https://abcdefghij.supabase.co</code>. Copy it.</div></div>
-        <div class="inst"><div class="inst__num">4</div><div class="inst__body"><strong>Copy your anon public key</strong>It is a long code starting with <code>eyJ…</code>. Copy it.</div></div>
-      </div>
-      <p style="font-size:0.9rem;margin:1.5rem 0 1rem;font-weight:600;">Now open each HTML file and replace the two placeholder lines near the bottom of each file:</p>
-      <div class="code-block">
-        <div class="code-label">Find this in every HTML file</div>
-        <button class="copy-btn" onclick="copyCode(this,'find-keys')">Copy</button>
-        <pre id="find-keys"><span class="c-key">const</span> SUPABASE_URL      = <span class="c-str">'YOUR_SUPABASE_URL'</span>;
-<span class="c-key">const</span> SUPABASE_ANON_KEY = <span class="c-str">'YOUR_SUPABASE_ANON_KEY'</span>;</pre>
-      </div>
-      <div class="code-block">
-        <div class="code-label">Replace with your actual values (example)</div>
-        <pre><span class="c-key">const</span> SUPABASE_URL      = <span class="c-str">'https://abcdefghij.supabase.co'</span>;
-<span class="c-key">const</span> SUPABASE_ANON_KEY = <span class="c-str">'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'</span>;</pre>
-      </div>
-      <div class="callout callout--warning">
-        <div class="callout__icon">⚠️</div>
-        <div class="callout__body">
-          <strong>Update All Files</strong>
-          <ul>
-            <li>index.html</li>
-            <li>shop.html</li>
-            <li>services.html</li>
-            <li>about.html</li>
-            <li>contact.html</li>
-            <li>admin.html</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── STEP 5 ── -->
-  <div class="step" id="step-5">
-    <div class="step-header">
-      <div class="step-num">5</div>
-      <div class="step-header-text">
-        <h2>Create the Database Tables</h2>
-        <p>These tables store your products, services, reviews and messages</p>
-      </div>
-    </div>
-    <div class="step-body">
-      <div class="instruction-steps">
-        <div class="inst"><div class="inst__num">1</div><div class="inst__body"><strong>Open SQL Editor</strong>In Supabase click <strong>SQL Editor</strong> in the left sidebar.</div></div>
-        <div class="inst"><div class="inst__num">2</div><div class="inst__body"><strong>Click "New query"</strong>This opens a blank text area where you paste code.</div></div>
-        <div class="inst"><div class="inst__num">3</div><div class="inst__body"><strong>Copy, paste and run each block below</strong>Do one block at a time. Paste it, click the green <strong>Run</strong> button, wait for success, then do the next block.</div></div>
-      </div>
-      <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:1.25rem;">
-        <div class="code-block">
-          <div class="code-label">Table 1 of 4 — Products</div>
-          <button class="copy-btn" onclick="copyCode(this,'sql-products')">Copy</button>
-          <pre id="sql-products"><span class="c-kw">create table</span> products (
-  id text <span class="c-kw">primary key</span>,
-  name text <span class="c-kw">not null</span>,
-  category text <span class="c-kw">not null</span> <span class="c-kw">check</span> (category <span class="c-kw">in</span> (<span class="c-str">'wigs'</span>,<span class="c-str">'bundles'</span>,<span class="c-str">'frontals'</span>,<span class="c-str">'extensions'</span>)),
-  price numeric <span class="c-kw">not null</span>,
-  currency text <span class="c-kw">default</span> <span class="c-str">'GHS'</span>,
+  <div class="code-label" style="margin-top:1.5rem;">Table 1 of 4 — Products (stores your hair products)</div>
+  <div class="code-block">
+    <button class="copy-btn" id="btn-t1" onclick="copyCode('btn-t1','code-t1')">Copy</button>
+    <pre class="code-pre" id="code-t1">create table products (
+  id text primary key,
+  name text not null,
+  category text not null check (category in ('wigs','bundles','frontals','extensions')),
+  price numeric not null,
+  currency text default 'GHS',
   badge text,
   hair_type text,
   texture text,
@@ -382,373 +464,395 @@
   weight text,
   color text,
   description text,
-  features jsonb <span class="c-kw">default</span> <span class="c-str">'[]'</span>,
+  features jsonb default '[]',
   image text,
-  images jsonb <span class="c-kw">default</span> <span class="c-str">'[]'</span>,
+  images jsonb default '[]',
   whatsapp_msg text,
-  is_visible boolean <span class="c-kw">default</span> <span class="c-val">true</span>,
-  sort_order integer <span class="c-kw">default</span> <span class="c-val">0</span>,
-  created_at timestamptz <span class="c-kw">default</span> now()
+  is_visible boolean default true,
+  sort_order integer default 0,
+  created_at timestamptz default now()
 );</pre>
-        </div>
-        <div class="code-block">
-          <div class="code-label">Table 2 of 4 — Services</div>
-          <button class="copy-btn" onclick="copyCode(this,'sql-services')">Copy</button>
-          <pre id="sql-services"><span class="c-kw">create table</span> services (
-  id text <span class="c-kw">primary key</span>,
-  name text <span class="c-kw">not null</span>,
+  </div>
+
+  <div class="code-label">Table 2 of 4 — Services (stores your hair services)</div>
+  <div class="code-block">
+    <button class="copy-btn" id="btn-t2" onclick="copyCode('btn-t2','code-t2')">Copy</button>
+    <pre class="code-pre" id="code-t2">create table services (
+  id text primary key,
+  name text not null,
   description text,
   starting_price numeric,
-  currency text <span class="c-kw">default</span> <span class="c-str">'GHS'</span>,
+  currency text default 'GHS',
   duration text,
   icon text,
-  tags jsonb <span class="c-kw">default</span> <span class="c-str">'[]'</span>,
-  is_visible boolean <span class="c-kw">default</span> <span class="c-val">true</span>,
-  sort_order integer <span class="c-kw">default</span> <span class="c-val">0</span>,
-  created_at timestamptz <span class="c-kw">default</span> now()
+  tags jsonb default '[]',
+  is_visible boolean default true,
+  sort_order integer default 0,
+  created_at timestamptz default now()
 );</pre>
-        </div>
-        <div class="code-block">
-          <div class="code-label">Table 3 of 4 — Reviews</div>
-          <button class="copy-btn" onclick="copyCode(this,'sql-reviews')">Copy</button>
-          <pre id="sql-reviews"><span class="c-kw">create table</span> reviews (
-  id bigint <span class="c-kw">generated always as identity primary key</span>,
-  reviewer_name text <span class="c-kw">not null</span>,
+  </div>
+
+  <div class="code-label">Table 3 of 4 — Reviews (stores customer reviews)</div>
+  <div class="code-block">
+    <button class="copy-btn" id="btn-t3" onclick="copyCode('btn-t3','code-t3')">Copy</button>
+    <pre class="code-pre" id="code-t3">create table reviews (
+  id bigint generated always as identity primary key,
+  reviewer_name text not null,
   reviewer_location text,
-  stars integer <span class="c-kw">default</span> <span class="c-val">5</span> <span class="c-kw">check</span> (stars <span class="c-kw">between</span> <span class="c-val">1</span> <span class="c-kw">and</span> <span class="c-val">5</span>),
-  review_text text <span class="c-kw">not null</span>,
-  is_approved boolean <span class="c-kw">default</span> <span class="c-val">false</span>,
-  created_at timestamptz <span class="c-kw">default</span> now()
+  stars integer default 5 check (stars between 1 and 5),
+  review_text text not null,
+  is_approved boolean default false,
+  created_at timestamptz default now()
 );</pre>
-        </div>
-        <div class="code-block">
-          <div class="code-label">Table 4 of 4 — Contact Submissions</div>
-          <button class="copy-btn" onclick="copyCode(this,'sql-contacts')">Copy</button>
-          <pre id="sql-contacts"><span class="c-kw">create table</span> contact_submissions (
-  id bigint <span class="c-kw">generated always as identity primary key</span>,
-  name text <span class="c-kw">not null</span>,
-  email text <span class="c-kw">not null</span>,
+  </div>
+
+  <div class="code-label">Table 4 of 4 — Contact Submissions (stores messages from your contact page)</div>
+  <div class="code-block">
+    <button class="copy-btn" id="btn-t4" onclick="copyCode('btn-t4','code-t4')">Copy</button>
+    <pre class="code-pre" id="code-t4">create table contact_submissions (
+  id bigint generated always as identity primary key,
+  name text not null,
+  email text not null,
   phone text,
   subject text,
-  message text <span class="c-kw">not null</span>,
-  is_read boolean <span class="c-kw">default</span> <span class="c-val">false</span>,
-  created_at timestamptz <span class="c-kw">default</span> now()
+  message text not null,
+  is_read boolean default false,
+  created_at timestamptz default now()
 );</pre>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div class="callout-text">
+      <strong>How to know it worked</strong>
+      <p>After clicking Run for each block, you should see a green message that says something like "Success. No rows returned." If you see an error message in red, read it carefully — it usually tells you exactly what went wrong.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ STEP 6 — PERMISSIONS ═══ -->
+<div class="step-section" id="step-permissions">
+  <div class="step-header">
+    <div class="step-circle">6</div>
+    <div class="step-title">
+      <h2>Set Access Permissions</h2>
+      <p>This controls who can read and write to your database — run this once</p>
+    </div>
+  </div>
+
+  <p style="font-size:.88rem;margin-bottom:1rem;">Still in the SQL Editor — click <strong>New query</strong> again, then copy the entire block below and click <strong>Run</strong>. Run this all at once as a single block.</p>
+
+  <div class="code-block">
+    <button class="copy-btn" id="btn-rls" onclick="copyCode('btn-rls','code-rls')">Copy All</button>
+    <pre class="code-pre" id="code-rls"><span class="cm">-- Products: public can read visible ones, admin can do everything</span>
+alter table products enable row level security;
+create policy "Public read visible products"
+  on products for select using (is_visible = true);
+create policy "Admin manage products"
+  on products for all using (true) with check (true);
+
+<span class="cm">-- Services: public can read visible ones, admin can do everything</span>
+alter table services enable row level security;
+create policy "Public read visible services"
+  on services for select using (is_visible = true);
+create policy "Admin manage services"
+  on services for all using (true) with check (true);
+
+<span class="cm">-- Reviews: public can read approved ones, admin can do everything</span>
+alter table reviews enable row level security;
+create policy "Public read approved reviews"
+  on reviews for select using (is_approved = true);
+create policy "Admin manage reviews"
+  on reviews for all using (true) with check (true);
+
+<span class="cm">-- Contact submissions: anyone can send, admin can read and manage</span>
+alter table contact_submissions enable row level security;
+create policy "Anyone can submit contact form"
+  on contact_submissions for insert with check (true);
+create policy "Admin manage contact submissions"
+  on contact_submissions for all using (true) with check (true);</pre>
+  </div>
+
+  <div class="callout callout-tip">
+    <div class="callout-icon">💡</div>
+    <div class="callout-text">
+      <strong>What this does</strong>
+      <p>This block sets rules so that: visitors can only see visible products and approved reviews. Only your admin dashboard can add, edit or delete anything. Contact form messages are saved securely and only you can read them.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ STEP 7 — STORAGE ═══ -->
+<div class="step-section" id="step-storage">
+  <div class="step-header">
+    <div class="step-circle">7</div>
+    <div class="step-title">
+      <h2>Set Up Image Storage</h2>
+      <p>This allows product photos you upload in the admin to be stored permanently in the cloud</p>
+    </div>
+  </div>
+
+  <div class="callout callout-pink">
+    <div class="callout-icon">📸</div>
+    <div class="callout-text">
+      <strong>Why this matters</strong>
+      <p>When you upload a product photo in the admin, the system tries to save it to Supabase Storage (cloud). If this step is not done, photos are saved as compressed image data directly in the database — this still works but is slower for larger photos. Setting up Storage gives you better performance and unlimited image size.</p>
+    </div>
+  </div>
+
+  <p style="font-size:.88rem;margin:.75rem 0;">In your Supabase SQL Editor, click <strong>New query</strong>, paste this block, and click <strong>Run</strong>:</p>
+
+  <div class="code-block">
+    <button class="copy-btn" id="btn-storage" onclick="copyCode('btn-storage','code-storage')">Copy</button>
+    <pre class="code-pre" id="code-storage"><span class="cm">-- Create a public storage bucket for product images</span>
+insert into storage.buckets (id, name, public)
+values ('product-images', 'product-images', true);
+
+<span class="cm">-- Allow anyone to upload images</span>
+create policy "Public can upload product images"
+  on storage.objects for insert
+  with check (bucket_id = 'product-images');
+
+<span class="cm">-- Allow anyone to view images</span>
+create policy "Public can view product images"
+  on storage.objects for select
+  using (bucket_id = 'product-images');</pre>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div class="callout-text">
+      <strong>After running this</strong>
+      <p>When you upload a photo in the admin dashboard, it will be saved to Supabase Storage and get a permanent cloud URL. This URL is what gets stored in your database and shown on the website — so your product photos will always load fast.</p>
+    </div>
+  </div>
+
+  <div class="callout callout-tip">
+    <div class="callout-icon">💡</div>
+    <div class="callout-text">
+      <strong>Can also be done from Settings in your admin</strong>
+      <p>Open <code>admin.html</code> → go to <strong>Settings</strong> → you'll see this same SQL code with a "Copy" button ready to use.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ STEP 8 — ADMIN LOGIN ═══ -->
+<div class="step-section" id="step-admin">
+  <div class="step-header">
+    <div class="step-circle">8</div>
+    <div class="step-title">
+      <h2>Set Your Admin Email &amp; Password</h2>
+      <p>Change the default login details to your own before going live</p>
+    </div>
+  </div>
+
+  <div class="inst-list">
+    <div class="inst">
+      <div class="inst-n">1</div>
+      <div class="inst-body">
+        <strong>Open admin.html in a text editor</strong>
+        Use Notepad (Windows) or TextEdit (Mac). Right-click the file → Open with → choose your text editor.
+      </div>
+    </div>
+    <div class="inst">
+      <div class="inst-n">2</div>
+      <div class="inst-body">
+        <strong>Use Find to search for ADMIN_EMAIL</strong>
+        Press <code>Ctrl+F</code> (Windows) or <code>Cmd+F</code> (Mac) and search for <code>ADMIN_EMAIL</code>. You will find these two lines near the top of the script section.
+      </div>
+    </div>
+    <div class="inst">
+      <div class="inst-n">3</div>
+      <div class="inst-body">
+        <strong>Replace with your own email and a strong password</strong>
+        Change the values inside the quotes to your own email address and a strong password.
+      </div>
+    </div>
+    <div class="inst">
+      <div class="inst-n">4</div>
+      <div class="inst-body">
+        <strong>Save the file</strong>
+        Press <code>Ctrl+S</code> (Windows) or <code>Cmd+S</code> (Mac) to save.
+      </div>
+    </div>
+  </div>
+
+  <div class="code-label">Find this in admin.html and change it</div>
+  <div class="code-block">
+    <pre class="code-pre"><span class="cm">/* ── Change these to your own values ── */</span>
+<span class="ck">const</span> ADMIN_EMAIL    = <span class="cs">'admin@blit-hairs.com'</span>;  <span class="cm">← change this</span>
+<span class="ck">const</span> ADMIN_PASSWORD = <span class="cs">'blit2024admin'</span>;        <span class="cm">← change this</span></pre>
+  </div>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">🔒</div>
+    <div class="callout-text">
+      <strong>Keep admin.html private</strong>
+      <p>Do not share the admin.html file or your password with anyone. This file gives full control over your entire website — products, prices, reviews, and customer messages. Only you should know the login details.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ STEP 9 — DEPLOY ═══ -->
+<div class="step-section" id="step-deploy">
+  <div class="step-header">
+    <div class="step-circle">9</div>
+    <div class="step-title">
+      <h2>Put Your Website Live</h2>
+      <p>Upload your files so people can visit your website</p>
+    </div>
+  </div>
+
+  <div class="card-grid-2">
+    <div class="info-card highlighted">
+      <h4>⚡ Option A — Netlify (Recommended)</h4>
+      <p style="font-size:.82rem;margin-bottom:.75rem;">Free, instant, and very easy. Best option for most people.</p>
+      <div class="inst-list" style="margin:0;">
+        <div class="inst" style="padding:.75rem 1rem;">
+          <div class="inst-n" style="width:22px;height:22px;font-size:.65rem;">1</div>
+          <div class="inst-body" style="font-size:.82rem;">Go to <a href="https://netlify.com" target="_blank" style="color:var(--pk);font-weight:600;">netlify.com</a> and sign up free</div>
+        </div>
+        <div class="inst" style="padding:.75rem 1rem;">
+          <div class="inst-n" style="width:22px;height:22px;font-size:.65rem;">2</div>
+          <div class="inst-body" style="font-size:.82rem;"><strong>Drag and drop</strong> your entire <code>blit-hairs</code> folder onto the Netlify dashboard</div>
+        </div>
+        <div class="inst" style="padding:.75rem 1rem;">
+          <div class="inst-n" style="width:22px;height:22px;font-size:.65rem;">3</div>
+          <div class="inst-body" style="font-size:.82rem;">Your site goes live in seconds with a free URL like <code>blit-hairs.netlify.app</code></div>
+        </div>
+        <div class="inst" style="padding:.75rem 1rem;">
+          <div class="inst-n" style="width:22px;height:22px;font-size:.65rem;">4</div>
+          <div class="inst-body" style="font-size:.82rem;">To use your own domain (e.g. <code>blit-hairs.com</code>), go to <strong>Domain Settings</strong> in Netlify</div>
+        </div>
+      </div>
+    </div>
+    <div class="info-card">
+      <h4>🖥 Option B — cPanel Hosting</h4>
+      <p style="font-size:.82rem;margin-bottom:.75rem;">If you already have a web hosting account (e.g. from Vodafone, GoDaddy, etc.):</p>
+      <div class="inst-list" style="margin:0;">
+        <div class="inst" style="padding:.75rem 1rem;">
+          <div class="inst-n" style="width:22px;height:22px;font-size:.65rem;">1</div>
+          <div class="inst-body" style="font-size:.82rem;">Log into your hosting cPanel</div>
+        </div>
+        <div class="inst" style="padding:.75rem 1rem;">
+          <div class="inst-n" style="width:22px;height:22px;font-size:.65rem;">2</div>
+          <div class="inst-body" style="font-size:.82rem;">Open <strong>File Manager</strong> → go to <code>public_html/</code></div>
+        </div>
+        <div class="inst" style="padding:.75rem 1rem;">
+          <div class="inst-n" style="width:22px;height:22px;font-size:.65rem;">3</div>
+          <div class="inst-body" style="font-size:.82rem;">Upload all your files and folders there</div>
+        </div>
+        <div class="inst" style="padding:.75rem 1rem;">
+          <div class="inst-n" style="width:22px;height:22px;font-size:.65rem;">4</div>
+          <div class="inst-body" style="font-size:.82rem;">Your site is live at your domain immediately</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ── STEP 6 ── -->
-  <div class="step" id="step-6">
-    <div class="step-header">
-      <div class="step-num">6</div>
-      <div class="step-header-text">
-        <h2>Set Row Level Security (RLS)</h2>
-        <p>This controls who can read and write to your database</p>
-      </div>
+  <div class="callout callout-success" style="margin-top:1rem;">
+    <div class="callout-icon">🎉</div>
+    <div class="callout-text">
+      <strong>After deploying — test your connection</strong>
+      <p>Go to your live site and open <code>yoursite.com/admin.html</code>. Log in, then go to <strong>Settings</strong> and click <strong>Test Connection</strong>. If it shows a green "Connected" badge, everything is working perfectly!</p>
     </div>
-    <div class="step-body">
-      <p style="font-size:0.9rem;margin-bottom:1rem;">In SQL Editor click <strong>New query</strong>, paste the entire block below and click <strong>Run</strong>. Run this as one block.</p>
-      <div class="code-block">
-        <div class="code-label">Row Level Security — run the entire block at once</div>
-        <button class="copy-btn" onclick="copyCode(this,'sql-rls')">Copy All</button>
-        <pre id="sql-rls"><span class="c-comment">-- Products</span>
-<span class="c-kw">alter table</span> products <span class="c-kw">enable row level security</span>;
-<span class="c-kw">create policy</span> <span class="c-str">"Public read products"</span>
-  <span class="c-kw">on</span> products <span class="c-kw">for select using</span> (is_visible = <span class="c-val">true</span>);
-<span class="c-kw">create policy</span> <span class="c-str">"Admin full access products"</span>
-  <span class="c-kw">on</span> products <span class="c-kw">for all using</span> (<span class="c-val">true</span>) <span class="c-kw">with check</span> (<span class="c-val">true</span>);
+  </div>
+</div>
 
-<span class="c-comment">-- Services</span>
-<span class="c-kw">alter table</span> services <span class="c-kw">enable row level security</span>;
-<span class="c-kw">create policy</span> <span class="c-str">"Public read services"</span>
-  <span class="c-kw">on</span> services <span class="c-kw">for select using</span> (is_visible = <span class="c-val">true</span>);
-<span class="c-kw">create policy</span> <span class="c-str">"Admin full access services"</span>
-  <span class="c-kw">on</span> services <span class="c-kw">for all using</span> (<span class="c-val">true</span>) <span class="c-kw">with check</span> (<span class="c-val">true</span>);
-
-<span class="c-comment">-- Reviews</span>
-<span class="c-kw">alter table</span> reviews <span class="c-kw">enable row level security</span>;
-<span class="c-kw">create policy</span> <span class="c-str">"Public read approved reviews"</span>
-  <span class="c-kw">on</span> reviews <span class="c-kw">for select using</span> (is_approved = <span class="c-val">true</span>);
-<span class="c-kw">create policy</span> <span class="c-str">"Admin full access reviews"</span>
-  <span class="c-kw">on</span> reviews <span class="c-kw">for all using</span> (<span class="c-val">true</span>) <span class="c-kw">with check</span> (<span class="c-val">true</span>);
-
-<span class="c-comment">-- Contact Submissions</span>
-<span class="c-kw">alter table</span> contact_submissions <span class="c-kw">enable row level security</span>;
-<span class="c-kw">create policy</span> <span class="c-str">"Anyone can submit contact"</span>
-  <span class="c-kw">on</span> contact_submissions <span class="c-kw">for insert with check</span> (<span class="c-val">true</span>);
-<span class="c-kw">create policy</span> <span class="c-str">"Admin full access contacts"</span>
-  <span class="c-kw">on</span> contact_submissions <span class="c-kw">for all using</span> (<span class="c-val">true</span>) <span class="c-kw">with check</span> (<span class="c-val">true</span>);</pre>
-      </div>
+<!-- ═══ HOW IT ALL CONNECTS ═══ -->
+<div class="step-section" style="border-bottom:none;">
+  <div class="step-header">
+    <div class="step-circle" style="background:linear-gradient(135deg,var(--gr),#15803d);">✓</div>
+    <div class="step-title">
+      <h2>How Everything Works Together</h2>
+      <p>The big picture — you only ever need to use admin.html</p>
     </div>
   </div>
 
-  <!-- ── STEP 7 — THE CRITICAL NEW STEP ── -->
-  <div class="step" id="step-7">
-    <div class="step-header">
-      <div class="step-num">7</div>
-      <div class="step-header-text">
-        <h2>Grant Table Access to the Website</h2>
-        <p>This is the step most people miss — without it, the shop and services pages will stay empty</p>
-      </div>
+  <div class="flow">
+    <div class="flow-box"><div class="flow-box-icon">👑</div><div class="flow-box-label">You (Admin)</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box"><div class="flow-box-icon">🔐</div><div class="flow-box-label">admin.html</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box"><div class="flow-box-icon">🗄</div><div class="flow-box-label">Supabase Database</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box"><div class="flow-box-icon">🌍</div><div class="flow-box-label">Live Website</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box"><div class="flow-box-icon">👩🏾</div><div class="flow-box-label">Your Customers</div></div>
+  </div>
+
+  <div style="margin-top:1.5rem;overflow-x:auto;">
+    <table class="qr-table">
+      <thead><tr><th>What you do in admin</th><th>What happens on the website</th><th>How fast</th></tr></thead>
+      <tbody>
+        <tr><td>Add a product</td><td>It appears on shop.html and the homepage (if it has a badge)</td><td>Instantly</td></tr>
+        <tr><td>Edit a product price</td><td>The new price shows on the product card</td><td>Instantly</td></tr>
+        <tr><td>Hide a product (eye icon)</td><td>Product disappears from the shop</td><td>Instantly</td></tr>
+        <tr><td>Approve a review</td><td>Review appears on the homepage and about page</td><td>Instantly</td></tr>
+        <tr><td>Add a service</td><td>Service appears on services.html and homepage preview</td><td>Instantly</td></tr>
+        <tr><td>Customer submits contact form</td><td>Message appears in your Messages tab in admin</td><td>Instantly</td></tr>
+        <tr><td>Upload a product photo</td><td>Photo shows on the product card in the shop</td><td>Instantly</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<!-- ═══ CHECKLIST ═══ -->
+<div style="background:var(--dark);padding:4rem 0;">
+  <div class="wrap" id="step-checklist">
+    <div style="text-align:center;margin-bottom:2.5rem;">
+      <div style="font-family:var(--fa);font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pk2);margin-bottom:.5rem;">You're Almost There</div>
+      <h2 style="font-family:var(--fd);font-size:2rem;color:#fff;margin-bottom:.5rem;">Go-Live <em style="font-style:italic;color:var(--pk2);">Checklist</em></h2>
+      <p style="color:rgba(255,255,255,.55);font-size:.9rem;">Tick each item as you complete it. Once all are checked, your website is fully ready!</p>
     </div>
-    <div class="step-body">
-      <div class="callout callout--danger">
-        <div class="callout__icon">🚨</div>
-        <div class="callout__body">
-          <strong>Why This Step is Critical</strong>
-          <p>When you create tables using the SQL Editor, Supabase does NOT automatically give your website permission to read them. RLS policies alone are not enough — you must also GRANT the <code>anon</code> role access to the table itself. Without this step, your shop and services pages will always show empty, even if you've added products and services in the admin.</p>
-        </div>
+
+    <div class="checklist-wrap">
+      <div class="cl-progress-label">
+        <span id="cl-label">0 of 12 completed</span>
+        <span style="color:var(--txt3);">Tap each item to check it off ✓</span>
       </div>
-      <p style="font-size:0.9rem;margin:1rem 0;">In SQL Editor click <strong>New query</strong>, paste the block below and click <strong>Run</strong>.</p>
-      <div class="code-block">
-        <div class="code-label">Grant Access — run this entire block at once</div>
-        <button class="copy-btn" onclick="copyCode(this,'sql-grants')">Copy All</button>
-        <pre id="sql-grants"><span class="c-comment">-- Allow the website (anon role) to read your tables</span>
-<span class="c-kw">grant usage on schema</span> public <span class="c-kw">to</span> anon, authenticated;
+      <div class="cl-bar-track"><div class="cl-bar-fill" id="cl-bar"></div></div>
 
-<span class="c-kw">grant select on</span> products <span class="c-kw">to</span> anon;
-<span class="c-kw">grant select on</span> services <span class="c-kw">to</span> anon;
-<span class="c-kw">grant select on</span> reviews <span class="c-kw">to</span> anon;
-<span class="c-kw">grant insert on</span> contact_submissions <span class="c-kw">to</span> anon;
+      <label class="cl-item"><input type="checkbox" onchange="updateChecklist()"><span class="cl-item-text">Placed <code>belinda.jpeg</code> inside <code>assets/images/</code> folder</span><span class="cl-tag cl-tag-must">Required</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateChecklist()"><span class="cl-item-text">Created Supabase account and project</span><span class="cl-tag cl-tag-once">Once</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateChecklist()"><span class="cl-item-text">Copied the Supabase Project URL and anon key</span><span class="cl-tag cl-tag-once">Once</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateChecklist()"><span class="cl-item-text">Replaced <code>YOUR_SUPABASE_URL</code> in all 7 HTML files</span><span class="cl-tag cl-tag-must">Required</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateChecklist()"><span class="cl-item-text">Replaced <code>YOUR_SUPABASE_ANON_KEY</code> in all 7 HTML files</span><span class="cl-tag cl-tag-must">Required</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateChecklist()"><span class="cl-item-text">Created all 4 database tables in the SQL Editor</span><span class="cl-tag cl-tag-must">Required</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateChecklist()"><span class="cl-item-text">Ran the permissions (Row Level Security) SQL block</span><span class="cl-tag cl-tag-must">Required</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateChecklist()"><span class="cl-item-text">Ran the image Storage setup SQL block</span><span class="cl-tag cl-tag-must">Required</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateChecklist()"><span class="cl-item-text">Changed ADMIN_EMAIL and ADMIN_PASSWORD in admin.html</span><span class="cl-tag cl-tag-must">Required</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateChecklist()"><span class="cl-item-text">Deployed to Netlify or cPanel — website is live</span><span class="cl-tag cl-tag-must">Required</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateChecklist()"><span class="cl-item-text">Logged into admin.html and clicked "Test Connection" — shows Connected ✅</span><span class="cl-tag cl-tag-once">Test</span></label>
+      <label class="cl-item"><input type="checkbox" onchange="updateChecklist()"><span class="cl-item-text">Added at least 4 products and 3 approved reviews via admin</span><span class="cl-tag cl-tag-must">Required</span></label>
 
-<span class="c-comment">-- Allow the admin panel full access</span>
-<span class="c-kw">grant all on</span> products <span class="c-kw">to</span> authenticated;
-<span class="c-kw">grant all on</span> services <span class="c-kw">to</span> authenticated;
-<span class="c-kw">grant all on</span> reviews <span class="c-kw">to</span> authenticated;
-<span class="c-kw">grant all on</span> contact_submissions <span class="c-kw">to</span> authenticated;
-
-<span class="c-comment">-- Allow sequences (needed for auto-increment IDs)</span>
-<span class="c-kw">grant usage, select on all sequences in schema</span> public <span class="c-kw">to</span> anon, authenticated;</pre>
-      </div>
-      <div class="callout callout--success">
-        <div class="callout__icon">✅</div>
-        <div class="callout__body">
-          <strong>What this does</strong>
-          <p>This gives the website permission to read your products, services and approved reviews. It also allows anyone to submit the contact form. The admin panel gets full control over everything. Without this, all pages would return empty results even with the correct API keys.</p>
+      <div class="cl-done" id="cl-done">
+        <div style="font-size:3rem;margin-bottom:.75rem;">🎉</div>
+        <h3>You're All Set, Queen! 💕</h3>
+        <p style="margin-top:.4rem;">Your b_lit hairs website is fully set up and ready for customers. Go and slay! 👑</p>
+        <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem;">
+          <a href="index.html" target="_blank" style="background:rgba(255,255,255,.15);color:#fff;padding:.55rem 1.25rem;border-radius:999px;font-family:var(--fa);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;">🏠 View Homepage</a>
+          <a href="admin.html" target="_blank" style="background:var(--pk);color:#fff;padding:.55rem 1.25rem;border-radius:999px;font-family:var(--fa);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;">🔐 Open Admin</a>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- ── STEP 8 ── -->
-  <div class="step" id="step-8">
-    <div class="step-header">
-      <div class="step-num">8</div>
-      <div class="step-header-text">
-        <h2>Set Your Admin Login</h2>
-        <p>Change the default email and password to your own</p>
-      </div>
-    </div>
-    <div class="step-body">
-      <div class="instruction-steps">
-        <div class="inst"><div class="inst__num">1</div><div class="inst__body"><strong>Open admin.html</strong>Open the file in any text editor (Notepad, VS Code, etc.)</div></div>
-        <div class="inst"><div class="inst__num">2</div><div class="inst__body"><strong>Find the admin credentials</strong>Search for <code>ADMIN_EMAIL</code> in the file. You'll find these two lines near the top of the script section.</div></div>
-      </div>
-      <div class="code-block" style="margin-top:1rem;">
-        <div class="code-label">Find and replace in admin.html</div>
-        <pre><span class="c-key">const</span> ADMIN_EMAIL    = <span class="c-str">'admin@blit-hairs.com'</span>;
-<span class="c-key">const</span> ADMIN_PASSWORD = <span class="c-str">'blit2024admin'</span>;</pre>
-      </div>
-      <p style="font-size:0.88rem;margin:0.75rem 0;">Change both to your own email and a strong password:</p>
-      <div class="code-block">
-        <pre><span class="c-key">const</span> ADMIN_EMAIL    = <span class="c-str">'your-real-email@gmail.com'</span>;
-<span class="c-key">const</span> ADMIN_PASSWORD = <span class="c-str">'YourStrongPassword123!'</span>;</pre>
-      </div>
-      <div class="callout callout--danger">
-        <div class="callout__icon">🔒</div>
-        <div class="callout__body">
-          <strong>Keep admin.html Private</strong>
-          <p>Do not share the admin.html file or your admin password with anyone. Anyone who has access to admin.html and your password can control your entire website — products, reviews, messages, everything.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── STEP 9 ── -->
-  <div class="step" id="step-9">
-    <div class="step-header">
-      <div class="step-num">9</div>
-      <div class="step-header-text">
-        <h2>Deploy Your Website</h2>
-        <p>Put your website online so customers can visit it</p>
-      </div>
-    </div>
-    <div class="step-body">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem;">
-        <div class="admin-card" style="border-top:4px solid var(--pink);">
-          <h4>⚡ Option A — Netlify <span style="background:var(--green-bg);color:var(--green);font-size:0.65rem;font-family:var(--font-accent);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:0.15rem 0.5rem;border-radius:999px;margin-left:0.3rem;">Recommended</span></h4>
-          <ul>
-            <li>Go to <a href="https://netlify.com" target="_blank" style="color:var(--pink);font-weight:600;">netlify.com</a> — sign up free</li>
-            <li>Drag and drop your entire <code>blit-hairs</code> folder onto the Netlify page</li>
-            <li>Your site goes live in seconds</li>
-            <li>Free link like <code>blit-hairs.netlify.app</code></li>
-            <li>To add your own domain go to Domain Settings</li>
-          </ul>
-        </div>
-        <div class="admin-card" style="border-top:4px solid var(--blue);">
-          <h4>🖥 Option B — cPanel Hosting</h4>
-          <ul>
-            <li>Log into your hosting cPanel</li>
-            <li>Open <strong>File Manager</strong></li>
-            <li>Go to <code>public_html/</code></li>
-            <li>Upload all your files and the <code>assets/</code> folder</li>
-            <li>Site goes live at your domain automatically</li>
-          </ul>
-        </div>
-      </div>
-      <div class="callout callout--tip">
-        <div class="callout__icon">💡</div>
-        <div class="callout__body">
-          <strong>After Deploying — Test Connection</strong>
-          <p>Go to your live site and open <code>yoursite.com/admin.html</code>. Log in, click <strong>Settings</strong> in the sidebar, then click <strong>Test Connection</strong>. If it says "Connected" you are ready to start adding products and services.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── STEP 10 ── -->
-  <div class="step" id="step-10">
-    <div class="step-header">
-      <div class="step-num">10</div>
-      <div class="step-header-text">
-        <h2>How to Use Your Admin Dashboard</h2>
-        <p>A complete guide to everything you can do from admin.html</p>
-      </div>
-    </div>
-    <div class="step-body">
-
-      <div class="flow-chart">
-        <div class="flow-box"><div class="flow-box__icon">🔐</div><div class="flow-box__label">You (Admin)</div></div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-box"><div class="flow-box__icon">🖥</div><div class="flow-box__label">admin.html</div></div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-box"><div class="flow-box__icon">🗄</div><div class="flow-box__label">Supabase Database</div></div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-box"><div class="flow-box__icon">🌍</div><div class="flow-box__label">Live Website</div></div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-box"><div class="flow-box__icon">👩🏾</div><div class="flow-box__label">Your Customers</div></div>
-      </div>
-
-      <div class="callout callout--tip" style="margin-bottom:1.5rem;">
-        <div class="callout__icon">📌</div>
-        <div class="callout__body">
-          <strong>Important: How products and services appear on the website</strong>
-          <p>The shop and services pages show <em>only</em> what you add through the admin dashboard. Nothing appears until you add it. There is no example data — this is intentional so customers only see real products and real services.</p>
-        </div>
-      </div>
-
-      <table class="styled-table">
-        <thead><tr><th>What you want to do</th><th>How to do it in admin.html</th><th>Result on website</th></tr></thead>
-        <tbody>
-          <tr><td>Add a new product</td><td>Products → Add Product → fill form → Save</td><td>Appears on shop page immediately</td></tr>
-          <tr><td>Edit a product</td><td>Products → click ✏️ pencil icon → update → Save</td><td>Updated on website instantly</td></tr>
-          <tr><td>Hide a product temporarily</td><td>Products → click 👁 eye icon</td><td>Product disappears from shop</td></tr>
-          <tr><td>Make a product visible again</td><td>Products → click 👁 eye icon again</td><td>Product reappears on shop</td></tr>
-          <tr><td>Delete a product permanently</td><td>Products → click 🗑 trash icon → Confirm</td><td>Removed from site and database forever</td></tr>
-          <tr><td>Add a service</td><td>Services → Add Service → fill form → Save</td><td>Appears on services page immediately</td></tr>
-          <tr><td>Edit or delete a service</td><td>Services → pencil or trash icon</td><td>Updated or removed from site</td></tr>
-          <tr><td>Add a review manually</td><td>Reviews → Add Review → fill form → Save</td><td>Saved but hidden until approved</td></tr>
-          <tr><td>Show a review on the website</td><td>Reviews → click Approve button</td><td>Appears on homepage and about page</td></tr>
-          <tr><td>Hide a review</td><td>Reviews → click Unapprove button</td><td>Hidden from all pages immediately</td></tr>
-          <tr><td>Read a customer message</td><td>Messages → click View</td><td>Full message shown, auto-marked read</td></tr>
-          <tr><td>Reply to a message on WhatsApp</td><td>Messages → View → click Reply on WhatsApp</td><td>Opens WhatsApp with their number pre-filled</td></tr>
-          <tr><td>Test your database connection</td><td>Settings → Test Connection</td><td>Shows "Connected" or error message</td></tr>
-        </tbody>
-      </table>
-
-      <div class="admin-grid" style="margin-top:1.5rem;">
-        <div class="admin-card">
-          <h4>📦 Products Tips</h4>
-          <ul>
-            <li>For the image: upload your photo to <a href="https://imgbb.com" target="_blank" style="color:var(--pink);">imgbb.com</a> (free) and paste the link into the Image URL field</li>
-            <li>Products with a Badge (e.g. "Best Seller") appear in the featured section on the homepage</li>
-            <li>Sort Order controls display order — lower number = shows first</li>
-            <li>You can have as many products as you want for free</li>
-          </ul>
-        </div>
-        <div class="admin-card">
-          <h4>✂️ Services Tips</h4>
-          <ul>
-            <li>Add as many services as you offer — hair sales, braiding, styling, bridal, wigs etc.</li>
-            <li>The icon field uses a simple name like <code>star</code>, <code>scissors</code>, <code>wig</code> — pick from the dropdown in the form</li>
-            <li>Use the Tags field to show styles you offer (e.g. "Box Braids", "Knotless")</li>
-            <li>Set Sort Order to control which service appears first</li>
-          </ul>
-        </div>
-        <div class="admin-card">
-          <h4>⭐ Reviews Tips</h4>
-          <ul>
-            <li>New reviews are hidden by default — you must click Approve to show them</li>
-            <li>Only approved reviews appear on the website</li>
-            <li>Add reviews directly from good WhatsApp feedback you receive</li>
-            <li>Aim for at least 6 approved reviews to look credible</li>
-          </ul>
-        </div>
-        <div class="admin-card">
-          <h4>📧 Messages Tips</h4>
-          <ul>
-            <li>Unread messages show a count badge in the sidebar</li>
-            <li>Messages are marked as read automatically when you view them</li>
-            <li>If the customer gave a phone number, you can reply directly on WhatsApp</li>
-            <li>Click Refresh to check for new messages</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── STEP 11 — CHECKLIST ── -->
-  <div class="step" id="step-11">
-    <div class="step-header">
-      <div class="step-num">✓</div>
-      <div class="step-header-text">
-        <h2>Go-Live Checklist</h2>
-        <p>Tick each item as you complete it. You're ready when everything is checked.</p>
-      </div>
-    </div>
-    <div class="step-body">
-      <div class="check-count" id="check-count">0 of 14 completed</div>
-      <div class="check-progress"><div class="check-progress__fill" id="check-fill"></div></div>
-      <div class="checklist">
-        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Created the <code>assets/images/</code> folder and added <code>belinda.jpeg</code></span></label>
-        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Created a Supabase account and new project</span></label>
-        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Copied the Supabase Project URL and anon key</span></label>
-        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Added Supabase keys to all 6 HTML files</span></label>
-        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Created the <strong>Products</strong> table in SQL Editor</span></label>
-        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Created the <strong>Services</strong> table in SQL Editor</span></label>
-        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Created the <strong>Reviews</strong> table in SQL Editor</span></label>
-        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Created the <strong>Contact Submissions</strong> table in SQL Editor</span></label>
-        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Ran the <strong>Row Level Security</strong> SQL block (Step 6)</span></label>
-        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Ran the <strong>Grant Access</strong> SQL block (Step 7) — the most commonly missed step!</span></label>
-        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Changed admin email and password in admin.html</span></label>
-        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Deployed to Netlify or cPanel</span></label>
-        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Logged into admin.html and tested connection — says "Connected"</span></label>
-        <label class="check-item"><input type="checkbox" onchange="updateChecklist()"><span>Added at least 3 products and 3 services via admin — visible on live site</span></label>
-      </div>
-      <div id="all-done" style="display:none;background:var(--green-bg);border:1px solid var(--green-border);border-radius:var(--radius-lg);padding:2rem;text-align:center;margin-top:1.5rem;">
-        <div style="font-size:2.5rem;margin-bottom:0.5rem;">🎉</div>
-        <h3 style="font-family:var(--font-display);color:var(--green);margin-bottom:0.5rem;">You're All Set!</h3>
-        <p style="font-size:0.9rem;color:#166534;">Your b_lit hairs website is fully set up and ready for customers. Good luck with your business!</p>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /container -->
+</div>
 
 <!-- FOOTER -->
-<div class="setup-footer">
-  <div class="container">
-    <p>Built by <strong style="color:rgba(255,255,255,0.7);">Ibratech</strong> · <a href="tel:0544823484" style="color:var(--pink-mid);">0544823484</a> — for <strong style="color:var(--pink-mid);">b_lit hairs</strong>, Ghana.</p>
+<div class="page-footer">
+  <div class="wrap">
+    <p>Built by <strong style="color:rgba(255,255,255,.6);">Ibratech</strong> for <a href="index.html">b_lit hairs</a> — Ghana's luxury hair brand 💕</p>
     <div class="footer-links">
       <a href="index.html" class="footer-link">🏠 Homepage</a>
-      <a href="admin.html" class="footer-link">🔐 Admin Dashboard</a>
+      <a href="admin.html" class="footer-link">🔐 Admin</a>
       <a href="shop.html" class="footer-link">🛍️ Shop</a>
       <a href="services.html" class="footer-link">✂️ Services</a>
+      <a href="client-guide.html" class="footer-link">📖 User Guide</a>
       <a href="https://supabase.com" target="_blank" class="footer-link">🗄 Supabase</a>
       <a href="https://netlify.com" target="_blank" class="footer-link">⚡ Netlify</a>
-      <a href="https://imgbb.com" target="_blank" class="footer-link">📷 ImgBB</a>
     </div>
   </div>
 </div>
@@ -756,72 +860,68 @@
 <script>
 'use strict';
 
-/* ── Copy button ── */
-function copyCode(btn, id) {
-  const el   = document.getElementById(id);
-  const text = el.innerText;
-  navigator.clipboard.writeText(text).then(() => {
+/* ── Reading progress bar ── */
+window.addEventListener('scroll', function() {
+  var pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('reading-bar').style.width = Math.min(pct, 100) + '%';
+}, { passive: true });
+
+/* ── Sticky nav active state ── */
+var sections = ['step-files','step-photo','step-supabase','step-keys','step-tables','step-permissions','step-storage','step-admin','step-deploy','step-checklist'];
+var pills = document.querySelectorAll('.nav-pill[data-target]');
+
+window.addEventListener('scroll', function() {
+  var current = sections[0];
+  sections.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 130) current = id;
+  });
+  pills.forEach(function(p) { p.classList.toggle('on', p.dataset.target === current); });
+}, { passive: true });
+
+pills.forEach(function(pill) {
+  pill.addEventListener('click', function() {
+    var el = document.getElementById(pill.dataset.target);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+/* ── Copy code buttons ── */
+function copyCode(btnId, codeId) {
+  var code = document.getElementById(codeId);
+  if (!code) return;
+  var text = code.innerText.replace(/copy all|copy/gi, '').trim();
+  navigator.clipboard.writeText(text).then(function() {
+    var btn = document.getElementById(btnId);
     btn.textContent = '✓ Copied!';
     btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2200);
-  }).catch(() => {
-    /* Fallback for older browsers */
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.opacity  = '0';
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    btn.textContent = '✓ Copied!';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2200);
+    setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2200);
   });
 }
 
-/* ── Scroll to step ── */
-function scrollToStep(n) {
-  const el = document.getElementById('step-' + n);
-  if (el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
-}
-
-/* ── Checklist progress ── */
+/* ── Checklist ── */
 function updateChecklist() {
-  const all  = document.querySelectorAll('.check-item input[type=checkbox]');
-  const done = [...all].filter(c => c.checked).length;
-  const pct  = (done / all.length) * 100;
-  document.getElementById('check-count').textContent = `${done} of ${all.length} completed`;
-  document.getElementById('check-fill').style.width  = pct + '%';
-  document.getElementById('all-done').style.display  = done === all.length ? 'block' : 'none';
-  try {
-    localStorage.setItem('blit_setup_v2', JSON.stringify([...all].map(c => c.checked)));
-  } catch(e) {}
+  var all = document.querySelectorAll('.cl-item input[type=checkbox]');
+  var done = Array.from(all).filter(function(c) { return c.checked; }).length;
+  var total = all.length;
+  document.getElementById('cl-label').textContent = done + ' of ' + total + ' completed';
+  document.getElementById('cl-bar').style.width = ((done / total) * 100) + '%';
+  document.getElementById('cl-done').classList.toggle('show', done === total);
+  // Save progress
+  localStorage.setItem('blit_setup_v2', JSON.stringify(Array.from(all).map(function(c) { return c.checked; })));
 }
 
-/* ── Restore checklist from localStorage ── */
-(function restoreChecklist() {
+/* Restore checklist state */
+(function() {
+  var saved = localStorage.getItem('blit_setup_v2');
+  if (!saved) return;
   try {
-    const saved = JSON.parse(localStorage.getItem('blit_setup_v2') || '[]');
-    if (!saved.length) return;
-    const all = document.querySelectorAll('.check-item input[type=checkbox]');
-    all.forEach((c, i) => { if (saved[i]) c.checked = true; });
+    var states = JSON.parse(saved);
+    var all = document.querySelectorAll('.cl-item input[type=checkbox]');
+    all.forEach(function(c, i) { if (states[i]) c.checked = true; });
     updateChecklist();
   } catch(e) {}
 })();
-
-/* ── Active step highlight on scroll ── */
-const steps     = document.querySelectorAll('.step[id]');
-const progSteps = document.querySelectorAll('.prog-step');
-window.addEventListener('scroll', () => {
-  let current = 0;
-  steps.forEach((s, i) => {
-    if (window.scrollY >= s.offsetTop - 130) current = i;
-  });
-  progSteps.forEach((p, i) => {
-    p.classList.toggle('active', i === current);
-  });
-}, {passive: true});
 </script>
 </body>
 </html>

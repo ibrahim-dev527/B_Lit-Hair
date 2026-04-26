@@ -1,260 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin — b_lit hairs</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --pink:#b5436a;--pink-mid:#d4698b;--pink-light:#fdf0f4;--pink-border:rgba(181,67,106,0.15);
-      --gold:#c9a96e;--charcoal:#1a1a1a;--sidebar:#111318;--sidebar-hover:rgba(255,255,255,0.07);
-      --white:#fff;--off:#f8f9fc;--text:#2d2d2d;--text-mid:#666;--text-light:#999;
-      --green:#16a34a;--green-bg:#dcfce7;--red:#dc2626;--red-bg:#fee2e2;--blue:#2563eb;--blue-bg:#dbeafe;--orange:#d97706;--orange-bg:#fef3c7;
-      --radius:10px;--radius-lg:16px;--shadow:0 2px 16px rgba(0,0,0,0.07);--shadow-md:0 4px 32px rgba(0,0,0,0.12);
-      --font:'Poppins',sans-serif;--font-accent:'Montserrat',sans-serif;--font-display:'Playfair Display',serif;
-      --transition:0.25s cubic-bezier(0.4,0,0.2,1);
-      --sidebar-w:260px;
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{font-size:15px;}
-    body{font-family:var(--font);background:var(--off);color:var(--text);-webkit-font-smoothing:antialiased;min-height:100vh;}
-    img{max-width:100%;display:block;}
-    a{text-decoration:none;color:inherit;}
-    ul{list-style:none;}
-    input,textarea,select{font-family:var(--font);}
-    h1,h2,h3{font-family:var(--font-display);}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — b_lit hairs</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pk: #b5436a; --pk2: #d4698b; --pkl: #fdf0f4; --pkb: rgba(181,67,106,0.15);
+  --gold: #c9a96e; --dark: #1a1a1a; --sb: #0f1117;
+  --white: #fff; --bg: #f4f6fa; --txt: #2d2d2d; --txt2: #666; --txt3: #999;
+  --gr: #16a34a; --grb: #dcfce7; --rd: #dc2626; --rdb: #fee2e2;
+  --bl: #2563eb; --blb: #dbeafe; --or: #d97706; --orb: #fef3c7;
+  --r: 10px; --rl: 16px; --sh: 0 2px 16px rgba(0,0,0,.08); --shd: 0 8px 40px rgba(0,0,0,.14);
+  --f: 'Poppins', sans-serif; --fa: 'Montserrat', sans-serif; --fd: 'Playfair Display', serif;
+  --tr: .25s cubic-bezier(.4,0,.2,1); --sw: 250px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 15px; }
+body { font-family: var(--f); background: var(--bg); color: var(--txt); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+input, textarea, select, button { font-family: var(--f); }
 
-    /* ── LOGIN ── */
-    #login-screen{position:fixed;inset:0;background:var(--charcoal);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.5s ease;}
-    #login-screen.hidden{opacity:0;pointer-events:none;}
-    .login-card{background:var(--white);border-radius:24px;padding:3rem 2.5rem;width:100%;max-width:420px;box-shadow:0 32px 80px rgba(0,0,0,0.4);text-align:center;}
-    .login-logo{font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:var(--charcoal);margin-bottom:0.25rem;}
-    .login-logo span{color:var(--pink);}
-    .login-sub{font-size:0.78rem;font-family:var(--font-accent);font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-light);margin-bottom:2rem;}
-    .login-field{text-align:left;margin-bottom:1.25rem;}
-    .login-field label{display:block;font-family:var(--font-accent);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mid);margin-bottom:0.4rem;}
-    .login-field input{width:100%;padding:0.85rem 1rem;border:2px solid rgba(181,67,106,0.2);border-radius:var(--radius);font-size:0.9rem;outline:none;transition:border-color var(--transition);}
-    .login-field input:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(181,67,106,0.1);}
-    .login-btn{width:100%;padding:1rem;background:linear-gradient(135deg,var(--pink),var(--pink-mid));color:white;border:none;border-radius:var(--radius);font-family:var(--font-accent);font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:var(--transition);margin-top:0.5rem;}
-    .login-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(181,67,106,0.4);}
-    .login-err{color:var(--red);font-size:0.82rem;margin-top:0.75rem;display:none;}
-    .login-lock{font-size:2.5rem;margin-bottom:1rem;}
+/* ── LOGIN ── */
+#login-screen {
+  position: fixed; inset: 0; background: var(--dark); z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity .5s;
+}
+#login-screen.hidden { opacity: 0; pointer-events: none; }
+.login-box {
+  background: var(--white); border-radius: 20px; padding: 2.5rem;
+  width: 100%; max-width: 400px; box-shadow: 0 32px 80px rgba(0,0,0,.4); text-align: center;
+}
+.login-logo { font-family: var(--fd); font-size: 1.7rem; color: var(--dark); }
+.login-logo span { color: var(--pk); }
+.login-sub { font-family: var(--fa); font-size: .7rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--txt3); margin: .25rem 0 1.75rem; }
+.login-field { text-align: left; margin-bottom: 1rem; }
+.login-field label { display: block; font-family: var(--fa); font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--txt2); margin-bottom: .35rem; }
+.login-field input { width: 100%; padding: .8rem 1rem; border: 2px solid var(--pkb); border-radius: var(--r); font-size: .9rem; outline: none; transition: border-color var(--tr); }
+.login-field input:focus { border-color: var(--pk); box-shadow: 0 0 0 3px rgba(181,67,106,.1); }
+#login-btn { width: 100%; padding: .9rem; background: linear-gradient(135deg, var(--pk), var(--pk2)); color: #fff; border: none; border-radius: var(--r); font-family: var(--fa); font-size: .82rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; margin-top: .5rem; transition: var(--tr); }
+#login-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(181,67,106,.4); }
+#login-err { color: var(--rd); font-size: .82rem; margin-top: .65rem; display: none; }
 
-    /* ── LAYOUT ── */
-    #app{display:none;min-height:100vh;}
-    #app.visible{display:flex;}
+/* ── APP SHELL ── */
+#app { display: none; min-height: 100vh; }
+#app.visible { display: flex; }
 
-    /* ── SIDEBAR ── */
-    .sidebar{width:var(--sidebar-w);background:var(--sidebar);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;transition:transform var(--transition);}
-    .sidebar__brand{padding:1.75rem 1.5rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.07);}
-    .sidebar__brand-name{font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:white;}
-    .sidebar__brand-name span{color:var(--pink-mid);}
-    .sidebar__badge{display:inline-block;background:var(--pink);color:white;font-family:var(--font-accent);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.15rem 0.5rem;border-radius:999px;margin-left:0.5rem;vertical-align:middle;}
-    .sidebar__nav{flex:1;overflow-y:auto;padding:1rem 0;}
-    .sidebar__section{font-family:var(--font-accent);font-size:0.62rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);padding:1rem 1.5rem 0.4rem;}
-    .sidebar__item{display:flex;align-items:center;gap:0.85rem;padding:0.72rem 1.5rem;color:rgba(255,255,255,0.6);font-size:0.85rem;font-weight:500;cursor:pointer;transition:var(--transition);border-left:3px solid transparent;user-select:none;}
-    .sidebar__item:hover{background:var(--sidebar-hover);color:white;}
-    .sidebar__item.active{background:rgba(181,67,106,0.15);color:white;border-left-color:var(--pink);}
-    .sidebar__item svg{width:18px;height:18px;flex-shrink:0;opacity:0.8;}
-    .sidebar__item .badge-count{margin-left:auto;background:var(--pink);color:white;font-size:0.65rem;font-weight:700;min-width:20px;height:20px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;padding:0 5px;}
-    .sidebar__footer{padding:1.25rem 1.5rem;border-top:1px solid rgba(255,255,255,0.07);}
-    .sidebar__user{display:flex;align-items:center;gap:0.75rem;}
-    .sidebar__avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--pink-mid));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.9rem;flex-shrink:0;}
-    .sidebar__uname{font-size:0.82rem;font-weight:600;color:white;}
-    .sidebar__urole{font-size:0.7rem;color:rgba(255,255,255,0.4);}
-    .logout-btn{margin-left:auto;background:rgba(255,255,255,0.08);border:none;color:rgba(255,255,255,0.5);width:30px;height:30px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition);}
-    .logout-btn:hover{background:var(--red);color:white;}
-    .logout-btn svg{width:14px;height:14px;}
+/* ── SIDEBAR ── */
+.sidebar {
+  width: var(--sw); background: var(--sb); display: flex; flex-direction: column;
+  position: fixed; top: 0; left: 0; bottom: 0; z-index: 100;
+  transition: transform var(--tr);
+}
+.sb-brand { padding: 1.5rem 1.25rem 1.1rem; border-bottom: 1px solid rgba(255,255,255,.07); }
+.sb-logo { font-family: var(--fd); font-size: 1.2rem; color: #fff; }
+.sb-logo span { color: var(--pk2); }
+.sb-admin-badge { background: var(--pk); color: #fff; font-family: var(--fa); font-size: .58rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .12rem .45rem; border-radius: 999px; margin-left: .4rem; vertical-align: middle; }
+.sb-nav { flex: 1; overflow-y: auto; padding: .75rem 0; }
+.sb-section { font-family: var(--fa); font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.28); padding: .9rem 1.25rem .35rem; }
+.sb-item { display: flex; align-items: center; gap: .75rem; padding: .65rem 1.25rem; color: rgba(255,255,255,.55); font-size: .83rem; font-weight: 500; cursor: pointer; transition: var(--tr); border-left: 3px solid transparent; }
+.sb-item:hover { background: rgba(255,255,255,.06); color: #fff; }
+.sb-item.active { background: rgba(181,67,106,.18); color: #fff; border-left-color: var(--pk); }
+.sb-item svg { width: 17px; height: 17px; flex-shrink: 0; }
+.sb-badge { margin-left: auto; background: var(--pk); color: #fff; font-size: .62rem; font-weight: 700; min-width: 18px; height: 18px; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; padding: 0 4px; }
+.sb-footer { padding: 1rem 1.25rem; border-top: 1px solid rgba(255,255,255,.07); display: flex; align-items: center; gap: .6rem; }
+.sb-avatar { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, var(--pk), var(--pk2)); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: .85rem; flex-shrink: 0; }
+.sb-name { font-size: .8rem; font-weight: 600; color: #fff; }
+.sb-role { font-size: .68rem; color: rgba(255,255,255,.38); }
+#logout-btn { margin-left: auto; background: rgba(255,255,255,.08); border: none; color: rgba(255,255,255,.45); width: 28px; height: 28px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--tr); }
+#logout-btn:hover { background: var(--rd); color: #fff; }
+#logout-btn svg { width: 13px; height: 13px; }
 
-    /* ── MAIN ── */
-    .main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-height:100vh;}
-    .topbar{background:white;border-bottom:1px solid rgba(0,0,0,0.06);padding:0 2rem;height:64px;display:flex;align-items:center;gap:1rem;position:sticky;top:0;z-index:50;box-shadow:0 1px 8px rgba(0,0,0,0.04);}
-    .topbar__title{font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--charcoal);}
-    .topbar__subtitle{font-size:0.78rem;color:var(--text-light);}
-    .topbar__actions{margin-left:auto;display:flex;align-items:center;gap:0.75rem;}
-    .page-content{padding:2rem;flex:1;}
+/* ── MAIN ── */
+.main { margin-left: var(--sw); flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
+.topbar { background: #fff; border-bottom: 1px solid rgba(0,0,0,.06); padding: 0 1.75rem; height: 60px; display: flex; align-items: center; gap: 1rem; position: sticky; top: 0; z-index: 50; box-shadow: 0 1px 6px rgba(0,0,0,.04); }
+.topbar-title { font-family: var(--fd); font-size: 1.2rem; color: var(--dark); }
+.topbar-sub { font-size: .76rem; color: var(--txt3); }
+.topbar-right { margin-left: auto; display: flex; gap: .65rem; }
+#mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: .4rem; }
+#mobile-menu-btn svg { width: 21px; height: 21px; stroke: var(--txt); }
+.content { padding: 1.75rem; flex: 1; }
 
-    /* ── PANELS ── */
-    .panel{display:none;}
-    .panel.active{display:block;}
+/* ── PANELS ── */
+.panel { display: none; }
+.panel.active { display: block; }
 
-    /* ── STAT CARDS ── */
-    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-bottom:2rem;}
-    .stat-card{background:white;border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04);display:flex;align-items:center;gap:1.25rem;transition:var(--transition);}
-    .stat-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
-    .stat-icon{width:52px;height:52px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-    .stat-icon svg{width:24px;height:24px;}
-    .stat-icon--pink{background:var(--pink-light);} .stat-icon--pink svg{stroke:var(--pink);}
-    .stat-icon--green{background:var(--green-bg);} .stat-icon--green svg{stroke:var(--green);}
-    .stat-icon--blue{background:var(--blue-bg);} .stat-icon--blue svg{stroke:var(--blue);}
-    .stat-icon--orange{background:var(--orange-bg);} .stat-icon--orange svg{stroke:var(--orange);}
-    .stat-num{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--charcoal);line-height:1;}
-    .stat-label{font-size:0.78rem;color:var(--text-light);margin-top:0.2rem;}
+/* ── STATS ── */
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; margin-bottom: 1.75rem; }
+.stat-card { background: #fff; border-radius: var(--rl); padding: 1.35rem; box-shadow: var(--sh); display: flex; align-items: center; gap: 1.1rem; transition: var(--tr); }
+.stat-card:hover { box-shadow: var(--shd); transform: translateY(-2px); }
+.stat-icon { width: 48px; height: 48px; border-radius: var(--r); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.stat-icon svg { width: 22px; height: 22px; }
+.stat-icon.pink { background: var(--pkl); } .stat-icon.pink svg { stroke: var(--pk); }
+.stat-icon.green { background: var(--grb); } .stat-icon.green svg { stroke: var(--gr); }
+.stat-icon.blue { background: var(--blb); } .stat-icon.blue svg { stroke: var(--bl); }
+.stat-icon.orange { background: var(--orb); } .stat-icon.orange svg { stroke: var(--or); }
+.stat-num { font-family: var(--fd); font-size: 1.9rem; font-weight: 700; color: var(--dark); line-height: 1; }
+.stat-label { font-size: .76rem; color: var(--txt3); margin-top: .15rem; }
 
-    /* ── SECTION HEADERS ── */
-    .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;}
-    .section-header h2{font-size:1.3rem;color:var(--charcoal);}
-    .section-header p{font-size:0.82rem;color:var(--text-light);margin-top:0.15rem;}
+/* ── SECTION HEADER ── */
+.sec-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.4rem; flex-wrap: wrap; gap: .75rem; }
+.sec-header h2 { font-size: 1.2rem; color: var(--dark); font-family: var(--fd); }
+.sec-header p { font-size: .8rem; color: var(--txt3); margin-top: .12rem; }
 
-    /* ── BUTTONS ── */
-    .btn{display:inline-flex;align-items:center;gap:0.45rem;padding:0.6rem 1.4rem;border-radius:var(--radius);font-family:var(--font-accent);font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;border:none;transition:var(--transition);white-space:nowrap;}
-    .btn svg{width:15px;height:15px;}
-    .btn--primary{background:linear-gradient(135deg,var(--pink),var(--pink-mid));color:white;box-shadow:0 2px 10px rgba(181,67,106,0.3);}
-    .btn--primary:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(181,67,106,0.4);}
-    .btn--green{background:var(--green);color:white;}
-    .btn--green:hover{background:#15803d;}
-    .btn--red{background:var(--red);color:white;}
-    .btn--red:hover{background:#b91c1c;}
-    .btn--ghost{background:transparent;border:1.5px solid var(--pink-border);color:var(--pink);}
-    .btn--ghost:hover{background:var(--pink-light);}
-    .btn--sm{padding:0.4rem 0.9rem;font-size:0.72rem;}
-    .btn--icon{width:34px;height:34px;padding:0;justify-content:center;border-radius:8px;}
+/* ── BUTTONS ── */
+.btn { display: inline-flex; align-items: center; gap: .4rem; padding: .55rem 1.25rem; border-radius: var(--r); font-family: var(--fa); font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; border: none; transition: var(--tr); white-space: nowrap; }
+.btn svg { width: 14px; height: 14px; }
+.btn-primary { background: linear-gradient(135deg, var(--pk), var(--pk2)); color: #fff; box-shadow: 0 2px 10px rgba(181,67,106,.3); }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(181,67,106,.4); }
+.btn-primary:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+.btn-green { background: var(--gr); color: #fff; }
+.btn-green:hover { background: #15803d; }
+.btn-red { background: var(--rd); color: #fff; }
+.btn-red:hover { background: #b91c1c; }
+.btn-ghost { background: transparent; border: 1.5px solid var(--pkb); color: var(--pk); }
+.btn-ghost:hover { background: var(--pkl); }
+.btn-sm { padding: .36rem .82rem; font-size: .7rem; }
+.btn-icon { width: 32px; height: 32px; padding: 0; justify-content: center; border-radius: 8px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { animation: spin .7s linear infinite; }
 
-    /* ── TABLE ── */
-    .table-wrap{background:white;border-radius:var(--radius-lg);box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.05);overflow:hidden;}
-    .table-toolbar{padding:1rem 1.25rem;border-bottom:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;}
-    .search-box{display:flex;align-items:center;gap:0.5rem;background:var(--off);border:1.5px solid rgba(0,0,0,0.08);border-radius:var(--radius);padding:0.45rem 0.85rem;flex:1;max-width:300px;}
-    .search-box svg{width:15px;height:15px;stroke:var(--text-light);flex-shrink:0;}
-    .search-box input{border:none;background:transparent;outline:none;font-size:0.85rem;color:var(--text);width:100%;}
-    .filter-select{padding:0.45rem 0.75rem;border:1.5px solid rgba(0,0,0,0.08);border-radius:var(--radius);font-size:0.82rem;outline:none;background:white;color:var(--text);cursor:pointer;}
-    table{width:100%;border-collapse:collapse;}
-    thead tr{background:var(--off);border-bottom:1px solid rgba(0,0,0,0.06);}
-    th{padding:0.75rem 1rem;text-align:left;font-family:var(--font-accent);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);white-space:nowrap;}
-    td{padding:0.85rem 1rem;border-bottom:1px solid rgba(0,0,0,0.04);font-size:0.85rem;vertical-align:middle;}
-    tr:last-child td{border-bottom:none;}
-    tr:hover td{background:rgba(181,67,106,0.02);}
-    .td-img{width:48px;height:48px;border-radius:8px;object-fit:cover;background:var(--pink-light);}
-    .td-name{font-weight:600;color:var(--charcoal);}
-    .td-sub{font-size:0.75rem;color:var(--text-light);margin-top:1px;}
-    .td-actions{display:flex;gap:0.4rem;align-items:center;}
-    .empty-state{text-align:center;padding:4rem 2rem;color:var(--text-light);}
-    .empty-state svg{width:48px;height:48px;stroke:var(--text-light);opacity:0.4;margin:0 auto 1rem;}
-    .empty-state p{font-size:0.88rem;}
+/* ── TABLE CARD ── */
+.table-card { background: #fff; border-radius: var(--rl); box-shadow: var(--sh); overflow: hidden; }
+.table-toolbar { padding: .9rem 1.1rem; border-bottom: 1px solid rgba(0,0,0,.06); display: flex; gap: .65rem; flex-wrap: wrap; align-items: center; }
+.search-wrap { display: flex; align-items: center; gap: .45rem; background: var(--bg); border: 1.5px solid rgba(0,0,0,.08); border-radius: var(--r); padding: .4rem .8rem; flex: 1; max-width: 280px; }
+.search-wrap svg { width: 14px; height: 14px; stroke: var(--txt3); flex-shrink: 0; }
+.search-wrap input { border: none; background: transparent; outline: none; font-size: .82rem; color: var(--txt); width: 100%; }
+.filter-select { padding: .4rem .7rem; border: 1.5px solid rgba(0,0,0,.08); border-radius: var(--r); font-size: .8rem; outline: none; background: #fff; color: var(--txt); cursor: pointer; }
+table { width: 100%; border-collapse: collapse; }
+thead tr { background: var(--bg); border-bottom: 1px solid rgba(0,0,0,.06); }
+th { padding: .7rem 1rem; text-align: left; font-family: var(--fa); font-size: .67rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--txt3); white-space: nowrap; }
+td { padding: .8rem 1rem; border-bottom: 1px solid rgba(0,0,0,.04); font-size: .83rem; vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(181,67,106,.02); }
+.td-thumb { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; background: var(--pkl); flex-shrink: 0; }
+.td-name { font-weight: 600; color: var(--dark); }
+.td-sub { font-size: .72rem; color: var(--txt3); margin-top: 1px; }
+.td-actions { display: flex; gap: .35rem; align-items: center; }
+.empty-state { text-align: center; padding: 3.5rem 2rem; color: var(--txt3); }
+.empty-state svg { width: 40px; height: 40px; stroke: var(--txt3); opacity: .35; margin: 0 auto .75rem; }
+.empty-state p { font-size: .85rem; }
 
-    /* ── BADGES ── */
-    .badge{display:inline-flex;align-items:center;gap:0.3rem;padding:0.2rem 0.65rem;border-radius:999px;font-family:var(--font-accent);font-size:0.68rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
-    .badge--green{background:var(--green-bg);color:var(--green);}
-    .badge--red{background:var(--red-bg);color:var(--red);}
-    .badge--orange{background:var(--orange-bg);color:var(--orange);}
-    .badge--blue{background:var(--blue-bg);color:var(--blue);}
-    .badge--pink{background:var(--pink-light);color:var(--pink);}
+/* ── BADGES ── */
+.badge { display: inline-flex; align-items: center; padding: .18rem .6rem; border-radius: 999px; font-family: var(--fa); font-size: .65rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.badge-green { background: var(--grb); color: var(--gr); }
+.badge-red { background: var(--rdb); color: var(--rd); }
+.badge-orange { background: var(--orb); color: var(--or); }
+.badge-pink { background: var(--pkl); color: var(--pk); }
+.badge-blue { background: var(--blb); color: var(--bl); }
 
-    /* ── MODAL ── */
-    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:200;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px);}
-    .modal-overlay.open{display:flex;}
-    .modal{background:white;border-radius:var(--radius-lg);width:100%;max-width:680px;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 32px 80px rgba(0,0,0,0.25);}
-    .modal--sm{max-width:420px;}
-    .modal--lg{max-width:860px;}
-    .modal__head{padding:1.5rem 1.75rem;border-bottom:1px solid rgba(0,0,0,0.07);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
-    .modal__head h3{font-size:1.2rem;}
-    .modal__close{width:32px;height:32px;border-radius:50%;background:var(--off);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition);}
-    .modal__close:hover{background:#fee2e2;}
-    .modal__close svg{width:16px;height:16px;stroke:var(--text-mid);}
-    .modal__body{padding:1.75rem;overflow-y:auto;flex:1;}
-    .modal__footer{padding:1.25rem 1.75rem;border-top:1px solid rgba(0,0,0,0.07);display:flex;gap:0.75rem;justify-content:flex-end;flex-shrink:0;}
+/* ── MODALS ── */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 200; display: none; align-items: center; justify-content: center; padding: 1rem; backdrop-filter: blur(4px); }
+.modal-overlay.open { display: flex; }
+.modal { background: #fff; border-radius: var(--rl); width: 100%; max-width: 720px; max-height: 92vh; display: flex; flex-direction: column; box-shadow: 0 32px 80px rgba(0,0,0,.25); }
+.modal-sm { max-width: 400px; }
+.modal-head { padding: 1.35rem 1.65rem; border-bottom: 1px solid rgba(0,0,0,.07); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+.modal-head h3 { font-family: var(--fd); font-size: 1.1rem; }
+.modal-close { width: 30px; height: 30px; border-radius: 50%; background: var(--bg); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--tr); }
+.modal-close:hover { background: var(--rdb); }
+.modal-close svg { width: 15px; height: 15px; stroke: var(--txt2); }
+.modal-body { padding: 1.65rem; overflow-y: auto; flex: 1; }
+.modal-footer { padding: 1.1rem 1.65rem; border-top: 1px solid rgba(0,0,0,.07); display: flex; gap: .65rem; justify-content: flex-end; flex-shrink: 0; }
 
-    /* ── FORM ── */
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
-    .form-full{grid-column:1/-1;}
-    .form-group{display:flex;flex-direction:column;gap:0.4rem;}
-    .form-group label{font-family:var(--font-accent);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mid);}
-    .form-group input,.form-group textarea,.form-group select{padding:0.75rem 1rem;border:2px solid rgba(0,0,0,0.1);border-radius:var(--radius);font-size:0.88rem;outline:none;transition:border-color var(--transition),box-shadow var(--transition);background:white;color:var(--text);}
-    .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(181,67,106,0.1);}
-    .form-group textarea{resize:vertical;min-height:110px;line-height:1.6;}
-    .form-hint{font-size:0.72rem;color:var(--text-light);}
-    .form-check{display:flex;align-items:center;gap:0.6rem;cursor:pointer;}
-    .form-check input[type=checkbox]{width:18px;height:18px;accent-color:var(--pink);cursor:pointer;}
-    .form-check span{font-size:0.85rem;color:var(--text-mid);}
-    .char-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.4rem;}
-    .char-tag{display:inline-flex;align-items:center;gap:0.3rem;background:var(--pink-light);color:var(--pink);font-size:0.75rem;font-weight:600;padding:0.2rem 0.6rem;border-radius:999px;}
-    .char-tag button{background:none;border:none;cursor:pointer;color:var(--pink);font-size:0.9rem;line-height:1;padding:0;}
-    .tag-input-row{display:flex;gap:0.5rem;}
-    .tag-input-row input{flex:1;}
+/* ── FORM ── */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+.form-full { grid-column: 1 / -1; }
+.form-group { display: flex; flex-direction: column; gap: .38rem; }
+.form-group label { font-family: var(--fa); font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--txt2); }
+.form-group input, .form-group textarea, .form-group select { padding: .72rem 1rem; border: 2px solid rgba(0,0,0,.1); border-radius: var(--r); font-size: .86rem; outline: none; transition: border-color var(--tr); background: #fff; color: var(--txt); }
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--pk); box-shadow: 0 0 0 3px rgba(181,67,106,.09); }
+.form-group textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+.form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23b5436a' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .9rem center; padding-right: 2.2rem; cursor: pointer; }
+.form-hint { font-size: .7rem; color: var(--txt3); }
+.form-check { display: flex; align-items: center; gap: .55rem; cursor: pointer; padding-top: .3rem; }
+.form-check input[type=checkbox] { width: 17px; height: 17px; accent-color: var(--pk); cursor: pointer; }
+.form-check span { font-size: .83rem; color: var(--txt2); }
+.tag-input-row { display: flex; gap: .45rem; }
+.tag-input-row input { flex: 1; }
+.tags-display { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .35rem; }
+.tag-chip { display: inline-flex; align-items: center; gap: .25rem; background: var(--pkl); color: var(--pk); font-size: .73rem; font-weight: 600; padding: .18rem .55rem; border-radius: 999px; }
+.tag-chip button { background: none; border: none; cursor: pointer; color: var(--pk); font-size: .85rem; line-height: 1; padding: 0; }
 
-    /* ── TOAST ── */
-    #toast-wrap{position:fixed;bottom:2rem;right:2rem;z-index:9000;display:flex;flex-direction:column;gap:0.6rem;}
-    .toast{background:var(--charcoal);color:white;padding:0.85rem 1.4rem;border-radius:var(--radius);font-size:0.82rem;font-weight:500;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:0.6rem;min-width:260px;animation:slideIn 0.3s ease;border-left:4px solid var(--pink);}
-    .toast--success{border-left-color:var(--green);}
-    .toast--error{border-left-color:var(--red);}
-    .toast--warning{border-left-color:var(--orange);}
-    .toast svg{width:16px;height:16px;flex-shrink:0;}
-    @keyframes slideIn{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
+/* ── IMAGE UPLOADER ── */
+.upload-zone { border: 2.5px dashed rgba(181,67,106,.35); border-radius: var(--rl); padding: 1.75rem 1.25rem; text-align: center; background: var(--pkl); cursor: pointer; transition: var(--tr); position: relative; overflow: hidden; }
+.upload-zone:hover, .upload-zone.dragover { border-color: var(--pk); background: rgba(181,67,106,.08); }
+.upload-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+.upload-zone-icon { font-size: 2rem; display: block; margin-bottom: .5rem; }
+.upload-zone h4 { font-size: .88rem; font-weight: 700; color: var(--pk); margin-bottom: .2rem; }
+.upload-zone p { font-size: .73rem; color: var(--txt3); }
+.upload-progress-wrap { height: 4px; background: var(--pkl); border-radius: 2px; overflow: hidden; margin-top: .65rem; display: none; }
+.upload-progress-bar { height: 100%; background: linear-gradient(90deg, var(--pk), var(--pk2)); border-radius: 2px; width: 0%; transition: width .3s; }
+.image-preview-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6rem; margin-top: .85rem; }
+.img-thumb { position: relative; aspect-ratio: 1; border-radius: var(--r); overflow: hidden; background: var(--bg); border: 2.5px solid transparent; transition: border-color var(--tr); }
+.img-thumb.is-main { border-color: var(--pk); }
+.img-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.img-thumb-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.5); opacity: 0; transition: var(--tr); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .3rem; }
+.img-thumb:hover .img-thumb-overlay { opacity: 1; }
+.img-thumb-main-badge { position: absolute; top: 3px; left: 3px; background: var(--pk); color: #fff; font-size: .56rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: .12rem .4rem; border-radius: 999px; }
+.img-thumb-set-main { background: rgba(181,67,106,.9); color: #fff; border: none; border-radius: 999px; padding: .15rem .5rem; font-size: .6rem; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.img-thumb-delete { background: rgba(220,38,38,.9); color: #fff; border: none; border-radius: 50%; width: 22px; height: 22px; cursor: pointer; font-size: .75rem; display: flex; align-items: center; justify-content: center; }
+.img-empty-slot { aspect-ratio: 1; border-radius: var(--r); border: 2px dashed rgba(0,0,0,.1); display: flex; align-items: center; justify-content: center; color: var(--txt3); font-size: .7rem; background: var(--bg); }
+.upload-note { font-size: .71rem; color: var(--txt3); text-align: center; margin-top: .45rem; }
 
-    /* ── CONFIRM DIALOG ── */
-    .confirm-icon{width:60px;height:60px;border-radius:50%;background:var(--red-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}
-    .confirm-icon svg{width:28px;height:28px;stroke:var(--red);}
+/* ── DASHBOARD CARDS ── */
+.dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.35rem; margin-top: 1.35rem; }
+.dash-card { background: #fff; border-radius: var(--rl); padding: 1.35rem; box-shadow: var(--sh); }
+.dash-card h3 { font-size: .95rem; font-family: var(--fd); margin-bottom: .9rem; display: flex; align-items: center; gap: .45rem; }
+.dash-card h3 svg { width: 16px; height: 16px; stroke: var(--pk); }
+.quick-actions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .65rem; }
+.quick-action-btn { background: var(--bg); border: 1.5px solid rgba(0,0,0,.07); border-radius: var(--r); padding: .9rem; display: flex; flex-direction: column; align-items: center; gap: .4rem; cursor: pointer; transition: var(--tr); text-align: center; }
+.quick-action-btn:hover { background: var(--pkl); border-color: var(--pkb); }
+.quick-action-btn svg { width: 20px; height: 20px; stroke: var(--pk); }
+.quick-action-btn span { font-family: var(--fa); font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--txt2); }
+.activity-item { display: flex; align-items: flex-start; gap: .65rem; padding: .65rem 0; border-bottom: 1px solid rgba(0,0,0,.05); }
+.activity-item:last-child { border-bottom: none; }
+.activity-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.dot-pink { background: var(--pk); } .dot-green { background: var(--gr); } .dot-blue { background: var(--bl); }
+.activity-text { font-size: .8rem; color: var(--txt2); }
 
-    /* ── DASHBOARD GRID ── */
-    .dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem;}
-    .dash-card{background:white;border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04);}
-    .dash-card h3{font-size:1rem;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
-    .dash-card h3 svg{width:18px;height:18px;stroke:var(--pink);}
-    .activity-item{display:flex;align-items:flex-start;gap:0.75rem;padding:0.75rem 0;border-bottom:1px solid rgba(0,0,0,0.05);}
-    .activity-item:last-child{border-bottom:none;}
-    .activity-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;}
-    .activity-dot--pink{background:var(--pink);}
-    .activity-dot--green{background:var(--green);}
-    .activity-dot--blue{background:var(--blue);}
-    .activity-text{font-size:0.82rem;color:var(--text-mid);}
-    .quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
-    .quick-action{background:var(--off);border:1.5px solid rgba(0,0,0,0.07);border-radius:var(--radius);padding:1rem;display:flex;flex-direction:column;align-items:center;gap:0.5rem;cursor:pointer;transition:var(--transition);text-align:center;}
-    .quick-action:hover{background:var(--pink-light);border-color:var(--pink-border);}
-    .quick-action svg{width:22px;height:22px;stroke:var(--pink);}
-    .quick-action span{font-family:var(--font-accent);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-mid);}
+/* ── CONFIRM ── */
+.confirm-icon { width: 56px; height: 56px; border-radius: 50%; background: var(--rdb); display: flex; align-items: center; justify-content: center; margin: 0 auto .9rem; }
+.confirm-icon svg { width: 26px; height: 26px; stroke: var(--rd); }
 
-    /* ── IMAGE UPLOADER ── */
-    .upload-zone{border:2.5px dashed rgba(181,67,106,0.35);border-radius:var(--radius-lg);padding:2rem 1.5rem;text-align:center;background:var(--pink-light);cursor:pointer;transition:var(--transition);position:relative;overflow:hidden;}
-    .upload-zone:hover,.upload-zone.drag-over{border-color:var(--pink);background:rgba(181,67,106,0.08);}
-    .upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
-    .upload-zone__icon{font-size:2.2rem;margin-bottom:0.6rem;display:block;}
-    .upload-zone h4{font-size:0.9rem;font-weight:700;color:var(--pink);margin-bottom:0.25rem;}
-    .upload-zone p{font-size:0.75rem;color:var(--text-light);}
-    .img-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.65rem;margin-top:1rem;}
-    .img-thumb{position:relative;aspect-ratio:1;border-radius:var(--radius);overflow:hidden;background:var(--off);border:2px solid transparent;transition:border-color var(--transition);}
-    .img-thumb.is-main{border-color:var(--pink);}
-    .img-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
-    .img-thumb__overlay{position:absolute;inset:0;background:rgba(0,0,0,0.55);opacity:0;transition:var(--transition);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.35rem;}
-    .img-thumb:hover .img-thumb__overlay{opacity:1;}
-    .img-thumb__badge{position:absolute;top:4px;left:4px;background:var(--pink);color:white;font-size:0.58rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;padding:0.15rem 0.45rem;border-radius:999px;}
-    .img-thumb__del{background:rgba(220,38,38,0.9);color:white;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:0.8rem;display:flex;align-items:center;justify-content:center;}
-    .img-thumb__main-btn{background:rgba(181,67,106,0.9);color:white;border:none;border-radius:999px;padding:0.15rem 0.55rem;font-size:0.62rem;font-weight:700;cursor:pointer;white-space:nowrap;}
-    .img-slot-empty{aspect-ratio:1;border-radius:var(--radius);border:2px dashed rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;color:var(--text-light);font-size:0.7rem;background:var(--off);}
-    .upload-progress{height:4px;background:var(--pink-light);border-radius:2px;overflow:hidden;margin-top:0.75rem;display:none;}
-    .upload-progress__bar{height:100%;background:linear-gradient(90deg,var(--pink),var(--pink-mid));border-radius:2px;width:0%;transition:width 0.3s ease;}
-    .upload-note{font-size:0.72rem;color:var(--text-light);margin-top:0.5rem;text-align:center;}
-    /* FIX: clear warning shown when storage not set up */
-    .upload-fallback-row{margin-top:0.85rem;display:flex;flex-direction:column;gap:0.4rem;}
-    .upload-fallback-row label{font-family:var(--font-accent);font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mid);}
-    .upload-fallback-row input{padding:0.65rem 0.9rem;border:2px solid rgba(0,0,0,0.1);border-radius:var(--radius);font-size:0.85rem;outline:none;transition:border-color var(--transition);}
-    .upload-fallback-row input:focus{border-color:var(--pink);}
+/* ── TOAST ── */
+#toast-container { position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 9000; display: flex; flex-direction: column; gap: .5rem; pointer-events: none; }
+.toast { background: var(--dark); color: #fff; padding: .8rem 1.3rem; border-radius: var(--r); font-size: .8rem; font-weight: 500; box-shadow: var(--shd); display: flex; align-items: center; gap: .55rem; min-width: 240px; animation: toast-in .3s ease; border-left: 4px solid var(--pk); pointer-events: all; }
+.toast.success { border-left-color: var(--gr); }
+.toast.error { border-left-color: var(--rd); }
+@keyframes toast-in { from { transform: translateX(110%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
-    /* ── SETTINGS ── */
-    .settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+/* ── SQL BOX ── */
+.sql-pre { background: var(--dark); border-radius: var(--r); padding: 1.1rem 1.25rem; font-family: 'Courier New', monospace; font-size: .76rem; color: #86efac; line-height: 1.8; position: relative; white-space: pre-wrap; overflow-x: auto; margin-top: .75rem; }
+.sql-copy-btn { position: absolute; top: .5rem; right: .5rem; background: rgba(255,255,255,.1); color: rgba(255,255,255,.7); border: 1px solid rgba(255,255,255,.15); border-radius: 5px; padding: .2rem .6rem; font-size: .66rem; font-weight: 700; cursor: pointer; font-family: var(--fa); letter-spacing: .05em; text-transform: uppercase; transition: var(--tr); }
+.sql-copy-btn:hover { background: rgba(255,255,255,.2); }
+.sql-copy-btn.copied { background: rgba(22,163,74,.4); color: #fff; }
 
-    /* ── TOGGLE ── */
-    .toggle{position:relative;width:44px;height:24px;flex-shrink:0;}
-    .toggle input{opacity:0;width:0;height:0;}
-    .toggle-slider{position:absolute;inset:0;background:#ddd;border-radius:999px;cursor:pointer;transition:var(--transition);}
-    .toggle-slider::before{content:'';position:absolute;width:18px;height:18px;left:3px;top:3px;background:white;border-radius:50%;transition:var(--transition);}
-    .toggle input:checked+.toggle-slider{background:var(--green);}
-    .toggle input:checked+.toggle-slider::before{transform:translateX(20px);}
-
-    /* ── RESPONSIVE ── */
-    .mobile-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:0.5rem;}
-    .mobile-menu-btn svg{width:22px;height:22px;stroke:var(--text);}
-    @media(max-width:1024px){.stats-row{grid-template-columns:repeat(2,1fr);}.form-grid{grid-template-columns:1fr;}.form-full{grid-column:1;}.dash-grid{grid-template-columns:1fr;}.settings-grid{grid-template-columns:1fr;}}
-    @media(max-width:768px){:root{--sidebar-w:0px;}.sidebar{transform:translateX(-260px);width:260px;}.sidebar.open{transform:translateX(0);}.main{margin-left:0;}.mobile-menu-btn{display:block;}.stats-row{grid-template-columns:1fr 1fr;}.page-content{padding:1rem;}.topbar{padding:0 1rem;}.modal{max-width:100%;margin:0.5rem;}}
-    @media(max-width:480px){.stats-row{grid-template-columns:1fr;}.table-wrap{overflow-x:auto;}}
-  </style>
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .dash-grid { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-full { grid-column: 1; }
+  .image-preview-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 680px) {
+  :root { --sw: 0px; }
+  .sidebar { width: 250px; transform: translateX(-250px); }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; }
+  #mobile-menu-btn { display: block; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .content { padding: 1rem; }
+  .topbar { padding: 0 1rem; }
+  .modal { max-width: 100%; }
+  .settings-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .quick-actions-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
 
-<!-- ══════════════════ LOGIN ══════════════════ -->
+<!-- ═══ LOGIN ═══ -->
 <div id="login-screen">
-  <div class="login-card">
-    <div class="login-lock">🔐</div>
+  <div class="login-box">
+    <div style="font-size:2.2rem;margin-bottom:.5rem;">🔐</div>
     <div class="login-logo">b_lit <span>hairs</span></div>
     <div class="login-sub">Admin Dashboard</div>
     <div class="login-field">
@@ -265,1124 +281,1521 @@
       <label>Password</label>
       <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password">
     </div>
-    <button class="login-btn" id="login-btn">Sign In to Dashboard</button>
-    <div class="login-err" id="login-err">Incorrect email or password. Please try again.</div>
+    <button id="login-btn">Sign In to Dashboard</button>
+    <div id="login-err">Incorrect email or password.</div>
   </div>
 </div>
 
-<!-- ══════════════════ APP ══════════════════ -->
+<!-- ═══ APP ═══ -->
 <div id="app">
 
   <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
-    <div class="sidebar__brand">
-      <div class="sidebar__brand-name">b_lit <span>hairs</span><span class="sidebar__badge">Admin</span></div>
+    <div class="sb-brand">
+      <div class="sb-logo">b_lit <span>hairs</span><span class="sb-admin-badge">Admin</span></div>
     </div>
-    <nav class="sidebar__nav">
-      <div class="sidebar__section">Overview</div>
-      <div class="sidebar__item active" data-panel="dashboard">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+    <nav class="sb-nav">
+      <div class="sb-section">Overview</div>
+      <div class="sb-item active" data-panel="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
         Dashboard
       </div>
-      <div class="sidebar__section">Products</div>
-      <div class="sidebar__item" data-panel="products">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
-        Products
-        <span class="badge-count" id="badge-products">0</span>
+      <div class="sb-section">Manage</div>
+      <div class="sb-item" data-panel="products">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+        Products <span class="sb-badge" id="badge-products">0</span>
       </div>
-      <div class="sidebar__item" data-panel="services">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-        Services
-        <span class="badge-count" id="badge-services">0</span>
+      <div class="sb-item" data-panel="services">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        Services <span class="sb-badge" id="badge-services">0</span>
       </div>
-      <div class="sidebar__section">Community</div>
-      <div class="sidebar__item" data-panel="reviews">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        Reviews
-        <span class="badge-count" id="badge-reviews">0</span>
+      <div class="sb-item" data-panel="reviews">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Reviews <span class="sb-badge" id="badge-reviews">0</span>
       </div>
-      <div class="sidebar__item" data-panel="contacts">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Messages
-        <span class="badge-count" id="badge-contacts">0</span>
+      <div class="sb-item" data-panel="messages">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Messages <span class="sb-badge" id="badge-messages">0</span>
       </div>
-      <div class="sidebar__section">Settings</div>
-      <div class="sidebar__item" data-panel="settings">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M12 2v2M12 20v2M4.93 19.07l1.41-1.41M19.07 19.07l-1.41-1.41M22 12h-2M4 12H2"/></svg>
+      <div class="sb-section">Config</div>
+      <div class="sb-item" data-panel="settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M12 2v2M12 20v2M4.93 19.07l1.41-1.41M19.07 19.07l-1.41-1.41M22 12h-2M4 12H2"/></svg>
         Settings
       </div>
     </nav>
-    <div class="sidebar__footer">
-      <div class="sidebar__user">
-        <div class="sidebar__avatar" id="admin-avatar">A</div>
-        <div>
-          <div class="sidebar__uname" id="admin-name">Admin</div>
-          <div class="sidebar__urole">Administrator</div>
-        </div>
-        <button class="logout-btn" id="logout-btn" title="Sign Out">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-        </button>
-      </div>
+    <div class="sb-footer">
+      <div class="sb-avatar" id="sb-avatar">A</div>
+      <div><div class="sb-name" id="sb-name">Admin</div><div class="sb-role">Administrator</div></div>
+      <button id="logout-btn" title="Sign Out">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      </button>
     </div>
   </aside>
 
-  <!-- MAIN -->
+  <!-- MAIN CONTENT -->
   <div class="main">
     <header class="topbar">
-      <button class="mobile-menu-btn" id="mobile-menu-btn">
+      <button id="mobile-menu-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
       <div>
-        <div class="topbar__title" id="topbar-title">Dashboard</div>
-        <div class="topbar__subtitle" id="topbar-sub">Welcome back to your admin panel</div>
+        <div class="topbar-title" id="page-title">Dashboard</div>
+        <div class="topbar-sub" id="page-sub">Welcome back</div>
       </div>
-      <div class="topbar__actions">
-        <a href="index.html" target="_blank" class="btn btn--ghost btn--sm">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          View Website
+      <div class="topbar-right">
+        <a href="index.html" target="_blank" class="btn btn-ghost btn-sm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View Site
         </a>
       </div>
     </header>
 
-    <div class="page-content">
+    <div class="content">
 
-      <!-- ────────── DASHBOARD ────────── -->
+      <!-- DASHBOARD PANEL -->
       <div class="panel active" id="panel-dashboard">
-        <div class="stats-row" id="stats-row">
-          <div class="stat-card"><div class="stat-icon stat-icon--pink"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg></div><div><div class="stat-num" id="stat-products">—</div><div class="stat-label">Total Products</div></div></div>
-          <div class="stat-card"><div class="stat-icon stat-icon--green"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div><div class="stat-num" id="stat-reviews">—</div><div class="stat-label">Client Reviews</div></div></div>
-          <div class="stat-card"><div class="stat-icon stat-icon--blue"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div><div><div class="stat-num" id="stat-services">—</div><div class="stat-label">Services</div></div></div>
-          <div class="stat-card"><div class="stat-icon stat-icon--orange"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="stat-num" id="stat-messages">—</div><div class="stat-label">Messages</div></div></div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon pink"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg></div>
+            <div><div class="stat-num" id="stat-products">—</div><div class="stat-label">Products</div></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+            <div><div class="stat-num" id="stat-reviews">—</div><div class="stat-label">Reviews</div></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+            <div><div class="stat-num" id="stat-services">—</div><div class="stat-label">Services</div></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><div class="stat-num" id="stat-messages">—</div><div class="stat-label">Messages</div></div>
+          </div>
         </div>
         <div class="dash-grid">
           <div class="dash-card">
             <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Quick Actions</h3>
-            <div class="quick-actions">
-              <div class="quick-action" onclick="openPanel('products');setTimeout(()=>openProductModal(),200)"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span>Add Product</span></div>
-              <div class="quick-action" onclick="openPanel('services');setTimeout(()=>openServiceModal(),200)"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span>Add Service</span></div>
-              <div class="quick-action" onclick="openPanel('reviews');setTimeout(()=>openReviewModal(),200)"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span>Add Review</span></div>
-              <div class="quick-action" onclick="openPanel('contacts')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg><span>View Messages</span></div>
+            <div class="quick-actions-grid">
+              <div class="quick-action-btn" onclick="switchPanel('products'); setTimeout(openProductModal, 200)">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <span>Add Product</span>
+              </div>
+              <div class="quick-action-btn" onclick="switchPanel('services'); setTimeout(openServiceModal, 200)">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <span>Add Service</span>
+              </div>
+              <div class="quick-action-btn" onclick="switchPanel('reviews'); setTimeout(openReviewModal, 200)">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <span>Add Review</span>
+              </div>
+              <div class="quick-action-btn" onclick="switchPanel('messages')">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>
+                <span>Messages</span>
+              </div>
             </div>
           </div>
           <div class="dash-card">
-            <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Recent Activity</h3>
-            <div id="activity-feed"><div class="empty-state"><p>Loading activity…</p></div></div>
+            <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Status</h3>
+            <div id="dash-activity"><p class="activity-text">Loading…</p></div>
           </div>
         </div>
       </div>
 
-      <!-- ────────── PRODUCTS ────────── -->
+      <!-- PRODUCTS PANEL -->
       <div class="panel" id="panel-products">
-        <div class="section-header">
-          <div><h2>Products</h2><p>Manage your hair product catalogue</p></div>
-          <button class="btn btn--primary" onclick="openProductModal()">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Product
+        <div class="sec-header">
+          <div><h2>Products</h2><p>Manage your hair catalogue</p></div>
+          <button class="btn btn-primary" onclick="openProductModal()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Product
           </button>
         </div>
-        <div class="table-wrap">
+        <div class="table-card">
           <div class="table-toolbar">
-            <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Search products…" id="product-search"></div>
-            <select class="filter-select" id="product-cat-filter"><option value="">All Categories</option><option value="wigs">Wigs</option><option value="bundles">Bundles</option><option value="frontals">Frontals</option><option value="extensions">Extensions</option></select>
+            <div class="search-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="product-search" placeholder="Search products…" oninput="filterProducts()">
+            </div>
+            <select class="filter-select" id="product-cat-filter" onchange="filterProducts()">
+              <option value="">All Categories</option>
+              <option value="wigs">Wigs</option>
+              <option value="bundles">Bundles</option>
+              <option value="frontals">Frontals</option>
+              <option value="extensions">Extensions</option>
+            </select>
           </div>
-          <div id="products-table-body"></div>
+          <div id="products-table"></div>
         </div>
       </div>
 
-      <!-- ────────── SERVICES ────────── -->
+      <!-- SERVICES PANEL -->
       <div class="panel" id="panel-services">
-        <div class="section-header">
+        <div class="sec-header">
           <div><h2>Services</h2><p>Manage your hair services</p></div>
-          <button class="btn btn--primary" onclick="openServiceModal()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Service</button>
+          <button class="btn btn-primary" onclick="openServiceModal()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Service
+          </button>
         </div>
-        <div class="table-wrap">
-          <div class="table-toolbar"><div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Search services…" id="service-search"></div></div>
-          <div id="services-table-body"></div>
+        <div class="table-card">
+          <div class="table-toolbar">
+            <div class="search-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="service-search" placeholder="Search services…" oninput="filterServices()">
+            </div>
+          </div>
+          <div id="services-table"></div>
         </div>
       </div>
 
-      <!-- ────────── REVIEWS ────────── -->
+      <!-- REVIEWS PANEL -->
       <div class="panel" id="panel-reviews">
-        <div class="section-header">
-          <div><h2>Reviews</h2><p>Approve and manage client reviews</p></div>
-          <button class="btn btn--primary" onclick="openReviewModal()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Review</button>
+        <div class="sec-header">
+          <div><h2>Reviews</h2><p>Approve and manage reviews</p></div>
+          <button class="btn btn-primary" onclick="openReviewModal()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Review
+          </button>
         </div>
-        <div class="table-wrap">
+        <div class="table-card">
           <div class="table-toolbar">
-            <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Search reviews…" id="review-search"></div>
-            <select class="filter-select" id="review-status-filter"><option value="">All Reviews</option><option value="approved">Approved</option><option value="pending">Pending</option></select>
+            <div class="search-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="review-search" placeholder="Search reviews…" oninput="filterReviews()">
+            </div>
+            <select class="filter-select" id="review-filter" onchange="filterReviews()">
+              <option value="">All</option>
+              <option value="approved">Approved</option>
+              <option value="pending">Pending</option>
+            </select>
           </div>
-          <div id="reviews-table-body"></div>
+          <div id="reviews-table"></div>
         </div>
       </div>
 
-      <!-- ────────── MESSAGES ────────── -->
-      <div class="panel" id="panel-contacts">
-        <div class="section-header">
-          <div><h2>Messages</h2><p>Contact form submissions from your website</p></div>
-          <button class="btn btn--ghost btn--sm" onclick="loadContacts()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>Refresh</button>
+      <!-- MESSAGES PANEL -->
+      <div class="panel" id="panel-messages">
+        <div class="sec-header">
+          <div><h2>Messages</h2><p>Customer contact form submissions</p></div>
+          <button class="btn btn-ghost btn-sm" onclick="loadMessages()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+            Refresh
+          </button>
         </div>
-        <div class="table-wrap">
+        <div class="table-card">
           <div class="table-toolbar">
-            <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Search messages…" id="contact-search"></div>
-            <select class="filter-select" id="contact-read-filter"><option value="">All Messages</option><option value="unread">Unread</option><option value="read">Read</option></select>
+            <div class="search-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="message-search" placeholder="Search messages…" oninput="filterMessages()">
+            </div>
+            <select class="filter-select" id="message-filter" onchange="filterMessages()">
+              <option value="">All</option>
+              <option value="unread">Unread</option>
+              <option value="read">Read</option>
+            </select>
           </div>
-          <div id="contacts-table-body"></div>
+          <div id="messages-table"></div>
         </div>
       </div>
 
-      <!-- ────────── SETTINGS ────────── -->
+      <!-- SETTINGS PANEL -->
       <div class="panel" id="panel-settings">
-        <div class="section-header"><div><h2>Settings</h2><p>Manage your account and website configuration</p></div></div>
-        <!-- FIX: settings-grid class used instead of inline grid style so it collapses on mobile -->
-        <div class="settings-grid">
+        <div class="sec-header"><div><h2>Settings</h2></div></div>
+        <div class="settings-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.35rem;">
           <div class="dash-card">
-            <h3 style="margin-bottom:1.25rem;">🔐 Change Password</h3>
-            <div style="display:flex;flex-direction:column;gap:1rem;">
-              <div class="form-group"><label>New Password</label><input type="password" id="new-pass" placeholder="New password"></div>
-              <div class="form-group"><label>Confirm Password</label><input type="password" id="confirm-pass" placeholder="Repeat password"></div>
-              <button class="btn btn--primary" onclick="changePassword()">Update Password</button>
+            <h3 style="margin-bottom:1rem;">🔐 Admin Password</h3>
+            <div style="display:flex;flex-direction:column;gap:.85rem;">
+              <div class="form-group"><label>New Password</label><input type="password" id="new-password" placeholder="New password"></div>
+              <div class="form-group"><label>Confirm Password</label><input type="password" id="confirm-password" placeholder="Repeat password"></div>
+              <button class="btn btn-primary" onclick="changePassword()">Update Password</button>
             </div>
           </div>
           <div class="dash-card">
-            <h3 style="margin-bottom:1.25rem;">🔗 Supabase Connection</h3>
-            <div style="display:flex;flex-direction:column;gap:1rem;">
-              <div class="form-group"><label>Supabase URL</label><input type="text" id="sb-url-display" readonly style="background:var(--off);font-size:0.78rem;font-family:monospace;"></div>
-              <div class="form-group"><label>Connection Status</label><div id="conn-status" class="badge badge--blue" style="display:inline-flex;width:fit-content;">Checking…</div></div>
-              <button class="btn btn--ghost" onclick="testConnection()">Test Connection</button>
+            <h3 style="margin-bottom:1rem;">🔗 Supabase Connection</h3>
+            <div style="display:flex;flex-direction:column;gap:.85rem;">
+              <div class="form-group"><label>Project URL</label><input type="text" id="sb-url-display" readonly style="background:var(--bg);font-family:monospace;font-size:.76rem;"></div>
+              <div><label style="font-family:var(--fa);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);display:block;margin-bottom:.35rem;">Status</label><span id="conn-status" class="badge badge-blue">Not tested</span></div>
+              <button class="btn btn-ghost" onclick="testConnection()">Test Connection</button>
             </div>
           </div>
-
-          <!-- ── FIX: GRANT SQL block added. Without this, the anon role cannot
-               access tables created via the SQL Editor and all fetches return
-               empty or 401 errors even with correct RLS policies. ── -->
           <div class="dash-card" style="grid-column:1/-1;">
-            <h3 style="margin-bottom:1.25rem;">
-              ⚠️ Required: Grant Table Access
-              <span style="font-size:0.72rem;background:var(--red-bg);color:var(--red);padding:0.15rem 0.5rem;border-radius:999px;font-family:var(--font-accent);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-left:0.5rem;">Run once if site shows no data</span>
-            </h3>
-            <p style="font-size:0.82rem;color:var(--text-mid);margin-bottom:1.25rem;">
-              Tables created via the <strong>SQL Editor</strong> do NOT automatically give the website permission to read them. If your shop or services page shows no data, run this SQL block once in your Supabase SQL Editor. <strong>You only need to do this once.</strong>
-            </p>
-            <div style="position:relative;">
-              <div style="background:var(--charcoal);border-radius:var(--radius);padding:1.25rem;font-family:monospace;font-size:0.78rem;color:#86efac;line-height:1.8;white-space:pre-wrap;" id="grant-sql-block">-- Run this in Supabase SQL Editor (once only)
--- This grants the website permission to read your tables
-
-grant usage on schema public to anon, authenticated;
-
-grant select on products to anon;
-grant select on services to anon;
-grant select on reviews to anon;
-grant insert on contact_submissions to anon;
-
--- For admin full access (also run this):
-grant all on products to authenticated;
-grant all on services to authenticated;
-grant all on reviews to authenticated;
-grant all on contact_submissions to authenticated;</div>
-              <button onclick="copyGrantSQL()" id="copy-grant-btn" style="position:absolute;top:0.6rem;right:0.6rem;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.15);border-radius:6px;padding:0.25rem 0.65rem;font-size:0.68rem;font-weight:700;cursor:pointer;font-family:var(--font-accent);letter-spacing:0.06em;text-transform:uppercase;">Copy SQL</button>
-            </div>
-          </div>
-
-          <div class="dash-card" style="grid-column:1/-1;">
-            <h3 style="margin-bottom:1.25rem;">📸 Image Storage Setup <span style="font-size:0.72rem;background:var(--orange-bg);color:var(--orange);padding:0.15rem 0.5rem;border-radius:999px;font-family:var(--font-accent);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-left:0.5rem;">One-time setup</span></h3>
-            <p style="font-size:0.82rem;color:var(--text-mid);margin-bottom:1.25rem;">
-              To upload product photos from the admin panel, create a public storage bucket. Run this SQL once in your Supabase SQL Editor. <strong>Until you do this, add product images using an image URL from Cloudinary or ImgBB instead.</strong>
-            </p>
-            <div style="position:relative;">
-              <div style="background:var(--charcoal);border-radius:var(--radius);padding:1.25rem;font-family:monospace;font-size:0.78rem;color:#86efac;line-height:1.8;white-space:pre-wrap;" id="storage-sql-block">-- Run this in Supabase SQL Editor
-insert into storage.buckets (id, name, public)
+            <h3 style="margin-bottom:.75rem;">📸 Image Storage Setup <span style="background:var(--orb);color:var(--or);font-size:.62rem;font-family:var(--fa);font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:.12rem .45rem;border-radius:999px;margin-left:.4rem;">One-time setup</span></h3>
+            <p style="font-size:.82rem;color:var(--txt2);margin-bottom:.5rem;">Run this SQL once in your Supabase SQL Editor to enable cloud image storage. Without it, images are saved as compressed data directly in the database — which still works but is slower for large images.</p>
+            <div class="sql-pre">insert into storage.buckets (id, name, public)
 values ('product-images', 'product-images', true);
 
-create policy "Anyone can upload product images"
-on storage.objects for insert
-with check (bucket_id = 'product-images');
+create policy "Public can upload images"
+  on storage.objects for insert
+  with check (bucket_id = 'product-images');
 
-create policy "Public can read product images"
-on storage.objects for select
-using (bucket_id = 'product-images');</div>
-              <button onclick="copyStorageSQL()" id="copy-sql-btn" style="position:absolute;top:0.6rem;right:0.6rem;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.15);border-radius:6px;padding:0.25rem 0.65rem;font-size:0.68rem;font-weight:700;cursor:pointer;font-family:var(--font-accent);letter-spacing:0.06em;text-transform:uppercase;">Copy SQL</button>
-            </div>
+create policy "Public can view images"
+  on storage.objects for select
+  using (bucket_id = 'product-images');<button class="sql-copy-btn" id="sql-copy-btn" onclick="copySql()">Copy</button></div>
           </div>
-
-          <!-- FIX: nav links now inside the grid, not floating outside it -->
           <div class="dash-card" style="grid-column:1/-1;">
-            <h3 style="margin-bottom:1.25rem;">🔗 Quick Links</h3>
-            <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-              <a href="index.html" target="_blank" class="btn btn--ghost btn--sm">🏠 Home</a>
-              <a href="shop.html" target="_blank" class="btn btn--ghost btn--sm">🛍️ Shop</a>
-              <a href="services.html" target="_blank" class="btn btn--ghost btn--sm">✂️ Services</a>
-              <a href="about.html" target="_blank" class="btn btn--ghost btn--sm">👤 About</a>
-              <a href="contact.html" target="_blank" class="btn btn--ghost btn--sm">📧 Contact</a>
+            <h3 style="margin-bottom:.75rem;">🌐 Website Pages</h3>
+            <div style="display:flex;flex-wrap:wrap;gap:.65rem;">
+              <a href="index.html" target="_blank" class="btn btn-ghost btn-sm">🏠 Homepage</a>
+              <a href="shop.html" target="_blank" class="btn btn-ghost btn-sm">🛍️ Shop</a>
+              <a href="services.html" target="_blank" class="btn btn-ghost btn-sm">✂️ Services</a>
+              <a href="about.html" target="_blank" class="btn btn-ghost btn-sm">👤 About</a>
+              <a href="contact.html" target="_blank" class="btn btn-ghost btn-sm">📧 Contact</a>
+              <a href="client-guide.html" target="_blank" class="btn btn-ghost btn-sm">📖 Guide</a>
             </div>
           </div>
         </div>
       </div>
 
-    </div><!-- /page-content -->
+    </div><!-- /content -->
   </div><!-- /main -->
 </div><!-- /app -->
 
-<!-- ══════════ PRODUCT MODAL ══════════ -->
-<div class="modal-overlay" id="product-modal">
-  <div class="modal modal--lg">
-    <div class="modal__head">
+<!-- ═══ PRODUCT MODAL ═══ -->
+<div class="modal-overlay" id="modal-product">
+  <div class="modal">
+    <div class="modal-head">
       <h3 id="product-modal-title">Add Product</h3>
-      <button class="modal__close" onclick="closeModal('product-modal')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <button class="modal-close" onclick="closeModal('modal-product')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
-    <div class="modal__body">
+    <div class="modal-body">
       <div class="form-grid">
-        <div class="form-group"><label>Product ID *</label><input type="text" id="p-id" placeholder="e.g. BLH009"><span class="form-hint">Unique ID. Cannot be changed after saving.</span></div>
-        <div class="form-group"><label>Product Name *</label><input type="text" id="p-name" placeholder="e.g. Brazilian Straight Bundle"></div>
-        <div class="form-group"><label>Category *</label><select id="p-category"><option value="">Select category</option><option value="wigs">Wigs</option><option value="bundles">Bundles</option><option value="frontals">Frontals</option><option value="extensions">Extensions</option></select></div>
-        <div class="form-group"><label>Price (GHS) *</label><input type="number" id="p-price" placeholder="e.g. 450"></div>
-        <div class="form-group"><label>Badge (optional)</label><input type="text" id="p-badge" placeholder="e.g. Best Seller, New Arrival"></div>
-        <div class="form-group"><label>Hair Type</label><input type="text" id="p-hairtype" placeholder="e.g. Brazilian Virgin"></div>
-        <div class="form-group"><label>Texture</label><input type="text" id="p-texture" placeholder="e.g. Straight, Body Wave"></div>
-        <div class="form-group"><label>Default Length</label><input type="text" id="p-length" placeholder='e.g. 18"'></div>
-        <div class="form-group"><label>Weight</label><input type="text" id="p-weight" placeholder="e.g. 100g per bundle"></div>
-        <div class="form-group"><label>Colour</label><input type="text" id="p-color" placeholder="e.g. Natural Black (#1B)"></div>
-
-        <!-- FIX: Image section rebuilt. Primary input is now a plain URL field
-             (reliable, works without Supabase storage setup). The file upload
-             button is a secondary option that only works once the storage bucket
-             SQL has been run in Settings. This prevents silent base64 saves. -->
+        <div class="form-group">
+          <label>Product ID *</label>
+          <input type="text" id="p-id" placeholder="e.g. BLH009">
+          <span class="form-hint">Short unique code. Cannot change after saving.</span>
+        </div>
+        <div class="form-group">
+          <label>Product Name *</label>
+          <input type="text" id="p-name" placeholder="e.g. Brazilian Straight Bundle">
+        </div>
+        <div class="form-group">
+          <label>Category *</label>
+          <select id="p-category">
+            <option value="">Select category…</option>
+            <option value="wigs">Wigs</option>
+            <option value="bundles">Bundles</option>
+            <option value="frontals">Frontals</option>
+            <option value="extensions">Extensions</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Price (GHS) *</label>
+          <input type="number" id="p-price" placeholder="e.g. 450" min="0">
+        </div>
+        <div class="form-group">
+          <label>Badge <span style="font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
+          <input type="text" id="p-badge" placeholder="e.g. Best Seller">
+          <span class="form-hint">Products with a badge appear on the homepage.</span>
+        </div>
+        <div class="form-group">
+          <label>Hair Type</label>
+          <input type="text" id="p-hair-type" placeholder="e.g. Brazilian Virgin">
+        </div>
+        <div class="form-group">
+          <label>Texture</label>
+          <input type="text" id="p-texture" placeholder="e.g. Straight, Body Wave">
+        </div>
+        <div class="form-group">
+          <label>Default Length</label>
+          <input type="text" id="p-length" placeholder='e.g. 18"'>
+        </div>
+        <div class="form-group">
+          <label>Weight</label>
+          <input type="text" id="p-weight" placeholder="e.g. 100g per bundle">
+        </div>
+        <div class="form-group">
+          <label>Colour</label>
+          <input type="text" id="p-color" placeholder="e.g. Natural Black (#1B)">
+        </div>
         <div class="form-group form-full">
-          <label>Product Image URL * <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-light);font-size:0.75rem;">(recommended: upload to <a href="https://imgbb.com" target="_blank" style="color:var(--pink);">imgbb.com</a> or <a href="https://cloudinary.com" target="_blank" style="color:var(--pink);">cloudinary.com</a> and paste the link)</span></label>
-          <input type="url" id="p-image-url" placeholder="https://i.ibb.co/xxxx/your-photo.jpg" style="margin-bottom:0.5rem;">
-          <span class="form-hint">Paste a direct image URL above. This is the main product photo shown on the shop page.</span>
-
-          <!-- Optional: upload if storage bucket is set up -->
-          <div style="margin-top:1rem;border-top:1px dashed rgba(0,0,0,0.1);padding-top:1rem;">
-            <p style="font-size:0.75rem;color:var(--text-light);margin-bottom:0.6rem;">
-              ── Or upload directly (only works after running the Storage SQL in Settings) ──
-            </p>
-            <div class="upload-zone" id="p-upload-zone">
-              <input type="file" id="p-file-input" accept="image/*" multiple>
-              <span class="upload-zone__icon">📷</span>
-              <h4>Tap to choose photo from gallery</h4>
-              <p>JPG, PNG, WebP · Max 5MB · Requires storage bucket setup</p>
-            </div>
-            <div class="upload-progress" id="p-upload-progress"><div class="upload-progress__bar" id="p-upload-bar"></div></div>
-            <div class="upload-note" id="p-upload-note"></div>
-          </div>
+          <label>Description *</label>
+          <textarea id="p-description" placeholder="Describe the product in detail — quality, feel, who it's for…"></textarea>
         </div>
 
-        <div class="form-group form-full"><label>Description *</label><textarea id="p-description" placeholder="Describe the product in detail…"></textarea></div>
+        <!-- IMAGE UPLOADER -->
         <div class="form-group form-full">
-          <label>Features (add individually)</label>
+          <label>Product Photos <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:.7rem;">(up to 4 · first photo is the main display photo)</span></label>
+          <div class="upload-zone" id="upload-zone">
+            <input type="file" id="photo-input" accept="image/*" multiple>
+            <span class="upload-zone-icon">📷</span>
+            <h4>Tap to choose photos from your gallery</h4>
+            <p>Or drag &amp; drop photos here &nbsp;·&nbsp; JPG, PNG, WebP &nbsp;·&nbsp; Any size</p>
+          </div>
+          <div class="upload-progress-wrap" id="upload-progress-wrap">
+            <div class="upload-progress-bar" id="upload-progress-bar"></div>
+          </div>
+          <div class="image-preview-grid" id="image-preview-grid"></div>
+          <div class="upload-note" id="upload-note">No photos yet. Tap above to choose from your gallery.</div>
+        </div>
+
+        <div class="form-group form-full">
+          <label>Features <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:.7rem;">(type one and click Add)</span></label>
           <div class="tag-input-row">
-            <input type="text" id="p-feature-input" placeholder="e.g. 100% Virgin Human Hair" onkeydown="if(event.key==='Enter'){event.preventDefault();addTag('p-feature-input','p-features-list','p-features-data');}">
-            <button class="btn btn--ghost btn--sm" type="button" onclick="addTag('p-feature-input','p-features-list','p-features-data')">Add</button>
+            <input type="text" id="feature-input" placeholder="e.g. 100% Virgin Human Hair" onkeydown="if(event.key==='Enter'){event.preventDefault();addTag('feature-input','features-display','features-data');}">
+            <button class="btn btn-ghost btn-sm" type="button" onclick="addTag('feature-input','features-display','features-data')">Add</button>
           </div>
-          <div class="char-tags" id="p-features-list"></div>
-          <input type="hidden" id="p-features-data">
+          <div class="tags-display" id="features-display"></div>
+          <input type="hidden" id="features-data">
         </div>
-        <div class="form-group form-full"><label>WhatsApp Order Message</label><textarea id="p-wamsg" placeholder="Hello b_lit hairs! 💕 I'm interested in the *Product Name*." style="min-height:80px;"></textarea></div>
-        <div class="form-group"><label>Sort Order</label><input type="number" id="p-sort" placeholder="e.g. 1" value="0"></div>
-        <div class="form-group" style="justify-content:flex-end;padding-top:1.5rem;"><label class="form-check"><input type="checkbox" id="p-visible" checked><span>Visible on website</span></label></div>
+
+        <div class="form-group form-full">
+          <label>WhatsApp Order Message <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:.7rem;">(auto-filled — you can edit)</span></label>
+          <textarea id="p-wa-msg" style="min-height:70px;" placeholder="Hello b_lit hairs! 💕 I'm interested in the *Product Name*…"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Sort Order</label>
+          <input type="number" id="p-sort" value="0" min="0">
+          <span class="form-hint">Lower number = shows first.</span>
+        </div>
+        <div class="form-group" style="justify-content:flex-end;padding-top:1.25rem;">
+          <label class="form-check">
+            <input type="checkbox" id="p-visible" checked>
+            <span>Visible on website</span>
+          </label>
+        </div>
       </div>
     </div>
-    <div class="modal__footer">
-      <button class="btn btn--ghost" onclick="closeModal('product-modal')">Cancel</button>
-      <button class="btn btn--primary" id="product-save-btn" onclick="saveProduct()">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Save Product
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-product')">Cancel</button>
+      <button class="btn btn-primary" id="product-save-btn" onclick="saveProduct()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Save Product
       </button>
     </div>
   </div>
 </div>
 
-<!-- ══════════ SERVICE MODAL ══════════ -->
-<div class="modal-overlay" id="service-modal">
+<!-- ═══ SERVICE MODAL ═══ -->
+<div class="modal-overlay" id="modal-service">
   <div class="modal">
-    <div class="modal__head"><h3 id="service-modal-title">Add Service</h3><button class="modal__close" onclick="closeModal('service-modal')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
-    <div class="modal__body">
+    <div class="modal-head">
+      <h3 id="service-modal-title">Add Service</h3>
+      <button class="modal-close" onclick="closeModal('modal-service')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
       <div class="form-grid">
         <div class="form-group"><label>Service ID *</label><input type="text" id="s-id" placeholder="e.g. SRV007"></div>
         <div class="form-group"><label>Service Name *</label><input type="text" id="s-name" placeholder="e.g. Hair Braiding"></div>
-        <div class="form-group"><label>Starting Price (GHS)</label><input type="number" id="s-price" placeholder="e.g. 200"></div>
+        <div class="form-group"><label>Starting Price (GHS)</label><input type="number" id="s-price" placeholder="e.g. 200" min="0"></div>
         <div class="form-group"><label>Duration</label><input type="text" id="s-duration" placeholder="e.g. 2–4 hours"></div>
-        <div class="form-group"><label>Icon</label><select id="s-icon"><option value="shop">🛍️ Shop</option><option value="braid">🏠 Braid</option><option value="style">💅 Style</option><option value="star">⭐ Star / Bridal</option><option value="wig">👑 Wig</option><option value="scissors">✂️ Scissors</option></select></div>
-        <div class="form-group"><label>Sort Order</label><input type="number" id="s-sort" placeholder="1" value="0"></div>
-        <div class="form-group form-full"><label>Description *</label><textarea id="s-description" placeholder="Describe the service…"></textarea></div>
+        <div class="form-group"><label>Icon</label>
+          <select id="s-icon">
+            <option value="shop">🛍️ Shop / Sales</option>
+            <option value="braid">🏠 Braiding</option>
+            <option value="style">💅 Custom Styling</option>
+            <option value="star">⭐ Bridal / Events</option>
+            <option value="wig">👑 Custom Wig</option>
+            <option value="scissors">✂️ Maintenance</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Sort Order</label><input type="number" id="s-sort" value="0" min="0"></div>
+        <div class="form-group form-full"><label>Description *</label><textarea id="s-description" placeholder="What does this service include?…"></textarea></div>
         <div class="form-group form-full">
-          <label>Tags (add individually)</label>
-          <div class="tag-input-row"><input type="text" id="s-tag-input" placeholder="e.g. Box Braids" onkeydown="if(event.key==='Enter'){event.preventDefault();addTag('s-tag-input','s-tags-list','s-tags-data');}"><button class="btn btn--ghost btn--sm" type="button" onclick="addTag('s-tag-input','s-tags-list','s-tags-data')">Add</button></div>
-          <div class="char-tags" id="s-tags-list"></div>
-          <input type="hidden" id="s-tags-data">
+          <label>Tags</label>
+          <div class="tag-input-row">
+            <input type="text" id="service-tag-input" placeholder="e.g. Box Braids" onkeydown="if(event.key==='Enter'){event.preventDefault();addTag('service-tag-input','service-tags-display','service-tags-data');}">
+            <button class="btn btn-ghost btn-sm" type="button" onclick="addTag('service-tag-input','service-tags-display','service-tags-data')">Add</button>
+          </div>
+          <div class="tags-display" id="service-tags-display"></div>
+          <input type="hidden" id="service-tags-data">
         </div>
         <div class="form-group form-full"><label class="form-check"><input type="checkbox" id="s-visible" checked><span>Visible on website</span></label></div>
       </div>
     </div>
-    <div class="modal__footer"><button class="btn btn--ghost" onclick="closeModal('service-modal')">Cancel</button><button class="btn btn--primary" onclick="saveService()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Save Service</button></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-service')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveService()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Save Service</button>
+    </div>
   </div>
 </div>
 
-<!-- ══════════ REVIEW MODAL ══════════ -->
-<div class="modal-overlay" id="review-modal">
+<!-- ═══ REVIEW MODAL ═══ -->
+<div class="modal-overlay" id="modal-review">
   <div class="modal">
-    <div class="modal__head"><h3 id="review-modal-title">Add Review</h3><button class="modal__close" onclick="closeModal('review-modal')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
-    <div class="modal__body">
+    <div class="modal-head">
+      <h3 id="review-modal-title">Add Review</h3>
+      <button class="modal-close" onclick="closeModal('modal-review')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
       <div class="form-grid">
         <div class="form-group"><label>Reviewer Name *</label><input type="text" id="r-name" placeholder="e.g. Abena K."></div>
         <div class="form-group"><label>Location</label><input type="text" id="r-location" placeholder="e.g. Accra, Ghana"></div>
-        <div class="form-group"><label>Stars (1–5) *</label><select id="r-stars"><option value="5">⭐⭐⭐⭐⭐ (5 stars)</option><option value="4">⭐⭐⭐⭐ (4 stars)</option><option value="3">⭐⭐⭐ (3 stars)</option><option value="2">⭐⭐ (2 stars)</option><option value="1">⭐ (1 star)</option></select></div>
-        <div class="form-group"><label class="form-check" style="padding-top:1.5rem;"><input type="checkbox" id="r-approved" checked><span>Approved (visible on site)</span></label></div>
-        <div class="form-group form-full"><label>Review Text *</label><textarea id="r-text" placeholder="Write the review here…"></textarea></div>
+        <div class="form-group"><label>Stars *</label>
+          <select id="r-stars">
+            <option value="5">⭐⭐⭐⭐⭐ — 5 stars</option>
+            <option value="4">⭐⭐⭐⭐ — 4 stars</option>
+            <option value="3">⭐⭐⭐ — 3 stars</option>
+            <option value="2">⭐⭐ — 2 stars</option>
+            <option value="1">⭐ — 1 star</option>
+          </select>
+        </div>
+        <div class="form-group" style="justify-content:flex-end;padding-top:1.25rem;"><label class="form-check"><input type="checkbox" id="r-approved" checked><span>Approved (visible on website)</span></label></div>
+        <div class="form-group form-full"><label>Review Text *</label><textarea id="r-text" placeholder="What did the customer say on WhatsApp?…"></textarea></div>
       </div>
     </div>
-    <div class="modal__footer"><button class="btn btn--ghost" onclick="closeModal('review-modal')">Cancel</button><button class="btn btn--primary" onclick="saveReview()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Save Review</button></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-review')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveReview()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Save Review</button>
+    </div>
   </div>
 </div>
 
-<!-- ══════════ MESSAGE VIEW MODAL ══════════ -->
-<div class="modal-overlay" id="message-modal">
+<!-- ═══ MESSAGE VIEW MODAL ═══ -->
+<div class="modal-overlay" id="modal-message">
   <div class="modal">
-    <div class="modal__head"><h3>Message Details</h3><button class="modal__close" onclick="closeModal('message-modal')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
-    <div class="modal__body" id="message-modal-body"></div>
-    <div class="modal__footer">
-      <button class="btn btn--ghost" onclick="closeModal('message-modal')">Close</button>
-      <a id="reply-wa-btn" href="#" class="btn btn--green" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <div class="modal-head"><h3>Message Details</h3><button class="modal-close" onclick="closeModal('modal-message')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="modal-body" id="message-modal-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-message')">Close</button>
+      <a id="message-wa-link" href="#" class="btn btn-green" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a8.1 8.1 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Reply on WhatsApp
       </a>
     </div>
   </div>
 </div>
 
-<!-- ══════════ CONFIRM MODAL ══════════ -->
-<div class="modal-overlay" id="confirm-modal">
-  <div class="modal modal--sm">
-    <div class="modal__body" style="padding:2rem;text-align:center;">
+<!-- ═══ CONFIRM MODAL ═══ -->
+<div class="modal-overlay" id="modal-confirm">
+  <div class="modal modal-sm">
+    <div class="modal-body" style="padding:2rem;text-align:center;">
       <div class="confirm-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></div>
-      <h3 style="margin-bottom:0.5rem;" id="confirm-title">Delete Item?</h3>
-      <p style="font-size:0.88rem;color:var(--text-mid);" id="confirm-msg">This action cannot be undone.</p>
+      <h3 style="margin-bottom:.4rem;" id="confirm-title">Delete this?</h3>
+      <p style="font-size:.85rem;color:var(--txt2);" id="confirm-msg">This action cannot be undone.</p>
     </div>
-    <div class="modal__footer"><button class="btn btn--ghost" onclick="closeModal('confirm-modal')">Cancel</button><button class="btn btn--red" id="confirm-ok-btn">Delete</button></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-confirm')">Cancel</button>
+      <button class="btn btn-red" id="confirm-delete-btn">Delete</button>
+    </div>
   </div>
 </div>
 
-<div id="toast-wrap"></div>
+<div id="toast-container"></div>
 
 <script>
 'use strict';
-/* ══════════════════════════════════════
-   CONFIG — replace with your values
-══════════════════════════════════════ */
-const SUPABASE_URL = 'https://rtoobqqhwdyuzrjktxoc.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0b29icXFod2R5dXpyamt0eG9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNTU5NjUsImV4cCI6MjA5MjczMTk2NX0.7xWA1wIfP51PEhgR1d_6v0YCqiQJzxpMekPp3Zj_gXM';
 
-/* Admin credentials — CHANGE THESE */
+/* ═══════════════════════════════════════
+   CONFIG — Replace with your Supabase values
+═══════════════════════════════════════ */
+const SUPABASE_URL  = 'https://rtoobqqhwdyuzrjktxoc.supabase.co';
+const SUPABASE_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0b29icXFod2R5dXpyamt0eG9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNTU5NjUsImV4cCI6MjA5MjczMTk2NX0.7xWA1wIfP51PEhgR1d_6v0YCqiQJzxpMekPp3Zj_gXM';
 const ADMIN_EMAIL    = 'bindalotsu644@gmail.com';
 const ADMIN_PASSWORD = 'blitpay12$';
+const WA_NUMBER = '233558590198';
 
-/* ── FIX: Only select the columns needed for the products table listing.
-   Previously used select=* which returned the full "images" JSONB column.
-   If base64 strings were ever saved there, the response could be many
-   megabytes and cause fetch failures / empty product tables. ── */
-const PRODUCT_LIST_COLS = 'id,name,category,price,currency,badge,hair_type,image,is_visible,sort_order';
+/* ═══════════════════════════════════════
+   SUPABASE API HELPERS
+═══════════════════════════════════════ */
+function sbHeaders() {
+  return {
+    'apikey': SUPABASE_KEY,
+    'Authorization': 'Bearer ' + SUPABASE_KEY,
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
+  };
+}
 
-/* ── FIX: When editing a specific product, fetch all columns for that
-   one row only — this is fine as it is a single targeted request. ── */
-const PRODUCT_EDIT_COLS = 'id,name,category,price,currency,badge,hair_type,texture,default_length,weight,color,description,features,image,whatsapp_msg,is_visible,sort_order';
+async function sbSelect(table, query) {
+  const res = await fetch(SUPABASE_URL + '/rest/v1/' + table + (query || ''), { headers: sbHeaders() });
+  if (!res.ok) {
+    const body = await res.text();
+    let msg = 'HTTP ' + res.status;
+    try { msg = JSON.parse(body).message || msg; } catch(e) {}
+    throw new Error(msg);
+  }
+  const data = await res.json();
+  return Array.isArray(data) ? data : [];
+}
 
-/* ══ SUPABASE HELPERS ══ */
-const SB_HEADERS = () => ({
-  'apikey': SUPABASE_ANON_KEY,
-  'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-  'Content-Type': 'application/json',
-  'Prefer': 'return=representation'
-});
-async function sbGet(table, params='') {
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}${params}`, {headers: SB_HEADERS()});
-  if (!r.ok) throw new Error(await r.text());
-  return r.json();
+async function sbInsert(table, row) {
+  const res = await fetch(SUPABASE_URL + '/rest/v1/' + table, {
+    method: 'POST', headers: sbHeaders(), body: JSON.stringify(row)
+  });
+  if (!res.ok) {
+    const body = await res.text();
+    let msg = 'HTTP ' + res.status;
+    try { msg = JSON.parse(body).message || msg; } catch(e) {}
+    throw new Error(msg);
+  }
+  return res.json();
 }
-async function sbPost(table, data) {
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {method:'POST', headers: SB_HEADERS(), body: JSON.stringify(data)});
-  if (!r.ok) throw new Error(await r.text());
-  return r.json();
+
+async function sbUpdate(table, idCol, idVal, data) {
+  const res = await fetch(SUPABASE_URL + '/rest/v1/' + table + '?' + idCol + '=eq.' + encodeURIComponent(idVal), {
+    method: 'PATCH', headers: sbHeaders(), body: JSON.stringify(data)
+  });
+  if (!res.ok) {
+    const body = await res.text();
+    let msg = 'HTTP ' + res.status;
+    try { msg = JSON.parse(body).message || msg; } catch(e) {}
+    throw new Error(msg);
+  }
+  return res.json();
 }
-async function sbPatch(table, id_col, id_val, data) {
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${id_col}=eq.${encodeURIComponent(id_val)}`, {method:'PATCH', headers: SB_HEADERS(), body: JSON.stringify(data)});
-  if (!r.ok) throw new Error(await r.text());
-  return r.json();
-}
-async function sbDelete(table, id_col, id_val) {
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${id_col}=eq.${encodeURIComponent(id_val)}`, {method:'DELETE', headers: SB_HEADERS()});
-  if (!r.ok) throw new Error(await r.text());
+
+async function sbDelete(table, idCol, idVal) {
+  const res = await fetch(SUPABASE_URL + '/rest/v1/' + table + '?' + idCol + '=eq.' + encodeURIComponent(idVal), {
+    method: 'DELETE', headers: sbHeaders()
+  });
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error('HTTP ' + res.status + ' — ' + body);
+  }
   return true;
 }
 
-/* ══ STATE ══ */
-let editingProduct = null, editingService = null, editingReview = null;
-let allProducts = [], allServices = [], allReviews = [], allContacts = [];
-
-/* ══ TOAST ══ */
-function toast(msg, type='success') {
-  const wrap = document.getElementById('toast-wrap');
-  const el = document.createElement('div');
-  el.className = `toast toast--${type}`;
-  const icon = type==='success' ? '✅' : type==='error' ? '❌' : type==='warning' ? '⚠️' : 'ℹ️';
-  el.innerHTML = `<span>${icon}</span><span>${msg}</span>`;
-  wrap.appendChild(el);
-  setTimeout(() => el.remove(), 5000);
+async function sbStorageUpload(blob, path) {
+  const res = await fetch(SUPABASE_URL + '/storage/v1/object/product-images/' + path, {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Content-Type': 'image/jpeg',
+      'x-upsert': 'true'
+    },
+    body: blob
+  });
+  if (!res.ok) return null;
+  return SUPABASE_URL + '/storage/v1/object/public/product-images/' + path;
 }
 
-/* ══ LOGIN ══ */
+/* ═══════════════════════════════════════
+   IMAGE COMPRESSION
+═══════════════════════════════════════ */
+// Returns a compressed base64 dataURL (used for preview + DB fallback)
+function compressToBase64(file, maxDim, quality) {
+  return new Promise(function(resolve, reject) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var img = new Image();
+      img.onload = function() {
+        var scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+        var w = Math.round(img.width * scale);
+        var h = Math.round(img.height * scale);
+        var canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.onerror = reject;
+      img.src = e.target.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+// Returns a Blob (used for Supabase Storage upload)
+function compressToBlob(file, maxDim, quality) {
+  return new Promise(function(resolve, reject) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var img = new Image();
+      img.onload = function() {
+        var scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+        var w = Math.round(img.width * scale);
+        var h = Math.round(img.height * scale);
+        var canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        canvas.toBlob(function(blob) {
+          if (blob) resolve(blob); else reject(new Error('canvas failed'));
+        }, 'image/jpeg', quality);
+      };
+      img.onerror = reject;
+      img.src = e.target.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+/* ═══════════════════════════════════════
+   IMAGE UPLOADER STATE + LOGIC
+═══════════════════════════════════════ */
+// Each entry: { preview: smallBase64, url: cloudUrlOrBase64, name }
+var uploadedImages = [];
+
+function renderImageGrid() {
+  var grid = document.getElementById('image-preview-grid');
+  var note = document.getElementById('upload-note');
+  if (!grid) return;
+  grid.innerHTML = '';
+  if (!uploadedImages.length) {
+    note.textContent = 'No photos yet. Tap above to choose from your gallery.';
+    for (var i = 0; i < 4; i++) {
+      var slot = document.createElement('div');
+      slot.className = 'img-empty-slot';
+      slot.textContent = 'Photo ' + (i + 1);
+      grid.appendChild(slot);
+    }
+    return;
+  }
+  note.textContent = uploadedImages.length + ' photo' + (uploadedImages.length > 1 ? 's' : '') + ' added. First photo is the main display photo.';
+  uploadedImages.forEach(function(img, i) {
+    var div = document.createElement('div');
+    div.className = 'img-thumb' + (i === 0 ? ' is-main' : '');
+    div.innerHTML =
+      (i === 0 ? '<span class="img-thumb-main-badge">Main</span>' : '') +
+      '<img src="' + img.preview + '" alt="Photo ' + (i+1) + '">' +
+      '<div class="img-thumb-overlay">' +
+        (i !== 0 ? '<button class="img-thumb-set-main" onclick="setMainImage(' + i + ')">Set as Main</button>' : '') +
+        '<button class="img-thumb-delete" onclick="removeImage(' + i + ')">✕</button>' +
+      '</div>';
+    grid.appendChild(div);
+  });
+  for (var j = uploadedImages.length; j < 4; j++) {
+    var empty = document.createElement('div');
+    empty.className = 'img-empty-slot';
+    empty.textContent = 'Photo ' + (j + 1);
+    grid.appendChild(empty);
+  }
+}
+
+function setMainImage(idx) {
+  var removed = uploadedImages.splice(idx, 1);
+  uploadedImages.unshift(removed[0]);
+  renderImageGrid();
+}
+
+function removeImage(idx) {
+  uploadedImages.splice(idx, 1);
+  renderImageGrid();
+}
+
+function initUploader() {
+  var zone = document.getElementById('upload-zone');
+  var input = document.getElementById('photo-input');
+  if (!zone || !input) return;
+  input.addEventListener('change', function(e) { handleImageFiles(e.target.files); });
+  zone.addEventListener('dragover', function(e) { e.preventDefault(); zone.classList.add('dragover'); });
+  zone.addEventListener('dragleave', function() { zone.classList.remove('dragover'); });
+  zone.addEventListener('drop', function(e) {
+    e.preventDefault();
+    zone.classList.remove('dragover');
+    handleImageFiles(e.dataTransfer.files);
+  });
+}
+
+async function handleImageFiles(files) {
+  var remaining = 4 - uploadedImages.length;
+  if (remaining <= 0) { showToast('Maximum 4 photos. Remove one first.', 'error'); return; }
+  var list = Array.from(files).filter(function(f) { return f.type.startsWith('image/'); }).slice(0, remaining);
+  if (!list.length) { showToast('Please choose image files (JPG, PNG, WebP).', 'error'); return; }
+
+  var zone = document.getElementById('upload-zone');
+  var zoneTitle = zone ? zone.querySelector('h4') : null;
+  var progWrap = document.getElementById('upload-progress-wrap');
+  var progBar = document.getElementById('upload-progress-bar');
+  if (progWrap) progWrap.style.display = 'block';
+  if (progBar) progBar.style.width = '5%';
+  if (zoneTitle) zoneTitle.textContent = 'Processing photos…';
+
+  var done = 0;
+  for (var i = 0; i < list.length; i++) {
+    var file = list[i];
+    try {
+      // 1. Compress to small base64 for preview (shown immediately)
+      var preview = await compressToBase64(file, 400, 0.75);
+      // 2. Start with preview as the URL (this is what gets saved if storage upload fails)
+      var entry = { preview: preview, url: preview, name: file.name };
+      uploadedImages.push(entry);
+      done++;
+      if (progBar) progBar.style.width = (Math.round((done / list.length) * 60) + 10) + '%';
+      renderImageGrid();
+
+      // 3. Attempt to upload better quality image to Supabase Storage in background
+      var capturedEntry = entry;
+      var capturedFile = file;
+      (async function(ent, f) {
+        try {
+          var blob = await compressToBlob(f, 1200, 0.88);
+          var path = 'products/' + Date.now() + '-' + Math.random().toString(36).slice(2) + '.jpg';
+          var cloudUrl = await sbStorageUpload(blob, path);
+          if (cloudUrl) {
+            ent.url = cloudUrl;
+            // Preview stays as is — only the saved URL changes to the cloud URL
+          }
+          // If cloudUrl is null (storage not set up), ent.url remains the base64 preview
+          // The base64 preview IS the fallback URL — it will be saved to the DB and displayed on the site
+        } catch(e) {
+          // Storage upload failed — base64 fallback is already in ent.url, no action needed
+        }
+      })(capturedEntry, capturedFile);
+
+    } catch(e) {
+      showToast('Could not process ' + file.name + '. Try again.', 'error');
+    }
+  }
+
+  if (progBar) progBar.style.width = '100%';
+  setTimeout(function() {
+    if (progWrap) progWrap.style.display = 'none';
+    if (progBar) progBar.style.width = '0%';
+    if (zoneTitle) zoneTitle.textContent = 'Tap to add more photos';
+  }, 700);
+
+  // Reset file input so same files can be re-selected
+  var inp = document.getElementById('photo-input');
+  if (inp) inp.value = '';
+
+  showToast(done + ' photo' + (done > 1 ? 's' : '') + ' ready ✅');
+}
+
+function getImageUrls() {
+  // Wait up to 3 seconds for any in-flight storage uploads
+  return uploadedImages.map(function(img) { return img.url; }).filter(Boolean);
+}
+
+/* ═══════════════════════════════════════
+   AUTH
+═══════════════════════════════════════ */
 document.getElementById('login-btn').addEventListener('click', doLogin);
-document.getElementById('login-password').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !document.getElementById('app').classList.contains('visible')) doLogin();
+});
 
 function doLogin() {
-  const email = document.getElementById('login-email').value.trim();
-  const pass  = document.getElementById('login-password').value;
-  const errEl = document.getElementById('login-err');
+  var email = document.getElementById('login-email').value.trim();
+  var pass  = document.getElementById('login-password').value;
+  var errEl = document.getElementById('login-err');
   if (email === ADMIN_EMAIL && pass === ADMIN_PASSWORD) {
-    sessionStorage.setItem('blit_admin', '1');
+    sessionStorage.setItem('blit_admin_auth', '1');
     document.getElementById('login-screen').classList.add('hidden');
     document.getElementById('app').classList.add('visible');
-    document.getElementById('admin-name').textContent = email.split('@')[0];
-    document.getElementById('admin-avatar').textContent = email[0].toUpperCase();
+    document.getElementById('sb-avatar').textContent = email[0].toUpperCase();
+    document.getElementById('sb-name').textContent = email.split('@')[0];
     document.getElementById('sb-url-display').value = SUPABASE_URL;
-    initDashboard();
-    initUploader();
+    setTimeout(initUploader, 400);
+    loadDashboard();
   } else {
     errEl.style.display = 'block';
     document.getElementById('login-password').value = '';
   }
 }
-document.getElementById('logout-btn').addEventListener('click', () => { sessionStorage.removeItem('blit_admin'); location.reload(); });
-if (sessionStorage.getItem('blit_admin')) {
+
+document.getElementById('logout-btn').addEventListener('click', function() {
+  sessionStorage.removeItem('blit_admin_auth');
+  location.reload();
+});
+
+// Auto-restore session
+if (sessionStorage.getItem('blit_admin_auth')) {
   document.getElementById('login-screen').classList.add('hidden');
   document.getElementById('app').classList.add('visible');
+  document.getElementById('sb-avatar').textContent = ADMIN_EMAIL[0].toUpperCase();
+  document.getElementById('sb-name').textContent = ADMIN_EMAIL.split('@')[0];
   document.getElementById('sb-url-display').value = SUPABASE_URL;
-  document.getElementById('admin-name').textContent = ADMIN_EMAIL.split('@')[0];
-  document.getElementById('admin-avatar').textContent = ADMIN_EMAIL[0].toUpperCase();
-  initDashboard();
-  initUploader();
+  setTimeout(initUploader, 400);
+  loadDashboard();
 }
 
-/* ══ NAVIGATION ══ */
-const PANEL_TITLES = {
-  dashboard: ['Dashboard', 'Welcome back to your admin panel'],
-  products:  ['Products', 'Manage your hair product catalogue'],
+/* ═══════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════ */
+var panelMeta = {
+  dashboard: ['Dashboard', 'Welcome back'],
+  products:  ['Products', 'Manage your hair catalogue'],
   services:  ['Services', 'Manage your hair services'],
-  reviews:   ['Reviews', 'Approve and manage client reviews'],
-  contacts:  ['Messages', 'Contact form submissions'],
-  settings:  ['Settings', 'Account and website configuration'],
+  reviews:   ['Reviews', 'Approve and manage reviews'],
+  messages:  ['Messages', 'Customer contact submissions'],
+  settings:  ['Settings', 'Configure your admin']
 };
-document.querySelectorAll('.sidebar__item').forEach(item => {
-  item.addEventListener('click', () => openPanel(item.dataset.panel));
-});
-function openPanel(name) {
-  document.querySelectorAll('.sidebar__item').forEach(i => i.classList.toggle('active', i.dataset.panel === name));
-  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + name));
-  const [title, sub] = PANEL_TITLES[name] || ['Admin', ''];
-  document.getElementById('topbar-title').textContent = title;
-  document.getElementById('topbar-sub').textContent = sub;
+
+function switchPanel(name) {
+  document.querySelectorAll('.sb-item').forEach(function(item) {
+    item.classList.toggle('active', item.dataset.panel === name);
+  });
+  document.querySelectorAll('.panel').forEach(function(p) {
+    p.classList.toggle('active', p.id === 'panel-' + name);
+  });
+  var meta = panelMeta[name] || ['', ''];
+  document.getElementById('page-title').textContent = meta[0];
+  document.getElementById('page-sub').textContent = meta[1];
+  document.getElementById('sidebar').classList.remove('open');
   if (name === 'products') loadProducts();
   if (name === 'services') loadServices();
-  if (name === 'reviews') loadReviews();
-  if (name === 'contacts') loadContacts();
-  document.getElementById('sidebar').classList.remove('open');
+  if (name === 'reviews')  loadReviews();
+  if (name === 'messages') loadMessages();
 }
-document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+
+document.querySelectorAll('.sb-item[data-panel]').forEach(function(item) {
+  item.addEventListener('click', function() { switchPanel(item.dataset.panel); });
+});
+
+document.getElementById('mobile-menu-btn').addEventListener('click', function() {
   document.getElementById('sidebar').classList.toggle('open');
 });
 
-/* ══ MODALS ══ */
+/* ═══════════════════════════════════════
+   MODALS
+═══════════════════════════════════════ */
 function openModal(id) { document.getElementById(id).classList.add('open'); }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-  overlay.addEventListener('click', e => { if(e.target === overlay) overlay.classList.remove('open'); });
+document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(function(m) { m.classList.remove('open'); });
 });
 
-/* ══ IMAGE UPLOADER ══ */
-/* FIX: The uploader now attempts to upload to Supabase Storage. If the
-   storage bucket does not exist (hasn't been set up via the Settings SQL),
-   the upload fails and we show a clear warning. We NEVER fall back to
-   saving base64 data to the database — that causes the entire product
-   table and shop page to break due to response size. ── */
-
-let uploadedImageUrl = null; // single URL after successful upload
-
-function initUploader() {
-  const zone  = document.getElementById('p-upload-zone');
-  const input = document.getElementById('p-file-input');
-  if (!zone || !input) return;
-
-  input.addEventListener('change', e => handleFile(e.target.files[0]));
-  zone.addEventListener('dragover',  e => { e.preventDefault(); zone.classList.add('drag-over'); });
-  zone.addEventListener('dragleave', ()  => zone.classList.remove('drag-over'));
-  zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('drag-over'); handleFile(e.dataTransfer.files[0]); });
-}
-
-async function handleFile(file) {
-  if (!file) return;
-  if (!file.type.startsWith('image/')) { toast('Please select an image file.', 'error'); return; }
-  if (file.size > 5 * 1024 * 1024) { toast('Image must be under 5MB.', 'error'); return; }
-
-  const note = document.getElementById('p-upload-note');
-  const progress = document.getElementById('p-upload-progress');
-  const bar = document.getElementById('p-upload-bar');
-  note.textContent = 'Uploading…';
-  progress.style.display = 'block';
-  bar.style.width = '40%';
-
-  try {
-    const ext = file.name.split('.').pop().toLowerCase();
-    const fileName = `products/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-    const res = await fetch(`${SUPABASE_URL}/storage/v1/object/product-images/${fileName}`, {
-      method: 'POST',
-      headers: {
-        'apikey': SUPABASE_ANON_KEY,
-        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-        'Content-Type': file.type,
-        'x-upsert': 'true'
-      },
-      body: file
-    });
-
-    bar.style.width = '100%';
-    setTimeout(() => { progress.style.display = 'none'; bar.style.width = '0%'; }, 600);
-
-    if (res.ok) {
-      uploadedImageUrl = `${SUPABASE_URL}/storage/v1/object/public/product-images/${fileName}`;
-      /* Auto-fill the URL field so the admin can see and verify the URL */
-      document.getElementById('p-image-url').value = uploadedImageUrl;
-      note.textContent = '✅ Photo uploaded! URL filled in below.';
-      toast('Photo uploaded to cloud! ✅', 'success');
-    } else {
-      /* FIX: Storage bucket not set up — show clear actionable message.
-         Do NOT save base64 — just tell the admin to use an external URL. */
-      const errText = await res.text();
-      note.textContent = '⚠️ Upload failed — storage not set up yet. Use an image URL instead (see below).';
-      toast('Storage not set up. Paste an image URL in the URL field above, or run the Storage SQL in Settings first.', 'warning');
-      console.warn('Storage upload failed:', errText);
-    }
-  } catch(e) {
-    document.getElementById('p-upload-progress').style.display = 'none';
-    document.getElementById('p-upload-note').textContent = '⚠️ Upload error. Paste an image URL instead.';
-    toast('Upload error. Use the image URL field above.', 'warning');
-  }
-}
-
-/* ══ TAG INPUT ══ */
+/* ═══════════════════════════════════════
+   TAG CHIPS
+═══════════════════════════════════════ */
 function addTag(inputId, listId, dataId) {
-  const input = document.getElementById(inputId);
-  const val = input.value.trim();
+  var input = document.getElementById(inputId);
+  var val = input.value.trim();
   if (!val) return;
-  const list = document.getElementById(listId);
-  const data = document.getElementById(dataId);
-  const current = data.value ? JSON.parse(data.value) : [];
-  if (current.includes(val)) { input.value=''; return; }
+  var dataEl = document.getElementById(dataId);
+  var current = dataEl.value ? JSON.parse(dataEl.value) : [];
+  if (current.indexOf(val) !== -1) { input.value = ''; return; }
   current.push(val);
-  data.value = JSON.stringify(current);
-  const tag = document.createElement('span');
-  tag.className = 'char-tag';
-  tag.innerHTML = `${val}<button onclick="removeTag(this,'${dataId}','${listId}')" type="button">×</button>`;
-  list.appendChild(tag);
+  dataEl.value = JSON.stringify(current);
+  var chip = document.createElement('span');
+  chip.className = 'tag-chip';
+  chip.innerHTML = val + '<button onclick="removeTag(this,\'' + dataId + '\',\'' + listId + '\')" type="button">×</button>';
+  document.getElementById(listId).appendChild(chip);
   input.value = '';
 }
 function removeTag(btn, dataId, listId) {
-  const tag = btn.parentElement;
-  const text = tag.textContent.replace('×','').trim();
-  const data = document.getElementById(dataId);
-  const current = JSON.parse(data.value || '[]');
-  data.value = JSON.stringify(current.filter(t=>t!==text));
-  tag.remove();
+  var chip = btn.parentElement;
+  var text = chip.childNodes[0].textContent.trim();
+  var dataEl = document.getElementById(dataId);
+  var current = JSON.parse(dataEl.value || '[]').filter(function(t) { return t !== text; });
+  dataEl.value = JSON.stringify(current);
+  chip.remove();
 }
-function setTags(listId, dataId, items) {
-  const list = document.getElementById(listId);
-  const data = document.getElementById(dataId);
-  list.innerHTML = '';
-  data.value = JSON.stringify(items||[]);
-  (items||[]).forEach(val => {
-    const tag = document.createElement('span');
-    tag.className = 'char-tag';
-    tag.innerHTML = `${val}<button onclick="removeTag(this,'${dataId}','${listId}')" type="button">×</button>`;
-    list.appendChild(tag);
+function setTagsList(listId, dataId, items) {
+  document.getElementById(listId).innerHTML = '';
+  document.getElementById(dataId).value = JSON.stringify(items || []);
+  (items || []).forEach(function(val) {
+    var chip = document.createElement('span');
+    chip.className = 'tag-chip';
+    chip.innerHTML = val + '<button onclick="removeTag(this,\'' + dataId + '\',\'' + listId + '\')" type="button">×</button>';
+    document.getElementById(listId).appendChild(chip);
   });
 }
 
-/* ══ DASHBOARD ══ */
-async function initDashboard() {
+/* ═══════════════════════════════════════
+   TOAST
+═══════════════════════════════════════ */
+function showToast(msg, type) {
+  var container = document.getElementById('toast-container');
+  var el = document.createElement('div');
+  el.className = 'toast ' + (type === 'error' ? 'error' : 'success');
+  el.innerHTML = '<span>' + (type === 'error' ? '❌' : '✅') + '</span><span>' + msg + '</span>';
+  container.appendChild(el);
+  setTimeout(function() { el.remove(); }, 4500);
+}
+
+/* ═══════════════════════════════════════
+   CONFIRM DELETE
+═══════════════════════════════════════ */
+function confirmDelete(label, onConfirm) {
+  document.getElementById('confirm-title').textContent = 'Delete "' + label + '"?';
+  document.getElementById('confirm-msg').textContent = 'This will be permanently deleted and cannot be undone.';
+  openModal('modal-confirm');
+  document.getElementById('confirm-delete-btn').onclick = function() {
+    closeModal('modal-confirm');
+    onConfirm();
+  };
+}
+
+/* ═══════════════════════════════════════
+   DASHBOARD
+═══════════════════════════════════════ */
+async function loadDashboard() {
   try {
-    /* FIX: Count ALL products (not just visible ones) for the dashboard stat.
-       Previously used is_visible=eq.true which showed a lower count than the
-       actual catalogue size, confusing admins who hid some products. ── */
-    const [products, reviews, services, contacts] = await Promise.all([
-      sbGet('products', '?select=id'),
-      sbGet('reviews', '?select=id'),
-      sbGet('services', '?select=id'),
-      sbGet('contact_submissions', '?select=id,is_read'),
+    var results = await Promise.all([
+      sbSelect('products', '?select=id').catch(function() { return []; }),
+      sbSelect('reviews',  '?select=id').catch(function() { return []; }),
+      sbSelect('services', '?select=id').catch(function() { return []; }),
+      sbSelect('contact_submissions', '?select=id,is_read').catch(function() { return []; })
     ]);
-    const unread = (contacts||[]).filter(c=>!c.is_read).length;
-    document.getElementById('stat-products').textContent  = (products||[]).length;
-    document.getElementById('stat-reviews').textContent   = (reviews||[]).length;
-    document.getElementById('stat-services').textContent  = (services||[]).length;
-    document.getElementById('stat-messages').textContent  = (contacts||[]).length;
-    document.getElementById('badge-products').textContent = (products||[]).length;
-    document.getElementById('badge-services').textContent = (services||[]).length;
-    document.getElementById('badge-reviews').textContent  = (reviews||[]).length;
-    document.getElementById('badge-contacts').textContent = unread;
+    var products = results[0], reviews = results[1], services = results[2], messages = results[3];
+    var unread = messages.filter(function(m) { return !m.is_read; }).length;
 
-    const feed = document.getElementById('activity-feed');
-    const items = [
-      {color:'pink',  text:`${(products||[]).length} products in catalogue`},
-      {color:'green', text:`${(reviews||[]).length} customer reviews total`},
-      {color:'blue',  text:`${(services||[]).length} services available`},
-      {color:'green', text:`${unread} unread contact messages`},
+    document.getElementById('stat-products').textContent = products.length;
+    document.getElementById('stat-reviews').textContent = reviews.length;
+    document.getElementById('stat-services').textContent = services.length;
+    document.getElementById('stat-messages').textContent = messages.length;
+    document.getElementById('badge-products').textContent = products.length;
+    document.getElementById('badge-services').textContent = services.length;
+    document.getElementById('badge-reviews').textContent = reviews.length;
+    document.getElementById('badge-messages').textContent = unread;
+
+    var feed = document.getElementById('dash-activity');
+    var items = [
+      { color: 'pink', text: products.length + ' products in your catalogue' },
+      { color: 'green', text: reviews.length + ' customer reviews total' },
+      { color: 'blue', text: services.length + ' services listed' },
+      { color: 'pink', text: unread + ' unread messages waiting' }
     ];
-    feed.innerHTML = items.map(i=>`<div class="activity-item"><div class="activity-dot activity-dot--${i.color}"></div><div><div class="activity-text">${i.text}</div></div></div>`).join('');
+    feed.innerHTML = items.map(function(item) {
+      return '<div class="activity-item"><div class="activity-dot dot-' + item.color + '"></div><div class="activity-text">' + item.text + '</div></div>';
+    }).join('');
   } catch(e) {
-    document.getElementById('stat-products').textContent = '—';
-    toast('Could not connect to Supabase. Check your config and run the Grant SQL in Settings.', 'error');
+    document.getElementById('dash-activity').innerHTML = '<div class="activity-text" style="color:var(--rd);">⚠️ Cannot reach Supabase. Check your URL and key in Settings → Test Connection.</div>';
   }
 }
 
-async function testConnection() {
-  const status = document.getElementById('conn-status');
-  status.textContent = 'Testing…'; status.className = 'badge badge--blue';
-  try {
-    await sbGet('products','?select=id&limit=1');
-    status.textContent = '✅ Connected'; status.className = 'badge badge--green';
-    toast('Supabase connected successfully!', 'success');
-  } catch(e) {
-    status.textContent = '❌ Error'; status.className = 'badge badge--red';
-    toast('Connection failed. Check URL, ANON_KEY, and run the Grant SQL in Settings.', 'error');
-  }
-}
+/* ═══════════════════════════════════════
+   PRODUCTS
+═══════════════════════════════════════ */
+var allProducts = [];
 
-/* ══ PRODUCTS ══ */
 async function loadProducts() {
-  const el = document.getElementById('products-table-body');
-  el.innerHTML = '<div class="empty-state"><p>Loading…</p></div>';
+  document.getElementById('products-table').innerHTML = '<div class="empty-state"><p>Loading…</p></div>';
   try {
-    /* FIX: Fetch only columns needed for the table listing.
-       This avoids pulling potentially huge base64 image data. ── */
-    allProducts = await sbGet('products',
-      `?select=${PRODUCT_LIST_COLS}&order=sort_order.asc,created_at.desc`);
+    allProducts = await sbSelect('products', '?select=*&order=sort_order.asc,created_at.desc');
     renderProductsTable(allProducts);
   } catch(e) {
-    el.innerHTML = `<div class="empty-state"><p>Error loading products: ${e.message}<br><small>Have you run the Grant SQL in Settings?</small></p></div>`;
+    document.getElementById('products-table').innerHTML = '<div class="empty-state"><p style="color:var(--rd);">Error loading products: ' + e.message + '</p></div>';
   }
 }
 
-function renderProductsTable(data) {
-  const el = document.getElementById('products-table-body');
-  if (!data.length) {
-    el.innerHTML = '<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/></svg><p>No products yet. Add your first product!</p></div>';
+function filterProducts() {
+  var query = document.getElementById('product-search').value.toLowerCase();
+  var cat = document.getElementById('product-cat-filter').value;
+  renderProductsTable(allProducts.filter(function(p) {
+    var matchName = !query || (p.name || '').toLowerCase().includes(query);
+    var matchCat = !cat || p.category === cat;
+    return matchName && matchCat;
+  }));
+}
+
+function getSafeImgSrc(product) {
+  if (product.image && product.image.length > 0) return product.image;
+  if (product.images && Array.isArray(product.images) && product.images.length > 0) return product.images[0];
+  return '';
+}
+
+function renderProductsTable(list) {
+  var container = document.getElementById('products-table');
+  if (!list.length) {
+    container.innerHTML = '<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg><p>No products yet. Click "Add Product" above.</p></div>';
     return;
   }
-  /* FIX: Guard against base64 in the image field — only show real URLs.
-     If a base64 string was accidentally saved before, don't try to render it. ── */
-  el.innerHTML = `<table>
-    <thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Badge</th><th>Status</th><th>Actions</th></tr></thead>
-    <tbody>${data.map(p => {
-      const imgSrc = (p.image && !p.image.startsWith('data:')) ? p.image : '';
-      return `<tr>
-        <td><div style="display:flex;align-items:center;gap:0.75rem;">
-          <img class="td-img" src="${imgSrc}" alt="${p.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22><rect width=%2248%22 height=%2248%22 fill=%22%23fdf0f4%22 rx=%228%22/></svg>'">
-          <div><div class="td-name">${p.name}</div><div class="td-sub">${p.id}</div></div>
-        </div></td>
-        <td><span class="badge badge--pink">${p.category||'—'}</span></td>
-        <td><strong>GHS ${Number(p.price||0).toLocaleString()}</strong></td>
-        <td>${p.badge?`<span class="badge badge--orange">${p.badge}</span>`:'<span style="color:var(--text-light);font-size:0.78rem;">None</span>'}</td>
-        <td><span class="badge ${p.is_visible?'badge--green':'badge--red'}">${p.is_visible?'Visible':'Hidden'}</span></td>
-        <td><div class="td-actions">
-          <button class="btn btn--ghost btn--sm btn--icon" title="Edit" onclick="editProduct('${p.id}')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
-          <button class="btn btn--ghost btn--sm btn--icon" title="${p.is_visible?'Hide':'Show'}" onclick="toggleProductVisibility('${p.id}',${p.is_visible})"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${p.is_visible?'<path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>':'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>'}</svg></button>
-          <button class="btn btn--red btn--sm btn--icon" title="Delete" onclick="confirmDelete('product','${p.id}','${p.name}')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg></button>
-        </div></td>
-      </tr>`;
-    }).join('')}</tbody></table>`;
+  var fallback = 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=80&q=60';
+  var rows = list.map(function(p) {
+    var imgSrc = getSafeImgSrc(p) || fallback;
+    return '<tr>' +
+      '<td><div style="display:flex;align-items:center;gap:.75rem;">' +
+        '<img class="td-thumb" src="' + imgSrc + '" alt="' + (p.name || '') + '" onerror="this.src=\'' + fallback + '\'">' +
+        '<div><div class="td-name">' + (p.name || '') + '</div><div class="td-sub">' + (p.id || '') + '</div></div>' +
+      '</div></td>' +
+      '<td><span class="badge badge-pink">' + (p.category || '—') + '</span></td>' +
+      '<td><strong>GHS ' + Number(p.price || 0).toLocaleString() + '</strong></td>' +
+      '<td>' + (p.badge ? '<span class="badge badge-orange">' + p.badge + '</span>' : '<span style="color:var(--txt3);font-size:.75rem;">—</span>') + '</td>' +
+      '<td><span class="badge ' + (p.is_visible ? 'badge-green' : 'badge-red') + '">' + (p.is_visible ? 'Visible' : 'Hidden') + '</span></td>' +
+      '<td><div class="td-actions">' +
+        '<button class="btn btn-ghost btn-sm btn-icon" title="Edit" onclick="editProduct(\'' + p.id + '\')">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>' +
+        '</button>' +
+        '<button class="btn btn-ghost btn-sm btn-icon" title="' + (p.is_visible ? 'Hide' : 'Show') + '" onclick="toggleProductVisible(\'' + p.id + '\',' + p.is_visible + ')">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+            (p.is_visible ? '<path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>' :
+                            '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>') +
+          '</svg>' +
+        '</button>' +
+        '<button class="btn btn-red btn-sm btn-icon" title="Delete" onclick="confirmDelete(\'' + (p.name || '').replace(/'/g, "\\'") + '\', function(){ deleteProduct(\'' + p.id + '\'); })">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>' +
+        '</button>' +
+      '</div></td>' +
+    '</tr>';
+  });
+  container.innerHTML = '<table><thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Badge</th><th>Status</th><th>Actions</th></tr></thead><tbody>' + rows.join('') + '</tbody></table>';
 }
 
-document.getElementById('product-search').addEventListener('input', function() {
-  const q = this.value.toLowerCase();
-  const cat = document.getElementById('product-cat-filter').value;
-  renderProductsTable(allProducts.filter(p=>(p.name||'').toLowerCase().includes(q)&&(!cat||p.category===cat)));
-});
-document.getElementById('product-cat-filter').addEventListener('change', function() {
-  const q = document.getElementById('product-search').value.toLowerCase();
-  renderProductsTable(allProducts.filter(p=>(p.name||'').toLowerCase().includes(q)&&(!this.value||p.category===this.value)));
-});
+var editingProduct = null;
 
-function openProductModal(p=null) {
-  editingProduct = p;
-  uploadedImageUrl = null;
-  document.getElementById('product-modal-title').textContent = p ? 'Edit Product' : 'Add Product';
-  document.getElementById('p-id').value = p?.id || '';
-  document.getElementById('p-id').readOnly = !!p;
-  document.getElementById('p-name').value = p?.name || '';
-  document.getElementById('p-category').value = p?.category || '';
-  document.getElementById('p-price').value = p?.price || '';
-  document.getElementById('p-badge').value = p?.badge || '';
-  document.getElementById('p-hairtype').value = p?.hair_type || '';
-  document.getElementById('p-texture').value = p?.texture || '';
-  document.getElementById('p-length').value = p?.default_length || '';
-  document.getElementById('p-weight').value = p?.weight || '';
-  document.getElementById('p-color').value = p?.color || '';
-  document.getElementById('p-description').value = p?.description || '';
-  document.getElementById('p-wamsg').value = p?.whatsapp_msg || '';
-  document.getElementById('p-sort').value = p?.sort_order ?? 0;
-  document.getElementById('p-visible').checked = p?.is_visible ?? true;
-  /* FIX: Only populate the URL field with the existing image if it's a
-     real URL (not base64). If someone saved base64 before, don't show it. ── */
-  const existingImg = (p?.image && !p.image.startsWith('data:')) ? p.image : '';
-  document.getElementById('p-image-url').value = existingImg;
-  document.getElementById('p-upload-note').textContent = '';
-  document.getElementById('p-file-input').value = '';
-  setTags('p-features-list','p-features-data', Array.isArray(p?.features) ? p.features : []);
-  openModal('product-modal');
-}
+function openProductModal(product) {
+  editingProduct = product || null;
+  document.getElementById('product-modal-title').textContent = product ? 'Edit Product' : 'Add Product';
 
-async function editProduct(id) {
-  /* FIX: Fetch the full product row for editing using PRODUCT_EDIT_COLS.
-     We do this separately from loadProducts() so the table listing stays
-     lean. We don't include the "images" column because we've replaced the
-     multi-image uploader with a simple URL + optional upload approach. ── */
-  try {
-    const rows = await sbGet('products', `?select=${PRODUCT_EDIT_COLS}&id=eq.${encodeURIComponent(id)}`);
-    if (!rows || !rows.length) { toast('Product not found.', 'error'); return; }
-    openProductModal(rows[0]);
-  } catch(e) {
-    toast(`Error loading product: ${e.message}`, 'error');
+  var p = product || {};
+  document.getElementById('p-id').value = p.id || '';
+  document.getElementById('p-id').readOnly = !!product;
+  document.getElementById('p-name').value = p.name || '';
+  document.getElementById('p-category').value = p.category || '';
+  document.getElementById('p-price').value = p.price || '';
+  document.getElementById('p-badge').value = p.badge || '';
+  document.getElementById('p-hair-type').value = p.hair_type || '';
+  document.getElementById('p-texture').value = p.texture || '';
+  document.getElementById('p-length').value = p.default_length || '';
+  document.getElementById('p-weight').value = p.weight || '';
+  document.getElementById('p-color').value = p.color || '';
+  document.getElementById('p-description').value = p.description || '';
+  document.getElementById('p-wa-msg').value = p.whatsapp_msg || '';
+  document.getElementById('p-sort').value = p.sort_order !== undefined ? p.sort_order : 0;
+  document.getElementById('p-visible').checked = p.is_visible !== false;
+
+  setTagsList('features-display', 'features-data', p.features || []);
+
+  // Reset image uploader
+  uploadedImages = [];
+  if (product) {
+    var existingUrls = [];
+    if (product.images && Array.isArray(product.images) && product.images.length > 0) {
+      existingUrls = product.images.filter(Boolean);
+    } else if (product.image) {
+      existingUrls = [product.image];
+    }
+    existingUrls.forEach(function(url) {
+      if (url) uploadedImages.push({ preview: url, url: url, name: 'existing' });
+    });
   }
+  renderImageGrid();
+
+  var inp = document.getElementById('photo-input');
+  if (inp) inp.value = '';
+
+  openModal('modal-product');
+}
+
+function editProduct(id) {
+  var product = allProducts.find(function(p) { return p.id === id; });
+  if (product) openProductModal(product);
 }
 
 async function saveProduct() {
-  const id   = document.getElementById('p-id').value.trim();
-  const name = document.getElementById('p-name').value.trim();
-  const cat  = document.getElementById('p-category').value;
-  const price = document.getElementById('p-price').value;
-  if (!id||!name||!cat||!price) { toast('Please fill in all required fields (ID, Name, Category, Price).','error'); return; }
+  var id          = document.getElementById('p-id').value.trim();
+  var name        = document.getElementById('p-name').value.trim();
+  var category    = document.getElementById('p-category').value;
+  var price       = document.getElementById('p-price').value;
+  var description = document.getElementById('p-description').value.trim();
 
-  /* FIX: Get the image URL from the URL input field only.
-     Never read base64 from the uploader. The uploader auto-fills the URL
-     field on successful upload, so the URL field is always the source of truth.
-     Strip any accidental base64 that might be in the field. ── */
-  let imageUrl = document.getElementById('p-image-url').value.trim();
-  if (imageUrl.startsWith('data:')) {
-    toast('Please use an external image URL (from imgbb.com or cloudinary.com), not a local file.', 'warning');
-    imageUrl = '';
-  }
+  if (!id)          { showToast('Product ID is required.', 'error'); return; }
+  if (!name)        { showToast('Product Name is required.', 'error'); return; }
+  if (!category)    { showToast('Please select a Category.', 'error'); return; }
+  if (!price)       { showToast('Price is required.', 'error'); return; }
+  if (!description) { showToast('Description is required.', 'error'); return; }
 
-  const payload = {
-    id, name,
-    category: cat,
+  // Give background storage uploads a moment to finish (max 2 seconds)
+  await new Promise(function(r) { setTimeout(r, 500); });
+
+  var imageUrls = getImageUrls();
+  var mainImage = imageUrls[0] || null;
+
+  var waDefault = "Hello b_lit hairs! \uD83D\uDC95 I'm interested in the *" + name + "*. Please let me know the price and how to order. Thank you!";
+
+  var payload = {
+    id: id,
+    name: name,
+    category: category,
     price: parseFloat(price),
     currency: 'GHS',
     badge: document.getElementById('p-badge').value.trim() || null,
-    hair_type: document.getElementById('p-hairtype').value.trim() || null,
+    hair_type: document.getElementById('p-hair-type').value.trim() || null,
     texture: document.getElementById('p-texture').value.trim() || null,
     default_length: document.getElementById('p-length').value.trim() || null,
     weight: document.getElementById('p-weight').value.trim() || null,
     color: document.getElementById('p-color').value.trim() || null,
-    description: document.getElementById('p-description').value.trim() || null,
-    image: imageUrl || null,
-    /* FIX: Do not save a huge "images" array. Store single image URL only.
-       The images column is kept in the DB schema for future use but we
-       don't populate it from this form to avoid accidental base64 saves. ── */
-    features: JSON.parse(document.getElementById('p-features-data').value || '[]'),
-    whatsapp_msg: document.getElementById('p-wamsg').value.trim() || null,
+    description: description,
+    image: mainImage,
+    images: imageUrls,
+    features: JSON.parse(document.getElementById('features-data').value || '[]'),
+    whatsapp_msg: document.getElementById('p-wa-msg').value.trim() || waDefault,
     sort_order: parseInt(document.getElementById('p-sort').value) || 0,
-    is_visible: document.getElementById('p-visible').checked,
+    is_visible: document.getElementById('p-visible').checked
   };
 
-  const btn = document.getElementById('product-save-btn');
-  btn.disabled = true; btn.textContent = 'Saving…';
+  var btn = document.getElementById('product-save-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<svg class="spin" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 11-6.219-8.56"/></svg> Saving…';
+
   try {
     if (editingProduct) {
-      await sbPatch('products','id',id,payload);
-      toast('Product updated successfully! ✅');
+      await sbUpdate('products', 'id', id, payload);
+      showToast('Product updated! ✅ Changes are live on your website.');
     } else {
-      await sbPost('products', payload);
-      toast('Product added successfully! ✅');
+      await sbInsert('products', payload);
+      showToast('Product added! ✅ Now showing on your shop page.');
     }
-    closeModal('product-modal');
+    closeModal('modal-product');
     loadProducts();
-    initDashboard();
+    loadDashboard();
   } catch(e) {
-    toast(`Error saving product: ${e.message}`, 'error');
+    var msg = e.message || 'Unknown error';
+    if (msg.includes('duplicate') || msg.includes('unique')) {
+      msg = 'A product with ID "' + id + '" already exists. Use a different ID like BLH010.';
+    } else if (msg.includes('401') || msg.includes('apikey') || msg.includes('JWT')) {
+      msg = 'Supabase key is wrong. Go to Settings → Test Connection.';
+    } else if (msg.includes('relation') || msg.includes('does not exist')) {
+      msg = 'The "products" table does not exist. Run the setup SQL first (see the README).';
+    } else if (msg.includes('too long') || msg.includes('value too long')) {
+      msg = 'Image data is too large for the database. Go to Settings and set up Supabase Storage (one-time SQL).';
+    }
+    showToast(msg, 'error');
   } finally {
-    btn.disabled=false; btn.textContent='Save Product';
+    btn.disabled = false;
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Save Product';
   }
 }
 
-async function toggleProductVisibility(id, current) {
+async function toggleProductVisible(id, current) {
   try {
-    await sbPatch('products','id',id,{is_visible:!current});
-    toast(`Product ${current?'hidden':'made visible'}!`);
+    await sbUpdate('products', 'id', id, { is_visible: !current });
+    showToast('Product ' + (current ? 'hidden' : 'made visible') + '!');
     loadProducts();
-  } catch(e) { toast(`Error: ${e.message}`,'error'); }
+  } catch(e) { showToast(e.message, 'error'); }
 }
 
-/* ══ SERVICES ══ */
-async function loadServices() {
-  const el = document.getElementById('services-table-body');
-  el.innerHTML = '<div class="empty-state"><p>Loading…</p></div>';
+async function deleteProduct(id) {
   try {
-    allServices = await sbGet('services','?select=*&order=sort_order.asc');
+    await sbDelete('products', 'id', id);
+    showToast('Product deleted.');
+    loadProducts();
+    loadDashboard();
+  } catch(e) { showToast(e.message, 'error'); }
+}
+
+/* ═══════════════════════════════════════
+   SERVICES
+═══════════════════════════════════════ */
+var allServices = [];
+
+async function loadServices() {
+  document.getElementById('services-table').innerHTML = '<div class="empty-state"><p>Loading…</p></div>';
+  try {
+    allServices = await sbSelect('services', '?select=*&order=sort_order.asc');
     renderServicesTable(allServices);
   } catch(e) {
-    el.innerHTML = `<div class="empty-state"><p>Error: ${e.message}<br><small>Have you run the Grant SQL in Settings?</small></p></div>`;
+    document.getElementById('services-table').innerHTML = '<div class="empty-state"><p style="color:var(--rd);">Error: ' + e.message + '</p></div>';
   }
 }
 
-function renderServicesTable(data) {
-  const el = document.getElementById('services-table-body');
-  if (!data.length) { el.innerHTML = '<div class="empty-state"><p>No services yet. Add your first service!</p></div>'; return; }
-  el.innerHTML = `<table>
-    <thead><tr><th>Service</th><th>Price From</th><th>Duration</th><th>Status</th><th>Actions</th></tr></thead>
-    <tbody>${data.map(s=>`
-    <tr>
-      <td><div class="td-name">${s.name}</div><div class="td-sub">${s.id}</div></td>
-      <td><strong>GHS ${Number(s.starting_price||0).toLocaleString()}</strong></td>
-      <td>${s.duration||'—'}</td>
-      <td><span class="badge ${s.is_visible?'badge--green':'badge--red'}">${s.is_visible?'Visible':'Hidden'}</span></td>
-      <td><div class="td-actions">
-        <button class="btn btn--ghost btn--sm btn--icon" title="Edit" onclick="editService('${s.id}')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
-        <button class="btn btn--ghost btn--sm btn--icon" title="${s.is_visible?'Hide':'Show'}" onclick="toggleServiceVisibility('${s.id}',${s.is_visible})"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${s.is_visible?'<path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>':'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>'}</svg></button>
-        <button class="btn btn--red btn--sm btn--icon" title="Delete" onclick="confirmDelete('service','${s.id}','${s.name}')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg></button>
-      </div></td>
-    </tr>`).join('')}</tbody></table>`;
+function filterServices() {
+  var query = document.getElementById('service-search').value.toLowerCase();
+  renderServicesTable(allServices.filter(function(s) {
+    return !query || (s.name || '').toLowerCase().includes(query);
+  }));
 }
 
-document.getElementById('service-search').addEventListener('input', function() {
-  renderServicesTable(allServices.filter(s=>(s.name||'').toLowerCase().includes(this.value.toLowerCase())));
-});
-
-function openServiceModal(s=null) {
-  editingService = s;
-  document.getElementById('service-modal-title').textContent = s ? 'Edit Service' : 'Add Service';
-  document.getElementById('s-id').value = s?.id || '';
-  document.getElementById('s-id').readOnly = !!s;
-  document.getElementById('s-name').value = s?.name || '';
-  document.getElementById('s-price').value = s?.starting_price || '';
-  document.getElementById('s-duration').value = s?.duration || '';
-  document.getElementById('s-icon').value = s?.icon || 'star';
-  document.getElementById('s-sort').value = s?.sort_order ?? 0;
-  document.getElementById('s-description').value = s?.description || '';
-  document.getElementById('s-visible').checked = s?.is_visible ?? true;
-  setTags('s-tags-list','s-tags-data', Array.isArray(s?.tags) ? s.tags : []);
-  openModal('service-modal');
+function renderServicesTable(list) {
+  var container = document.getElementById('services-table');
+  if (!list.length) {
+    container.innerHTML = '<div class="empty-state"><p>No services yet. Click "Add Service" above.</p></div>';
+    return;
+  }
+  var rows = list.map(function(s) {
+    return '<tr>' +
+      '<td><div class="td-name">' + (s.name || '') + '</div><div class="td-sub">' + (s.id || '') + '</div></td>' +
+      '<td><strong>GHS ' + Number(s.starting_price || 0).toLocaleString() + '</strong></td>' +
+      '<td>' + (s.duration || '—') + '</td>' +
+      '<td><span class="badge ' + (s.is_visible ? 'badge-green' : 'badge-red') + '">' + (s.is_visible ? 'Visible' : 'Hidden') + '</span></td>' +
+      '<td><div class="td-actions">' +
+        '<button class="btn btn-ghost btn-sm btn-icon" onclick="editService(\'' + s.id + '\')">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>' +
+        '</button>' +
+        '<button class="btn btn-ghost btn-sm btn-icon" onclick="toggleServiceVisible(\'' + s.id + '\',' + s.is_visible + ')">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+            (s.is_visible ? '<path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>' :
+                            '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>') +
+          '</svg>' +
+        '</button>' +
+        '<button class="btn btn-red btn-sm btn-icon" onclick="confirmDelete(\'' + (s.name || '').replace(/'/g, "\\'") + '\', function(){ deleteService(\'' + s.id + '\'); })">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>' +
+        '</button>' +
+      '</div></td>' +
+    '</tr>';
+  });
+  container.innerHTML = '<table><thead><tr><th>Service</th><th>Price From</th><th>Duration</th><th>Status</th><th>Actions</th></tr></thead><tbody>' + rows.join('') + '</tbody></table>';
 }
-function editService(id) { openServiceModal(allServices.find(s=>s.id===id)); }
+
+var editingService = null;
+
+function openServiceModal(service) {
+  editingService = service || null;
+  document.getElementById('service-modal-title').textContent = service ? 'Edit Service' : 'Add Service';
+  var s = service || {};
+  document.getElementById('s-id').value = s.id || '';
+  document.getElementById('s-id').readOnly = !!service;
+  document.getElementById('s-name').value = s.name || '';
+  document.getElementById('s-price').value = s.starting_price || '';
+  document.getElementById('s-duration').value = s.duration || '';
+  document.getElementById('s-icon').value = s.icon || 'star';
+  document.getElementById('s-sort').value = s.sort_order !== undefined ? s.sort_order : 0;
+  document.getElementById('s-description').value = s.description || '';
+  document.getElementById('s-visible').checked = s.is_visible !== false;
+  setTagsList('service-tags-display', 'service-tags-data', s.tags || []);
+  openModal('modal-service');
+}
+
+function editService(id) {
+  var service = allServices.find(function(s) { return s.id === id; });
+  if (service) openServiceModal(service);
+}
 
 async function saveService() {
-  const id = document.getElementById('s-id').value.trim();
-  const name = document.getElementById('s-name').value.trim();
-  if (!id||!name) { toast('ID and Name are required.','error'); return; }
-  const payload = {
-    id, name,
-    description: document.getElementById('s-description').value.trim()||null,
-    starting_price: parseFloat(document.getElementById('s-price').value)||null,
-    currency:'GHS',
-    duration: document.getElementById('s-duration').value.trim()||null,
+  var id = document.getElementById('s-id').value.trim();
+  var name = document.getElementById('s-name').value.trim();
+  if (!id || !name) { showToast('ID and Name are required.', 'error'); return; }
+  var payload = {
+    id: id, name: name,
+    description: document.getElementById('s-description').value.trim() || null,
+    starting_price: parseFloat(document.getElementById('s-price').value) || null,
+    currency: 'GHS',
+    duration: document.getElementById('s-duration').value.trim() || null,
     icon: document.getElementById('s-icon').value,
-    tags: JSON.parse(document.getElementById('s-tags-data').value||'[]'),
-    sort_order: parseInt(document.getElementById('s-sort').value)||0,
-    is_visible: document.getElementById('s-visible').checked,
+    tags: JSON.parse(document.getElementById('service-tags-data').value || '[]'),
+    sort_order: parseInt(document.getElementById('s-sort').value) || 0,
+    is_visible: document.getElementById('s-visible').checked
   };
   try {
-    if (editingService) { await sbPatch('services','id',id,payload); toast('Service updated! ✅'); }
-    else { await sbPost('services',payload); toast('Service added! ✅'); }
-    closeModal('service-modal'); loadServices(); initDashboard();
-  } catch(e) { toast(`Error: ${e.message}`,'error'); }
+    if (editingService) { await sbUpdate('services', 'id', id, payload); showToast('Service updated! ✅'); }
+    else { await sbInsert('services', payload); showToast('Service added! ✅'); }
+    closeModal('modal-service');
+    loadServices();
+    loadDashboard();
+  } catch(e) { showToast(e.message, 'error'); }
 }
 
-async function toggleServiceVisibility(id, current) {
-  try { await sbPatch('services','id',id,{is_visible:!current}); toast(`Service ${current?'hidden':'made visible'}!`); loadServices(); }
-  catch(e) { toast(`Error: ${e.message}`,'error'); }
-}
-
-/* ══ REVIEWS ══ */
-async function loadReviews() {
-  const el = document.getElementById('reviews-table-body');
-  el.innerHTML = '<div class="empty-state"><p>Loading…</p></div>';
+async function toggleServiceVisible(id, current) {
   try {
-    allReviews = await sbGet('reviews','?select=*&order=created_at.desc');
+    await sbUpdate('services', 'id', id, { is_visible: !current });
+    showToast('Service ' + (current ? 'hidden' : 'made visible') + '!');
+    loadServices();
+  } catch(e) { showToast(e.message, 'error'); }
+}
+
+async function deleteService(id) {
+  try { await sbDelete('services', 'id', id); showToast('Service deleted.'); loadServices(); loadDashboard(); }
+  catch(e) { showToast(e.message, 'error'); }
+}
+
+/* ═══════════════════════════════════════
+   REVIEWS
+═══════════════════════════════════════ */
+var allReviews = [];
+
+async function loadReviews() {
+  document.getElementById('reviews-table').innerHTML = '<div class="empty-state"><p>Loading…</p></div>';
+  try {
+    allReviews = await sbSelect('reviews', '?select=*&order=created_at.desc');
     renderReviewsTable(allReviews);
-  } catch(e) { el.innerHTML = `<div class="empty-state"><p>Error: ${e.message}</p></div>`; }
+  } catch(e) {
+    document.getElementById('reviews-table').innerHTML = '<div class="empty-state"><p style="color:var(--rd);">Error: ' + e.message + '</p></div>';
+  }
 }
 
-function renderReviewsTable(data) {
-  const el = document.getElementById('reviews-table-body');
-  if (!data.length) { el.innerHTML = '<div class="empty-state"><p>No reviews yet.</p></div>'; return; }
-  el.innerHTML = `<table>
-    <thead><tr><th>Reviewer</th><th>Stars</th><th>Review</th><th>Status</th><th>Actions</th></tr></thead>
-    <tbody>${data.map(r=>`
-    <tr>
-      <td><div class="td-name">${r.reviewer_name}</div><div class="td-sub">${r.reviewer_location||'—'}</div></td>
-      <td><span style="color:var(--gold);font-size:0.9rem;">${'★'.repeat(r.stars||5)}</span></td>
-      <td style="max-width:300px;"><span style="font-size:0.82rem;color:var(--text-mid);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${r.review_text}</span></td>
-      <td><span class="badge ${r.is_approved?'badge--green':'badge--orange'}">${r.is_approved?'Approved':'Pending'}</span></td>
-      <td><div class="td-actions">
-        <button class="btn btn--ghost btn--sm btn--icon" onclick="editReview(${r.id})"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
-        <button class="btn btn--${r.is_approved?'orange':'green'} btn--sm" onclick="toggleReviewApproval(${r.id},${r.is_approved})">${r.is_approved?'Unapprove':'Approve'}</button>
-        <button class="btn btn--red btn--sm btn--icon" onclick="confirmDelete('review',${r.id},'this review')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg></button>
-      </div></td>
-    </tr>`).join('')}</tbody></table>`;
+function filterReviews() {
+  var query = document.getElementById('review-search').value.toLowerCase();
+  var filter = document.getElementById('review-filter').value;
+  renderReviewsTable(allReviews.filter(function(r) {
+    var matchQ = !query || (r.reviewer_name || '').toLowerCase().includes(query);
+    var matchF = !filter || (filter === 'approved' ? r.is_approved : !r.is_approved);
+    return matchQ && matchF;
+  }));
 }
 
-document.getElementById('review-search').addEventListener('input', function() {
-  const q=this.value.toLowerCase(), f=document.getElementById('review-status-filter').value;
-  renderReviewsTable(allReviews.filter(r=>(r.reviewer_name||'').toLowerCase().includes(q)&&(!f||(f==='approved'?r.is_approved:!r.is_approved))));
-});
-document.getElementById('review-status-filter').addEventListener('change', function() {
-  const q=document.getElementById('review-search').value.toLowerCase(), f=this.value;
-  renderReviewsTable(allReviews.filter(r=>(r.reviewer_name||'').toLowerCase().includes(q)&&(!f||(f==='approved'?r.is_approved:!r.is_approved))));
-});
-
-function openReviewModal(r=null) {
-  editingReview = r;
-  document.getElementById('review-modal-title').textContent = r ? 'Edit Review' : 'Add Review';
-  document.getElementById('r-name').value = r?.reviewer_name || '';
-  document.getElementById('r-location').value = r?.reviewer_location || '';
-  document.getElementById('r-stars').value = r?.stars || '5';
-  document.getElementById('r-text').value = r?.review_text || '';
-  document.getElementById('r-approved').checked = r?.is_approved ?? true;
-  openModal('review-modal');
+function renderReviewsTable(list) {
+  var container = document.getElementById('reviews-table');
+  if (!list.length) {
+    container.innerHTML = '<div class="empty-state"><p>No reviews yet.</p></div>';
+    return;
+  }
+  var rows = list.map(function(r) {
+    var stars = Array(Math.min(5, r.stars || 5) + 1).join('★');
+    return '<tr>' +
+      '<td><div class="td-name">' + (r.reviewer_name || '') + '</div><div class="td-sub">' + (r.reviewer_location || '—') + '</div></td>' +
+      '<td><span style="color:var(--gold);">' + stars + '</span></td>' +
+      '<td style="max-width:260px;"><span style="font-size:.8rem;color:var(--txt2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">' + (r.review_text || '') + '</span></td>' +
+      '<td><span class="badge ' + (r.is_approved ? 'badge-green' : 'badge-orange') + '">' + (r.is_approved ? 'Approved' : 'Pending') + '</span></td>' +
+      '<td><div class="td-actions">' +
+        '<button class="btn btn-ghost btn-sm btn-icon" onclick="editReview(' + r.id + ')">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>' +
+        '</button>' +
+        '<button class="btn ' + (r.is_approved ? 'btn-ghost' : 'btn-green') + ' btn-sm" onclick="toggleReviewApproval(' + r.id + ',' + r.is_approved + ')">' +
+          (r.is_approved ? 'Unapprove' : 'Approve') +
+        '</button>' +
+        '<button class="btn btn-red btn-sm btn-icon" onclick="confirmDelete(\'this review\', function(){ deleteReview(' + r.id + '); })">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>' +
+        '</button>' +
+      '</div></td>' +
+    '</tr>';
+  });
+  container.innerHTML = '<table><thead><tr><th>Reviewer</th><th>Stars</th><th>Review</th><th>Status</th><th>Actions</th></tr></thead><tbody>' + rows.join('') + '</tbody></table>';
 }
-function editReview(id) { openReviewModal(allReviews.find(r=>r.id===id)); }
+
+var editingReview = null;
+
+function openReviewModal(review) {
+  editingReview = review || null;
+  document.getElementById('review-modal-title').textContent = review ? 'Edit Review' : 'Add Review';
+  var r = review || {};
+  document.getElementById('r-name').value = r.reviewer_name || '';
+  document.getElementById('r-location').value = r.reviewer_location || '';
+  document.getElementById('r-stars').value = r.stars || '5';
+  document.getElementById('r-text').value = r.review_text || '';
+  document.getElementById('r-approved').checked = r.is_approved !== false;
+  openModal('modal-review');
+}
+
+function editReview(id) {
+  var review = allReviews.find(function(r) { return r.id === id; });
+  if (review) openReviewModal(review);
+}
 
 async function saveReview() {
-  const name = document.getElementById('r-name').value.trim();
-  const text = document.getElementById('r-text').value.trim();
-  if (!name||!text) { toast('Name and review text are required.','error'); return; }
-  const payload = {
+  var name = document.getElementById('r-name').value.trim();
+  var text = document.getElementById('r-text').value.trim();
+  if (!name || !text) { showToast('Name and review text are required.', 'error'); return; }
+  var payload = {
     reviewer_name: name,
-    reviewer_location: document.getElementById('r-location').value.trim()||null,
+    reviewer_location: document.getElementById('r-location').value.trim() || null,
     stars: parseInt(document.getElementById('r-stars').value),
     review_text: text,
-    is_approved: document.getElementById('r-approved').checked,
+    is_approved: document.getElementById('r-approved').checked
   };
   try {
-    if (editingReview) { await sbPatch('reviews','id',editingReview.id,payload); toast('Review updated! ✅'); }
-    else { await sbPost('reviews',payload); toast('Review added! ✅'); }
-    closeModal('review-modal'); loadReviews(); initDashboard();
-  } catch(e) { toast(`Error: ${e.message}`,'error'); }
+    if (editingReview) { await sbUpdate('reviews', 'id', editingReview.id, payload); showToast('Review updated! ✅'); }
+    else { await sbInsert('reviews', payload); showToast('Review added! ✅'); }
+    closeModal('modal-review');
+    loadReviews();
+    loadDashboard();
+  } catch(e) { showToast(e.message, 'error'); }
 }
 
 async function toggleReviewApproval(id, current) {
-  try { await sbPatch('reviews','id',id,{is_approved:!current}); toast(`Review ${current?'unapproved':'approved'}!`); loadReviews(); }
-  catch(e) { toast(`Error: ${e.message}`,'error'); }
-}
-
-/* ══ CONTACTS ══ */
-async function loadContacts() {
-  const el = document.getElementById('contacts-table-body');
-  el.innerHTML = '<div class="empty-state"><p>Loading…</p></div>';
   try {
-    allContacts = await sbGet('contact_submissions','?select=*&order=created_at.desc');
-    renderContactsTable(allContacts);
-    document.getElementById('badge-contacts').textContent = allContacts.filter(c=>!c.is_read).length;
-  } catch(e) { el.innerHTML = `<div class="empty-state"><p>Error: ${e.message}</p></div>`; }
+    await sbUpdate('reviews', 'id', id, { is_approved: !current });
+    showToast('Review ' + (current ? 'unapproved' : 'approved and now visible') + '!');
+    loadReviews();
+  } catch(e) { showToast(e.message, 'error'); }
 }
 
-function renderContactsTable(data) {
-  const el = document.getElementById('contacts-table-body');
-  if (!data.length) { el.innerHTML = '<div class="empty-state"><p>No messages yet.</p></div>'; return; }
-  el.innerHTML = `<table>
-    <thead><tr><th>From</th><th>Subject</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
-    <tbody>${data.map(c=>`
-    <tr>
-      <td><div class="td-name">${c.name}</div><div class="td-sub">${c.email}${c.phone?` · ${c.phone}`:''}</div></td>
-      <td>${c.subject||'—'}</td>
-      <td style="font-size:0.8rem;color:var(--text-light);">${new Date(c.created_at).toLocaleDateString('en-GH',{day:'numeric',month:'short',year:'numeric'})}</td>
-      <td><span class="badge ${c.is_read?'badge--blue':'badge--orange'}">${c.is_read?'Read':'Unread'}</span></td>
-      <td><div class="td-actions">
-        <button class="btn btn--ghost btn--sm" onclick="viewMessage(${c.id})">View</button>
-        <button class="btn btn--red btn--sm btn--icon" onclick="confirmDelete('contact',${c.id},'this message')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg></button>
-      </div></td>
-    </tr>`).join('')}</tbody></table>`;
+async function deleteReview(id) {
+  try { await sbDelete('reviews', 'id', id); showToast('Review deleted.'); loadReviews(); loadDashboard(); }
+  catch(e) { showToast(e.message, 'error'); }
 }
 
-document.getElementById('contact-search').addEventListener('input', function() {
-  const q=this.value.toLowerCase(), f=document.getElementById('contact-read-filter').value;
-  renderContactsTable(allContacts.filter(c=>((c.name||'')+(c.email||'')+(c.subject||'')).toLowerCase().includes(q)&&(!f||(f==='read'?c.is_read:!c.is_read))));
-});
-document.getElementById('contact-read-filter').addEventListener('change', function() {
-  const q=document.getElementById('contact-search').value.toLowerCase(), f=this.value;
-  renderContactsTable(allContacts.filter(c=>((c.name||'')+(c.email||'')+(c.subject||'')).toLowerCase().includes(q)&&(!f||(f==='read'?c.is_read:!c.is_read))));
-});
+/* ═══════════════════════════════════════
+   MESSAGES
+═══════════════════════════════════════ */
+var allMessages = [];
 
-async function viewMessage(id) {
-  const msg = allContacts.find(c=>c.id===id);
-  if (!msg) return;
-  document.getElementById('message-modal-body').innerHTML = `
-    <div style="display:grid;gap:1rem;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-        <div><div style="font-size:0.72rem;font-family:var(--font-accent);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);margin-bottom:0.25rem;">From</div><div style="font-weight:600;">${msg.name}</div></div>
-        <div><div style="font-size:0.72rem;font-family:var(--font-accent);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);margin-bottom:0.25rem;">Email</div><div>${msg.email}</div></div>
-        ${msg.phone?`<div><div style="font-size:0.72rem;font-family:var(--font-accent);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);margin-bottom:0.25rem;">Phone / WhatsApp</div><div>${msg.phone}</div></div>`:''}
-        <div><div style="font-size:0.72rem;font-family:var(--font-accent);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);margin-bottom:0.25rem;">Subject</div><div>${msg.subject||'—'}</div></div>
-        <div><div style="font-size:0.72rem;font-family:var(--font-accent);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);margin-bottom:0.25rem;">Received</div><div>${new Date(msg.created_at).toLocaleString('en-GH')}</div></div>
-      </div>
-      <div style="border-top:1px solid rgba(0,0,0,0.07);padding-top:1rem;">
-        <div style="font-size:0.72rem;font-family:var(--font-accent);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);margin-bottom:0.75rem;">Message</div>
-        <div style="background:var(--off);border-radius:var(--radius);padding:1.25rem;font-size:0.9rem;line-height:1.75;color:var(--text);">${msg.message}</div>
-      </div>
-    </div>`;
-  const waMsg = encodeURIComponent(`Hello ${msg.name}! 💕 Thank you for reaching out to b_lit hairs. Regarding your enquiry "${msg.subject||''}" — `);
-  document.getElementById('reply-wa-btn').href = msg.phone
-    ? `https://wa.me/${msg.phone.replace(/\D/g,'')}?text=${waMsg}`
-    : `https://wa.me/233558590198?text=${waMsg}`;
-  openModal('message-modal');
-  if (!msg.is_read) {
-    try { await sbPatch('contact_submissions','id',id,{is_read:true}); msg.is_read=true; loadContacts(); }
-    catch(e) { console.error(e); }
+async function loadMessages() {
+  document.getElementById('messages-table').innerHTML = '<div class="empty-state"><p>Loading…</p></div>';
+  try {
+    allMessages = await sbSelect('contact_submissions', '?select=*&order=created_at.desc');
+    renderMessagesTable(allMessages);
+    var unread = allMessages.filter(function(m) { return !m.is_read; }).length;
+    document.getElementById('badge-messages').textContent = unread;
+  } catch(e) {
+    document.getElementById('messages-table').innerHTML = '<div class="empty-state"><p style="color:var(--rd);">Error: ' + e.message + '</p></div>';
   }
 }
 
-/* ══ DELETE ══ */
-function confirmDelete(type, id, label) {
-  document.getElementById('confirm-title').textContent = `Delete ${type}?`;
-  document.getElementById('confirm-msg').textContent   = `"${label}" will be permanently deleted. This cannot be undone.`;
-  openModal('confirm-modal');
-  document.getElementById('confirm-ok-btn').onclick = async () => {
-    try {
-      const table = type==='product'?'products':type==='service'?'services':type==='review'?'reviews':'contact_submissions';
-      await sbDelete(table,'id',id);
-      toast(`${type.charAt(0).toUpperCase()+type.slice(1)} deleted.`);
-      closeModal('confirm-modal');
-      if(type==='product') loadProducts();
-      if(type==='service') loadServices();
-      if(type==='review') loadReviews();
-      if(type==='contact') loadContacts();
-      initDashboard();
-    } catch(e) { toast(`Error: ${e.message}`,'error'); }
-  };
+function filterMessages() {
+  var query = document.getElementById('message-search').value.toLowerCase();
+  var filter = document.getElementById('message-filter').value;
+  renderMessagesTable(allMessages.filter(function(m) {
+    var matchQ = !query || ((m.name || '') + (m.email || '') + (m.subject || '')).toLowerCase().includes(query);
+    var matchF = !filter || (filter === 'read' ? m.is_read : !m.is_read);
+    return matchQ && matchF;
+  }));
 }
 
-/* ══ SETTINGS ══ */
-function copyGrantSQL() {
-  const sql = document.getElementById('grant-sql-block').textContent;
-  navigator.clipboard.writeText(sql).then(() => {
-    const btn = document.getElementById('copy-grant-btn');
-    btn.textContent = '✓ Copied!';
-    btn.style.background = 'rgba(22,163,74,0.3)';
-    setTimeout(()=>{ btn.textContent='Copy SQL'; btn.style.background='rgba(255,255,255,0.1)'; }, 2000);
+function renderMessagesTable(list) {
+  var container = document.getElementById('messages-table');
+  if (!list.length) {
+    container.innerHTML = '<div class="empty-state"><p>No messages yet.</p></div>';
+    return;
+  }
+  var rows = list.map(function(m) {
+    var date = new Date(m.created_at).toLocaleDateString('en-GH', { day: 'numeric', month: 'short', year: 'numeric' });
+    return '<tr>' +
+      '<td><div class="td-name">' + (m.name || '') + '</div><div class="td-sub">' + (m.email || '') + (m.phone ? ' · ' + m.phone : '') + '</div></td>' +
+      '<td>' + (m.subject || '—') + '</td>' +
+      '<td style="font-size:.78rem;color:var(--txt3);">' + date + '</td>' +
+      '<td><span class="badge ' + (m.is_read ? 'badge-blue' : 'badge-orange') + '">' + (m.is_read ? 'Read' : 'Unread') + '</span></td>' +
+      '<td><div class="td-actions">' +
+        '<button class="btn btn-ghost btn-sm" onclick="viewMessage(' + m.id + ')">View</button>' +
+        '<button class="btn btn-red btn-sm btn-icon" onclick="confirmDelete(\'this message\', function(){ deleteMessage(' + m.id + '); })">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>' +
+        '</button>' +
+      '</div></td>' +
+    '</tr>';
   });
+  container.innerHTML = '<table><thead><tr><th>From</th><th>Subject</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead><tbody>' + rows.join('') + '</tbody></table>';
 }
-function copyStorageSQL() {
-  const sql = document.getElementById('storage-sql-block').textContent;
-  navigator.clipboard.writeText(sql).then(() => {
-    const btn = document.getElementById('copy-sql-btn');
-    btn.textContent = '✓ Copied!';
-    btn.style.background = 'rgba(22,163,74,0.3)';
-    setTimeout(()=>{ btn.textContent='Copy SQL'; btn.style.background='rgba(255,255,255,0.1)'; }, 2000);
-  });
+
+async function viewMessage(id) {
+  var m = allMessages.find(function(x) { return x.id === id; });
+  if (!m) return;
+  var body = '<div style="display:grid;gap:1rem;">' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">' +
+      '<div><div style="font-size:.7rem;font-family:var(--fa);font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);margin-bottom:.2rem;">From</div><div style="font-weight:600;">' + (m.name || '') + '</div></div>' +
+      '<div><div style="font-size:.7rem;font-family:var(--fa);font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);margin-bottom:.2rem;">Email</div><div>' + (m.email || '') + '</div></div>' +
+      (m.phone ? '<div><div style="font-size:.7rem;font-family:var(--fa);font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);margin-bottom:.2rem;">Phone / WhatsApp</div><div>' + m.phone + '</div></div>' : '') +
+      '<div><div style="font-size:.7rem;font-family:var(--fa);font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);margin-bottom:.2rem;">Subject</div><div>' + (m.subject || '—') + '</div></div>' +
+      '<div><div style="font-size:.7rem;font-family:var(--fa);font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);margin-bottom:.2rem;">Received</div><div>' + new Date(m.created_at).toLocaleString('en-GH') + '</div></div>' +
+    '</div>' +
+    '<div style="border-top:1px solid rgba(0,0,0,.07);padding-top:1rem;">' +
+      '<div style="font-size:.7rem;font-family:var(--fa);font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);margin-bottom:.65rem;">Message</div>' +
+      '<div style="background:var(--bg);border-radius:var(--r);padding:1.1rem;font-size:.88rem;line-height:1.75;">' + (m.message || '') + '</div>' +
+    '</div>' +
+  '</div>';
+  document.getElementById('message-modal-body').innerHTML = body;
+  var waMsg = encodeURIComponent('Hello ' + (m.name || '') + '! \uD83D\uDC95 Thank you for contacting b_lit hairs. Regarding your "' + (m.subject || 'enquiry') + '" — ');
+  var phone = m.phone ? m.phone.replace(/\D/g, '') : WA_NUMBER;
+  document.getElementById('message-wa-link').href = 'https://wa.me/' + phone + '?text=' + waMsg;
+  openModal('modal-message');
+  if (!m.is_read) {
+    try { await sbUpdate('contact_submissions', 'id', id, { is_read: true }); m.is_read = true; loadMessages(); }
+    catch(e) {}
+  }
 }
+
+async function deleteMessage(id) {
+  try { await sbDelete('contact_submissions', 'id', id); showToast('Message deleted.'); loadMessages(); loadDashboard(); }
+  catch(e) { showToast(e.message, 'error'); }
+}
+
+/* ═══════════════════════════════════════
+   SETTINGS
+═══════════════════════════════════════ */
+async function testConnection() {
+  var status = document.getElementById('conn-status');
+  status.textContent = 'Testing…';
+  status.className = 'badge badge-blue';
+  try {
+    await sbSelect('products', '?limit=1');
+    status.textContent = '✅ Connected';
+    status.className = 'badge badge-green';
+    showToast('Supabase is connected and working!');
+  } catch(e) {
+    status.textContent = '❌ Error';
+    status.className = 'badge badge-red';
+    showToast('Connection failed: ' + e.message, 'error');
+  }
+}
+
 function changePassword() {
-  const np = document.getElementById('new-pass').value;
-  const cp = document.getElementById('confirm-pass').value;
-  if (!np||!cp) { toast('Both fields are required.','error'); return; }
-  if (np!==cp) { toast('Passwords do not match.','error'); return; }
-  if (np.length<8) { toast('Password must be at least 8 characters.','error'); return; }
-  toast('Note: Update ADMIN_PASSWORD directly in admin.html to make it permanent.','warning');
+  var np = document.getElementById('new-password').value;
+  var cp = document.getElementById('confirm-password').value;
+  if (!np || !cp) { showToast('Both fields are required.', 'error'); return; }
+  if (np !== cp) { showToast('Passwords do not match.', 'error'); return; }
+  if (np.length < 6) { showToast('Password must be at least 6 characters.', 'error'); return; }
+  showToast('Open admin.html in a text editor and update the ADMIN_PASSWORD line, then re-upload the file.');
+}
+
+function copySql() {
+  var sql = "insert into storage.buckets (id, name, public)\nvalues ('product-images', 'product-images', true);\n\ncreate policy \"Public can upload images\"\n  on storage.objects for insert\n  with check (bucket_id = 'product-images');\n\ncreate policy \"Public can view images\"\n  on storage.objects for select\n  using (bucket_id = 'product-images');";
+  navigator.clipboard.writeText(sql).then(function() {
+    var btn = document.getElementById('sql-copy-btn');
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
 }
 </script>
 </body>
-</html>     
+</html>    
