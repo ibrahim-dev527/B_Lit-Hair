@@ -9,43 +9,51 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{--pink-deep:#b5436a;--pink-mid:#d4698b;--pink-light:#f2c4d4;--pink-blush:#fdf0f4;--white:#ffffff;--off-white:#faf8f9;--charcoal:#1a1a1a;--text-dark:#2d2d2d;--text-mid:#555555;--text-light:#888888;--gold:#c9a96e;--gold-light:#e8d5b0;--font-display:'Playfair Display',Georgia,serif;--font-body:'Poppins',sans-serif;--font-accent:'Montserrat',sans-serif;--radius-sm:8px;--radius-md:16px;--radius-lg:32px;--radius-pill:999px;--shadow-soft:0 4px 24px rgba(181,67,106,0.10);--shadow-card:0 8px 40px rgba(181,67,106,0.14);--shadow-hover:0 16px 56px rgba(181,67,106,0.22);--transition:0.35s cubic-bezier(0.4,0,0.2,1);--transition-slow:0.6s cubic-bezier(0.4,0,0.2,1);}
+    :root{
+      --pink-deep:#b5436a;--pink-mid:#d4698b;--pink-light:#f2c4d4;--pink-blush:#fdf0f4;
+      --white:#fff;--charcoal:#1a1a1a;--text-dark:#2d2d2d;--text-mid:#555;--text-light:#888;
+      --gold:#c9a96e;--gold-light:#e8d5b0;
+      --font-display:'Playfair Display',Georgia,serif;
+      --font-body:'Poppins',sans-serif;
+      --font-accent:'Montserrat',sans-serif;
+      --radius-md:16px;--radius-lg:32px;--radius-pill:999px;
+      --shadow-soft:0 4px 24px rgba(181,67,106,0.10);
+      --shadow-hover:0 16px 56px rgba(181,67,106,0.22);
+      --transition:0.35s cubic-bezier(0.4,0,0.2,1);
+      --transition-slow:0.6s cubic-bezier(0.4,0,0.2,1);
+    }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;}body{font-family:var(--font-body);background:var(--white);color:var(--text-dark);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-    img{max-width:100%;height:auto;display:block;}a{text-decoration:none;color:inherit;}ul{list-style:none;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--font-body);background:var(--white);color:var(--text-dark);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+    img{max-width:100%;height:auto;display:block;}
+    a{text-decoration:none;color:inherit;}
+    ul{list-style:none;}
     h1,h2,h3,h4{font-family:var(--font-display);line-height:1.25;color:var(--charcoal);font-weight:700;}
-    h1{font-size:clamp(2.4rem,6vw,4.5rem);}h2{font-size:clamp(1.8rem,4vw,3rem);}h3{font-size:clamp(1.1rem,2.5vw,1.6rem);}
+    h1{font-size:clamp(2.4rem,6vw,4.5rem);}
+    h2{font-size:clamp(1.8rem,4vw,3rem);}
+    h3{font-size:clamp(1.1rem,2.5vw,1.6rem);}
     p{color:var(--text-mid);}
     .section-label{font-family:var(--font-accent);font-size:0.75rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--pink-deep);display:block;margin-bottom:0.75rem;}
     .container{width:100%;max-width:1240px;margin:0 auto;padding:0 1.5rem;}
-    .section{padding:6rem 0;}.section--pink{background:var(--pink-blush);}
+    .section{padding:6rem 0;}
+    .section--pink{background:var(--pink-blush);}
     .text-center{text-align:center;}
     .divider{width:60px;height:3px;background:linear-gradient(90deg,var(--pink-deep),var(--pink-mid));border-radius:2px;margin:1.25rem auto 0;}
+    /* BUTTONS */
     .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2.2rem;border-radius:var(--radius-pill);font-family:var(--font-accent);font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border:none;position:relative;overflow:hidden;transition:var(--transition);}
-    .btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.15);opacity:0;transition:var(--transition);}
-    .btn:hover::after{opacity:1;}
     .btn--primary{background:linear-gradient(135deg,var(--pink-deep),var(--pink-mid));color:var(--white);box-shadow:0 4px 20px rgba(181,67,106,0.4);}
     .btn--primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(181,67,106,0.5);}
-    .btn--primary::before{content:'';position:absolute;inset:-2px;border-radius:inherit;background:inherit;filter:blur(12px);opacity:0;transition:opacity 0.4s;z-index:-1;}
-    .btn--primary:hover::before{opacity:0.55;}
-    .btn--outline{background:transparent;border:2px solid var(--pink-deep);color:var(--pink-deep);}
-    .btn--outline:hover{background:var(--pink-deep);color:var(--white);transform:translateY(-2px);}
     .btn--white{background:var(--white);color:var(--pink-deep);}
     .btn--white:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.15);}
-    .btn--gold{background:linear-gradient(135deg,var(--gold),#a87c4a);color:var(--white);box-shadow:0 4px 20px rgba(201,169,110,0.4);}
-    .btn--gold:hover{transform:translateY(-2px);}
     .btn--lg{padding:1.1rem 2.8rem;font-size:0.95rem;}
-    .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,0.35);transform:scale(0);animation:ripple-anim 0.65s linear;pointer-events:none;}
-    /* Nav */
-    .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.25rem 0;transition:var(--transition);}
-    .nav.scrolled{background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:0.85rem 0;box-shadow:0 4px 32px rgba(181,67,106,0.1);}
+    /* NAV */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.25rem 0;transition:var(--transition);animation:fadeDown 0.7s 0.1s both;}
+    .nav.scrolled{background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);padding:0.85rem 0;box-shadow:0 4px 32px rgba(181,67,106,0.1);}
     .nav--dark{background:var(--white);box-shadow:0 2px 20px rgba(181,67,106,0.08);}
-    .nav--dark .nav__logo-text,.nav--dark .nav__link{color:var(--charcoal);}
-    .nav--dark .nav__hamburger span{background:var(--charcoal);}
     .nav__inner{display:flex;align-items:center;justify-content:space-between;}
     .nav__logo{display:flex;align-items:center;gap:0.75rem;}
     .nav__logo img{width:44px;height:44px;border-radius:50%;object-fit:cover;}
-    .nav__logo-text{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:var(--charcoal);transition:color var(--transition);}
+    .nav__logo-text{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:var(--charcoal);}
     .nav__logo-text span{color:var(--pink-deep);}
     .nav__menu{display:flex;align-items:center;gap:2.5rem;}
     .nav__link{font-family:var(--font-accent);font-size:0.8rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--charcoal);position:relative;transition:color var(--transition);}
@@ -60,8 +68,8 @@
     .nav__hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
     .nav__drawer{display:none;position:fixed;inset:0;background:var(--white);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;transform:translateX(100%);transition:transform var(--transition-slow);}
     .nav__drawer.open{transform:translateX(0);}
-    .nav__drawer .nav__link{color:var(--charcoal);font-size:1.4rem;letter-spacing:0.15em;}
-    /* Hero */
+    .nav__drawer .nav__link{font-size:1.4rem;letter-spacing:0.15em;}
+    /* HERO */
     .page-hero{padding:9rem 0 5rem;position:relative;overflow:hidden;background:var(--charcoal);}
     .page-hero::before{content:'';position:absolute;inset:0;background:url('assets/images/belinda.jpeg') center 40%/cover no-repeat;opacity:0.2;}
     .page-hero__overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,10,18,0.8),rgba(181,67,106,0.15));}
@@ -69,55 +77,43 @@
     .page-hero h1{color:var(--white);margin-bottom:1rem;}
     .page-hero h1 em{font-style:italic;color:var(--pink-light);}
     .page-hero p{color:rgba(255,255,255,0.78);font-size:1.05rem;max-width:520px;}
-    /* Services grid */
-    .services-main-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:2rem;}
-    .service-card-full{background:var(--white);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-soft);border:1px solid rgba(181,67,106,0.08);transition:var(--transition);display:flex;flex-direction:column;}
-    .service-card-full:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover);}
-    .service-card-full__header{background:linear-gradient(135deg,var(--pink-deep),#8b2249);padding:2.5rem 2rem;display:flex;align-items:center;gap:1.25rem;}
-    .service-card-full__icon{width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-    .service-card-full__icon svg{width:28px;height:28px;stroke:white;}
-    .service-card-full__header h3{color:white;font-size:1.2rem;}
-    .service-card-full__header .price-tag{font-family:var(--font-accent);font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-light);display:block;margin-top:0.2rem;}
-    .service-card-full__body{padding:2rem;flex:1;display:flex;flex-direction:column;}
-    .service-card-full__body p{font-size:0.92rem;line-height:1.78;margin-bottom:1.5rem;flex:1;}
+    /* SERVICES GRID */
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:2rem;}
+    .service-card{background:var(--white);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-soft);border:1px solid rgba(181,67,106,0.08);transition:var(--transition);display:flex;flex-direction:column;opacity:0;animation:fadeUp 0.5s ease forwards;}
+    .service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover);}
+    .service-card__header{background:linear-gradient(135deg,var(--pink-deep),#8b2249);padding:2.5rem 2rem;display:flex;align-items:center;gap:1.25rem;}
+    .service-card__icon{width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.6rem;}
+    .service-card__header h3{color:white;font-size:1.2rem;}
+    .service-card__header .price-tag{font-family:var(--font-accent);font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-light);display:block;margin-top:0.2rem;}
+    .service-card__body{padding:2rem;flex:1;display:flex;flex-direction:column;}
+    .service-card__body p{font-size:0.92rem;line-height:1.78;margin-bottom:1.5rem;flex:1;}
     .service-tag{display:inline-block;background:var(--pink-blush);color:var(--pink-deep);font-family:var(--font-accent);font-size:0.7rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:0.25rem 0.7rem;border-radius:var(--radius-pill);border:1px solid rgba(181,67,106,0.15);margin:0 0.3rem 0.4rem 0;}
-    /* Process */
+    /* PROCESS */
     .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative;}
     .process-steps::before{content:'';position:absolute;top:2.5rem;left:calc(12.5% + 1.5rem);right:calc(12.5% + 1.5rem);height:2px;background:linear-gradient(90deg,var(--pink-deep),var(--pink-light));z-index:0;}
     .process-step{text-align:center;position:relative;z-index:1;}
     .process-step__num{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--pink-deep),var(--pink-mid));color:white;font-family:var(--font-display);font-size:1.3rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;box-shadow:0 4px 16px rgba(181,67,106,0.35);}
     .process-step h4{font-size:1rem;margin-bottom:0.5rem;}
     .process-step p{font-size:0.85rem;}
-    /* Why us */
-    .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
-    .why-grid__img{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-card);}
-    .why-grid__img img{width:100%;height:500px;object-fit:cover;object-position:top;}
-    .why-list{display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem;}
-    .why-item{display:flex;gap:1rem;align-items:flex-start;}
-    .why-item__icon{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--pink-blush),#f7d5e2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-    .why-item__icon svg{width:20px;height:20px;stroke:var(--pink-deep);}
-    .why-item h4{font-size:1rem;margin-bottom:0.2rem;}
-    .why-item p{font-size:0.88rem;}
-    /* Pricing table */
-    .pricing-table{width:100%;border-collapse:collapse;border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-soft);}
-    .pricing-table th{background:linear-gradient(135deg,var(--pink-deep),#8b2249);color:white;font-family:var(--font-accent);font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:1.2rem 1.5rem;text-align:left;}
-    .pricing-table td{padding:1.1rem 1.5rem;border-bottom:1px solid rgba(181,67,106,0.08);font-size:0.92rem;}
-    .pricing-table tr:last-child td{border-bottom:none;}
-    .pricing-table tr:nth-child(even) td{background:var(--pink-blush);}
-    .pricing-table tr:hover td{background:rgba(181,67,106,0.05);}
-    .pricing-table .price-cell{font-family:var(--font-display);font-weight:700;color:var(--pink-deep);white-space:nowrap;}
-    /* CTA Banner */
+    /* EMPTY & LOADING STATE */
+    .state-centered{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5rem 2rem;text-align:center;gap:1rem;grid-column:1/-1;}
+    .state-centered .icon{font-size:4rem;display:block;}
+    .state-centered h3{font-family:var(--font-display);font-size:1.5rem;color:var(--charcoal);}
+    .state-centered p{color:var(--text-light);max-width:420px;font-size:0.95rem;}
+    .spinner{width:48px;height:48px;border:3px solid rgba(181,67,106,0.15);border-top-color:var(--pink-deep);border-radius:50%;animation:spin 0.85s linear infinite;}
+    .spinner-label{font-family:var(--font-accent);font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-light);}
+    /* CTA */
     .cta-banner{background:var(--charcoal);padding:6rem 0;position:relative;overflow:hidden;}
     .cta-banner::before{content:'';position:absolute;inset:0;background:url('assets/images/belinda.jpeg') center/cover no-repeat;opacity:0.1;}
     .cta-banner__inner{position:relative;z-index:1;text-align:center;}
     .cta-banner h2{color:var(--white);margin-bottom:1rem;}
     .cta-banner h2 em{color:var(--pink-light);}
     .cta-banner p{color:rgba(255,255,255,0.7);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto;}
-    /* WhatsApp */
-    .whatsapp-float{position:fixed;bottom:2rem;right:2rem;z-index:900;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(37,211,102,0.5);transition:var(--transition);animation:pulse-green 2.5s infinite;}
+    /* WHATSAPP */
+    .whatsapp-float{position:fixed;bottom:2rem;right:2rem;z-index:900;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(37,211,102,0.5);transition:var(--transition);animation:pulseGreen 2.5s infinite;}
     .whatsapp-float:hover{transform:scale(1.12);}
     .whatsapp-float svg{width:30px;height:30px;fill:white;}
-    /* Footer */
+    /* FOOTER */
     .footer{background:var(--charcoal);padding:5rem 0 0;}
     .footer__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:3rem;margin-bottom:4rem;}
     .footer__brand-name{font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--white);display:block;margin-bottom:1rem;}
@@ -134,51 +130,34 @@
     .footer__bottom{border-top:1px solid rgba(255,255,255,0.08);padding:1.5rem 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
     .footer__bottom p{font-size:0.82rem;color:rgba(255,255,255,0.4);}
     .footer__bottom a{color:var(--pink-light);}
-    /* Misc */
-    .scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--pink-deep),var(--gold));z-index:10000;width:0%;transition:width 0.1s linear;}
-    .page-loader{position:fixed;inset:0;background:var(--charcoal);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transition:opacity 0.6s ease,visibility 0.6s ease;}
-    .page-loader.hidden{opacity:0;visibility:hidden;}
-    .loader-logo{font-family:var(--font-display);font-size:2rem;color:var(--white);font-weight:700;}
-    .loader-logo span{color:var(--pink-mid);}
-    .loader-bar{width:200px;height:2px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;}
-    .loader-bar__fill{height:100%;background:linear-gradient(90deg,var(--pink-deep),var(--gold));animation:loading 1.4s ease forwards;}
-    .loader-ring{width:48px;height:48px;border:3px solid rgba(255,255,255,0.1);border-top-color:var(--pink-mid);border-radius:50%;animation:spin 0.9s linear infinite;}
-    .loading-msg{text-align:center;color:var(--text-light);padding:3rem;font-family:var(--font-accent);}
-    [data-reveal]{opacity:0;transition:opacity 0.75s ease,transform 0.75s ease;}
-    [data-reveal="up"]{transform:translateY(50px);}[data-reveal="left"]{transform:translateX(-50px);}[data-reveal="right"]{transform:translateX(50px);}[data-reveal="scale"]{transform:scale(0.88);}[data-reveal="fade"]{transform:none;}
-    [data-reveal].revealed{opacity:1;transform:translate(0) scale(1);}
-    [data-delay="100"]{transition-delay:0.10s;}[data-delay="150"]{transition-delay:0.15s;}[data-delay="200"]{transition-delay:0.20s;}[data-delay="250"]{transition-delay:0.25s;}[data-delay="300"]{transition-delay:0.30s;}[data-delay="400"]{transition-delay:0.40s;}
-    @keyframes ripple-anim{to{transform:scale(4);opacity:0;}}
-    @keyframes loading{0%{width:0;}100%{width:100%;}}
-    @keyframes pulse-green{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55);}70%{box-shadow:0 0 0 14px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
-    @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
-    @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px);}to{opacity:1;transform:translateY(0);}}
-    .nav{animation:fadeInDown 0.7s 0.1s both;}
-    :focus-visible{outline:3px solid var(--pink-mid);outline-offset:3px;border-radius:4px;}
-    @media(max-width:1024px){.footer__grid{grid-template-columns:1fr 1fr;}.process-steps{grid-template-columns:repeat(2,1fr);}.process-steps::before{display:none;}.why-grid{gap:3rem;}}
-    @media(max-width:768px){.section{padding:4rem 0;}.services-main-grid{grid-template-columns:1fr;}.why-grid{grid-template-columns:1fr;}.footer__grid{grid-template-columns:1fr;}.nav__menu{display:none;}.nav__hamburger{display:flex;}.nav__drawer{display:flex;}.footer__bottom{flex-direction:column;text-align:center;}.pricing-table th,.pricing-table td{padding:0.8rem 1rem;font-size:0.82rem;}}
+    /* MISC */
+    .scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--pink-deep),var(--gold));z-index:10000;width:0%;}
+    [data-reveal]{opacity:0;transform:translateY(40px);transition:opacity 0.75s ease,transform 0.75s ease;}
+    [data-reveal].revealed{opacity:1;transform:translateY(0);}
+    [data-delay="100"]{transition-delay:0.1s;}[data-delay="200"]{transition-delay:0.2s;}[data-delay="300"]{transition-delay:0.3s;}[data-delay="400"]{transition-delay:0.4s;}
+    @keyframes fadeDown{from{opacity:0;transform:translateY(-30px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes spin{to{transform:rotate(360deg);}}
+    @keyframes pulseGreen{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}50%{box-shadow:0 0 0 14px rgba(37,211,102,0.2);}}
+    @media(max-width:1024px){.footer__grid{grid-template-columns:1fr 1fr;}.process-steps{grid-template-columns:repeat(2,1fr);}.process-steps::before{display:none;}}
+    @media(max-width:768px){.section{padding:4rem 0;}.services-grid{grid-template-columns:1fr;}.footer__grid{grid-template-columns:1fr;}.nav__menu{display:none;}.nav__hamburger{display:flex;}.nav__drawer{display:flex;}.footer__bottom{flex-direction:column;text-align:center;}}
     @media(max-width:480px){.process-steps{grid-template-columns:1fr;}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important;}[data-reveal]{opacity:1;transform:none;}}
   </style>
 </head>
 <body>
 
-<div class="page-loader" id="page-loader" role="status" aria-label="Loading">
-  <div class="loader-logo">b_lit <span>hairs</span></div>
-  <div class="loader-ring"></div>
-  <div class="loader-bar"><div class="loader-bar__fill"></div></div>
-</div>
-<div class="scroll-progress" role="progressbar" aria-hidden="true"></div>
+<div class="scroll-progress" id="scroll-bar"></div>
 
 <header>
-  <nav class="nav nav--dark" role="navigation" aria-label="Main navigation">
+  <nav class="nav nav--dark" id="main-nav">
     <div class="container">
       <div class="nav__inner">
-        <a href="index.html" class="nav__logo" aria-label="b_lit hairs home">
+        <a href="index.html" class="nav__logo">
           <img src="assets/images/belinda.jpeg" alt="b_lit hairs" onerror="this.style.display='none'">
           <span class="nav__logo-text">b_lit <span>hairs</span></span>
         </a>
-        <ul class="nav__menu" role="list">
+        <ul class="nav__menu">
           <li><a href="index.html" class="nav__link">Home</a></li>
           <li><a href="shop.html" class="nav__link">Shop</a></li>
           <li><a href="services.html" class="nav__link active">Services</a></li>
@@ -186,11 +165,13 @@
           <li><a href="contact.html" class="nav__link">Contact</a></li>
           <li class="nav__cta"><a href="shop.html" class="btn btn--primary">Shop Now</a></li>
         </ul>
-        <button class="nav__hamburger" aria-label="Open mobile menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <button class="nav__hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </nav>
-  <div class="nav__drawer" role="dialog" aria-label="Mobile navigation">
+  <div class="nav__drawer" id="nav-drawer">
     <a href="index.html" class="nav__link">Home</a>
     <a href="shop.html" class="nav__link">Shop</a>
     <a href="services.html" class="nav__link">Services</a>
@@ -200,8 +181,8 @@
   </div>
 </header>
 
-<section class="page-hero" role="banner">
-  <div class="page-hero__overlay" aria-hidden="true"></div>
+<section class="page-hero">
+  <div class="page-hero__overlay"></div>
   <div class="container">
     <div class="page-hero__inner">
       <span class="section-label">What We Offer</span>
@@ -212,154 +193,114 @@
 </section>
 
 <main>
-<!-- SERVICES GRID -->
-<section class="section" aria-labelledby="services-heading">
-  <div class="container">
-    <div class="text-center" data-reveal="up">
-      <span class="section-label">Our Services</span>
-      <h2 id="services-heading">Everything You Need <em style="font-style:italic;color:var(--pink-deep);">for Gorgeous Hair</em></h2>
-      <div class="divider" aria-hidden="true"></div>
-      <p style="margin-top:1rem;color:var(--text-mid);max-width:560px;margin-left:auto;margin-right:auto;">All services are bookable via WhatsApp. We respond within minutes.</p>
-    </div>
-    <div class="services-main-grid" id="services-grid" style="margin-top:3.5rem;" role="list" aria-label="Available services">
-      <p class="loading-msg">Loading services…</p>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="section section--pink" aria-labelledby="process-heading">
-  <div class="container">
-    <div class="text-center" data-reveal="up">
-      <span class="section-label">Simple Process</span>
-      <h2 id="process-heading">How to Book a <em style="font-style:italic;color:var(--pink-deep);">Service</em></h2>
-      <div class="divider" aria-hidden="true"></div>
-    </div>
-    <div class="process-steps" style="margin-top:4rem;">
-      <div class="process-step" data-reveal="up" data-delay="100">
-        <div class="process-step__num" aria-hidden="true">1</div>
-        <h4>Choose a Service</h4>
-        <p>Browse our services above and pick the one that's right for you.</p>
+  <!-- SERVICES GRID -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center" data-reveal="up">
+        <span class="section-label">Our Services</span>
+        <h2>Everything You Need <em style="color:var(--pink-deep);">for Gorgeous Hair</em></h2>
+        <div class="divider"></div>
+        <p style="margin-top:1rem;max-width:560px;margin-left:auto;margin-right:auto;">All services are bookable via WhatsApp. We respond within minutes.</p>
       </div>
-      <div class="process-step" data-reveal="up" data-delay="200">
-        <div class="process-step__num" aria-hidden="true">2</div>
-        <h4>WhatsApp Us</h4>
-        <p>Send us a message on WhatsApp +233 55 859 0198 to book your appointment.</p>
-      </div>
-      <div class="process-step" data-reveal="up" data-delay="300">
-        <div class="process-step__num" aria-hidden="true">3</div>
-        <h4>Confirm &amp; Pay</h4>
-        <p>We'll confirm your booking, date and time. Pay via MoMo or bank transfer.</p>
-      </div>
-      <div class="process-step" data-reveal="up" data-delay="400">
-        <div class="process-step__num" aria-hidden="true">4</div>
-        <h4>Slay in Style 💕</h4>
-        <p>Arrive, relax and leave looking absolutely stunning. We guarantee it.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY CHOOSE US -->
-<section class="section" aria-labelledby="why-heading">
-  <div class="container">
-    <div class="why-grid">
-      <div class="why-grid__img" data-reveal="left">
-        <img src="assets/images/belinda.jpeg" alt="b_lit hairs quality service" loading="lazy" width="700" height="500">
-      </div>
-      <div data-reveal="right">
-        <span class="section-label">Why b_lit hairs</span>
-        <h2 id="why-heading">The b_lit <em style="font-style:italic;color:var(--pink-deep);">Difference</em></h2>
-        <div style="width:60px;height:3px;background:linear-gradient(90deg,var(--pink-deep),var(--pink-mid));border-radius:2px;margin:1.25rem 0;" aria-hidden="true"></div>
-        <div class="why-list">
-          <div class="why-item">
-            <div class="why-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <div><h4>100% Authentic Products</h4><p>Every product used in our services is genuine virgin human hair — no blends, no shortcuts, always verified quality.</p></div>
-          </div>
-          <div class="why-item">
-            <div class="why-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-            <div><h4>Expert Stylists Only</h4><p>Our stylists are trained professionals with years of experience working with premium hair. Your look is always in the best hands.</p></div>
-          </div>
-          <div class="why-item">
-            <div class="why-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
-            <div><h4>Personalised Consultations</h4><p>We take time to understand your lifestyle, face shape and style goals before making any recommendations. Your satisfaction is our priority.</p></div>
-          </div>
-          <div class="why-item">
-            <div class="why-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-            <div><h4>Fast &amp; Reliable</h4><p>We respect your time. Quick responses on WhatsApp, punctual appointments and efficient service every single visit.</p></div>
-          </div>
+      <!-- Services are loaded here from Supabase -->
+      <div class="services-grid" id="services-grid" style="margin-top:3.5rem;">
+        <div class="state-centered" style="grid-column:1/-1;">
+          <div class="spinner"></div>
+          <span class="spinner-label">Loading services…</span>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- PRICING TABLE -->
-<section class="section section--pink" aria-labelledby="pricing-heading">
-  <div class="container">
-    <div class="text-center" data-reveal="up">
-      <span class="section-label">Transparent Pricing</span>
-      <h2 id="pricing-heading">Service <em style="font-style:italic;color:var(--pink-deep);">Price Guide</em></h2>
-      <div class="divider" aria-hidden="true"></div>
-      <p style="margin-top:1rem;color:var(--text-mid);">All prices are starting prices. Final quote provided via WhatsApp consultation.</p>
-    </div>
-    <div style="margin-top:3rem;overflow-x:auto;" data-reveal="up" data-delay="150">
-      <table class="pricing-table" aria-label="Service pricing">
-        <thead>
-          <tr>
-            <th scope="col">Service</th>
-            <th scope="col">Description</th>
-            <th scope="col">Starting From</th>
-            <th scope="col">Duration</th>
-          </tr>
-        </thead>
-        <tbody id="pricing-tbody">
-          <tr><td>Hair Sales</td><td>Bundles, wigs, closures, frontals &amp; extensions</td><td class="price-cell">GHS 290</td><td>Immediate</td></tr>
-          <tr><td>Hair Braiding</td><td>Box braids, cornrows, knotless braids &amp; more</td><td class="price-cell">GHS 200</td><td>2–6 hours</td></tr>
-          <tr><td>Custom Styling</td><td>Blow-out, flat iron, curls, updos &amp; colour styling</td><td class="price-cell">GHS 150</td><td>1–3 hours</td></tr>
-          <tr><td>Bridal &amp; Events Package</td><td>Full bridal hair including trial, day-of styling &amp; accessories</td><td class="price-cell">GHS 500</td><td>3–5 hours</td></tr>
-          <tr><td>Custom Wig Construction</td><td>Fully customised wig built to your specifications</td><td class="price-cell">GHS 800</td><td>2–5 days</td></tr>
-          <tr><td>Wig Maintenance &amp; Repair</td><td>Wash, condition, restoring &amp; knot bleaching</td><td class="price-cell">GHS 100</td><td>1–2 days</td></tr>
-          <tr><td>Hair Care Consultation</td><td>Personalised hair care regime &amp; product advice</td><td class="price-cell">FREE</td><td>30 mins</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="text-center" style="margin-top:2.5rem;" data-reveal="up">
-      <a href="https://wa.me/233558590198?text=Hello%20b_lit%20hairs!%20I%20would%20like%20to%20get%20a%20quote%20for%20your%20services.%20Can%20you%20help%20me%3F%20%F0%9F%92%95" class="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer">Get a Custom Quote</a>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-banner" aria-label="Call to action">
-  <div class="container">
-    <div class="cta-banner__inner" data-reveal="up">
-      <span class="section-label" style="color:var(--gold-light);">Ready to Book?</span>
-      <h2>Your Dream Hair <em>Is One Message Away</em></h2>
-      <p>WhatsApp us now and let's create something beautiful together. We respond fast — usually within minutes.</p>
-      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-        <a href="https://wa.me/233558590198?text=Hello%20b_lit%20hairs!%20I%20would%20like%20to%20book%20a%20service.%20Can%20you%20help%20me%3F%20%F0%9F%92%95" class="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer">Book via WhatsApp</a>
-        <a href="shop.html" class="btn btn--white btn--lg">Shop Products</a>
+  <!-- HOW TO BOOK -->
+  <section class="section section--pink">
+    <div class="container">
+      <div class="text-center" data-reveal="up">
+        <span class="section-label">Simple Process</span>
+        <h2>How to Book a <em style="color:var(--pink-deep);">Service</em></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="process-steps" style="margin-top:4rem;">
+        <div class="process-step" data-reveal="up" data-delay="100">
+          <div class="process-step__num">1</div>
+          <h4>Choose a Service</h4>
+          <p>Browse our services above and pick the one that's right for you.</p>
+        </div>
+        <div class="process-step" data-reveal="up" data-delay="200">
+          <div class="process-step__num">2</div>
+          <h4>WhatsApp Us</h4>
+          <p>Send us a message on WhatsApp +233 53 960 6171 to book your appointment.</p>
+        </div>
+        <div class="process-step" data-reveal="up" data-delay="300">
+          <div class="process-step__num">3</div>
+          <h4>Confirm &amp; Pay</h4>
+          <p>We'll confirm your booking, date and time. Pay via MoMo or bank transfer.</p>
+        </div>
+        <div class="process-step" data-reveal="up" data-delay="400">
+          <div class="process-step__num">4</div>
+          <h4>Slay in Style 💕</h4>
+          <p>Arrive, relax and leave looking absolutely stunning. We guarantee it.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-banner__inner" data-reveal="up">
+        <span class="section-label" style="color:var(--gold-light);">Ready to Book?</span>
+        <h2>Your Dream Hair <em>Is One Message Away</em></h2>
+        <p>WhatsApp us now and let's create something beautiful together. We respond fast — usually within minutes.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <a href="https://wa.me/233539606171?text=Hello%20b_lit%20hairs!%20I%27d%20like%20to%20book%20a%20service%20%F0%9F%92%95"
+             class="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer">Book via WhatsApp</a>
+          <a href="shop.html" class="btn btn--white btn--lg">Shop Products</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer class="footer" role="contentinfo">
+<footer class="footer">
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
         <span class="footer__brand-name">b_lit <span>hairs</span></span>
         <p>Ghana's premium luxury hair brand. Bringing world-class virgin human hair to women who demand the very best.</p>
         <div class="footer__socials">
-          <a href="#" class="footer__social" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-          <a href="https://wa.me/233558590198" class="footer__social" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="#" class="footer__social" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://wa.me/233539606171" class="footer__social" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="white" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
         </div>
       </div>
-      <nav aria-label="Shop navigation"><h4 class="footer__heading">Shop</h4><ul class="footer__links"><li><a href="shop.html">All Products</a></li><li><a href="shop.html?filter=wigs">Wigs</a></li><li><a href="shop.html?filter=bundles">Bundles</a></li></ul></nav>
-      <nav aria-label="Company navigation"><h4 class="footer__heading">Company</h4><ul class="footer__links"><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
-      <div><h4 class="footer__heading">Contact</h4><ul class="footer__links"><li><a href="https://wa.me/233558590198" target="_blank" rel="noopener noreferrer">+233 55 859 0198</a></li><li><a href="mailto:bindalotsu644@gmail.com">bindalotsu644@gmail.com</a></li><li style="color:rgba(255,255,255,0.55);font-size:0.9rem;">Accra, Ghana</li></ul></div>
+      <nav>
+        <h4 class="footer__heading">Shop</h4>
+        <ul class="footer__links">
+          <li><a href="shop.html">All Products</a></li>
+          <li><a href="shop.html?filter=wigs">Wigs</a></li>
+          <li><a href="shop.html?filter=bundles">Bundles</a></li>
+        </ul>
+      </nav>
+      <nav>
+        <h4 class="footer__heading">Company</h4>
+        <ul class="footer__links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h4 class="footer__heading">Contact</h4>
+        <ul class="footer__links">
+          <li><a href="https://wa.me/233539606171" target="_blank" rel="noopener noreferrer">+233 53 960 6171</a></li>
+          <li><a href="mailto:bindalotsu644@gmail.com">bindalotsu644@gmail.com</a></li>
+          <li style="color:rgba(255,255,255,0.55);font-size:0.9rem;">Accra, Ghana</li>
+        </ul>
+      </div>
     </div>
     <div class="footer__bottom">
       <p>© <span id="year"></span> b_lit hairs. All rights reserved. Made with ❤️ in <strong>Ghana</strong>.</p>
@@ -368,157 +309,146 @@
   </div>
 </footer>
 
-<a href="https://wa.me/233558590198?text=Hello%20b_lit%20hairs!%20I%27d%20like%20to%20book%20a%20service%20%F0%9F%92%95" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Book via WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<a href="https://wa.me/233539606171?text=Hello%20b_lit%20hairs!%20I%27d%20like%20to%20book%20a%20service%20%F0%9F%92%95"
+   class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Book via WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script>
 'use strict';
-const SUPABASE_URL = 'https://rtoobqqhwdyuzrjktxoc.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0b29icXFod2R5dXpyamt0eG9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNTU5NjUsImV4cCI6MjA5MjczMTk2NX0.7xWA1wIfP51PEhgR1d_6v0YCqiQJzxpMekPp3Zj_gXM';
 
-const SERVICE_ICONS = {
-  shop:`<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>`,
-  braid:`<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
-  style:`<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>`,
-  star:`<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`,
-  wig:`<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M12 14v8M8 18h8"/></svg>`,
-  scissors:`<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>`,
+/* ── CONFIG ── */
+const SUPABASE_URL      = 'https://rtoobqqhwdyuzrjktxoc.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0b29icXFod2R5dXpyamt0eG9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNTU5NjUsImV4cCI6MjA5MjczMTk2NX0.7xWA1wIfP51PEhgR1d_6v0YCqiQJzxpMekPp3Zj_gXM';
+const WA_NUMBER         = '233539606171';
+
+/* Icon map — maps the icon field stored in Supabase to an emoji */
+const ICON_MAP = {
+  shop:     '🛍️',
+  braid:    '🧵',
+  style:    '💅',
+  star:     '⭐',
+  wig:      '👑',
+  scissors: '✂️',
 };
 
-const FALLBACK_SERVICES = [
-  {id:'SRV001',name:'Hair Sales',description:'Premium bundles, wigs, closures and frontals. All 100% virgin human hair, ready to ship or collect across Ghana. Browse our full product catalogue and place your order via WhatsApp in minutes.',starting_price:290,currency:'GHS',duration:'Immediate',icon:'shop',tags:['Nationwide Delivery','WhatsApp Order','Same-Day Dispatch']},
-  {id:'SRV002',name:'Hair Braiding',description:'Expert braiding styles using our premium hair extensions. Box braids, cornrows, knotless braids, goddess braids and more. All styles are done with care to protect your natural hair.',starting_price:200,currency:'GHS',duration:'2–6 hours',icon:'braid',tags:['Box Braids','Cornrows','Knotless Braids','Protective Styling']},
-  {id:'SRV003',name:'Custom Styling',description:'From sleek and straight to voluminous curls — get a completely custom look crafted just for your personality, face shape and occasion. Our stylists are trained to work with all hair textures and lengths.',starting_price:150,currency:'GHS',duration:'1–3 hours',icon:'style',tags:['Blow-Out','Flat Iron','Curls','Updos','Colour Styling']},
-  {id:'SRV004',name:'Bridal &amp; Events Package',description:'Look absolutely flawless on your most important days. Our specialised bridal package includes a pre-wedding trial, day-of styling, accessories guidance and a care kit to keep your hair perfect all day.',starting_price:500,currency:'GHS',duration:'3–5 hours',icon:'star',tags:['Trial Session','Day-Of Styling','Bridal Hair','Event Ready']},
-  {id:'SRV005',name:'Custom Wig Construction',description:'We build fully customised wigs built to your exact specifications — density, length, lace type, cap size and style. Perfect if you want something completely unique that no one else has.',starting_price:250,currency:'GHS',duration:'3–5 days',icon:'wig',tags:['HD Lace','Custom Density','Any Length','Pre-Plucked']},
-  {id:'SRV006',name:'Wig Maintenance &amp; Repair',description:'Give your wig a new lease of life. We wash, deep condition, restore curls, bleach knots and fix any shedding or thinning. Your wig comes back looking brand new.',starting_price:100,currency:'GHS',duration:'1–2 days',icon:'scissors',tags:['Wash &amp; Condition','Knot Bleaching','Curl Restoration','Anti-Shedding Treatment']},
-];
-
-async function sbFetch(table, params='') {
-  try {
-    const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}${params}`,{headers:{'apikey':SUPABASE_ANON_KEY,'Authorization':`Bearer ${SUPABASE_ANON_KEY}`}});
-    if (!r.ok) throw new Error(r.status);
-    return await r.json();
-  } catch(e){return null;}
+async function fetchServices() {
+  const res = await fetch(
+    `${SUPABASE_URL}/rest/v1/services?select=*&is_visible=eq.true&order=sort_order.asc,created_at.desc`,
+    { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
+  );
+  if (!res.ok) throw new Error(`${res.status}`);
+  return res.json();
 }
 
 function renderServices(services) {
   const grid = document.getElementById('services-grid');
-  if (!grid) return;
   grid.innerHTML = '';
-  services.forEach((s,i) => {
-    const iconHtml = SERVICE_ICONS[s.icon] || SERVICE_ICONS.star;
-    const tags = (s.tags || []).map(t=>`<span class="service-tag">${t}</span>`).join('');
-    const price = s.starting_price ? `GHS ${Number(s.starting_price).toLocaleString()}` : 'Contact for Price';
-    const waMsg = encodeURIComponent(`Hello b_lit hairs! 💕 I'd like to book your *${s.name}* service. Can you give me more details and availability?`);
+
+  /* No services added yet — clean empty state, no fake data */
+  if (!services || !services.length) {
+    grid.innerHTML = `
+      <div class="state-centered">
+        <span class="icon">✂️</span>
+        <h3>No Services Listed Yet</h3>
+        <p>Our service menu is being set up. WhatsApp us directly to ask about bookings and availability.</p>
+        <a href="https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hello b_lit hairs! 💕 I\'d like to know about your services and how to book.')}"
+           class="btn btn--primary" target="_blank" rel="noopener noreferrer">Ask on WhatsApp</a>
+      </div>`;
+    return;
+  }
+
+  services.forEach((s, i) => {
+    const icon  = ICON_MAP[s.icon] || '✨';
+    const price = s.starting_price
+      ? `From ${s.currency || 'GHS'} ${Number(s.starting_price).toLocaleString()}`
+      : 'Contact for Price';
+    const tags  = Array.isArray(s.tags) ? s.tags : [];
+    const waMsg = encodeURIComponent(
+      `Hello b_lit hairs! 💕 I'd like to book your *${s.name}* service. Can you share details and availability?`
+    );
+
     const card = document.createElement('article');
-    card.className = 'service-card-full';
-    card.setAttribute('data-reveal','up');
-    card.setAttribute('data-delay', String((i%3)*100+100));
-    card.setAttribute('role','listitem');
+    card.className = 'service-card';
+    card.style.animationDelay = `${i * 0.08}s`;
     card.innerHTML = `
-      <div class="service-card-full__header">
-        <div class="service-card-full__icon" aria-hidden="true">${iconHtml}</div>
+      <div class="service-card__header">
+        <div class="service-card__icon">${icon}</div>
         <div>
           <h3>${s.name}</h3>
-          <span class="price-tag">From ${price} · ${s.duration||'Varies'}</span>
+          <span class="price-tag">${price}${s.duration ? ' · ' + s.duration : ''}</span>
         </div>
       </div>
-      <div class="service-card-full__body">
-        <p>${s.description}</p>
-        <div style="margin-bottom:1.5rem;">${tags}</div>
-        <a href="https://wa.me/233558590198?text=${waMsg}" class="btn btn--primary" target="_blank" rel="noopener noreferrer" style="width:100%;justify-content:center;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <div class="service-card__body">
+        <p>${s.description || 'Get in touch to learn more about this service.'}</p>
+        ${tags.length ? `<div style="margin-bottom:1.5rem;">${tags.map(t => `<span class="service-tag">${t}</span>`).join('')}</div>` : ''}
+        <a href="https://wa.me/${WA_NUMBER}?text=${waMsg}"
+           class="btn btn--primary" target="_blank" rel="noopener noreferrer"
+           style="width:100%;justify-content:center;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
           Book This Service
         </a>
       </div>`;
+
     grid.appendChild(card);
-    requestAnimationFrame(()=>setTimeout(()=>card.classList.add('revealed'),i*70));
   });
-  // re-observe
-  const obs=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');obs.unobserve(e.target);}}),{threshold:0.1});
-  grid.querySelectorAll('[data-reveal]').forEach(el=>obs.observe(el));
 }
 
 async function init() {
-  document.getElementById('page-loader').classList.add('hidden');
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  const nav = document.querySelector('.nav');
-  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
-  const bar = document.querySelector('.scroll-progress');
-  window.addEventListener('scroll',()=>{bar.style.width=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+  /* Nav scroll */
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), {passive: true});
 
-  const hbtn=document.querySelector('.nav__hamburger'),drawer=document.querySelector('.nav__drawer');
-  hbtn.addEventListener('click',()=>{const o=hbtn.classList.toggle('open');drawer.classList.toggle('open',o);document.body.style.overflow=o?'hidden':'';hbtn.setAttribute('aria-expanded',o);});
-  drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{hbtn.classList.remove('open');drawer.classList.remove('open');document.body.style.overflow='';}));
+  /* Scroll progress bar */
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+    document.getElementById('scroll-bar').style.width = pct + '%';
+  }, {passive: true});
 
-  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');obs.unobserve(e.target);}}),{threshold:0.12,rootMargin:'0px 0px -60px 0px'});
-  document.querySelectorAll('[data-reveal]').forEach(el=>obs.observe(el));
-
-  document.querySelectorAll('.btn').forEach(btn=>{
-    btn.addEventListener('click',function(e){const r=this.getBoundingClientRect(),size=Math.max(r.width,r.height);const s=document.createElement('span');s.className='ripple';s.style.cssText=`width:${size}px;height:${size}px;left:${e.clientX-r.left-size/2}px;top:${e.clientY-r.top-size/2}px`;this.appendChild(s);s.addEventListener('animationend',()=>s.remove());});
+  /* Mobile hamburger */
+  const hbtn   = document.getElementById('hamburger');
+  const drawer = document.getElementById('nav-drawer');
+  hbtn.addEventListener('click', () => {
+    const open = hbtn.classList.toggle('open');
+    drawer.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    hbtn.setAttribute('aria-expanded', open);
   });
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    hbtn.classList.remove('open');
+    drawer.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
 
-  let services = await sbFetch('services','?select=*&is_visible=eq.true&order=sort_order.asc');
-  if (!services||!services.length) services = FALLBACK_SERVICES;
-  renderServices(services);
+  /* Load services from Supabase — no fallback data */
+  try {
+    const services = await fetchServices();
+    renderServices(services);
+  } catch (e) {
+    console.error('Services fetch error:', e);
+    document.getElementById('services-grid').innerHTML = `
+      <div class="state-centered">
+        <span class="icon">⚠️</span>
+        <h3>Could Not Load Services</h3>
+        <p>There was a problem connecting to the database. Please refresh or contact us directly on WhatsApp.</p>
+        <a href="https://wa.me/${WA_NUMBER}" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
+          Contact Us on WhatsApp
+        </a>
+      </div>`;
+  }
+
+  /* Scroll reveal */
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); }
+  }), {threshold: 0.1, rootMargin: '0px 0px -50px 0px'});
+  document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
 }
 
-document.addEventListener('DOMContentLoaded',init);
-</script>
-
-<!-- CHATBOT -->
-<script>
-'use strict';
-(function(){
-const KB={
-  greet:["Hello, gorgeous! 💕 I'm Belinda. I see you're browsing our services — ask me anything about booking, pricing or what's right for you!","Hey queen! 👑 I'm Belinda. Need help deciding which service is right for you?"],
-  services:"Our services:\n\n🛍️ Hair Sales — from GHS 290\n🧵 Hair Braiding — from GHS 200\n✂️ Custom Styling — from GHS 150\n💍 Bridal & Events — from GHS 500\n👑 Custom Wig Construction — from GHS 800\n🔧 Wig Maintenance — from GHS 100\n💬 Hair Consultation — FREE\n\nAll bookable via WhatsApp! 💕",
-  booking:"To book a service:\n\n1️⃣ Choose the service you want above\n2️⃣ Tap 'Book This Service'\n3️⃣ A pre-filled WhatsApp message opens\n4️⃣ We confirm date, time & price\n5️⃣ Pay via MoMo or bank transfer\n\nWe reply within minutes! 💕",
-  prices:"Service starting prices:\n\n• Consultation — FREE\n• Wig Maintenance — GHS 100\n• Custom Styling — GHS 150\n• Hair Braiding — GHS 200\n• Hair Sales — from GHS 290\n• Bridal Package — GHS 500\n• Custom Wig — GHS 800",
-  bridal:"Our bridal package includes:\n\n💍 Pre-wedding hair trial\n💇 Day-of styling session\n👑 Hair accessories guidance\n🎀 Care kit for all-day hold\n\nStarting from GHS 500. WhatsApp to book! 💕",
-  thanks:["You're so welcome! 💕 Anything else?","My pleasure, queen! 👑"],
-  fallback:["I'm not sure! 😅 WhatsApp our team: +233 55 859 0198 💕","WhatsApp us at +233 55 859 0198 for the best answer! 💕"],
-};
-const INTENTS=[
-  {k:['hello','hi','hey','morning'],r:()=>rand(KB.greet)},
-  {k:['thank','thanks','perfect','awesome'],r:()=>rand(KB.thanks)},
-  {k:['service','offer','what do you','available'],r:()=>KB.services},
-  {k:['book','booking','appointment','schedule','reserve'],r:()=>KB.booking},
-  {k:['price','cost','how much','ghs','cedis'],r:()=>KB.prices},
-  {k:['bridal','bride','wedding','event'],r:()=>KB.bridal},
-];
-function rand(a){return a[Math.floor(Math.random()*a.length)];}
-function getResponse(input){const t=input.toLowerCase();for(const i of INTENTS){if(i.k.some(k=>t.includes(k)))return i.r();}return rand(KB.fallback);}
-const style=document.createElement('style');
-style.textContent=`#blc-w{position:fixed;bottom:2rem;left:2rem;z-index:9500;font-family:'Poppins',sans-serif;}#blc-toggle{width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#b5436a,#d4698b);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(181,67,106,.5);transition:transform .3s;position:relative;animation:blc-pulse 3s 2.5s infinite;}#blc-toggle:hover{transform:scale(1.1);}#blc-toggle.open{animation:none;}.blc-ti{position:absolute;transition:opacity .25s,transform .25s;}.blc-ti svg{width:26px;height:26px;fill:white;display:block;}.blc-ti-chat{opacity:1;}.blc-ti-close{opacity:0;transform:scale(0);}#blc-toggle.open .blc-ti-chat{opacity:0;transform:scale(0);}#blc-toggle.open .blc-ti-close{opacity:1;transform:scale(1);}#blc-badge{position:absolute;top:-4px;right:-4px;width:20px;height:20px;border-radius:50%;background:#c9a96e;color:white;font-size:.65rem;font-weight:700;display:none;align-items:center;justify-content:center;border:2px solid white;}#blc-tip{position:absolute;bottom:76px;left:0;background:#1a1a1a;color:white;font-size:.75rem;font-weight:600;padding:.5rem 1rem;border-radius:999px;white-space:nowrap;pointer-events:none;animation:blc-up .4s 2.5s both;transition:opacity .5s;}#blc-tip::after{content:'';position:absolute;top:100%;left:20px;border:5px solid transparent;border-top-color:#1a1a1a;}#blc-panel{position:absolute;bottom:78px;left:0;width:360px;max-height:560px;background:white;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.18);display:flex;flex-direction:column;overflow:hidden;transform:scale(.85) translateY(20px);transform-origin:bottom left;opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.4,0,.2,1),opacity .3s;}#blc-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all;}.blc-hd{background:linear-gradient(135deg,#b5436a,#8b2249);padding:1rem 1.2rem;display:flex;align-items:center;gap:.85rem;flex-shrink:0;}.blc-av{width:46px;height:46px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid rgba(255,255,255,.3);}.blc-av img{width:100%;height:100%;object-fit:cover;}.blc-av-fb{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:white;font-weight:700;flex-shrink:0;position:relative;}.blc-dot{position:absolute;bottom:1px;right:1px;width:11px;height:11px;background:#4ade80;border-radius:50%;border:2px solid #8b2249;}.blc-ht h4{font-size:.95rem;font-weight:700;color:white;margin:0;}.blc-ht p{font-size:.68rem;color:rgba(255,255,255,.75);margin:0;}.blc-ha{margin-left:auto;display:flex;gap:.4rem;}.blc-hbtn{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.14);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;text-decoration:none;color:white;transition:background .2s;}.blc-hbtn:hover{background:rgba(255,255,255,.25);}.blc-hbtn svg{width:15px;height:15px;}.blc-msgs{flex:1;overflow-y:auto;padding:1rem;background:#fdf8fa;display:flex;flex-direction:column;gap:.8rem;scroll-behavior:smooth;}.blc-msgs::-webkit-scrollbar{width:4px;}.blc-msgs::-webkit-scrollbar-thumb{background:#e8c4d4;border-radius:4px;}.blc-msg{display:flex;gap:.5rem;align-items:flex-end;animation:blc-in .3s ease;}.blc-msg.user{flex-direction:row-reverse;}.blc-mav{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:white;background:linear-gradient(135deg,#b5436a,#d4698b);}.blc-msg.user .blc-mav{background:linear-gradient(135deg,#888,#555);}.blc-bub{max-width:78%;padding:.65rem .9rem;border-radius:16px;font-size:.79rem;line-height:1.65;color:#2d2d2d;white-space:pre-line;}.blc-msg.bot .blc-bub{background:white;border-bottom-left-radius:4px;box-shadow:0 1px 8px rgba(0,0,0,.07);}.blc-msg.user .blc-bub{background:linear-gradient(135deg,#b5436a,#d4698b);color:white;border-bottom-right-radius:4px;}.blc-ts{font-size:.6rem;color:#bbb;margin-top:3px;}.blc-msg.user .blc-ts{text-align:right;}.blc-typing{display:flex;gap:.5rem;align-items:flex-end;}.blc-dots{background:white;border-radius:16px;border-bottom-left-radius:4px;padding:.65rem 1rem;box-shadow:0 1px 8px rgba(0,0,0,.07);display:flex;gap:5px;align-items:center;}.blc-dots span{width:6px;height:6px;background:#b5436a;border-radius:50%;opacity:.4;animation:blc-dt 1.2s infinite;}.blc-dots span:nth-child(2){animation-delay:.2s;}.blc-dots span:nth-child(3){animation-delay:.4s;}.blc-qr{display:flex;flex-wrap:wrap;gap:.4rem;padding:0 1rem .8rem;background:#fdf8fa;}.blc-qbtn{padding:.32rem .8rem;border-radius:999px;background:white;border:1.5px solid rgba(181,67,106,.25);color:#b5436a;font-size:.7rem;font-weight:600;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .2s;}.blc-qbtn:hover{background:#b5436a;border-color:#b5436a;color:white;}.blc-iw{border-top:1px solid rgba(181,67,106,.1);padding:.7rem 1rem;display:flex;gap:.5rem;align-items:flex-end;background:white;flex-shrink:0;}#blc-in{flex:1;border:1.5px solid rgba(181,67,106,.2);border-radius:12px;padding:.55rem .85rem;font-family:'Poppins',sans-serif;font-size:.8rem;color:#2d2d2d;background:#fdf8fa;resize:none;outline:none;max-height:100px;line-height:1.5;transition:border-color .2s;}#blc-in:focus{border-color:#b5436a;background:white;}#blc-in::placeholder{color:#ccc;}#blc-snd{width:36px;height:36px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#b5436a,#d4698b);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(181,67,106,.35);transition:transform .2s,opacity .2s;}#blc-snd:hover:not(:disabled){transform:scale(1.1);}#blc-snd:disabled{opacity:.4;cursor:not-allowed;}#blc-snd svg{width:14px;height:14px;fill:white;}.blc-ft{text-align:center;padding:.45rem;background:white;border-top:1px solid #f0e8ec;font-size:.64rem;color:#aaa;flex-shrink:0;}.blc-ft a{color:#25D366;font-weight:700;text-decoration:none;}@keyframes blc-pulse{0%{box-shadow:0 0 0 0 rgba(181,67,106,.5)}70%{box-shadow:0 0 0 14px rgba(181,67,106,0)}100%{box-shadow:0 0 0 0 rgba(181,67,106,0)}}@keyframes blc-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes blc-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes blc-dt{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:1}}@media(max-width:480px){#blc-w{left:1rem;bottom:1rem;}#blc-panel{width:calc(100vw - 2rem);max-height:70vh;}}`;
-document.head.appendChild(style);
-const W=document.createElement('div');W.id='blc-w';
-W.innerHTML=`<div id="blc-tip">💬 Need help choosing a service? 💕</div><div id="blc-panel" role="dialog"><div class="blc-hd"><div class="blc-av"><img src="assets/images/belinda.jpeg" alt="Belinda" onerror="this.parentElement.innerHTML='<div class=blc-av-fb>B<div class=blc-dot></div></div>'"></div><div class="blc-ht"><h4>Belinda ✨</h4><p>b_lit hairs Services Assistant</p></div><div class="blc-ha"><a class="blc-hbtn" href="https://wa.me/233558590198" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="#25D366" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a><button class="blc-hbtn" id="blc-clear"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></button></div></div><div class="blc-msgs" id="blc-msgs" role="log" aria-live="polite"></div><div class="blc-qr" id="blc-qr"></div><div class="blc-iw"><textarea id="blc-in" placeholder="Ask about our services…" rows="1" maxlength="400"></textarea><button id="blc-snd" disabled><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button></div><div class="blc-ft">Or <a href="https://wa.me/233558590198" target="_blank" rel="noopener noreferrer">💚 WhatsApp us</a></div></div><button id="blc-toggle" aria-label="Open chat" aria-expanded="false"><span class="blc-ti blc-ti-chat"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></span><span class="blc-ti blc-ti-close"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></span><span id="blc-badge" style="display:none;align-items:center;justify-content:center;position:absolute;top:-4px;right:-4px;width:20px;height:20px;border-radius:50%;background:#c9a96e;color:white;font-size:.65rem;font-weight:700;border:2px solid white;">1</span></button>`;
-document.body.appendChild(W);
-const QR=[{l:'📋 All Services',t:'What services do you offer?'},{l:'💰 Prices',t:'What are your service prices?'},{l:'📅 How to Book',t:'How do I book a service?'},{l:'💍 Bridal',t:'Tell me about your bridal package'},{l:'🛍️ Shop Hair',t:'I want to buy hair products'}];
-const $t=document.getElementById('blc-toggle'),$p=document.getElementById('blc-panel'),$m=document.getElementById('blc-msgs'),$i=document.getElementById('blc-in'),$s=document.getElementById('blc-snd'),$q=document.getElementById('blc-qr'),$tip=document.getElementById('blc-tip'),$badge=document.getElementById('blc-badge'),$clr=document.getElementById('blc-clear');
-let open=false,started=false;
-function ts(){return new Date().toLocaleTimeString('en-GH',{hour:'2-digit',minute:'2-digit'});}
-function scrollD(){$m.scrollTop=$m.scrollHeight;}
-function addMsg(text,role){const d=document.createElement('div');d.className=`blc-msg ${role}`;d.innerHTML=`<div class="blc-mav">${role==='bot'?'B':'U'}</div><div><div class="blc-bub">${text}</div><div class="blc-ts">${ts()}</div></div>`;$m.appendChild(d);scrollD();}
-function showTyping(){const d=document.createElement('div');d.className='blc-msg bot blc-typing';d.id='blc-ty';d.innerHTML='<div class="blc-mav">B</div><div class="blc-dots"><span></span><span></span><span></span></div>';$m.appendChild(d);scrollD();}
-function hideTyping(){const e=document.getElementById('blc-ty');if(e)e.remove();}
-function showQR(){$q.innerHTML='';QR.forEach(q=>{const b=document.createElement('button');b.className='blc-qbtn';b.textContent=q.l;b.addEventListener('click',()=>{$q.innerHTML='';send(q.t);});$q.appendChild(b);});}
-function send(txt){const msg=(txt||$i.value).trim();if(!msg)return;$i.value='';$i.style.height='auto';$s.disabled=true;$q.innerHTML='';addMsg(msg,'user');showTyping();setTimeout(()=>{hideTyping();addMsg(getResponse(msg),'bot');},700+Math.random()*500);}
-function openP(){open=true;$p.classList.add('open');$t.classList.add('open');$t.setAttribute('aria-expanded','true');$tip.style.opacity='0';$badge.style.display='none';if(!started){started=true;setTimeout(()=>{addMsg(rand(KB.greet),'bot');showQR();},350);}setTimeout(()=>$i.focus(),400);}
-function closeP(){open=false;$p.classList.remove('open');$t.classList.remove('open');$t.setAttribute('aria-expanded','false');}
-$t.addEventListener('click',()=>open?closeP():openP());
-$i.addEventListener('input',function(){$s.disabled=!this.value.trim();this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px';});
-$i.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();if(!$s.disabled)send();}});
-$s.addEventListener('click',()=>send());
-$clr.addEventListener('click',()=>{$m.innerHTML='';$q.innerHTML='';started=false;if(open){started=true;setTimeout(()=>{addMsg("Chat cleared! 😊 How can I help?",'bot');showQR();},200);}});
-setTimeout(()=>{if(!open)$badge.style.display='flex';},5000);
-setTimeout(()=>{$tip.style.opacity='0';},8000);
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&open)closeP();});
-})();
+document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>

@@ -157,7 +157,6 @@
 
     /* ── FORM ── */
     .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
-    .form-grid--3{grid-template-columns:1fr 1fr 1fr;}
     .form-full{grid-column:1/-1;}
     .form-group{display:flex;flex-direction:column;gap:0.4rem;}
     .form-group label{font-family:var(--font-accent);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mid);}
@@ -179,11 +178,11 @@
     .toast{background:var(--charcoal);color:white;padding:0.85rem 1.4rem;border-radius:var(--radius);font-size:0.82rem;font-weight:500;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:0.6rem;min-width:260px;animation:slideIn 0.3s ease;border-left:4px solid var(--pink);}
     .toast--success{border-left-color:var(--green);}
     .toast--error{border-left-color:var(--red);}
+    .toast--warning{border-left-color:var(--orange);}
     .toast svg{width:16px;height:16px;flex-shrink:0;}
     @keyframes slideIn{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
 
     /* ── CONFIRM DIALOG ── */
-    .confirm-modal{max-width:380px;text-align:center;}
     .confirm-icon{width:60px;height:60px;border-radius:50%;background:var(--red-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}
     .confirm-icon svg{width:28px;height:28px;stroke:var(--red);}
 
@@ -199,7 +198,6 @@
     .activity-dot--green{background:var(--green);}
     .activity-dot--blue{background:var(--blue);}
     .activity-text{font-size:0.82rem;color:var(--text-mid);}
-    .activity-time{font-size:0.72rem;color:var(--text-light);margin-top:2px;}
     .quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
     .quick-action{background:var(--off);border:1.5px solid rgba(0,0,0,0.07);border-radius:var(--radius);padding:1rem;display:flex;flex-direction:column;align-items:center;gap:0.5rem;cursor:pointer;transition:var(--transition);text-align:center;}
     .quick-action:hover{background:var(--pink-light);border-color:var(--pink-border);}
@@ -213,7 +211,6 @@
     .upload-zone__icon{font-size:2.2rem;margin-bottom:0.6rem;display:block;}
     .upload-zone h4{font-size:0.9rem;font-weight:700;color:var(--pink);margin-bottom:0.25rem;}
     .upload-zone p{font-size:0.75rem;color:var(--text-light);}
-    .upload-zone .browse-link{color:var(--pink);font-weight:600;text-decoration:underline;}
     .img-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.65rem;margin-top:1rem;}
     .img-thumb{position:relative;aspect-ratio:1;border-radius:var(--radius);overflow:hidden;background:var(--off);border:2px solid transparent;transition:border-color var(--transition);}
     .img-thumb.is-main{border-color:var(--pink);}
@@ -221,19 +218,22 @@
     .img-thumb__overlay{position:absolute;inset:0;background:rgba(0,0,0,0.55);opacity:0;transition:var(--transition);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.35rem;}
     .img-thumb:hover .img-thumb__overlay{opacity:1;}
     .img-thumb__badge{position:absolute;top:4px;left:4px;background:var(--pink);color:white;font-size:0.58rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;padding:0.15rem 0.45rem;border-radius:999px;}
-    .img-thumb__del{background:rgba(220,38,38,0.9);color:white;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:0.8rem;display:flex;align-items:center;justify-content:center;transition:var(--transition);}
-    .img-thumb__del:hover{background:#b91c1c;transform:scale(1.1);}
+    .img-thumb__del{background:rgba(220,38,38,0.9);color:white;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:0.8rem;display:flex;align-items:center;justify-content:center;}
     .img-thumb__main-btn{background:rgba(181,67,106,0.9);color:white;border:none;border-radius:999px;padding:0.15rem 0.55rem;font-size:0.62rem;font-weight:700;cursor:pointer;white-space:nowrap;}
     .img-slot-empty{aspect-ratio:1;border-radius:var(--radius);border:2px dashed rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;color:var(--text-light);font-size:0.7rem;background:var(--off);}
     .upload-progress{height:4px;background:var(--pink-light);border-radius:2px;overflow:hidden;margin-top:0.75rem;display:none;}
     .upload-progress__bar{height:100%;background:linear-gradient(90deg,var(--pink),var(--pink-mid));border-radius:2px;width:0%;transition:width 0.3s ease;}
     .upload-note{font-size:0.72rem;color:var(--text-light);margin-top:0.5rem;text-align:center;}
+    /* FIX: clear warning shown when storage not set up */
+    .upload-fallback-row{margin-top:0.85rem;display:flex;flex-direction:column;gap:0.4rem;}
+    .upload-fallback-row label{font-family:var(--font-accent);font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mid);}
+    .upload-fallback-row input{padding:0.65rem 0.9rem;border:2px solid rgba(0,0,0,0.1);border-radius:var(--radius);font-size:0.85rem;outline:none;transition:border-color var(--transition);}
+    .upload-fallback-row input:focus{border-color:var(--pink);}
 
-    /* ── STARS ── */
-    .star-rating{display:flex;gap:3px;}
-    .star{color:var(--gold);font-size:1rem;}
+    /* ── SETTINGS ── */
+    .settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
 
-    /* ── TOGGLE SWITCH ── */
+    /* ── TOGGLE ── */
     .toggle{position:relative;width:44px;height:24px;flex-shrink:0;}
     .toggle input{opacity:0;width:0;height:0;}
     .toggle-slider{position:absolute;inset:0;background:#ddd;border-radius:999px;cursor:pointer;transition:var(--transition);}
@@ -244,27 +244,9 @@
     /* ── RESPONSIVE ── */
     .mobile-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:0.5rem;}
     .mobile-menu-btn svg{width:22px;height:22px;stroke:var(--text);}
-    @media(max-width:1024px){
-      .stats-row{grid-template-columns:repeat(2,1fr);}
-      .form-grid,.form-grid--3{grid-template-columns:1fr;}
-      .form-full{grid-column:1;}
-      .dash-grid{grid-template-columns:1fr;}
-    }
-    @media(max-width:768px){
-      :root{--sidebar-w:0px;}
-      .sidebar{transform:translateX(-260px);width:260px;}
-      .sidebar.open{transform:translateX(0);}
-      .main{margin-left:0;}
-      .mobile-menu-btn{display:block;}
-      .stats-row{grid-template-columns:1fr 1fr;}
-      .page-content{padding:1rem;}
-      .topbar{padding:0 1rem;}
-      .modal{max-width:100%;margin:0.5rem;}
-    }
-    @media(max-width:480px){
-      .stats-row{grid-template-columns:1fr;}
-      .table-wrap{overflow-x:auto;}
-    }
+    @media(max-width:1024px){.stats-row{grid-template-columns:repeat(2,1fr);}.form-grid{grid-template-columns:1fr;}.form-full{grid-column:1;}.dash-grid{grid-template-columns:1fr;}.settings-grid{grid-template-columns:1fr;}}
+    @media(max-width:768px){:root{--sidebar-w:0px;}.sidebar{transform:translateX(-260px);width:260px;}.sidebar.open{transform:translateX(0);}.main{margin-left:0;}.mobile-menu-btn{display:block;}.stats-row{grid-template-columns:1fr 1fr;}.page-content{padding:1rem;}.topbar{padding:0 1rem;}.modal{max-width:100%;margin:0.5rem;}}
+    @media(max-width:480px){.stats-row{grid-template-columns:1fr;}.table-wrap{overflow-x:auto;}}
   </style>
 </head>
 <body>
@@ -302,7 +284,6 @@
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
         Dashboard
       </div>
-
       <div class="sidebar__section">Products</div>
       <div class="sidebar__item" data-panel="products">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
@@ -314,7 +295,6 @@
         Services
         <span class="badge-count" id="badge-services">0</span>
       </div>
-
       <div class="sidebar__section">Community</div>
       <div class="sidebar__item" data-panel="reviews">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -326,7 +306,6 @@
         Messages
         <span class="badge-count" id="badge-contacts">0</span>
       </div>
-
       <div class="sidebar__section">Settings</div>
       <div class="sidebar__item" data-panel="settings">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M12 2v2M12 20v2M4.93 19.07l1.41-1.41M19.07 19.07l-1.41-1.41M22 12h-2M4 12H2"/></svg>
@@ -375,27 +354,14 @@
           <div class="stat-card"><div class="stat-icon stat-icon--blue"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div><div><div class="stat-num" id="stat-services">—</div><div class="stat-label">Services</div></div></div>
           <div class="stat-card"><div class="stat-icon stat-icon--orange"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="stat-num" id="stat-messages">—</div><div class="stat-label">Messages</div></div></div>
         </div>
-
         <div class="dash-grid">
           <div class="dash-card">
             <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Quick Actions</h3>
             <div class="quick-actions">
-              <div class="quick-action" onclick="openPanel('products');setTimeout(()=>openProductModal(),200)">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                <span>Add Product</span>
-              </div>
-              <div class="quick-action" onclick="openPanel('services');setTimeout(()=>openServiceModal(),200)">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                <span>Add Service</span>
-              </div>
-              <div class="quick-action" onclick="openPanel('reviews');setTimeout(()=>openReviewModal(),200)">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                <span>Add Review</span>
-              </div>
-              <div class="quick-action" onclick="openPanel('contacts')">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>
-                <span>View Messages</span>
-              </div>
+              <div class="quick-action" onclick="openPanel('products');setTimeout(()=>openProductModal(),200)"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span>Add Product</span></div>
+              <div class="quick-action" onclick="openPanel('services');setTimeout(()=>openServiceModal(),200)"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span>Add Service</span></div>
+              <div class="quick-action" onclick="openPanel('reviews');setTimeout(()=>openReviewModal(),200)"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span>Add Review</span></div>
+              <div class="quick-action" onclick="openPanel('contacts')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg><span>View Messages</span></div>
             </div>
           </div>
           <div class="dash-card">
@@ -410,23 +376,13 @@
         <div class="section-header">
           <div><h2>Products</h2><p>Manage your hair product catalogue</p></div>
           <button class="btn btn--primary" onclick="openProductModal()">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Add Product
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Product
           </button>
         </div>
         <div class="table-wrap">
           <div class="table-toolbar">
-            <div class="search-box">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              <input type="text" placeholder="Search products…" id="product-search">
-            </div>
-            <select class="filter-select" id="product-cat-filter">
-              <option value="">All Categories</option>
-              <option value="wigs">Wigs</option>
-              <option value="bundles">Bundles</option>
-              <option value="frontals">Frontals</option>
-              <option value="extensions">Extensions</option>
-            </select>
+            <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Search products…" id="product-search"></div>
+            <select class="filter-select" id="product-cat-filter"><option value="">All Categories</option><option value="wigs">Wigs</option><option value="bundles">Bundles</option><option value="frontals">Frontals</option><option value="extensions">Extensions</option></select>
           </div>
           <div id="products-table-body"></div>
         </div>
@@ -436,18 +392,10 @@
       <div class="panel" id="panel-services">
         <div class="section-header">
           <div><h2>Services</h2><p>Manage your hair services</p></div>
-          <button class="btn btn--primary" onclick="openServiceModal()">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Add Service
-          </button>
+          <button class="btn btn--primary" onclick="openServiceModal()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Service</button>
         </div>
         <div class="table-wrap">
-          <div class="table-toolbar">
-            <div class="search-box">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              <input type="text" placeholder="Search services…" id="service-search">
-            </div>
-          </div>
+          <div class="table-toolbar"><div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Search services…" id="service-search"></div></div>
           <div id="services-table-body"></div>
         </div>
       </div>
@@ -456,22 +404,12 @@
       <div class="panel" id="panel-reviews">
         <div class="section-header">
           <div><h2>Reviews</h2><p>Approve and manage client reviews</p></div>
-          <button class="btn btn--primary" onclick="openReviewModal()">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Add Review
-          </button>
+          <button class="btn btn--primary" onclick="openReviewModal()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Review</button>
         </div>
         <div class="table-wrap">
           <div class="table-toolbar">
-            <div class="search-box">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              <input type="text" placeholder="Search reviews…" id="review-search">
-            </div>
-            <select class="filter-select" id="review-status-filter">
-              <option value="">All Reviews</option>
-              <option value="approved">Approved</option>
-              <option value="pending">Pending</option>
-            </select>
+            <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Search reviews…" id="review-search"></div>
+            <select class="filter-select" id="review-status-filter"><option value="">All Reviews</option><option value="approved">Approved</option><option value="pending">Pending</option></select>
           </div>
           <div id="reviews-table-body"></div>
         </div>
@@ -481,22 +419,12 @@
       <div class="panel" id="panel-contacts">
         <div class="section-header">
           <div><h2>Messages</h2><p>Contact form submissions from your website</p></div>
-          <button class="btn btn--ghost btn--sm" onclick="loadContacts()">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
-            Refresh
-          </button>
+          <button class="btn btn--ghost btn--sm" onclick="loadContacts()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>Refresh</button>
         </div>
         <div class="table-wrap">
           <div class="table-toolbar">
-            <div class="search-box">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              <input type="text" placeholder="Search messages…" id="contact-search">
-            </div>
-            <select class="filter-select" id="contact-read-filter">
-              <option value="">All Messages</option>
-              <option value="unread">Unread</option>
-              <option value="read">Read</option>
-            </select>
+            <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Search messages…" id="contact-search"></div>
+            <select class="filter-select" id="contact-read-filter"><option value="">All Messages</option><option value="unread">Unread</option><option value="read">Read</option></select>
           </div>
           <div id="contacts-table-body"></div>
         </div>
@@ -505,7 +433,8 @@
       <!-- ────────── SETTINGS ────────── -->
       <div class="panel" id="panel-settings">
         <div class="section-header"><div><h2>Settings</h2><p>Manage your account and website configuration</p></div></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+        <!-- FIX: settings-grid class used instead of inline grid style so it collapses on mobile -->
+        <div class="settings-grid">
           <div class="dash-card">
             <h3 style="margin-bottom:1.25rem;">🔐 Change Password</h3>
             <div style="display:flex;flex-direction:column;gap:1rem;">
@@ -522,10 +451,45 @@
               <button class="btn btn--ghost" onclick="testConnection()">Test Connection</button>
             </div>
           </div>
+
+          <!-- ── FIX: GRANT SQL block added. Without this, the anon role cannot
+               access tables created via the SQL Editor and all fetches return
+               empty or 401 errors even with correct RLS policies. ── -->
+          <div class="dash-card" style="grid-column:1/-1;">
+            <h3 style="margin-bottom:1.25rem;">
+              ⚠️ Required: Grant Table Access
+              <span style="font-size:0.72rem;background:var(--red-bg);color:var(--red);padding:0.15rem 0.5rem;border-radius:999px;font-family:var(--font-accent);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-left:0.5rem;">Run once if site shows no data</span>
+            </h3>
+            <p style="font-size:0.82rem;color:var(--text-mid);margin-bottom:1.25rem;">
+              Tables created via the <strong>SQL Editor</strong> do NOT automatically give the website permission to read them. If your shop or services page shows no data, run this SQL block once in your Supabase SQL Editor. <strong>You only need to do this once.</strong>
+            </p>
+            <div style="position:relative;">
+              <div style="background:var(--charcoal);border-radius:var(--radius);padding:1.25rem;font-family:monospace;font-size:0.78rem;color:#86efac;line-height:1.8;white-space:pre-wrap;" id="grant-sql-block">-- Run this in Supabase SQL Editor (once only)
+-- This grants the website permission to read your tables
+
+grant usage on schema public to anon, authenticated;
+
+grant select on products to anon;
+grant select on services to anon;
+grant select on reviews to anon;
+grant insert on contact_submissions to anon;
+
+-- For admin full access (also run this):
+grant all on products to authenticated;
+grant all on services to authenticated;
+grant all on reviews to authenticated;
+grant all on contact_submissions to authenticated;</div>
+              <button onclick="copyGrantSQL()" id="copy-grant-btn" style="position:absolute;top:0.6rem;right:0.6rem;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.15);border-radius:6px;padding:0.25rem 0.65rem;font-size:0.68rem;font-weight:700;cursor:pointer;font-family:var(--font-accent);letter-spacing:0.06em;text-transform:uppercase;">Copy SQL</button>
+            </div>
+          </div>
+
           <div class="dash-card" style="grid-column:1/-1;">
             <h3 style="margin-bottom:1.25rem;">📸 Image Storage Setup <span style="font-size:0.72rem;background:var(--orange-bg);color:var(--orange);padding:0.15rem 0.5rem;border-radius:999px;font-family:var(--font-accent);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-left:0.5rem;">One-time setup</span></h3>
-            <p style="font-size:0.82rem;color:var(--text-mid);margin-bottom:1.25rem;">To store product photos permanently in the cloud, create a public storage bucket in Supabase. Run this SQL in your Supabase SQL Editor. <strong>You only need to do this once.</strong></p>
-            <div style="background:var(--charcoal);border-radius:var(--radius);padding:1.25rem;font-family:monospace;font-size:0.78rem;color:#86efac;line-height:1.8;white-space:pre-wrap;position:relative;">-- Run this in Supabase SQL Editor
+            <p style="font-size:0.82rem;color:var(--text-mid);margin-bottom:1.25rem;">
+              To upload product photos from the admin panel, create a public storage bucket. Run this SQL once in your Supabase SQL Editor. <strong>Until you do this, add product images using an image URL from Cloudinary or ImgBB instead.</strong>
+            </p>
+            <div style="position:relative;">
+              <div style="background:var(--charcoal);border-radius:var(--radius);padding:1.25rem;font-family:monospace;font-size:0.78rem;color:#86efac;line-height:1.8;white-space:pre-wrap;" id="storage-sql-block">-- Run this in Supabase SQL Editor
 insert into storage.buckets (id, name, public)
 values ('product-images', 'product-images', true);
 
@@ -535,10 +499,14 @@ with check (bucket_id = 'product-images');
 
 create policy "Public can read product images"
 on storage.objects for select
-using (bucket_id = 'product-images');
-              <button onclick="copyStorageSQL()" style="position:absolute;top:0.6rem;right:0.6rem;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.15);border-radius:6px;padding:0.25rem 0.65rem;font-size:0.68rem;font-weight:700;cursor:pointer;font-family:var(--font-accent);letter-spacing:0.06em;text-transform:uppercase;" id="copy-sql-btn">Copy SQL</button></div>
-            <p style="font-size:0.78rem;color:var(--text-light);margin-top:0.75rem;">⚠️ If you skip this step, photos still work — they are stored as image data. But for best performance, set up the bucket above.</p>
+using (bucket_id = 'product-images');</div>
+              <button onclick="copyStorageSQL()" id="copy-sql-btn" style="position:absolute;top:0.6rem;right:0.6rem;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.15);border-radius:6px;padding:0.25rem 0.65rem;font-size:0.68rem;font-weight:700;cursor:pointer;font-family:var(--font-accent);letter-spacing:0.06em;text-transform:uppercase;">Copy SQL</button>
+            </div>
           </div>
+
+          <!-- FIX: nav links now inside the grid, not floating outside it -->
+          <div class="dash-card" style="grid-column:1/-1;">
+            <h3 style="margin-bottom:1.25rem;">🔗 Quick Links</h3>
             <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
               <a href="index.html" target="_blank" class="btn btn--ghost btn--sm">🏠 Home</a>
               <a href="shop.html" target="_blank" class="btn btn--ghost btn--sm">🛍️ Shop</a>
@@ -563,74 +531,43 @@ using (bucket_id = 'product-images');
     </div>
     <div class="modal__body">
       <div class="form-grid">
-        <div class="form-group">
-          <label>Product ID *</label>
-          <input type="text" id="p-id" placeholder="e.g. BLH009">
-          <span class="form-hint">Unique ID. Cannot be changed after saving.</span>
-        </div>
-        <div class="form-group">
-          <label>Product Name *</label>
-          <input type="text" id="p-name" placeholder="e.g. Brazilian Straight Bundle">
-        </div>
-        <div class="form-group">
-          <label>Category *</label>
-          <select id="p-category">
-            <option value="">Select category</option>
-            <option value="wigs">Wigs</option>
-            <option value="bundles">Bundles</option>
-            <option value="frontals">Frontals</option>
-            <option value="extensions">Extensions</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Price (GHS) *</label>
-          <input type="number" id="p-price" placeholder="e.g. 450">
-        </div>
-        <div class="form-group">
-          <label>Badge (optional)</label>
-          <input type="text" id="p-badge" placeholder="e.g. Best Seller, New Arrival">
-        </div>
-        <div class="form-group">
-          <label>Hair Type</label>
-          <input type="text" id="p-hairtype" placeholder="e.g. Brazilian Virgin">
-        </div>
-        <div class="form-group">
-          <label>Texture</label>
-          <input type="text" id="p-texture" placeholder="e.g. Straight, Body Wave">
-        </div>
-        <div class="form-group">
-          <label>Default Length</label>
-          <input type="text" id="p-length" placeholder='e.g. 18"'>
-        </div>
-        <div class="form-group">
-          <label>Weight</label>
-          <input type="text" id="p-weight" placeholder="e.g. 100g per bundle">
-        </div>
-        <div class="form-group">
-          <label>Colour</label>
-          <input type="text" id="p-color" placeholder="e.g. Natural Black (#1B)">
-        </div>
+        <div class="form-group"><label>Product ID *</label><input type="text" id="p-id" placeholder="e.g. BLH009"><span class="form-hint">Unique ID. Cannot be changed after saving.</span></div>
+        <div class="form-group"><label>Product Name *</label><input type="text" id="p-name" placeholder="e.g. Brazilian Straight Bundle"></div>
+        <div class="form-group"><label>Category *</label><select id="p-category"><option value="">Select category</option><option value="wigs">Wigs</option><option value="bundles">Bundles</option><option value="frontals">Frontals</option><option value="extensions">Extensions</option></select></div>
+        <div class="form-group"><label>Price (GHS) *</label><input type="number" id="p-price" placeholder="e.g. 450"></div>
+        <div class="form-group"><label>Badge (optional)</label><input type="text" id="p-badge" placeholder="e.g. Best Seller, New Arrival"></div>
+        <div class="form-group"><label>Hair Type</label><input type="text" id="p-hairtype" placeholder="e.g. Brazilian Virgin"></div>
+        <div class="form-group"><label>Texture</label><input type="text" id="p-texture" placeholder="e.g. Straight, Body Wave"></div>
+        <div class="form-group"><label>Default Length</label><input type="text" id="p-length" placeholder='e.g. 18"'></div>
+        <div class="form-group"><label>Weight</label><input type="text" id="p-weight" placeholder="e.g. 100g per bundle"></div>
+        <div class="form-group"><label>Colour</label><input type="text" id="p-color" placeholder="e.g. Natural Black (#1B)"></div>
+
+        <!-- FIX: Image section rebuilt. Primary input is now a plain URL field
+             (reliable, works without Supabase storage setup). The file upload
+             button is a secondary option that only works once the storage bucket
+             SQL has been run in Settings. This prevents silent base64 saves. -->
         <div class="form-group form-full">
-          <label>Product Photos <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-light);font-size:0.75rem;">(up to 4 — first photo is the main one)</span></label>
-          <div class="upload-zone" id="p-upload-zone">
-            <input type="file" id="p-file-input" accept="image/*" multiple>
-            <span class="upload-zone__icon">📷</span>
-            <h4>Tap to choose photos from your gallery</h4>
-            <p>Or drag &amp; drop photos here · JPG, PNG, WebP · Max 5MB each</p>
+          <label>Product Image URL * <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-light);font-size:0.75rem;">(recommended: upload to <a href="https://imgbb.com" target="_blank" style="color:var(--pink);">imgbb.com</a> or <a href="https://cloudinary.com" target="_blank" style="color:var(--pink);">cloudinary.com</a> and paste the link)</span></label>
+          <input type="url" id="p-image-url" placeholder="https://i.ibb.co/xxxx/your-photo.jpg" style="margin-bottom:0.5rem;">
+          <span class="form-hint">Paste a direct image URL above. This is the main product photo shown on the shop page.</span>
+
+          <!-- Optional: upload if storage bucket is set up -->
+          <div style="margin-top:1rem;border-top:1px dashed rgba(0,0,0,0.1);padding-top:1rem;">
+            <p style="font-size:0.75rem;color:var(--text-light);margin-bottom:0.6rem;">
+              ── Or upload directly (only works after running the Storage SQL in Settings) ──
+            </p>
+            <div class="upload-zone" id="p-upload-zone">
+              <input type="file" id="p-file-input" accept="image/*" multiple>
+              <span class="upload-zone__icon">📷</span>
+              <h4>Tap to choose photo from gallery</h4>
+              <p>JPG, PNG, WebP · Max 5MB · Requires storage bucket setup</p>
+            </div>
+            <div class="upload-progress" id="p-upload-progress"><div class="upload-progress__bar" id="p-upload-bar"></div></div>
+            <div class="upload-note" id="p-upload-note"></div>
           </div>
-          <div class="upload-progress" id="p-upload-progress">
-            <div class="upload-progress__bar" id="p-upload-bar"></div>
-          </div>
-          <div class="img-grid" id="p-img-grid"></div>
-          <div class="upload-note" id="p-upload-note">No photos yet. Click above to add photos.</div>
-          <!-- Hidden storage for image URLs -->
-          <input type="hidden" id="p-image">
-          <input type="hidden" id="p-images">
         </div>
-        <div class="form-group form-full">
-          <label>Description *</label>
-          <textarea id="p-description" placeholder="Describe the product in detail…"></textarea>
-        </div>
+
+        <div class="form-group form-full"><label>Description *</label><textarea id="p-description" placeholder="Describe the product in detail…"></textarea></div>
         <div class="form-group form-full">
           <label>Features (add individually)</label>
           <div class="tag-input-row">
@@ -640,27 +577,15 @@ using (bucket_id = 'product-images');
           <div class="char-tags" id="p-features-list"></div>
           <input type="hidden" id="p-features-data">
         </div>
-        <div class="form-group form-full">
-          <label>WhatsApp Order Message</label>
-          <textarea id="p-wamsg" placeholder="Hello b_lit hairs! 💕 I'm interested in the *Product Name*. Please let me know the price and how to order." style="min-height:80px;"></textarea>
-        </div>
-        <div class="form-group">
-          <label>Sort Order</label>
-          <input type="number" id="p-sort" placeholder="e.g. 1" value="0">
-        </div>
-        <div class="form-group" style="justify-content:flex-end;padding-top:1.5rem;">
-          <label class="form-check">
-            <input type="checkbox" id="p-visible" checked>
-            <span>Visible on website</span>
-          </label>
-        </div>
+        <div class="form-group form-full"><label>WhatsApp Order Message</label><textarea id="p-wamsg" placeholder="Hello b_lit hairs! 💕 I'm interested in the *Product Name*." style="min-height:80px;"></textarea></div>
+        <div class="form-group"><label>Sort Order</label><input type="number" id="p-sort" placeholder="e.g. 1" value="0"></div>
+        <div class="form-group" style="justify-content:flex-end;padding-top:1.5rem;"><label class="form-check"><input type="checkbox" id="p-visible" checked><span>Visible on website</span></label></div>
       </div>
     </div>
     <div class="modal__footer">
       <button class="btn btn--ghost" onclick="closeModal('product-modal')">Cancel</button>
       <button class="btn btn--primary" id="product-save-btn" onclick="saveProduct()">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        Save Product
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Save Product
       </button>
     </div>
   </div>
@@ -669,130 +594,50 @@ using (bucket_id = 'product-images');
 <!-- ══════════ SERVICE MODAL ══════════ -->
 <div class="modal-overlay" id="service-modal">
   <div class="modal">
-    <div class="modal__head">
-      <h3 id="service-modal-title">Add Service</h3>
-      <button class="modal__close" onclick="closeModal('service-modal')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-    </div>
+    <div class="modal__head"><h3 id="service-modal-title">Add Service</h3><button class="modal__close" onclick="closeModal('service-modal')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
     <div class="modal__body">
       <div class="form-grid">
-        <div class="form-group">
-          <label>Service ID *</label>
-          <input type="text" id="s-id" placeholder="e.g. SRV007">
-        </div>
-        <div class="form-group">
-          <label>Service Name *</label>
-          <input type="text" id="s-name" placeholder="e.g. Hair Braiding">
-        </div>
-        <div class="form-group">
-          <label>Starting Price (GHS)</label>
-          <input type="number" id="s-price" placeholder="e.g. 200">
-        </div>
-        <div class="form-group">
-          <label>Duration</label>
-          <input type="text" id="s-duration" placeholder="e.g. 2–4 hours">
-        </div>
-        <div class="form-group">
-          <label>Icon</label>
-          <select id="s-icon">
-            <option value="shop">🛍️ Shop</option>
-            <option value="braid">🏠 Braid</option>
-            <option value="style">💅 Style</option>
-            <option value="star">⭐ Star / Bridal</option>
-            <option value="wig">👑 Wig</option>
-            <option value="scissors">✂️ Scissors</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Sort Order</label>
-          <input type="number" id="s-sort" placeholder="1" value="0">
-        </div>
-        <div class="form-group form-full">
-          <label>Description *</label>
-          <textarea id="s-description" placeholder="Describe the service…"></textarea>
-        </div>
+        <div class="form-group"><label>Service ID *</label><input type="text" id="s-id" placeholder="e.g. SRV007"></div>
+        <div class="form-group"><label>Service Name *</label><input type="text" id="s-name" placeholder="e.g. Hair Braiding"></div>
+        <div class="form-group"><label>Starting Price (GHS)</label><input type="number" id="s-price" placeholder="e.g. 200"></div>
+        <div class="form-group"><label>Duration</label><input type="text" id="s-duration" placeholder="e.g. 2–4 hours"></div>
+        <div class="form-group"><label>Icon</label><select id="s-icon"><option value="shop">🛍️ Shop</option><option value="braid">🏠 Braid</option><option value="style">💅 Style</option><option value="star">⭐ Star / Bridal</option><option value="wig">👑 Wig</option><option value="scissors">✂️ Scissors</option></select></div>
+        <div class="form-group"><label>Sort Order</label><input type="number" id="s-sort" placeholder="1" value="0"></div>
+        <div class="form-group form-full"><label>Description *</label><textarea id="s-description" placeholder="Describe the service…"></textarea></div>
         <div class="form-group form-full">
           <label>Tags (add individually)</label>
-          <div class="tag-input-row">
-            <input type="text" id="s-tag-input" placeholder="e.g. Box Braids" onkeydown="if(event.key==='Enter'){event.preventDefault();addTag('s-tag-input','s-tags-list','s-tags-data');}">
-            <button class="btn btn--ghost btn--sm" type="button" onclick="addTag('s-tag-input','s-tags-list','s-tags-data')">Add</button>
-          </div>
+          <div class="tag-input-row"><input type="text" id="s-tag-input" placeholder="e.g. Box Braids" onkeydown="if(event.key==='Enter'){event.preventDefault();addTag('s-tag-input','s-tags-list','s-tags-data');}"><button class="btn btn--ghost btn--sm" type="button" onclick="addTag('s-tag-input','s-tags-list','s-tags-data')">Add</button></div>
           <div class="char-tags" id="s-tags-list"></div>
           <input type="hidden" id="s-tags-data">
         </div>
-        <div class="form-group form-full">
-          <label class="form-check">
-            <input type="checkbox" id="s-visible" checked>
-            <span>Visible on website</span>
-          </label>
-        </div>
+        <div class="form-group form-full"><label class="form-check"><input type="checkbox" id="s-visible" checked><span>Visible on website</span></label></div>
       </div>
     </div>
-    <div class="modal__footer">
-      <button class="btn btn--ghost" onclick="closeModal('service-modal')">Cancel</button>
-      <button class="btn btn--primary" onclick="saveService()">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        Save Service
-      </button>
-    </div>
+    <div class="modal__footer"><button class="btn btn--ghost" onclick="closeModal('service-modal')">Cancel</button><button class="btn btn--primary" onclick="saveService()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Save Service</button></div>
   </div>
 </div>
 
 <!-- ══════════ REVIEW MODAL ══════════ -->
 <div class="modal-overlay" id="review-modal">
   <div class="modal">
-    <div class="modal__head">
-      <h3 id="review-modal-title">Add Review</h3>
-      <button class="modal__close" onclick="closeModal('review-modal')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-    </div>
+    <div class="modal__head"><h3 id="review-modal-title">Add Review</h3><button class="modal__close" onclick="closeModal('review-modal')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
     <div class="modal__body">
       <div class="form-grid">
-        <div class="form-group">
-          <label>Reviewer Name *</label>
-          <input type="text" id="r-name" placeholder="e.g. Abena K.">
-        </div>
-        <div class="form-group">
-          <label>Location</label>
-          <input type="text" id="r-location" placeholder="e.g. Accra, Ghana">
-        </div>
-        <div class="form-group">
-          <label>Stars (1–5) *</label>
-          <select id="r-stars">
-            <option value="5">⭐⭐⭐⭐⭐ (5 stars)</option>
-            <option value="4">⭐⭐⭐⭐ (4 stars)</option>
-            <option value="3">⭐⭐⭐ (3 stars)</option>
-            <option value="2">⭐⭐ (2 stars)</option>
-            <option value="1">⭐ (1 star)</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-check" style="padding-top:1.5rem;">
-            <input type="checkbox" id="r-approved" checked>
-            <span>Approved (visible on site)</span>
-          </label>
-        </div>
-        <div class="form-group form-full">
-          <label>Review Text *</label>
-          <textarea id="r-text" placeholder="Write the review here…"></textarea>
-        </div>
+        <div class="form-group"><label>Reviewer Name *</label><input type="text" id="r-name" placeholder="e.g. Abena K."></div>
+        <div class="form-group"><label>Location</label><input type="text" id="r-location" placeholder="e.g. Accra, Ghana"></div>
+        <div class="form-group"><label>Stars (1–5) *</label><select id="r-stars"><option value="5">⭐⭐⭐⭐⭐ (5 stars)</option><option value="4">⭐⭐⭐⭐ (4 stars)</option><option value="3">⭐⭐⭐ (3 stars)</option><option value="2">⭐⭐ (2 stars)</option><option value="1">⭐ (1 star)</option></select></div>
+        <div class="form-group"><label class="form-check" style="padding-top:1.5rem;"><input type="checkbox" id="r-approved" checked><span>Approved (visible on site)</span></label></div>
+        <div class="form-group form-full"><label>Review Text *</label><textarea id="r-text" placeholder="Write the review here…"></textarea></div>
       </div>
     </div>
-    <div class="modal__footer">
-      <button class="btn btn--ghost" onclick="closeModal('review-modal')">Cancel</button>
-      <button class="btn btn--primary" onclick="saveReview()">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        Save Review
-      </button>
-    </div>
+    <div class="modal__footer"><button class="btn btn--ghost" onclick="closeModal('review-modal')">Cancel</button><button class="btn btn--primary" onclick="saveReview()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Save Review</button></div>
   </div>
 </div>
 
 <!-- ══════════ MESSAGE VIEW MODAL ══════════ -->
 <div class="modal-overlay" id="message-modal">
   <div class="modal">
-    <div class="modal__head">
-      <h3>Message Details</h3>
-      <button class="modal__close" onclick="closeModal('message-modal')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-    </div>
+    <div class="modal__head"><h3>Message Details</h3><button class="modal__close" onclick="closeModal('message-modal')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
     <div class="modal__body" id="message-modal-body"></div>
     <div class="modal__footer">
       <button class="btn btn--ghost" onclick="closeModal('message-modal')">Close</button>
@@ -812,14 +657,10 @@ using (bucket_id = 'product-images');
       <h3 style="margin-bottom:0.5rem;" id="confirm-title">Delete Item?</h3>
       <p style="font-size:0.88rem;color:var(--text-mid);" id="confirm-msg">This action cannot be undone.</p>
     </div>
-    <div class="modal__footer">
-      <button class="btn btn--ghost" onclick="closeModal('confirm-modal')">Cancel</button>
-      <button class="btn btn--red" id="confirm-ok-btn">Delete</button>
-    </div>
+    <div class="modal__footer"><button class="btn btn--ghost" onclick="closeModal('confirm-modal')">Cancel</button><button class="btn btn--red" id="confirm-ok-btn">Delete</button></div>
   </div>
 </div>
 
-<!-- TOAST CONTAINER -->
 <div id="toast-wrap"></div>
 
 <script>
@@ -831,17 +672,26 @@ const SUPABASE_URL = 'https://rtoobqqhwdyuzrjktxoc.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0b29icXFod2R5dXpyamt0eG9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNTU5NjUsImV4cCI6MjA5MjczMTk2NX0.7xWA1wIfP51PEhgR1d_6v0YCqiQJzxpMekPp3Zj_gXM';
 
 /* Admin credentials — CHANGE THESE */
-const ADMIN_EMAIL = 'bindalotsu644@gmail.com';
+const ADMIN_EMAIL    = 'bindalotsu644@gmail.com';
 const ADMIN_PASSWORD = 'blitpay12$';
 
-/* ══════ SUPABASE HELPERS ══════ */
+/* ── FIX: Only select the columns needed for the products table listing.
+   Previously used select=* which returned the full "images" JSONB column.
+   If base64 strings were ever saved there, the response could be many
+   megabytes and cause fetch failures / empty product tables. ── */
+const PRODUCT_LIST_COLS = 'id,name,category,price,currency,badge,hair_type,image,is_visible,sort_order';
+
+/* ── FIX: When editing a specific product, fetch all columns for that
+   one row only — this is fine as it is a single targeted request. ── */
+const PRODUCT_EDIT_COLS = 'id,name,category,price,currency,badge,hair_type,texture,default_length,weight,color,description,features,image,whatsapp_msg,is_visible,sort_order';
+
+/* ══ SUPABASE HELPERS ══ */
 const SB_HEADERS = () => ({
   'apikey': SUPABASE_ANON_KEY,
   'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
   'Content-Type': 'application/json',
   'Prefer': 'return=representation'
 });
-
 async function sbGet(table, params='') {
   const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}${params}`, {headers: SB_HEADERS()});
   if (!r.ok) throw new Error(await r.text());
@@ -863,22 +713,22 @@ async function sbDelete(table, id_col, id_val) {
   return true;
 }
 
-/* ══════ STATE ══════ */
+/* ══ STATE ══ */
 let editingProduct = null, editingService = null, editingReview = null;
 let allProducts = [], allServices = [], allReviews = [], allContacts = [];
 
-/* ══════ TOAST ══════ */
+/* ══ TOAST ══ */
 function toast(msg, type='success') {
   const wrap = document.getElementById('toast-wrap');
   const el = document.createElement('div');
   el.className = `toast toast--${type}`;
-  const icon = type==='success' ? '✅' : type==='error' ? '❌' : 'ℹ️';
+  const icon = type==='success' ? '✅' : type==='error' ? '❌' : type==='warning' ? '⚠️' : 'ℹ️';
   el.innerHTML = `<span>${icon}</span><span>${msg}</span>`;
   wrap.appendChild(el);
-  setTimeout(() => el.remove(), 4000);
+  setTimeout(() => el.remove(), 5000);
 }
 
-/* ══════ LOGIN ══════ */
+/* ══ LOGIN ══ */
 document.getElementById('login-btn').addEventListener('click', doLogin);
 document.getElementById('login-password').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
 
@@ -900,12 +750,7 @@ function doLogin() {
     document.getElementById('login-password').value = '';
   }
 }
-
-document.getElementById('logout-btn').addEventListener('click', () => {
-  sessionStorage.removeItem('blit_admin');
-  location.reload();
-});
-
+document.getElementById('logout-btn').addEventListener('click', () => { sessionStorage.removeItem('blit_admin'); location.reload(); });
 if (sessionStorage.getItem('blit_admin')) {
   document.getElementById('login-screen').classList.add('hidden');
   document.getElementById('app').classList.add('visible');
@@ -916,7 +761,7 @@ if (sessionStorage.getItem('blit_admin')) {
   initUploader();
 }
 
-/* ══════ NAVIGATION ══════ */
+/* ══ NAVIGATION ══ */
 const PANEL_TITLES = {
   dashboard: ['Dashboard', 'Welcome back to your admin panel'],
   products:  ['Products', 'Manage your hair product catalogue'],
@@ -925,133 +770,64 @@ const PANEL_TITLES = {
   contacts:  ['Messages', 'Contact form submissions'],
   settings:  ['Settings', 'Account and website configuration'],
 };
-
 document.querySelectorAll('.sidebar__item').forEach(item => {
   item.addEventListener('click', () => openPanel(item.dataset.panel));
 });
-
 function openPanel(name) {
   document.querySelectorAll('.sidebar__item').forEach(i => i.classList.toggle('active', i.dataset.panel === name));
   document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + name));
   const [title, sub] = PANEL_TITLES[name] || ['Admin', ''];
   document.getElementById('topbar-title').textContent = title;
   document.getElementById('topbar-sub').textContent = sub;
-  // Load data when switching panels
   if (name === 'products') loadProducts();
   if (name === 'services') loadServices();
   if (name === 'reviews') loadReviews();
   if (name === 'contacts') loadContacts();
-  // Close sidebar on mobile
   document.getElementById('sidebar').classList.remove('open');
 }
-
-// Mobile sidebar
 document.getElementById('mobile-menu-btn').addEventListener('click', () => {
   document.getElementById('sidebar').classList.toggle('open');
 });
 
-/* ══════ MODALS ══════ */
+/* ══ MODALS ══ */
 function openModal(id) { document.getElementById(id).classList.add('open'); }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-
-// Close on overlay click
 document.querySelectorAll('.modal-overlay').forEach(overlay => {
   overlay.addEventListener('click', e => { if(e.target === overlay) overlay.classList.remove('open'); });
 });
 
-/* ══════ IMAGE UPLOADER ══════ */
-// Stores: [{file, dataUrl, url}] — url is set after Supabase upload or is dataUrl fallback
-let uploadedImages = []; // array of {dataUrl, url, name}
+/* ══ IMAGE UPLOADER ══ */
+/* FIX: The uploader now attempts to upload to Supabase Storage. If the
+   storage bucket does not exist (hasn't been set up via the Settings SQL),
+   the upload fails and we show a clear warning. We NEVER fall back to
+   saving base64 data to the database — that causes the entire product
+   table and shop page to break due to response size. ── */
 
-function renderImgGrid() {
-  const grid = document.getElementById('p-img-grid');
-  const note = document.getElementById('p-upload-note');
-  grid.innerHTML = '';
-  if (!uploadedImages.length) {
-    note.textContent = 'No photos yet. Click above to add photos.';
-    // render 4 empty slots
-    for(let i=0;i<4;i++) { const d=document.createElement('div');d.className='img-slot-empty';d.textContent=`Photo ${i+1}`;grid.appendChild(d); }
-    return;
-  }
-  note.textContent = `${uploadedImages.length} photo${uploadedImages.length>1?'s':''} added · First photo is the main display photo.`;
-  uploadedImages.forEach((img, i) => {
-    const div = document.createElement('div');
-    div.className = 'img-thumb' + (i===0?' is-main':'');
-    div.innerHTML = `
-      ${i===0?'<span class="img-thumb__badge">Main</span>':''}
-      <img src="${img.dataUrl}" alt="photo ${i+1}">
-      <div class="img-thumb__overlay">
-        ${i!==0?`<button class="img-thumb__main-btn" onclick="setMainImg(${i})">Set as Main</button>`:''}
-        <button class="img-thumb__del" onclick="removeImg(${i})" title="Remove">✕</button>
-      </div>`;
-    grid.appendChild(div);
-  });
-  // fill remaining empty slots
-  for(let i=uploadedImages.length;i<4;i++) { const d=document.createElement('div');d.className='img-slot-empty';d.textContent=`Photo ${i+1}`;grid.appendChild(d); }
-}
-
-function setMainImg(idx) {
-  const [main] = uploadedImages.splice(idx, 1);
-  uploadedImages.unshift(main);
-  renderImgGrid();
-}
-
-function removeImg(idx) {
-  uploadedImages.splice(idx, 1);
-  renderImgGrid();
-}
+let uploadedImageUrl = null; // single URL after successful upload
 
 function initUploader() {
-  const zone = document.getElementById('p-upload-zone');
+  const zone  = document.getElementById('p-upload-zone');
   const input = document.getElementById('p-file-input');
+  if (!zone || !input) return;
 
-  input.addEventListener('change', e => handleFiles(e.target.files));
-
-  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
-  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
-  zone.addEventListener('drop', e => {
-    e.preventDefault();
-    zone.classList.remove('drag-over');
-    handleFiles(e.dataTransfer.files);
-  });
+  input.addEventListener('change', e => handleFile(e.target.files[0]));
+  zone.addEventListener('dragover',  e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', ()  => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('drag-over'); handleFile(e.dataTransfer.files[0]); });
 }
 
-function handleFiles(files) {
-  const remaining = 4 - uploadedImages.length;
-  if (remaining <= 0) { toast('Maximum 4 photos allowed. Remove one first.','error'); return; }
-  const toProcess = [...files].slice(0, remaining);
-  let processed = 0;
+async function handleFile(file) {
+  if (!file) return;
+  if (!file.type.startsWith('image/')) { toast('Please select an image file.', 'error'); return; }
+  if (file.size > 5 * 1024 * 1024) { toast('Image must be under 5MB.', 'error'); return; }
 
+  const note = document.getElementById('p-upload-note');
   const progress = document.getElementById('p-upload-progress');
   const bar = document.getElementById('p-upload-bar');
+  note.textContent = 'Uploading…';
   progress.style.display = 'block';
-  bar.style.width = '0%';
+  bar.style.width = '40%';
 
-  toProcess.forEach((file, i) => {
-    if (!file.type.startsWith('image/')) { toast(`${file.name} is not an image.`, 'error'); return; }
-    if (file.size > 5 * 1024 * 1024) { toast(`${file.name} is too large. Max 5MB.`, 'error'); return; }
-
-    const reader = new FileReader();
-    reader.onload = e => {
-      uploadedImages.push({ dataUrl: e.target.result, url: e.target.result, name: file.name, file });
-      processed++;
-      bar.style.width = ((processed / toProcess.length) * 100) + '%';
-      if (processed === toProcess.length) {
-        setTimeout(() => { progress.style.display='none'; bar.style.width='0%'; }, 600);
-        renderImgGrid();
-        // Try to upload to Supabase Storage
-        toProcess.forEach((f, fi) => {
-          uploadToSupabase(f, uploadedImages[uploadedImages.length - toProcess.length + fi]);
-        });
-      }
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
-async function uploadToSupabase(file, imgObj) {
-  // Upload to Supabase Storage bucket "product-images"
-  // Falls back to base64 dataUrl if storage not configured
   try {
     const ext = file.name.split('.').pop().toLowerCase();
     const fileName = `products/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
@@ -1065,26 +841,32 @@ async function uploadToSupabase(file, imgObj) {
       },
       body: file
     });
+
+    bar.style.width = '100%';
+    setTimeout(() => { progress.style.display = 'none'; bar.style.width = '0%'; }, 600);
+
     if (res.ok) {
-      // Get public URL
-      const publicUrl = `${SUPABASE_URL}/storage/v1/object/public/product-images/${fileName}`;
-      imgObj.url = publicUrl;
-      toast('Photo uploaded to cloud ✅', 'success');
+      uploadedImageUrl = `${SUPABASE_URL}/storage/v1/object/public/product-images/${fileName}`;
+      /* Auto-fill the URL field so the admin can see and verify the URL */
+      document.getElementById('p-image-url').value = uploadedImageUrl;
+      note.textContent = '✅ Photo uploaded! URL filled in below.';
+      toast('Photo uploaded to cloud! ✅', 'success');
+    } else {
+      /* FIX: Storage bucket not set up — show clear actionable message.
+         Do NOT save base64 — just tell the admin to use an external URL. */
+      const errText = await res.text();
+      note.textContent = '⚠️ Upload failed — storage not set up yet. Use an image URL instead (see below).';
+      toast('Storage not set up. Paste an image URL in the URL field above, or run the Storage SQL in Settings first.', 'warning');
+      console.warn('Storage upload failed:', errText);
     }
-    // If fails silently, dataUrl is used as fallback — works fine for testing
   } catch(e) {
-    // Silently use dataUrl — still works
-    console.info('Storage upload skipped, using local image data');
+    document.getElementById('p-upload-progress').style.display = 'none';
+    document.getElementById('p-upload-note').textContent = '⚠️ Upload error. Paste an image URL instead.';
+    toast('Upload error. Use the image URL field above.', 'warning');
   }
 }
 
-function getImageUrls() {
-  return uploadedImages.map(img => img.url);
-}
-
-/* ══════ PRODUCT MODAL ══════ */
-
-/* ══════ TAG INPUT ══════ */
+/* ══ TAG INPUT ══ */
 function addTag(inputId, listId, dataId) {
   const input = document.getElementById(inputId);
   const val = input.value.trim();
@@ -1101,7 +883,6 @@ function addTag(inputId, listId, dataId) {
   list.appendChild(tag);
   input.value = '';
 }
-
 function removeTag(btn, dataId, listId) {
   const tag = btn.parentElement;
   const text = tag.textContent.replace('×','').trim();
@@ -1110,7 +891,6 @@ function removeTag(btn, dataId, listId) {
   data.value = JSON.stringify(current.filter(t=>t!==text));
   tag.remove();
 }
-
 function setTags(listId, dataId, items) {
   const list = document.getElementById(listId);
   const data = document.getElementById(dataId);
@@ -1124,14 +904,17 @@ function setTags(listId, dataId, items) {
   });
 }
 
-/* ══════ DASHBOARD INIT ══════ */
+/* ══ DASHBOARD ══ */
 async function initDashboard() {
   try {
+    /* FIX: Count ALL products (not just visible ones) for the dashboard stat.
+       Previously used is_visible=eq.true which showed a lower count than the
+       actual catalogue size, confusing admins who hid some products. ── */
     const [products, reviews, services, contacts] = await Promise.all([
-      sbGet('products','?select=id&is_visible=eq.true'),
-      sbGet('reviews','?select=id'),
-      sbGet('services','?select=id&is_visible=eq.true'),
-      sbGet('contact_submissions','?select=id,is_read'),
+      sbGet('products', '?select=id'),
+      sbGet('reviews', '?select=id'),
+      sbGet('services', '?select=id'),
+      sbGet('contact_submissions', '?select=id,is_read'),
     ]);
     const unread = (contacts||[]).filter(c=>!c.is_read).length;
     document.getElementById('stat-products').textContent  = (products||[]).length;
@@ -1143,83 +926,91 @@ async function initDashboard() {
     document.getElementById('badge-reviews').textContent  = (reviews||[]).length;
     document.getElementById('badge-contacts').textContent = unread;
 
-    // Activity feed
     const feed = document.getElementById('activity-feed');
     const items = [
-      {color:'pink', text:`${(products||[]).length} products in catalogue`},
+      {color:'pink',  text:`${(products||[]).length} products in catalogue`},
       {color:'green', text:`${(reviews||[]).length} customer reviews total`},
-      {color:'blue', text:`${(services||[]).length} services available`},
+      {color:'blue',  text:`${(services||[]).length} services available`},
       {color:'green', text:`${unread} unread contact messages`},
     ];
     feed.innerHTML = items.map(i=>`<div class="activity-item"><div class="activity-dot activity-dot--${i.color}"></div><div><div class="activity-text">${i.text}</div></div></div>`).join('');
   } catch(e) {
-    console.error(e);
     document.getElementById('stat-products').textContent = '—';
-    toast('Could not connect to Supabase. Check your config.', 'error');
+    toast('Could not connect to Supabase. Check your config and run the Grant SQL in Settings.', 'error');
   }
 }
 
 async function testConnection() {
   const status = document.getElementById('conn-status');
-  status.textContent = 'Testing…';
-  status.className = 'badge badge--blue';
+  status.textContent = 'Testing…'; status.className = 'badge badge--blue';
   try {
-    await sbGet('products','?limit=1');
-    status.textContent = '✅ Connected';
-    status.className = 'badge badge--green';
+    await sbGet('products','?select=id&limit=1');
+    status.textContent = '✅ Connected'; status.className = 'badge badge--green';
     toast('Supabase connected successfully!', 'success');
   } catch(e) {
-    status.textContent = '❌ Error';
-    status.className = 'badge badge--red';
-    toast('Connection failed. Check SUPABASE_URL and ANON_KEY.', 'error');
+    status.textContent = '❌ Error'; status.className = 'badge badge--red';
+    toast('Connection failed. Check URL, ANON_KEY, and run the Grant SQL in Settings.', 'error');
   }
 }
 
-/* ══════ PRODUCTS ══════ */
+/* ══ PRODUCTS ══ */
 async function loadProducts() {
   const el = document.getElementById('products-table-body');
   el.innerHTML = '<div class="empty-state"><p>Loading…</p></div>';
   try {
-    allProducts = await sbGet('products','?select=*&order=sort_order.asc,created_at.desc');
+    /* FIX: Fetch only columns needed for the table listing.
+       This avoids pulling potentially huge base64 image data. ── */
+    allProducts = await sbGet('products',
+      `?select=${PRODUCT_LIST_COLS}&order=sort_order.asc,created_at.desc`);
     renderProductsTable(allProducts);
-  } catch(e) { el.innerHTML = `<div class="empty-state"><p>Error loading products. ${e.message}</p></div>`; }
+  } catch(e) {
+    el.innerHTML = `<div class="empty-state"><p>Error loading products: ${e.message}<br><small>Have you run the Grant SQL in Settings?</small></p></div>`;
+  }
 }
 
 function renderProductsTable(data) {
   const el = document.getElementById('products-table-body');
-  if (!data.length) { el.innerHTML = '<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/></svg><p>No products yet. Add your first product!</p></div>'; return; }
+  if (!data.length) {
+    el.innerHTML = '<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/></svg><p>No products yet. Add your first product!</p></div>';
+    return;
+  }
+  /* FIX: Guard against base64 in the image field — only show real URLs.
+     If a base64 string was accidentally saved before, don't try to render it. ── */
   el.innerHTML = `<table>
     <thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Badge</th><th>Status</th><th>Actions</th></tr></thead>
-    <tbody>${data.map(p=>`
-    <tr>
-      <td><div style="display:flex;align-items:center;gap:0.75rem;">
-        <img class="td-img" src="${p.image||''}" alt="${p.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22><rect width=%2248%22 height=%2248%22 fill=%22%23fdf0f4%22 rx=%228%22/></svg>'">
-        <div><div class="td-name">${p.name}</div><div class="td-sub">${p.id}</div></div>
-      </div></td>
-      <td><span class="badge badge--pink">${p.category||'—'}</span></td>
-      <td><strong>GHS ${Number(p.price||0).toLocaleString()}</strong></td>
-      <td>${p.badge?`<span class="badge badge--orange">${p.badge}</span>`:'<span style="color:var(--text-light);font-size:0.78rem;">None</span>'}</td>
-      <td><span class="badge ${p.is_visible?'badge--green':'badge--red'}">${p.is_visible?'Visible':'Hidden'}</span></td>
-      <td><div class="td-actions">
-        <button class="btn btn--ghost btn--sm btn--icon" title="Edit" onclick="editProduct('${p.id}')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
-        <button class="btn btn--ghost btn--sm btn--icon" title="${p.is_visible?'Hide':'Show'}" onclick="toggleProductVisibility('${p.id}',${p.is_visible})"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${p.is_visible?'<path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>':'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>'}</svg></button>
-        <button class="btn btn--red btn--sm btn--icon" title="Delete" onclick="confirmDelete('product','${p.id}','${p.name}')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
-      </div></td>
-    </tr>`).join('')}</tbody></table>`;
+    <tbody>${data.map(p => {
+      const imgSrc = (p.image && !p.image.startsWith('data:')) ? p.image : '';
+      return `<tr>
+        <td><div style="display:flex;align-items:center;gap:0.75rem;">
+          <img class="td-img" src="${imgSrc}" alt="${p.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22><rect width=%2248%22 height=%2248%22 fill=%22%23fdf0f4%22 rx=%228%22/></svg>'">
+          <div><div class="td-name">${p.name}</div><div class="td-sub">${p.id}</div></div>
+        </div></td>
+        <td><span class="badge badge--pink">${p.category||'—'}</span></td>
+        <td><strong>GHS ${Number(p.price||0).toLocaleString()}</strong></td>
+        <td>${p.badge?`<span class="badge badge--orange">${p.badge}</span>`:'<span style="color:var(--text-light);font-size:0.78rem;">None</span>'}</td>
+        <td><span class="badge ${p.is_visible?'badge--green':'badge--red'}">${p.is_visible?'Visible':'Hidden'}</span></td>
+        <td><div class="td-actions">
+          <button class="btn btn--ghost btn--sm btn--icon" title="Edit" onclick="editProduct('${p.id}')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+          <button class="btn btn--ghost btn--sm btn--icon" title="${p.is_visible?'Hide':'Show'}" onclick="toggleProductVisibility('${p.id}',${p.is_visible})"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${p.is_visible?'<path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>':'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>'}</svg></button>
+          <button class="btn btn--red btn--sm btn--icon" title="Delete" onclick="confirmDelete('product','${p.id}','${p.name}')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg></button>
+        </div></td>
+      </tr>`;
+    }).join('')}</tbody></table>`;
 }
 
 document.getElementById('product-search').addEventListener('input', function() {
   const q = this.value.toLowerCase();
   const cat = document.getElementById('product-cat-filter').value;
-  renderProductsTable(allProducts.filter(p=>(p.name||'').toLowerCase().includes(q) && (!cat||p.category===cat)));
+  renderProductsTable(allProducts.filter(p=>(p.name||'').toLowerCase().includes(q)&&(!cat||p.category===cat)));
 });
 document.getElementById('product-cat-filter').addEventListener('change', function() {
   const q = document.getElementById('product-search').value.toLowerCase();
-  renderProductsTable(allProducts.filter(p=>(p.name||'').toLowerCase().includes(q) && (!this.value||p.category===this.value)));
+  renderProductsTable(allProducts.filter(p=>(p.name||'').toLowerCase().includes(q)&&(!this.value||p.category===this.value)));
 });
 
 function openProductModal(p=null) {
   editingProduct = p;
+  uploadedImageUrl = null;
   document.getElementById('product-modal-title').textContent = p ? 'Edit Product' : 'Add Product';
   document.getElementById('p-id').value = p?.id || '';
   document.getElementById('p-id').readOnly = !!p;
@@ -1236,33 +1027,46 @@ function openProductModal(p=null) {
   document.getElementById('p-wamsg').value = p?.whatsapp_msg || '';
   document.getElementById('p-sort').value = p?.sort_order ?? 0;
   document.getElementById('p-visible').checked = p?.is_visible ?? true;
-  setTags('p-features-list','p-features-data', p?.features ? (Array.isArray(p.features)?p.features:[]) : []);
-
-  // Reset image uploader
-  uploadedImages = [];
+  /* FIX: Only populate the URL field with the existing image if it's a
+     real URL (not base64). If someone saved base64 before, don't show it. ── */
+  const existingImg = (p?.image && !p.image.startsWith('data:')) ? p.image : '';
+  document.getElementById('p-image-url').value = existingImg;
+  document.getElementById('p-upload-note').textContent = '';
   document.getElementById('p-file-input').value = '';
-
-  // If editing, pre-populate images from existing URLs
-  if (p) {
-    const existingImgs = p.images ? (Array.isArray(p.images) ? p.images : []) : (p.image ? [p.image] : []);
-    existingImgs.forEach(url => { if(url) uploadedImages.push({dataUrl: url, url, name:'existing'}); });
-  }
-  renderImgGrid();
+  setTags('p-features-list','p-features-data', Array.isArray(p?.features) ? p.features : []);
   openModal('product-modal');
 }
 
-function editProduct(id) { openProductModal(allProducts.find(p=>p.id===id)); }
+async function editProduct(id) {
+  /* FIX: Fetch the full product row for editing using PRODUCT_EDIT_COLS.
+     We do this separately from loadProducts() so the table listing stays
+     lean. We don't include the "images" column because we've replaced the
+     multi-image uploader with a simple URL + optional upload approach. ── */
+  try {
+    const rows = await sbGet('products', `?select=${PRODUCT_EDIT_COLS}&id=eq.${encodeURIComponent(id)}`);
+    if (!rows || !rows.length) { toast('Product not found.', 'error'); return; }
+    openProductModal(rows[0]);
+  } catch(e) {
+    toast(`Error loading product: ${e.message}`, 'error');
+  }
+}
 
 async function saveProduct() {
-  const id = document.getElementById('p-id').value.trim();
+  const id   = document.getElementById('p-id').value.trim();
   const name = document.getElementById('p-name').value.trim();
   const cat  = document.getElementById('p-category').value;
   const price = document.getElementById('p-price').value;
   if (!id||!name||!cat||!price) { toast('Please fill in all required fields (ID, Name, Category, Price).','error'); return; }
 
-  // Get image URLs from uploader
-  const imageUrls = getImageUrls();
-  const mainImg = imageUrls[0] || null;
+  /* FIX: Get the image URL from the URL input field only.
+     Never read base64 from the uploader. The uploader auto-fills the URL
+     field on successful upload, so the URL field is always the source of truth.
+     Strip any accidental base64 that might be in the field. ── */
+  let imageUrl = document.getElementById('p-image-url').value.trim();
+  if (imageUrl.startsWith('data:')) {
+    toast('Please use an external image URL (from imgbb.com or cloudinary.com), not a local file.', 'warning');
+    imageUrl = '';
+  }
 
   const payload = {
     id, name,
@@ -1276,8 +1080,10 @@ async function saveProduct() {
     weight: document.getElementById('p-weight').value.trim() || null,
     color: document.getElementById('p-color').value.trim() || null,
     description: document.getElementById('p-description').value.trim() || null,
-    image: mainImg,
-    images: imageUrls,
+    image: imageUrl || null,
+    /* FIX: Do not save a huge "images" array. Store single image URL only.
+       The images column is kept in the DB schema for future use but we
+       don't populate it from this form to avoid accidental base64 saves. ── */
     features: JSON.parse(document.getElementById('p-features-data').value || '[]'),
     whatsapp_msg: document.getElementById('p-wamsg').value.trim() || null,
     sort_order: parseInt(document.getElementById('p-sort').value) || 0,
@@ -1286,7 +1092,6 @@ async function saveProduct() {
 
   const btn = document.getElementById('product-save-btn');
   btn.disabled = true; btn.textContent = 'Saving…';
-
   try {
     if (editingProduct) {
       await sbPatch('products','id',id,payload);
@@ -1299,7 +1104,7 @@ async function saveProduct() {
     loadProducts();
     initDashboard();
   } catch(e) {
-    toast(`Error: ${e.message}`, 'error');
+    toast(`Error saving product: ${e.message}`, 'error');
   } finally {
     btn.disabled=false; btn.textContent='Save Product';
   }
@@ -1313,14 +1118,16 @@ async function toggleProductVisibility(id, current) {
   } catch(e) { toast(`Error: ${e.message}`,'error'); }
 }
 
-/* ══════ SERVICES ══════ */
+/* ══ SERVICES ══ */
 async function loadServices() {
   const el = document.getElementById('services-table-body');
   el.innerHTML = '<div class="empty-state"><p>Loading…</p></div>';
   try {
     allServices = await sbGet('services','?select=*&order=sort_order.asc');
     renderServicesTable(allServices);
-  } catch(e) { el.innerHTML = `<div class="empty-state"><p>Error: ${e.message}</p></div>`; }
+  } catch(e) {
+    el.innerHTML = `<div class="empty-state"><p>Error: ${e.message}<br><small>Have you run the Grant SQL in Settings?</small></p></div>`;
+  }
 }
 
 function renderServicesTable(data) {
@@ -1358,10 +1165,9 @@ function openServiceModal(s=null) {
   document.getElementById('s-sort').value = s?.sort_order ?? 0;
   document.getElementById('s-description').value = s?.description || '';
   document.getElementById('s-visible').checked = s?.is_visible ?? true;
-  setTags('s-tags-list','s-tags-data', s?.tags ? (Array.isArray(s.tags)?s.tags:[]) : []);
+  setTags('s-tags-list','s-tags-data', Array.isArray(s?.tags) ? s.tags : []);
   openModal('service-modal');
 }
-
 function editService(id) { openServiceModal(allServices.find(s=>s.id===id)); }
 
 async function saveService() {
@@ -1391,7 +1197,7 @@ async function toggleServiceVisibility(id, current) {
   catch(e) { toast(`Error: ${e.message}`,'error'); }
 }
 
-/* ══════ REVIEWS ══════ */
+/* ══ REVIEWS ══ */
 async function loadReviews() {
   const el = document.getElementById('reviews-table-body');
   el.innerHTML = '<div class="empty-state"><p>Loading…</p></div>';
@@ -1439,7 +1245,6 @@ function openReviewModal(r=null) {
   document.getElementById('r-approved').checked = r?.is_approved ?? true;
   openModal('review-modal');
 }
-
 function editReview(id) { openReviewModal(allReviews.find(r=>r.id===id)); }
 
 async function saveReview() {
@@ -1465,15 +1270,14 @@ async function toggleReviewApproval(id, current) {
   catch(e) { toast(`Error: ${e.message}`,'error'); }
 }
 
-/* ══════ CONTACTS ══════ */
+/* ══ CONTACTS ══ */
 async function loadContacts() {
   const el = document.getElementById('contacts-table-body');
   el.innerHTML = '<div class="empty-state"><p>Loading…</p></div>';
   try {
     allContacts = await sbGet('contact_submissions','?select=*&order=created_at.desc');
     renderContactsTable(allContacts);
-    const unread = allContacts.filter(c=>!c.is_read).length;
-    document.getElementById('badge-contacts').textContent = unread;
+    document.getElementById('badge-contacts').textContent = allContacts.filter(c=>!c.is_read).length;
   } catch(e) { el.innerHTML = `<div class="empty-state"><p>Error: ${e.message}</p></div>`; }
 }
 
@@ -1512,7 +1316,7 @@ async function viewMessage(id) {
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
         <div><div style="font-size:0.72rem;font-family:var(--font-accent);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);margin-bottom:0.25rem;">From</div><div style="font-weight:600;">${msg.name}</div></div>
         <div><div style="font-size:0.72rem;font-family:var(--font-accent);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);margin-bottom:0.25rem;">Email</div><div>${msg.email}</div></div>
-        ${msg.phone?`<div><div style="font-size:0.72rem;font-family:var(--font-accent);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);margin-bottom:0.25rem;">Phone/WhatsApp</div><div>${msg.phone}</div></div>`:''}
+        ${msg.phone?`<div><div style="font-size:0.72rem;font-family:var(--font-accent);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);margin-bottom:0.25rem;">Phone / WhatsApp</div><div>${msg.phone}</div></div>`:''}
         <div><div style="font-size:0.72rem;font-family:var(--font-accent);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);margin-bottom:0.25rem;">Subject</div><div>${msg.subject||'—'}</div></div>
         <div><div style="font-size:0.72rem;font-family:var(--font-accent);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);margin-bottom:0.25rem;">Received</div><div>${new Date(msg.created_at).toLocaleString('en-GH')}</div></div>
       </div>
@@ -1521,28 +1325,26 @@ async function viewMessage(id) {
         <div style="background:var(--off);border-radius:var(--radius);padding:1.25rem;font-size:0.9rem;line-height:1.75;color:var(--text);">${msg.message}</div>
       </div>
     </div>`;
-  const waMsg = encodeURIComponent(`Hello ${msg.name}! 💕 Thank you for reaching out to b_lit hairs. Regarding your enquiry about "${msg.subject}" — `);
+  const waMsg = encodeURIComponent(`Hello ${msg.name}! 💕 Thank you for reaching out to b_lit hairs. Regarding your enquiry "${msg.subject||''}" — `);
   document.getElementById('reply-wa-btn').href = msg.phone
     ? `https://wa.me/${msg.phone.replace(/\D/g,'')}?text=${waMsg}`
-    : `https://wa.me/233273521007?text=${waMsg}`;
+    : `https://wa.me/233558590198?text=${waMsg}`;
   openModal('message-modal');
-  // Mark as read
   if (!msg.is_read) {
     try { await sbPatch('contact_submissions','id',id,{is_read:true}); msg.is_read=true; loadContacts(); }
     catch(e) { console.error(e); }
   }
 }
 
-/* ══════ DELETE CONFIRM ══════ */
+/* ══ DELETE ══ */
 function confirmDelete(type, id, label) {
   document.getElementById('confirm-title').textContent = `Delete ${type}?`;
-  document.getElementById('confirm-msg').textContent = `"${label}" will be permanently deleted. This cannot be undone.`;
+  document.getElementById('confirm-msg').textContent   = `"${label}" will be permanently deleted. This cannot be undone.`;
   openModal('confirm-modal');
   document.getElementById('confirm-ok-btn').onclick = async () => {
     try {
-      const col = (type==='review'||type==='contact') ? 'id' : 'id';
       const table = type==='product'?'products':type==='service'?'services':type==='review'?'reviews':'contact_submissions';
-      await sbDelete(table, col, id);
+      await sbDelete(table,'id',id);
       toast(`${type.charAt(0).toUpperCase()+type.slice(1)} deleted.`);
       closeModal('confirm-modal');
       if(type==='product') loadProducts();
@@ -1554,24 +1356,33 @@ function confirmDelete(type, id, label) {
   };
 }
 
-/* ══════ SETTINGS ══════ */
+/* ══ SETTINGS ══ */
+function copyGrantSQL() {
+  const sql = document.getElementById('grant-sql-block').textContent;
+  navigator.clipboard.writeText(sql).then(() => {
+    const btn = document.getElementById('copy-grant-btn');
+    btn.textContent = '✓ Copied!';
+    btn.style.background = 'rgba(22,163,74,0.3)';
+    setTimeout(()=>{ btn.textContent='Copy SQL'; btn.style.background='rgba(255,255,255,0.1)'; }, 2000);
+  });
+}
 function copyStorageSQL() {
-  const sql = `insert into storage.buckets (id, name, public)\nvalues ('product-images', 'product-images', true);\n\ncreate policy "Anyone can upload product images"\non storage.objects for insert\nwith check (bucket_id = 'product-images');\n\ncreate policy "Public can read product images"\non storage.objects for select\nusing (bucket_id = 'product-images');`;
+  const sql = document.getElementById('storage-sql-block').textContent;
   navigator.clipboard.writeText(sql).then(() => {
     const btn = document.getElementById('copy-sql-btn');
     btn.textContent = '✓ Copied!';
     btn.style.background = 'rgba(22,163,74,0.3)';
-    setTimeout(() => { btn.textContent='Copy SQL'; btn.style.background='rgba(255,255,255,0.1)'; }, 2000);
+    setTimeout(()=>{ btn.textContent='Copy SQL'; btn.style.background='rgba(255,255,255,0.1)'; }, 2000);
   });
 }
-async function changePassword() {
+function changePassword() {
   const np = document.getElementById('new-pass').value;
   const cp = document.getElementById('confirm-pass').value;
   if (!np||!cp) { toast('Both fields are required.','error'); return; }
   if (np!==cp) { toast('Passwords do not match.','error'); return; }
   if (np.length<8) { toast('Password must be at least 8 characters.','error'); return; }
-  toast('Note: Update ADMIN_PASSWORD in the HTML file for permanent change. Session password changed.','info');
+  toast('Note: Update ADMIN_PASSWORD directly in admin.html to make it permanent.','warning');
 }
 </script>
 </body>
-</html>
+</html>     
